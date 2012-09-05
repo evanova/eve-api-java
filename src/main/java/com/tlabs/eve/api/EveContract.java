@@ -24,6 +24,8 @@ package com.tlabs.eve.api;
 
 import java.io.Serializable;
 import java.util.EnumSet;
+import java.util.LinkedList;
+import java.util.List;
 
 //http://wiki.eveonline.com/wikiEN/index.php?title=EVE_API_Character_Character_Contracts
 public class EveContract extends Object implements Serializable {
@@ -168,6 +170,7 @@ public class EveContract extends Object implements Serializable {
 	private double buyout;
 	private double volume;
 	
+	private List<EveContractItem> items = new LinkedList<EveContractItem>();
 	
 	public final long getContractID() {
 		return contractID;
@@ -355,6 +358,12 @@ public class EveContract extends Object implements Serializable {
 	}
 	public final void setIssuerCorpName(String issuerCorpName) {
 		this.issuerCorpName = issuerCorpName;
+	}
+	public List<EveContractItem> getItems() {
+		return items;
+	}
+	public void setItems(List<EveContractItem> items) {
+		this.items = items;
 	}
 	
 	
