@@ -4,8 +4,10 @@ package com.tlabs.eve.api;
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2010 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +27,8 @@ package com.tlabs.eve.api;
 import org.apache.commons.digester.Digester;
 
 import com.tlabs.eve.api.parser.EveXMLParser;
+import com.tlabs.eve.api.parser.SetAttributePropertyRule;
+import com.tlabs.eve.api.parser.SetNextRule;
 
 public class ContractItemsParser extends EveXMLParser<ContractItemsResponse>{
 	public ContractItemsParser() {
@@ -33,6 +37,8 @@ public class ContractItemsParser extends EveXMLParser<ContractItemsResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-		
+		digester.addObjectCreate("eveapi/result/rowset/row", EveContractItem.class);		
+		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());					
+		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addItem"));
 	}	
 }

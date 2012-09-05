@@ -4,8 +4,10 @@ package com.tlabs.eve.api;
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2010 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +24,8 @@ package com.tlabs.eve.api;
  */
 
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
@@ -39,11 +38,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
 import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
 import com.tlabs.eve.api.character.CharacterAssetsRequest;
+import com.tlabs.eve.api.character.CharacterContractItemsRequest;
 import com.tlabs.eve.api.character.CharacterContractsRequest;
 import com.tlabs.eve.api.character.CharacterIndustryJobsRequest;
 import com.tlabs.eve.api.character.CharacterInfoParser;
@@ -66,6 +68,7 @@ import com.tlabs.eve.api.character.PortraitRequest;
 import com.tlabs.eve.api.character.PortraitResponse;
 import com.tlabs.eve.api.corporation.CorporationAccountBalanceRequest;
 import com.tlabs.eve.api.corporation.CorporationAssetsRequest;
+import com.tlabs.eve.api.corporation.CorporationContractItemsRequest;
 import com.tlabs.eve.api.corporation.CorporationContractsRequest;
 import com.tlabs.eve.api.corporation.CorporationIndustryJobsRequest;
 import com.tlabs.eve.api.corporation.CorporationItemLocationRequest;
@@ -321,7 +324,7 @@ public final class EveAPI {
 			throw new IOException("No parser found for request " + request.getClass().getName());
 		}
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		copy(new BufferedReader(r), out);
+		IOUtils.copy(new ReaderInputStream(r), out);
 		out.close();
 		return p.parse(out.toByteArray());
 	}
@@ -512,8 +515,14 @@ public final class EveAPI {
 		if (request instanceof CorporationContractsRequest) {
 			return new ContractListParser();
 		}
+		if (request instanceof CorporationContractItemsRequest) {
+			return new ContractItemsParser();
+		}
 		if (request instanceof CharacterContractsRequest) {
 			return new ContractListParser();
+		}
+		if (request instanceof CharacterContractItemsRequest) {
+			return new ContractItemsParser();
 		}
 		if (request instanceof CharacterWalletJournalRequest) {
 			return new WalletJournalParser();
@@ -577,15 +586,5 @@ public final class EveAPI {
 		
 		throw new IOException(
 				"No parser found for EveAPIRequest " + request.getClass().getSimpleName());
-	}
-	
-	private static void copy(Reader input, OutputStream output)	throws IOException {
-		OutputStreamWriter out = new OutputStreamWriter(output);
-		char[] buffer = new char[1024];
-		int n = 0;
-		while (-1 != (n = input.read(buffer))) {
-			out.write(buffer, 0, n);
-		}	
-		out.flush();
 	}
 }

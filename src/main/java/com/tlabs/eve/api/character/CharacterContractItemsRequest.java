@@ -1,4 +1,4 @@
-package com.tlabs.eve.api;
+package com.tlabs.eve.api.character;
 
 /*
  * #%L
@@ -24,23 +24,21 @@ package com.tlabs.eve.api;
  */
 
 
-import java.util.LinkedList;
-import java.util.List;
+import com.tlabs.eve.api.ContractItemsResponse;
 
-/**@since Eve API V3*/
-public class ContractItemsResponse extends EveResponse {
+public final class CharacterContractItemsRequest extends CharacterRequest<ContractItemsResponse> {
+	public static final int MASK = 67108864;
+		
+	private final String contractID;
 	
-	private List<EveContractItem> items = new LinkedList<EveContractItem>();
-	
-	public ContractItemsResponse() {
-		super();
+	public CharacterContractItemsRequest(final String charID, final String contractID) {
+		super(ContractItemsResponse.class, "/char/ContractItems.xml.aspx", MASK, charID);
+		this.contractID = contractID;
+		putParam("contractID", contractID);
+	}
+
+	public String getContractID() {
+		return contractID;
 	}
 	
-	public void addItem(EveContractItem c) {
-		this.items.add(c);
-	}
-	
-	public final List<EveContractItem> getItems() {
-		return this.items;
-	}
 }
