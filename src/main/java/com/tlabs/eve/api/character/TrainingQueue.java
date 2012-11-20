@@ -55,44 +55,86 @@ public class TrainingQueue implements Iterable<SkillInTraining>, Serializable {
 		return 0;		
 	}
 	
-	public final SkillInTraining firstActive() {		
-		final long now = System.currentTimeMillis();
-		for (SkillInTraining t: this.training) {
-			if (t.getEndTime() > now) {
-				return t;
-			}
-		}
-		return null;
+	public TrainingQueue subset(SkillInTraining.Type type) {
+	    TrainingQueue q = new TrainingQueue();
+	    for (SkillInTraining t: this.training) {
+	        if (t.getType() == type) {
+	            q.add(t);
+	        }
+	    }
+	    return q;
 	}
-		
-	public final SkillInTraining first(final long skillID) {
-		return first(skillID, false);
-	}
-		
-	public final SkillInTraining first(final long skillID, boolean activeOnly) {
-		return (activeOnly) ? getSkillInTraining(skillID, true) : getSkillImpl(skillID, true);
-	}
-	
-	public final SkillInTraining last(final long skillID) {
-		return last(skillID, false);
+	public int getCount(SkillInTraining.Type type) {
+	    int count = 0;
+	    for (SkillInTraining t: this.training) {
+	        if (t.getType() == type) {
+	            count = count + 1;
+	        }
+	    }
+	    return count;
 	}
 	
-	public final SkillInTraining last(final long skillID, boolean activeOnly) {
-		return (activeOnly) ? getSkillInTraining(skillID, false) : getSkillImpl(skillID, false);
-	}
-	
+	public final SkillInTraining first(SkillInTraining.Type type) {
+	    for (SkillInTraining t: this.training) {
+            if (t.getType() == type) {
+                return t;
+            }
+        }
+        return null;
+    }
+        
+    public final SkillInTraining last(SkillInTraining.Type type) {
+        for (int i = this.training.size() - 1; i >= 0; i--) {
+            SkillInTraining t = this.training.get(i);
+            if (t.getType() == type) {
+                return t;
+            }
+        }
+        return null;
+    }
+    
+    public final SkillInTraining first(final long skillID, SkillInTraining.Type type) {
+        for (SkillInTraining t: this.training) {
+            if ((t.getType() == type) && (skillID == t.getSkillID())) {
+                return t;
+            }
+        }
+        return null;
+    }
+        
+    public final SkillInTraining last(final long skillID, SkillInTraining.Type type) {
+        for (int i = this.training.size() - 1; i >= 0; i--) {
+            SkillInTraining t = this.training.get(i);
+            if ((t.getType() == type) && (t.getSkillID() == skillID)) {
+                return t;
+            }
+        }
+        return null;
+    }
+    
 	public final SkillInTraining getSkill(final long skillID, int skillLevel) {
-		return getSkill(skillID, skillLevel, false);
+		return getSkill(skillID, skillLevel, SkillInTraining.Type.QUEUE);
 	}
 	
-	public final SkillInTraining getSkill(final long skillID, int skillLevel, boolean activeOnly) {
-		return (activeOnly) ? getSkillInTraining(skillID, skillLevel) : getSkillImpl(skillID, skillLevel);
+	public final SkillInTraining getSkill(final long skillID, int skillLevel, SkillInTraining.Type type) {
+	    for (SkillInTraining t: this.training) {
+            if (
+               (t.getType() == type) &&
+               (t.getSkillID() == skillID) && 
+               (t.getSkillLevel() == skillLevel)) {
+                return t;
+            }
+        }
+	    return null;
 	}
 	
 	public final SkillInTraining getActive() {
 		final long now = System.currentTimeMillis();
 		for (SkillInTraining t: this.training) {
-			if ((t.getStartTime() <= now) && (t.getEndTime() >= now)) {
+		    if (
+		       (t.getType() == SkillInTraining.Type.QUEUE) &&
+		       (t.getStartTime() <= now) && 
+		       (t.getEndTime() >= now)) {
 				return t;
 			}
 		}
@@ -100,14 +142,15 @@ public class TrainingQueue implements Iterable<SkillInTraining>, Serializable {
 	}
 	
 	public final long getStartTime() {
-		SkillInTraining l = first();
+		SkillInTraining l = first(SkillInTraining.Type.QUEUE);
 		return (null == l) ? 0 : l.getStartTime();
 	}
 	
 	public final long getEndTime() {
-		SkillInTraining l = last();
+		SkillInTraining l = last(SkillInTraining.Type.QUEUE);
 		return (null == l) ? 0 : l.getEndTime();
 	}
+
 
 	public synchronized final boolean remove(final SkillInTraining t) {
 		if (!contains(t)) {
@@ -175,14 +218,7 @@ public class TrainingQueue implements Iterable<SkillInTraining>, Serializable {
 		CollectionUtils.filter(this.training, p);
 		return Math.abs(size - this.training.size());
 	}
-	
-	public final SkillInTraining last() {
-		return (this.training.size() == 0) ? null : this.training.get(this.training.size() - 1);
-	}
-	
-	public final SkillInTraining first() {
-		return (this.training.size() == 0) ? null : this.training.get(0);
-	}
+		
 	
 	public final SkillInTraining get(int position) {
 		return this.training.get(position);
@@ -239,75 +275,6 @@ public class TrainingQueue implements Iterable<SkillInTraining>, Serializable {
 			}
 		}
 		return false;
-	}
-	
-	private final SkillInTraining getSkillImpl(final long skillID, int skillLevel) {
-		if (this.training.size() == 0) {
-			return null;
-		}		
-		for (SkillInTraining skill: this.training) {
-			if ((skill.getSkillID() == skillID) && (skill.getSkillLevel() == skillLevel)) {
-				return skill;
-			}
-		}
-		return null;			
-	}
-	
-	private final SkillInTraining getSkillImpl(final long skillID, final boolean asc) {
-		if (asc) {
-			for (int i = 1; i < 6; i++) {
-				SkillInTraining skill = getSkillImpl(skillID, i);
-				if (null != skill) {
-					return skill;
-				}
-			}
-		}
-		else {
-			for (int i = 5; i > 0; i--) {
-				SkillInTraining skill = getSkillImpl(skillID, i);
-				if (null != skill) {
-					return skill;
-				}
-			}
-		}
-		return null;
-	}
-	
-	private final SkillInTraining getSkillInTraining(final long skillID, int skillLevel) {
-		if (this.training.size() == 0) {
-			return null;
-		}
-		long now = System.currentTimeMillis();
-		
-		for (SkillInTraining skill: this.training) {
-			if (
-				((skill.getSkillID() == skillID) && (skill.getSkillLevel() == skillLevel)) &&
-				((skill.getEndTime() == 0) || (skill.getEndTime() >= now))) {
-					return skill;					
-			}
-		}
-		return null;
-	}
-
-	//returns the lowest/highest level of SkillInTraining, or null
-	private final SkillInTraining getSkillInTraining(final long skillID, final boolean asc) {
-		if (asc) {
-			for (int i = 1; i < 6; i++) {
-				SkillInTraining skill = getSkillInTraining(skillID, i);
-				if (null != skill) {
-					return skill;
-				}
-			}
-		}
-		else {
-			for (int i = 5; i > 0; i--) {
-				SkillInTraining skill = getSkillInTraining(skillID, i);
-				if (null != skill) {
-					return skill;
-				}
-			}
-		}
-		return null;
 	}
 	
 }
