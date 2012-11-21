@@ -33,7 +33,7 @@ import com.tlabs.eve.api.EveSkillTree.SkillGroup;
 public class SkillTreeTest extends EveApiTest {
 
 	@Test(timeout=10000)
-	public void testSkillTreeParser() {
+	public void testSkillTreeParser() throws Exception {
 		SkillTreeResponse r = apiCall(new SkillTreeRequest());
 		assertNotNull("Null response", r);
 		

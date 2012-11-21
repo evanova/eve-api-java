@@ -32,27 +32,26 @@ import com.tlabs.eve.api.AccessInfoRequest;
 import com.tlabs.eve.api.AccessInfoResponse;
 import com.tlabs.eve.api.AccountStatusRequest;
 import com.tlabs.eve.api.AccountStatusResponse;
-import com.tlabs.eve.api.EveApiKeys;
 import com.tlabs.eve.api.EveApiTest;
 import com.tlabs.eve.api.character.EveCharacter;
 
 public class AccountAccessTest extends EveApiTest {
 
 	@Test(timeout = 10000, expected = IllegalArgumentException.class)
-	public void invalidAccountAccessInfo() {
-		AccessInfoRequest r = new AccessInfoRequest(EveApiKeys.AccountV2[0].keyId,	"123145");
+	public void invalidAccountAccessInfo() throws Exception {
+		AccessInfoRequest r = new AccessInfoRequest(accountKey.keyId,	"123145");
 		AccessInfoResponse q = apiCall(r);
 	}
 
 	@Test(timeout = 10000, expected = IllegalArgumentException.class)
-	public void invalidCorporationAccessInfo() {
-		AccessInfoRequest r = new AccessInfoRequest(EveApiKeys.CorporationV2[0].keyId, "123145");
+	public void invalidCorporationAccessInfo() throws Exception {
+		AccessInfoRequest r = new AccessInfoRequest(corporationKey.keyId, "123145");
 		AccessInfoResponse q = apiCall(r);
 	}
 
 	@Test(timeout = 10000)
-	public void validAccountAccessInfo() {
-		AccessInfoRequest r = new AccessInfoRequest(EveApiKeys.AccountV2[0].keyId,	EveApiKeys.AccountV2[0].keyValue);
+	public void validAccountAccessInfo() throws Exception {
+		AccessInfoRequest r = new AccessInfoRequest(accountKey.keyId,	accountKey.keyValue);
 		AccessInfoResponse q = apiCall(r);
 
 		int size = q.getCharacters().size();
@@ -61,9 +60,9 @@ public class AccountAccessTest extends EveApiTest {
 	}
 
 	@Test(timeout = 10000)
-	public void validCharacterAccessInfo() {
+	public void validCharacterAccessInfo() throws Exception {
 		AccessInfoRequest r = new AccessInfoRequest(
-				EveApiKeys.CharacterV2[0].keyId, EveApiKeys.CharacterV2[0].keyValue);
+				characterKey.keyId, characterKey.keyValue);
 
 		AccessInfoResponse q = apiCall(r);
 		int size = q.getCharacters().size();
@@ -72,10 +71,10 @@ public class AccountAccessTest extends EveApiTest {
 	}
 
 	@Test(timeout = 10000)
-	public void validCorporationAccessInfo() {
+	public void validCorporationAccessInfo() throws Exception {
 		AccessInfoRequest r = new AccessInfoRequest(
-				EveApiKeys.CorporationV2[0].keyId,
-				EveApiKeys.CorporationV2[0].keyValue);
+				corporationKey.keyId,
+				corporationKey.keyValue);
 
 		AccessInfoResponse q = apiCall(r);
 
@@ -86,22 +85,22 @@ public class AccountAccessTest extends EveApiTest {
 	
 
 	@Test(timeout=10000) 
-	public void validAccountRequestV2() {
+	public void validAccountRequestV2() throws Exception {
 		AccountStatusRequest r = 
 			new AccountStatusRequest(
-				EveApiKeys.AccountV2[0].keyId, 
-				EveApiKeys.AccountV2[0].keyValue,
+				accountKey.keyId, 
+				accountKey.keyValue,
 				false);
 		AccountStatusResponse q = apiCall(r);	
 	}
 	
 	
 	@Test(timeout=10000) 
-	public void validCharacterRequestV2() {
+	public void validCharacterRequestV2() throws Exception {
 		AccountStatusRequest r = 
 			new AccountStatusRequest(
-				EveApiKeys.CharacterV2[0].keyId, 
-				EveApiKeys.CharacterV2[0].keyValue,
+				characterKey.keyId, 
+				characterKey.keyValue,
 				false);
 		AccountStatusResponse q = apiCall(r);	
 	}

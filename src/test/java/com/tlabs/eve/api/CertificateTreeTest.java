@@ -31,7 +31,7 @@ import org.junit.Test;
 public class CertificateTreeTest extends EveApiTest {
 
 	@Test(timeout=10000)
-	public void testCertificateTreeParser() {
+	public void testCertificateTreeParser() throws Exception {
 		CertificateTreeResponse r = apiCall(new CertificateTreeRequest());
 		assertNotNull("Null response", r);
 		

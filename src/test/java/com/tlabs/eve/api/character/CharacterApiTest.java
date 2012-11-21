@@ -33,7 +33,6 @@ import com.tlabs.eve.api.AccessInfoRequest;
 import com.tlabs.eve.api.AccessInfoResponse;
 import com.tlabs.eve.api.AssetListResponse;
 import com.tlabs.eve.api.ContractListResponse;
-import com.tlabs.eve.api.EveApiKeys;
 import com.tlabs.eve.api.EveApiTest;
 import com.tlabs.eve.api.EveAsset;
 import com.tlabs.eve.api.EveItem;
@@ -45,37 +44,35 @@ public final class CharacterApiTest extends EveApiTest {
 
 	@Before
 	public void onCharacterSetup() {
-		setKeyID(EveApiKeys.CharacterV2[0].keyId);
-		setKeyValue(EveApiKeys.CharacterV2[0].keyValue);
+		setKeyID(characterKey.keyId);
+		setKeyValue(characterKey.keyValue);
 	}
 
 	@Test(timeout=10000)
-	public void testCharacterSheets() {
+	public void testCharacterSheets() throws Exception {
 		CharacterSheetResponse s1 =  
-			apiCall(new CharacterSheetRequest(EveApiKeys.CharacterV2[0].id));		
+			apiCall(new CharacterSheetRequest(characterKey.id));		
 		Assert.assertNotNull("Null character", s1.getCharacter());
-		Assert.assertEquals("Wrong character name " + EveApiKeys.CharacterV2[0].id, "Evanova Android", s1.getCharacter().getCharacterName());
 		
-		setKeyID(EveApiKeys.CharacterV2[1].keyId);
-		setKeyValue(EveApiKeys.CharacterV2[1].keyValue);
+		setKeyID(characterKey.keyId);
+		setKeyValue(characterKey.keyValue);
 		CharacterSheetResponse s2 =  
-				apiCall(new CharacterSheetRequest(EveApiKeys.CharacterV2[1].id));
+				apiCall(new CharacterSheetRequest(characterKey.id));
 		Assert.assertNotNull("Null character", s2.getCharacter());
-		Assert.assertEquals("Wrong character name " + EveApiKeys.CharacterV2[1].id, "Tarten Infacen", s2.getCharacter().getCharacterName());
 	}	
 
 	@Test(timeout=10000)
-	public void testCharacterAssets() {
+	public void testCharacterAssets() throws Exception {
 		AssetListResponse assets = 
-			apiCall(new CharacterAssetsRequest(EveApiKeys.CharacterV2[0].id));		
+			apiCall(new CharacterAssetsRequest(characterKey.id));		
 		Assert.assertNotNull("AssetListResponse returned null Assets", assets.getAssets());
 		Assert.assertTrue("AssetListResponse returned no Assets", assets.getAssets().size() > 0);
 	}	
 	
 	@Test(timeout=10000)
-	public void testCharacterItemLocations() {
+	public void testCharacterItemLocations() throws Exception {
 		AssetListResponse r = 
-			apiCall(new CharacterAssetsRequest(EveApiKeys.CharacterV2[0].id));
+			apiCall(new CharacterAssetsRequest(characterKey.id));
 		
 		final List<EveAsset> assets = r.getAssets();
 		Assert.assertNotNull("AssetListResponse returned null Assets", assets);
@@ -86,7 +83,7 @@ public final class CharacterApiTest extends EveApiTest {
 			ids[i] = assets.get(i).getItemID();
 		}
 		
-		final ItemLocationResponse r2 = apiCall(new CharacterItemLocationRequest(EveApiKeys.CharacterV2[0].id, ids));		
+		final ItemLocationResponse r2 = apiCall(new CharacterItemLocationRequest(characterKey.id, ids));		
 		final List<EveItem.Location> locations = r2.getLocations();
 		Assert.assertNotNull("EveItemLocationResponse returned null Locations", locations);
 		Assert.assertTrue("AssetListResponse returned no Assets", locations.size() > 0);
@@ -94,17 +91,17 @@ public final class CharacterApiTest extends EveApiTest {
 	
 	
 	@Test(timeout=10000)
-	public void testValidContract() {
+	public void testValidContract() throws Exception {
 		ContractListResponse contracts = 
-			apiCall(new CharacterContractsRequest(EveApiKeys.CharacterV2[0].id));
+			apiCall(new CharacterContractsRequest(characterKey.id));
 	}
 	
 	
 	@Test(timeout=10000)
-	public void testAllCharacterContracts() {
+	public void testAllCharacterContracts() throws Exception {
 		AccessInfoRequest r = new AccessInfoRequest(
-				EveApiKeys.AccountV2[0].keyId, 
-				EveApiKeys.AccountV2[0].keyValue);
+				accountKey.keyId, 
+				accountKey.keyValue);
 		
 		AccessInfoResponse q = apiCall(r);
 		for (EveCharacter c: q.getCharacters()) {
@@ -115,15 +112,15 @@ public final class CharacterApiTest extends EveApiTest {
 	
 
 	@Test(timeout=10000)
-	public void testFullMarketOrders() {
+	public void testFullMarketOrders() throws Exception {
 		MarketOrderResponse orders = 
-			apiCall(new CharacterMarketOrderRequest(EveApiKeys.CharacterV2[0].id));
+			apiCall(new CharacterMarketOrderRequest(characterKey.id));
 		
 	}	
 	
 	@Test(timeout=10000)
-	public void testIndustryJobs() {		
-		IndustryJobsResponse r = apiCall(new CharacterIndustryJobsRequest(EveApiKeys.CharacterV2[0].id));
+	public void testIndustryJobs() throws Exception {		
+		IndustryJobsResponse r = apiCall(new CharacterIndustryJobsRequest(characterKey.id));
 			
 	}
 }

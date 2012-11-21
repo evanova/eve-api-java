@@ -33,7 +33,6 @@ import org.junit.Test;
 import com.tlabs.eve.api.AccountBalance;
 import com.tlabs.eve.api.AccountBalanceResponse;
 import com.tlabs.eve.api.AssetListResponse;
-import com.tlabs.eve.api.EveApiKeys;
 import com.tlabs.eve.api.EveApiTest;
 import com.tlabs.eve.api.MarketOrderResponse;
 import com.tlabs.eve.api.WalletJournalResponse;
@@ -43,24 +42,24 @@ public final class CorporationApiTest extends EveApiTest {
 
 	@Before
 	public void onCorporationSetup() {
-		setKeyID(EveApiKeys.CorporationV2[0].keyId);
-		setKeyValue(EveApiKeys.CorporationV2[0].keyValue);
+		setKeyID(corporationKey.keyId);
+		setKeyValue(corporationKey.keyValue);
 	}
 
 	@Test(timeout=10000)
-	public void testCorporationBalance() {		
+	public void testCorporationBalance() throws Exception {		
 		AccountBalanceResponse r = 
 			apiCall(			
-				new CorporationAccountBalanceRequest(EveApiKeys.CorporationV2[0].id)); 
+				new CorporationAccountBalanceRequest(corporationKey.id)); 
 		
 		List<AccountBalance> account = r.getAccountBalance();
 		assertTrue("Account size=0", account.size() > 0);
 	}	
 	
 	@Test(timeout=10000)
-	public void testFullAssets() {
+	public void testFullAssets() throws Exception {
 		AssetListResponse assets = 
-			apiCall(new CorporationAssetsRequest(EveApiKeys.CorporationV2[0].id));
+			apiCall(new CorporationAssetsRequest(corporationKey.id));
 		/*for (EveAsset a: assets.getAssets()) {
 			System.out.println(ToStringBuilder.reflectionToString(a, ToStringStyle.MULTI_LINE_STYLE));
 			for (EveAsset c: a.getAssets()) {
@@ -70,42 +69,42 @@ public final class CorporationApiTest extends EveApiTest {
 	}	
 
 	@Test(timeout=10000)
-	public void testFullMarketOrders() {
+	public void testFullMarketOrders() throws Exception {
 		MarketOrderResponse orders = 
-			apiCall(new CorporationMarketOrderRequest(EveApiKeys.CorporationV2[0].id));
+			apiCall(new CorporationMarketOrderRequest(corporationKey.id));
 		assertEquals("Error Code", 0, orders.getErrorCode());
 		
 	}	
 	
 
 	@Test(timeout=10000)
-	public void testCorporationMembers() {
+	public void testCorporationMembers() throws Exception {
 		MemberTrackingResponse members = 
-			apiCall(new MemberTrackingRequest(EveApiKeys.CorporationV2[0].id, true));
+			apiCall(new MemberTrackingRequest(corporationKey.id, true));
 	}	
 
 	@Test(timeout=10000)
-	public void testFullSheet() {
+	public void testFullSheet() throws Exception {
 		CorporationSheetResponse sheet = 
-			apiCall(new CorporationSheetRequest(EveApiKeys.CorporationV2[0].id));
+			apiCall(new CorporationSheetRequest(corporationKey.id));
 	}
 	
 	@Test(timeout=10000/*, expected=IllegalArgumentException.class*/)
-	public void testNoKeysSheet() {
+	public void testNoKeysSheet() throws Exception {
 		setKeyID(null);
 		setKeyValue(null);
 		
 		CorporationSheetResponse sheet = 
-			apiCall(new CorporationSheetRequest(EveApiKeys.CorporationV2[0].id));
+			apiCall(new CorporationSheetRequest(corporationKey.id));
 	}
 
 	@Test(timeout=10000)
-	public void testFullCorporationWallet() {
+	public void testFullCorporationWallet() throws Exception {
 		WalletJournalResponse journal = 
-			apiCall(new CorporationWalletJournalRequest(EveApiKeys.CorporationV2[0].id, 1000));
+			apiCall(new CorporationWalletJournalRequest(corporationKey.id, 1000));
 		
 		WalletTransactionsResponse transactions = 
-			apiCall(new CorporationWalletTransactionsRequest(EveApiKeys.CorporationV2[0].id, 1000));		
+			apiCall(new CorporationWalletTransactionsRequest(corporationKey.id, 1000));		
 	}	
 	
 }
