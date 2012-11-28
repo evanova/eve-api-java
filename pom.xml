@@ -26,7 +26,7 @@
 			</properties>
 		</profile>
 
-		<!-- https://apitest.eveonline.com -->
+		<!-- https://api.testeveonline.com -->
 		<profile>
 			<id>test</id>
 			<activation>
@@ -34,7 +34,7 @@
 			</activation>
 			<properties>
 				<com.tlabs.eve.api.keys.properties>/apikeys.properties</com.tlabs.eve.api.keys.properties>
-				<com.tlabs.eve.api.url>https://apitest.eveonline.com</com.tlabs.eve.api.url>
+				<com.tlabs.eve.api.url>https://api.testeveonline.com</com.tlabs.eve.api.url>
 			</properties>
 		</profile>
 		

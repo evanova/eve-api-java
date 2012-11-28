@@ -54,7 +54,7 @@ public abstract class EveApiTest extends HttpClientTest {
     private static final String PROPERTY_API_URL = "com.tlabs.eve.api.url";
     
 	//public static final String URL = "http://localhost:8080/test";
-	//public static final String URL = "http://apitest.eveonline.com";
+	//public static final String URL = "http://api.testeveonline.com";
 
     public static final class Key {
         public final String keyId;
