@@ -22,22 +22,25 @@ package com.tlabs.eve.api.character;
  */
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.tlabs.eve.api.EveResponse;
 
 public class CharacterTrainingQueueResponse extends EveResponse {
 
-	private TrainingQueue trainingQueue;
+	private List<SkillInTraining> trainingQueue;
 	
 	public CharacterTrainingQueueResponse() {
 		super();
-		this.trainingQueue = new TrainingQueue();
+		this.trainingQueue = new LinkedList<SkillInTraining>();
 	}
 
 	public void addTraining(SkillInTraining training) {
 		this.trainingQueue.add(training);
 	}
 	
-	public TrainingQueue getTrainingQueue() {
+	public List<SkillInTraining> getTrainingQueue() {
 		return this.trainingQueue;
 	}
 }

@@ -33,10 +33,8 @@ public class SkillInTraining extends EveSkill implements Serializable {
 	private static final long serialVersionUID = 1194595186724600630L;
 	
 	public static enum Type {
-		QUEUE, PLAN, REQUIRED, COMPLETED; 
+		REQUIRED, QUEUE, PLAN, COMPLETED; 
 	}
-	
-	private int queuePosition = 0;	
 	
 	//NOT in XML but much too convenient for clients to pass up
 	private Type trainingType = Type.QUEUE;
@@ -55,8 +53,7 @@ public class SkillInTraining extends EveSkill implements Serializable {
 	
 	public SkillInTraining(final EveSkill s, final int level) {
 		super(s);
-		this.endSkillPoints = 0;
-		this.queuePosition = 0;
+		this.endSkillPoints = 0;		
 		this.startSkillPoints = 0;
 		this.trainingEndTime = 0;
 		this.trainingLevel = level;
