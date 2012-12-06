@@ -146,16 +146,16 @@ public class EveCharacter extends Object implements Serializable {
 		this.skillPoints = this.skillPoints + skill.getSkillPoints();
 	}
 	
-	public CharacterSkill getSkill(int skillID) {
+	public CharacterSkill getSkill(long skillID) {
 		return this.skillsMap.get(skillID);
 	}
 	
-	public int getSkillLevel(int skillID) {
+	public int getSkillLevel(long skillID) {
 		CharacterSkill skill = this.skillsMap.get(skillID);
 		return (null == skill) ? 0 : skill.getSkillLevel();
 	}
 	
-	public long getSkillPoints(int skillID) {
+	public long getSkillPoints(long skillID) {
 		CharacterSkill skill = this.skillsMap.get(skillID);
 		return (null == skill) ? 0l : skill.getSkillPoints();
 	}
