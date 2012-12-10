@@ -24,10 +24,13 @@ package com.tlabs.eve.api.parser;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.digester.Digester;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -78,6 +81,17 @@ public abstract class AbstractXMLParser<T extends EveResponse> extends Object im
 		return parse(s.getBytes());
 	}
 	
+    public final T parse(InputStream in) throws IOException {
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            IOUtils.copy(in, out);
+            return parse(out.toByteArray());
+        }
+        finally {
+            IOUtils.closeQuietly(out);
+        }        
+	}
+    
 	@SuppressWarnings("unchecked")
 	public synchronized final T parse(byte[] data) throws IOException {
 		this.digester.clear();		

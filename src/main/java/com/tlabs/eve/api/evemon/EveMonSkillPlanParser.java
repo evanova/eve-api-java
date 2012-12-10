@@ -41,7 +41,12 @@ public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrai
 			t.setSkillLevel(Integer.parseInt(attributes.getValue("level")));
 			t.setSkillName(attributes.getValue("skill"));
 			String type = attributes.getValue("type");
-			t.setType(SkillInTraining.Type.PLAN);
+			if ("prerequisite".equalsIgnoreCase(type)) {
+                t.setType(SkillInTraining.Type.REQUIRED);
+            }
+            else {
+                t.setType(SkillInTraining.Type.PLAN);
+            }
 		}		
 	}
 	

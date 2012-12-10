@@ -81,7 +81,6 @@ public class EveItem extends Object implements Serializable {
 			
 	private int raceID;//not in Eve XML
 	private long graphicID;//not in Eve XML
-	private long iconID;//not in Eve XML
 	
 	private String description;////not in Eve XML
 	private long categoryID;//not in Eve XML
@@ -133,14 +132,6 @@ public class EveItem extends Object implements Serializable {
 
 	public final void setGraphicID(long graphicID) {
 		this.graphicID = graphicID;
-	}
-
-	public final long getIconID() {
-		return iconID;
-	}
-
-	public final void setIconID(long iconID) {
-		this.iconID = iconID;
 	}
 
 	public final String getDescription() {
