@@ -4,8 +4,10 @@ package com.tlabs.eve.api.character;
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2011 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,16 +24,23 @@ package com.tlabs.eve.api.character;
  */
 
 
-import org.junit.Before;
+import junit.framework.Assert;
 
-import com.tlabs.eve.api.EveApiTest;
+import org.junit.Test;
 
-public abstract class CharacterApiTest extends EveApiTest {
+public final class CharacterTest extends CharacterApiTest {
 
-	@Before
-	public void onCharacterSetup() {
-		setKeyID(characterKey.keyId);
-		setKeyValue(characterKey.keyValue);
-	}
+    @Test(timeout=10000)
+    public void testCharacterSheets() throws Exception {
+        CharacterSheetResponse s1 =  
+            apiCall(new CharacterSheetRequest(characterKey.id));        
+        Assert.assertNotNull("Null character", s1.getCharacter());
+        
+        setKeyID(characterKey.keyId);
+        setKeyValue(characterKey.keyValue);
+        CharacterSheetResponse s2 =  
+                apiCall(new CharacterSheetRequest(characterKey.id));
+        Assert.assertNotNull("Null character", s2.getCharacter());
+    }   
 
 }

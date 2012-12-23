@@ -1,11 +1,13 @@
-package com.tlabs.eve.api.corporation;
+package com.tlabs.eve.api.character;
 
 /*
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2011 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,21 +24,21 @@ package com.tlabs.eve.api.corporation;
  */
 
 
-import org.junit.Before;
+import junit.framework.Assert;
 
-import com.tlabs.eve.api.EveApiTest;
+import org.junit.Test;
 
-public abstract class CorporationApiTest extends EveApiTest {
+import com.tlabs.eve.api.AssetListResponse;
 
-	@Before
-	public void onCorporationSetup() {
-		setKeyID(corporationKey.keyId);
-		setKeyValue(corporationKey.keyValue);
-	}
+public final class CharacterAssetTest extends CharacterApiTest {
 
-
-	
-
+    @Test(timeout=10000)
+    public void testCharacterAssets() throws Exception {
+        AssetListResponse assets = 
+            apiCall(new CharacterAssetsRequest(characterKey.id));       
+        Assert.assertNotNull("AssetListResponse returned null Assets", assets.getAssets());
+        Assert.assertTrue("AssetListResponse returned no Assets", assets.getAssets().size() > 0);
+    }   
+    
 
 }
-

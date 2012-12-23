@@ -1,11 +1,13 @@
-package com.tlabs.eve.api.corporation;
+package com.tlabs.eve.api.character;
 
 /*
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2011 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,21 +24,18 @@ package com.tlabs.eve.api.corporation;
  */
 
 
-import org.junit.Before;
+import org.junit.Test;
 
-import com.tlabs.eve.api.EveApiTest;
+import com.tlabs.eve.api.MarketOrderResponse;
 
-public abstract class CorporationApiTest extends EveApiTest {
-
-	@Before
-	public void onCorporationSetup() {
-		setKeyID(corporationKey.keyId);
-		setKeyValue(corporationKey.keyValue);
-	}
+public final class CharacterMarketTest extends CharacterApiTest {
 
 
-	
-
+    @Test(timeout=10000)
+    public void testFullMarketOrders() throws Exception {
+        MarketOrderResponse orders = 
+            apiCall(new CharacterMarketOrderRequest(characterKey.id));
+        
+    }   
 
 }
-

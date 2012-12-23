@@ -4,8 +4,10 @@ package com.tlabs.eve.api.corporation;
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2011 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,21 +24,25 @@ package com.tlabs.eve.api.corporation;
  */
 
 
-import org.junit.Before;
+import org.junit.Test;
 
-import com.tlabs.eve.api.EveApiTest;
-
-public abstract class CorporationApiTest extends EveApiTest {
-
-	@Before
-	public void onCorporationSetup() {
-		setKeyID(corporationKey.keyId);
-		setKeyValue(corporationKey.keyValue);
-	}
+public final class CorporationSheetTest extends CorporationApiTest {
 
 
-	
-
-
+    @Test(timeout=10000)
+    public void testFullSheet() throws Exception {
+        CorporationSheetResponse sheet = 
+            apiCall(new CorporationSheetRequest(corporationKey.id));
+    }
+    
+    @Test(timeout=10000/*, expected=IllegalArgumentException.class*/)
+    public void testNoKeysSheet() throws Exception {
+        setKeyID(null);
+        setKeyValue(null);
+        
+        CorporationSheetResponse sheet = 
+            apiCall(new CorporationSheetRequest(corporationKey.id));
+    }
+    
+    
 }
-
