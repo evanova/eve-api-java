@@ -53,8 +53,8 @@ public abstract class EveApiTest extends HttpClientTest {
     private static final String PROPERTY_API_KEYS = "com.tlabs.eve.api.keys.properties";
     private static final String PROPERTY_API_URL = "com.tlabs.eve.api.url";
     
-	//public static final String URL = "http://localhost:8080/test";
-	//public static final String URL = "http://api.testeveonline.com";
+	//public static final String URL = "https://localhost:8080/test";
+	public static final String URL = "https://api.testeveonline.com";
 
     public static final class Key {
         public final String keyId;
@@ -144,7 +144,7 @@ public abstract class EveApiTest extends HttpClientTest {
 	}
 	
 	protected final <T extends EveResponse> T apiCall(final EveRequest<T> r) throws IOException {
-	    final String url = System.getProperty(PROPERTY_API_URL, "https://apitest.eveonline.com");
+	    final String url = System.getProperty(PROPERTY_API_URL, URL);
 	    
 		T q = callEveAPI(url, r);
 		if (q.getErrorCode() != 0) {

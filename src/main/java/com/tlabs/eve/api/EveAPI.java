@@ -536,6 +536,9 @@ public final class EveAPI {
 		if (request instanceof ServerStatusRequest) {
 			return new ServerStatusParser();
 		}
+	    if (request instanceof ServerStationsRequest) {
+	        return new ServerStationsParser();
+	    }
 		if (request instanceof CorporationSheetRequest) {
 			return new CorporationSheetParser();
 		}
