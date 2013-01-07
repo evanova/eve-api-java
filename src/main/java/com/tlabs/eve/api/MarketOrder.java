@@ -44,9 +44,12 @@ public class MarketOrder extends Object implements Serializable  {
 	private long orderID;
 	
 	private long itemID;	
+	private String itemName; //Not in XML
+	
 	private long characterID;
 	
 	private long stationID;
+	private String stationName;//Not in XML
 	
 	private long minVolume;
 	private long initialVolume;
@@ -214,6 +217,22 @@ public class MarketOrder extends Object implements Serializable  {
 	public void setAccountKey(long accountKey) {
 		this.accountKey = accountKey;
 	}
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
 	
 	/*orderID	 int	Unique order ID for this order. Note that these are not guaranteed to be unique forever, they can recycle. But they are unique for the purpose of one data pull.
 	charID	 int	ID of the character that physically placed this order.
