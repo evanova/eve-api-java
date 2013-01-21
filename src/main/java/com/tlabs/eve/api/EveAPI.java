@@ -26,6 +26,7 @@ package com.tlabs.eve.api;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.lang.ref.SoftReference;
 import java.text.DateFormat;
@@ -318,6 +319,18 @@ public final class EveAPI {
 		return getEveCalendar().getTimeInMillis();
 	}
 	
+
+    public static <T extends EveResponse> T parse(EveRequest<T> request, InputStream in) throws IOException {
+        EveParser<T> p = getParserImpl(request);
+        if (null == p) {
+            throw new IOException("No parser found for request " + request.getClass().getName());
+        }
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        IOUtils.copy(in, out);
+        out.close();
+        return p.parse(out.toByteArray());
+    }
+    
 	public static <T extends EveResponse> T parse(EveRequest<T> request, Reader r) throws IOException {
 		EveParser<T> p = getParserImpl(request);
 		if (null == p) {

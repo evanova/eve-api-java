@@ -105,7 +105,7 @@ public abstract class EveRequest<T extends EveResponse> extends Object {
 	}		
 	
 	public final T createError(Throwable t) {
-		return createError(500, (null == t) ? null : t.getLocalizedMessage());		
+		return createError(500, (null == t) ? "No error message - sorry." : t.getLocalizedMessage());		
 	}
 	
 	public final T createError(int err) {
