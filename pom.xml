@@ -12,9 +12,15 @@
 	<organization>
 		<name>Traquenard Labs</name>
 	</organization>
-
+	
+	<scm>
+      	<connection>scm:git:https://bitbucket.org/evanova/eve-api.git</connection>
+      	<developerConnection>scm:git:https://${bitbucket.user}@bitbucket.org/evanova/eve-api.git</developerConnection>
+      	<url>http://bitbucket.org/evanova/eve-api</url>
+   	</scm>
+  	    
 	<profiles>
-	    <!-- Evanova's eve-proxy (localhost:8080)-->
+		<!-- Evanova's eve-proxy (localhost:8080) -->
 		<profile>
 			<id>local</id>
 			<activation>
@@ -37,7 +43,7 @@
 				<com.tlabs.eve.api.url>https://api.testeveonline.com</com.tlabs.eve.api.url>
 			</properties>
 		</profile>
-		
+
 		<!-- https://api.eveonline.com - avoid using -->
 		<profile>
 			<id>api</id>
@@ -150,6 +156,11 @@
 						</property>
 					</systemProperties>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.8.1</version>	
 			</plugin>
 		</plugins>
 	</build>
