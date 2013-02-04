@@ -68,18 +68,7 @@ public class CorporationSheetParser extends EveXMLParser<CorporationSheetRespons
 					attr.getValue("description"));
 			}
 			
-		}
-
-		@Override
-		public void doBody(String name, String text) {
-			super.doBody(name, text);
-		}
-
-		@Override
-		public void doEnd(String name) {
-			super.doEnd(name);
-		}
-		
+		}		
 	}
 	
 	public CorporationSheetParser() {

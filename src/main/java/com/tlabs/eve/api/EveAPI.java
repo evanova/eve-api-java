@@ -297,6 +297,8 @@ public final class EveAPI {
 	public static final String ATTR_MEMORY = "memory";
 	public static final String ATTR_PERCEPTION = "perception";
 	
+	private EveAPI() {}
+	
 	public static long parseDateTime(String dateTime) {
 		if (StringUtils.isBlank(dateTime)) {
 			return 0l;

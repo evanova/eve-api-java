@@ -33,16 +33,14 @@ import java.util.List;
 import com.tlabs.eve.api.character.SkillInTraining;
 
 public final class EveMonExport {
-
+    private static final String ENTRY = "\n\t<entry skillID=\"%d\" skill=\"%s\" level=\"%d\" priority=\"%d\" type=\"%s\"/>";
+    
     private EveMonExport() {}
 
     public static int export(
             final String title,
             final List<SkillInTraining> queue, 
             final OutputStream out) throws IOException {    
-        
-        //<entry skillID="24572" skill="Capital Energy Emission Systems" level="2" priority="3" type="Prerequisite">
-        final String ENTRY = "\n\t<entry skillID=\"%d\" skill=\"%s\" level=\"%d\" priority=\"%d\" type=\"%s\"/>";
         
         BufferedWriter w = new BufferedWriter(new OutputStreamWriter(out));
         w.write("<?xml version=\"1.0\"?>\n");
@@ -54,7 +52,7 @@ public final class EveMonExport {
             switch (t.getType()) {
                 case COMPLETED:
                 case QUEUE:                 
-                    break;              
+                    break;
                 case PLAN:
                     type = "Planned";                   
                     break;          

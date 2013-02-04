@@ -37,6 +37,8 @@ public class ResearchJob implements Serializable {
 	remainderPoints	 float	 The number of points remaining since the last datacore purchase and/or pointPerDay update. Mission RP is also added to this value.
 	*/
 	
+	private static final double DAY = 1000 * 60 * 60 * 24;
+	
 	private long agentID = 0;
 	private String agentName;//Not in XML
 	private int agentLevel = 0;//Not in XML
@@ -91,8 +93,7 @@ public class ResearchJob implements Serializable {
 	//Formula for finding current RP you have is: 
 	//currentPoints = remainderPoints + pointsPerDay * <Difference between now and startdate>
 	//@see http://wiki.eve-id.net/APIv2_Char_Research_XML	
-	public final double getCurrentPoints() {		
-		final double DAY = 1000 * 60 * 60 * 24;
+	public final double getCurrentPoints() {				
 		double d = ((double)(System.currentTimeMillis() - startDate)) * pointsDaily / DAY;
 		return pointsRemaining + d;
 	}

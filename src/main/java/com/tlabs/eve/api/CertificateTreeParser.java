@@ -40,10 +40,10 @@ public final class CertificateTreeParser extends EveXMLParser<CertificateTreeRes
 		private List<EveSkill> skills = new LinkedList<EveSkill>();
 		private List<Certificate> certificates = new LinkedList<Certificate>();
 		
-		private boolean sillRequirement;
+		private boolean skillRequirement;
 		
-		public Requirement(boolean sillRequirement) {
-			this.sillRequirement = sillRequirement;
+		public Requirement(final boolean skillRequirement) {
+			this.skillRequirement = skillRequirement;
 		}
 
 		public final List<EveSkill> getSkills() {
@@ -53,6 +53,11 @@ public final class CertificateTreeParser extends EveXMLParser<CertificateTreeRes
 		public final List<Certificate> getCertificates() {
 			return certificates;
 		}
+
+        public boolean getSkillRequirement() {
+            return skillRequirement;
+        }
+		
 	}
 	
 	private static final class AddRequirementRule extends BaseRule {
@@ -98,7 +103,7 @@ public final class CertificateTreeParser extends EveXMLParser<CertificateTreeRes
 			}
 			
 			Requirement r = (Requirement)getDigester().peek();
-			if (r.sillRequirement) {
+			if (r.getSkillRequirement()) {
 				EveSkill s = new EveSkill();
 				s.setSkillID(Long.parseLong(attributes.getValue("typeID")));
 				s.setRank(Integer.parseInt(attributes.getValue("level")));

@@ -148,13 +148,13 @@ public class NotificationMessage extends Object implements Serializable {
 					continue;
 				}
 				if (line.startsWith("typeID:")) {
-					Long typeID = longOf(StringUtils.substringAfter(line, "typeID:"));
+					Long tid = longOf(StringUtils.substringAfter(line, "typeID:"));
 					if (wanted) {
-						this.wants.put(typeID, (null == quantity) ? 0L : quantity);
+						this.wants.put(tid, (null == quantity) ? 0L : quantity);
 						quantity = 0L;
 					}
 					else {
-						this.bodyAttributes.put("typeID", typeID);
+						this.bodyAttributes.put("typeID", tid);
 					}
 					continue;
 				}

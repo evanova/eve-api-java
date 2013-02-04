@@ -158,8 +158,7 @@ public class BaseRule extends Rule {
 		String methodName = "set" + property.substring(0, 1).toUpperCase() + property.substring(1);
 		
 		try {
-			Method method = bean.getClass().getMethod(methodName, targetClass);
-			return method;
+			return bean.getClass().getMethod(methodName, targetClass);
 		}
 		catch (NoSuchMethodException e) {
 			//ignore
