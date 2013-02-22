@@ -31,18 +31,18 @@ import java.util.List;
 public class EveContract extends Object implements Serializable {
 	
 	private static final long serialVersionUID = -2606077397367047795L;
-	
 	public static enum Status {
 		UNKNOWN("Unknown", 0),
-		IN_PROGRESS("In Progress", 1),
+		IN_PROGRESS("InProgress", 1),
 		OUTSTANDING("Outstanding", 2),
-		FINISHED("Finished", 3),
-		COMPLETED("Completed", 4),
-		CANCELLED("Cancelled", 5),
-		REJECTED("Rejected", 6),
-		FAILED("Failed", 7),
-		DELETED("Deleted", 8),
-		REVERSED("Reversed", 9);
+		COMPLETED_COMPLETED("Completed", 3),
+		COMPLETED_ISSUER("CompletedByIssuer", 4),
+		COMPLETED_CONTRACTOR("CompletedByContractor", 5),
+		CANCELLED("Cancelled", 6),
+		REJECTED("Rejected", 7),
+		FAILED("Failed", 8),
+		DELETED("Deleted", 9),
+		REVERSED("Reversed", 10);
 		
 		private String name;
 		private int value;
