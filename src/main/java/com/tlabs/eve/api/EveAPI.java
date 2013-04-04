@@ -335,9 +335,7 @@ public final class EveAPI {
     
 	public static <T extends EveResponse> T parse(EveRequest<T> request, Reader r) throws IOException {
 		EveParser<T> p = getParserImpl(request);
-		if (null == p) {
-			throw new IOException("No parser found for request " + request.getClass().getName());
-		}
+		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		IOUtils.copy(new ReaderInputStream(r), out);
 		out.close();
@@ -346,9 +344,7 @@ public final class EveAPI {
 	
 	public static <T extends EveResponse> T parse(EveRequest<T> request, byte[]  data) throws IOException {
 		EveParser<T> p = getParserImpl(request);
-		if (null == p) {
-			throw new IOException("No parser found for request " + request.getClass().getName());
-		}
+		
 		return p.parse(data);
 	}
 	
