@@ -29,6 +29,94 @@ public class EveItem extends Object implements Serializable {
 
 	private static final long serialVersionUID = 1043774614858911095L;
 
+	//This is not part of the API but part of the data dump.
+	public static final class Attribute implements Serializable {
+	    
+	    private static final long serialVersionUID = 1486870784673678791L;
+	    
+	    public static final int STRUCTURE_HP = 9;
+	    public static final int STRUCTURE_DRONE_CAPACITY = 283;
+	    public static final int STRUCTURE_DRONE_BANDWIDTH = 1271;
+	    
+	    public static final int STRUCTURE_INERTIA_MOD = 70;
+	    public static final int STRUCTURE_EM_RES = 113;
+	    public static final int STRUCTURE_EXP_RES = 111;
+	    public static final int STRUCTURE_KINETIC_RES = 109;
+	    public static final int STRUCTURE_THERMAL_RES = 110;
+	    
+	    public static final int ARMOR_HP = 265;
+	    public static final int ARMOR_EM_RES = 267;
+	    public static final int ARMOR_EXP_RES = 268;
+	    public static final int ARMOR_KINETIC_RES = 269;
+	    public static final int ARMOR_THERMAL_RES = 270;
+	    
+	    public static final int SHIELD_HP = 263;
+	    public static final int SHIELD_RECHARGE = 479;
+	    public static final int SHIELD_EM_RES = 271;
+	    public static final int SHIELD_EXP_RES = 272;
+	    public static final int SHIELD_KINETIC_RES = 273;
+	    public static final int SHIELD_THERMAL_RES = 274;
+	    
+	    public static final int CAPACITOR_CAPACITY = 482;
+	    public static final int CAPACITOR_RECHARGE = 55;
+	    
+	    public static final int TARGETING_RANGE = 76;
+	    public static final int TARGETING_TARGETS = 192;
+	    public static final int GRAVIMETRIC_STRENGTH = 211;
+	    public static final int SCAN_RESOLUTION = 564;
+	    public static final int SIGNATURE_RADIUS = 552;
+	    public static final int VELOCITY_MAX = 37;
+	    public static final int VELOCITY_WARP = 1281;
+	    
+	    public static final int PRIMARY_PILOT_ATTRIBUTE = 180;
+        public static final int SECONDARY_PILOT_ATTRIBUTE = 181;
+        
+	    public static final int PRIMARY_SKILL = 182;
+	    public static final int SECONDARY_SKILL = 183;
+	    
+	    public static final int TECH_LEVEL = 422;
+	    public static final int META_LEVEL = 633;
+	    
+	    public static final int SHIP_RESTRICTION = 1380;
+	    
+	    private int attributeID;
+	    private float attributeValue;
+	    private int categoryID;
+
+	    private String attributeName;
+
+	    public int getID() {
+	        return attributeID;
+	    }
+
+	    public void setID(int attributeID) {
+	        this.attributeID = attributeID;
+	    }
+
+	    public int getCategoryID() {
+	        return categoryID;
+	    }
+
+	    public void setCategoryID(int categoryID) {
+	        this.categoryID = categoryID;
+	    }
+
+	    public String getName() {
+	        return attributeName;
+	    }
+
+	    public void setName(String attributeName) {
+	        this.attributeName = attributeName;
+	    }
+
+	    public float getValue() {
+	        return attributeValue;
+	    }
+
+	    public void setValue(float attributeValue) {
+	        this.attributeValue = attributeValue;
+	    }
+	}
 	//Location.aspx.xml
 	//@see https://forums.eveonline.com/default.aspx?g=posts&t=58316&find=unread
 	public static class Location extends Object implements Serializable {
