@@ -34,6 +34,9 @@ public class EveItem extends Object implements Serializable {
 	    
 	    private static final long serialVersionUID = 1486870784673678791L;
 	    
+	    public static final int MASS = 4;
+	    public static final int VOLUME = 161;
+	    
 	    public static final int STRUCTURE_HP = 9;
 	    public static final int STRUCTURE_DRONE_CAPACITY = 283;
 	    public static final int STRUCTURE_DRONE_BANDWIDTH = 1271;
