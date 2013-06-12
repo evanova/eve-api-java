@@ -28,14 +28,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.lang.ref.SoftReference;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -43,61 +41,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
-
-import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
-import com.tlabs.eve.api.character.CharacterAssetsRequest;
-import com.tlabs.eve.api.character.CharacterContractItemsRequest;
-import com.tlabs.eve.api.character.CharacterContractsRequest;
-import com.tlabs.eve.api.character.CharacterIndustryJobsRequest;
-import com.tlabs.eve.api.character.CharacterInfoParser;
-import com.tlabs.eve.api.character.CharacterInfoRequest;
-import com.tlabs.eve.api.character.CharacterItemLocationRequest;
-import com.tlabs.eve.api.character.CharacterListParser;
-import com.tlabs.eve.api.character.CharacterListRequest;
-import com.tlabs.eve.api.character.CharacterMarketOrderRequest;
-import com.tlabs.eve.api.character.CharacterResearchParser;
-import com.tlabs.eve.api.character.CharacterResearchRequest;
-import com.tlabs.eve.api.character.CharacterSheetParser;
-import com.tlabs.eve.api.character.CharacterSheetRequest;
-import com.tlabs.eve.api.character.CharacterTrainingParser;
-import com.tlabs.eve.api.character.CharacterTrainingQueueParser;
-import com.tlabs.eve.api.character.CharacterTrainingQueueRequest;
-import com.tlabs.eve.api.character.CharacterTrainingRequest;
-import com.tlabs.eve.api.character.CharacterWalletJournalRequest;
-import com.tlabs.eve.api.character.CharacterWalletTransactionsRequest;
-import com.tlabs.eve.api.character.PortraitRequest;
-import com.tlabs.eve.api.character.PortraitResponse;
-import com.tlabs.eve.api.corporation.CorporationAccountBalanceRequest;
-import com.tlabs.eve.api.corporation.CorporationAssetsRequest;
-import com.tlabs.eve.api.corporation.CorporationContractItemsRequest;
-import com.tlabs.eve.api.corporation.CorporationContractsRequest;
-import com.tlabs.eve.api.corporation.CorporationIndustryJobsRequest;
-import com.tlabs.eve.api.corporation.CorporationItemLocationRequest;
-import com.tlabs.eve.api.corporation.CorporationLogoRequest;
-import com.tlabs.eve.api.corporation.CorporationLogoResponse;
-import com.tlabs.eve.api.corporation.CorporationMarketOrderRequest;
-import com.tlabs.eve.api.corporation.CorporationSheetParser;
-import com.tlabs.eve.api.corporation.CorporationSheetRequest;
-import com.tlabs.eve.api.corporation.CorporationWalletJournalRequest;
-import com.tlabs.eve.api.corporation.CorporationWalletTransactionsRequest;
-import com.tlabs.eve.api.corporation.MemberTrackingParser;
-import com.tlabs.eve.api.corporation.MemberTrackingRequest;
-import com.tlabs.eve.api.mail.KillLogParser;
-import com.tlabs.eve.api.mail.KillLogRequest;
-import com.tlabs.eve.api.mail.MailBodiesParser;
-import com.tlabs.eve.api.mail.MailBodiesRequest;
-import com.tlabs.eve.api.mail.MailMessagesParser;
-import com.tlabs.eve.api.mail.MailMessagesRequest;
-import com.tlabs.eve.api.mail.MailingListsParser;
-import com.tlabs.eve.api.mail.MailingListsRequest;
-import com.tlabs.eve.api.mail.NotificationTextParser;
-import com.tlabs.eve.api.mail.NotificationTextRequest;
-import com.tlabs.eve.api.mail.NotificationsParser;
-import com.tlabs.eve.api.mail.NotificationsRequest;
-import com.tlabs.eve.api.server.MessageOfTheDayParser;
-import com.tlabs.eve.api.server.MessageOfTheDayRequest;
-import com.tlabs.eve.api.server.ServerStatusParser;
-import com.tlabs.eve.api.server.ServerStatusRequest;
 
 //Facade toward the ...ahem.. Eve API...
 public final class EveAPI {
@@ -287,8 +230,6 @@ public final class EveAPI {
 		}
 	}
 	
-	private static HashMap<String, SoftReference<EveParser<? extends EveResponse>>> parsers = new HashMap<String, SoftReference<EveParser<?>>>();
-		
 	private static final int[] SKILL_LEVELS = new int[]{0, 250, 1414, 8000, 45255, 256000};
 	
 	public static final String ATTR_INTELLIGENCE = "intelligence";
@@ -323,10 +264,7 @@ public final class EveAPI {
 	
 
     public static <T extends EveResponse> T parse(EveRequest<T> request, InputStream in) throws IOException {
-        EveParser<T> p = getParserImpl(request);
-        if (null == p) {
-            throw new IOException("No parser found for request " + request.getClass().getName());
-        }
+        EveParser<T> p = EveAPIHelper.getParser(request);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         IOUtils.copy(in, out);
         out.close();
@@ -334,17 +272,15 @@ public final class EveAPI {
     }
     
 	public static <T extends EveResponse> T parse(EveRequest<T> request, Reader r) throws IOException {
-		EveParser<T> p = getParserImpl(request);
-		
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+        EveParser<T> p = EveAPIHelper.getParser(request);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
 		IOUtils.copy(new ReaderInputStream(r), out);
 		out.close();
 		return p.parse(out.toByteArray());
 	}
 	
 	public static <T extends EveResponse> T parse(EveRequest<T> request, byte[]  data) throws IOException {
-		EveParser<T> p = getParserImpl(request);
-		
+        EveParser<T> p = EveAPIHelper.getParser(request);		
 		return p.parse(data);
 	}
 	
@@ -427,178 +363,4 @@ public final class EveAPI {
 		return true;
 	}
 	
-	private static <T extends EveResponse> EveParser<T> getParserImpl(EveRequest<T> request) throws IOException{
-		SoftReference<EveParser<? extends EveResponse>> ref = parsers.get(request.getClass().getName());
-		
-		EveParser<?> parser = null;
-		if (null != ref) {
-			parser = ref.get();
-		}
-		if (null == parser) {
-			parser = createParser(request);
-			ref = new SoftReference<EveParser<?>>(parser);
-			parsers.put(request.getClass().getName(), ref);
-		}
-		return (EveParser<T>)parser;
-	}
-	
-	private static EveParser<?> createParser(EveRequest<? extends EveResponse> request) throws IOException {
-		if (null == request) {
-			throw new IOException("Null EveRequest parameter.");
-		}
-		//V1 (deprecated)
-		if (request instanceof CharacterListRequest) {
-			return new CharacterListParser();
-		}
-		
-		//V2
-		if (request instanceof AccessInfoRequest) {
-			return new AccessInfoParser();
-		}
-		//V2
-		if (request instanceof CallListRequest) {
-			return new CallListParser();
-		}
-		if (request instanceof NamesRequest) {
-			return new NamesParser();
-		}
-
-		if (request instanceof ErrorListRequest) {
-			return new ErrorListParser();
-		}		
-		if (request instanceof SkillTreeRequest) {
-			return new SkillTreeParser();
-		}
-		if (request instanceof CertificateTreeRequest) {
-			return new CertificateTreeParser();
-		}		
-		if (request instanceof JournalReferenceTypeRequest) {
-			return new JournalReferenceTypeParser();
-		}		
-		if (request instanceof AccountStatusRequest) {
-			return new AccountStatusParser();
-		}		
-		if (request instanceof CharacterMarketOrderRequest) {
-			return new MarketOrderParser();
-		}		
-		if (request instanceof CorporationMarketOrderRequest) {
-			return new MarketOrderParser();
-		}		
-		if (request instanceof CharacterAccountBalanceRequest) {
-			return new AccountBalanceParser();
-		}
-		if (request instanceof CorporationAccountBalanceRequest) {
-			return new AccountBalanceParser();
-		}
-		if (request instanceof CharacterAssetsRequest) {
-			return new AssetListParser();
-		}
-		if (request instanceof CorporationAssetsRequest) {
-			return new AssetListParser();
-		}
-		if (request instanceof CharacterIndustryJobsRequest) {
-			return new IndustryJobsParser();
-		}
-		if (request instanceof CorporationIndustryJobsRequest) {
-			return new IndustryJobsParser();
-		}
-		if (request instanceof CharacterResearchRequest) {
-			return new CharacterResearchParser();
-		}		
-		if (request instanceof CharacterSheetRequest) {
-			return new CharacterSheetParser();
-		}
-		if (request instanceof CharacterInfoRequest) {
-			return new CharacterInfoParser();
-		}
-		if (request instanceof CharacterTrainingQueueRequest) {
-			return new CharacterTrainingQueueParser();
-		}
-		if (request instanceof CharacterTrainingRequest) {
-			return new CharacterTrainingParser();
-		}
-		if (request instanceof CharacterWalletTransactionsRequest) {
-			return new WalletTransactionsParser();
-		}		
-		if (request instanceof CorporationWalletTransactionsRequest) {
-			return new WalletTransactionsParser();
-		}
-		if (request instanceof CorporationContractsRequest) {
-			return new ContractListParser();
-		}
-		if (request instanceof CorporationContractItemsRequest) {
-			return new ContractItemsParser();
-		}
-		if (request instanceof CharacterContractsRequest) {
-			return new ContractListParser();
-		}
-		if (request instanceof CharacterContractItemsRequest) {
-			return new ContractItemsParser();
-		}
-		if (request instanceof CharacterWalletJournalRequest) {
-			return new WalletJournalParser();
-		}
-		if (request instanceof CorporationWalletJournalRequest) {
-			return new WalletJournalParser();
-		}		
-		if (request instanceof MessageOfTheDayRequest) {
-			return new MessageOfTheDayParser();
-		}		
-		if (request instanceof ServerStatusRequest) {
-			return new ServerStatusParser();
-		}
-	    if (request instanceof ServerStationsRequest) {
-	        return new ServerStationsParser();
-	    }
-		if (request instanceof CorporationSheetRequest) {
-			return new CorporationSheetParser();
-		}
-		if (request instanceof KillLogRequest) {
-			return new KillLogParser();
-		}
-		if (request instanceof MailBodiesRequest) {
-			return new MailBodiesParser();
-		}
-		if (request instanceof MailingListsRequest) {
-			return new MailingListsParser();
-		}
-		if (request instanceof MailMessagesRequest) {
-			return new MailMessagesParser();
-		}
-		if (request instanceof NotificationsRequest) {
-			return new NotificationsParser();
-		}
-		if (request instanceof NotificationTextRequest) {
-			return new NotificationTextParser();
-		}
-		if (request instanceof MemberTrackingRequest) {
-			return new MemberTrackingParser();
-		}
-
-		if (request instanceof CorporationLogoRequest) {
-			return new ImageParser<CorporationLogoResponse>() {
-				@Override
-				protected CorporationLogoResponse createResponse() {
-					return new CorporationLogoResponse();
-				}			
-			};
-		}
-		if (request instanceof PortraitRequest) {
-			return new ImageParser<PortraitResponse>() {
-				@Override
-				protected PortraitResponse createResponse() {
-					return new PortraitResponse();
-				}			
-			};
-		}
-		if (request instanceof CharacterItemLocationRequest) {
-			return new ItemLocationParser();
-		}
-		if (request instanceof CorporationItemLocationRequest) {
-			return new ItemLocationParser();
-		}
-		
-		throw new IOException(
-				"No parser found for EveAPIRequest " + request.getClass().getSimpleName());
-	}
 }

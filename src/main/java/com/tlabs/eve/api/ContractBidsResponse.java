@@ -34,11 +34,11 @@ public class ContractBidsResponse extends EveResponse {
 		super();
 	}
 	
-	public void addItem(EveContractBid c) {
+	public void addBid(EveContractBid c) {
 		this.bids.add(c);
 	}
 	
-	public final List<EveContractBid> getItems() {
+	public final List<EveContractBid> getBids() {
 		return this.bids;
 	}
 }

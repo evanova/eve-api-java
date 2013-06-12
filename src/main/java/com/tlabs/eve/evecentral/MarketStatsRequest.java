@@ -35,7 +35,7 @@ public class MarketStatsRequest extends EveCentralRequest<MarketStatsResponse> {
 		String p = "";
 		for (long id: types) {
 			if (p.length() == 0) {
-				p = "?" + id;
+				p = "" + id;
 			}
 			else {
 				p = p + "&typeid=" + id;

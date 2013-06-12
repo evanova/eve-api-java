@@ -25,7 +25,9 @@ package com.tlabs.eve.api;
 import org.apache.commons.digester.Digester;
 
 import com.tlabs.eve.api.parser.EveXMLParser;
-/**@since Eve API V3 (30 Aug 2011*/
+import com.tlabs.eve.api.parser.SetAttributePropertyRule;
+import com.tlabs.eve.api.parser.SetNextRule;
+
 public class ContractBidsParser extends EveXMLParser<ContractBidsResponse>{
 	public ContractBidsParser() {
 		super(ContractBidsResponse.class);
@@ -33,6 +35,8 @@ public class ContractBidsParser extends EveXMLParser<ContractBidsResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-		
+	    digester.addObjectCreate("eveapi/result/rowset/row", EveContractBid.class);      
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                   
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addBid"));
 	}	
 }
