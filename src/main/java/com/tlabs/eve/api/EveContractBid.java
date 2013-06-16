@@ -22,6 +22,7 @@ public class EveContractBid extends Object implements Serializable {
     private long bidID;
     private long contractID;
     private long bidderID;
+    private String bidderName;//not in xml
 
     private long bidDate;
     private long amount;
@@ -48,6 +49,14 @@ public class EveContractBid extends Object implements Serializable {
 
     public void setBidderID(long bidderID) {
         this.bidderID = bidderID;
+    }
+
+    public String getBidderName() {
+        return bidderName;
+    }
+
+    public void setBidderName(String bidderName) {
+        this.bidderName = bidderName;
     }
 
     public long getBidDate() {
