@@ -171,6 +171,7 @@ public class EveContract extends Object implements Serializable {
 	private double volume;
 	
 	private List<EveContractItem> items = new LinkedList<EveContractItem>();
+	private List<EveContractBid> bids = new LinkedList<EveContractBid>();
 	
 	public final long getContractID() {
 		return contractID;
@@ -365,6 +366,11 @@ public class EveContract extends Object implements Serializable {
 	public void setItems(List<EveContractItem> items) {
 		this.items = items;
 	}
-	
-	
+    public List<EveContractBid> getBids() {
+        return bids;
+    }
+    public void setBids(List<EveContractBid> bids) {
+        this.bids = bids;
+    }
+		
 }

@@ -60,6 +60,8 @@ import com.tlabs.eve.api.corporation.CorporationItemLocationRequest;
 import com.tlabs.eve.api.corporation.CorporationLogoRequest;
 import com.tlabs.eve.api.corporation.CorporationLogoResponse;
 import com.tlabs.eve.api.corporation.CorporationMarketOrderRequest;
+import com.tlabs.eve.api.corporation.CorporationSheetParser;
+import com.tlabs.eve.api.corporation.CorporationSheetRequest;
 import com.tlabs.eve.api.corporation.CorporationWalletJournalRequest;
 import com.tlabs.eve.api.corporation.CorporationWalletTransactionsRequest;
 import com.tlabs.eve.api.corporation.MemberTrackingParser;
@@ -86,14 +88,14 @@ final class EveAPIHelper {
     private static final Map<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>> parserMap;    
     private static final HashMap<String, SoftReference<EveParser<? extends EveResponse>>> parsers;
     
-    private static final class LogoParser extends ImageParser<CorporationLogoResponse> {
+    public static final class LogoParser extends ImageParser<CorporationLogoResponse> {
         @Override
         protected CorporationLogoResponse createResponse() {
             return new CorporationLogoResponse();
         }           
     };
     
-    private static final class PortraitParser extends ImageParser<PortraitResponse> {   
+    public static final class PortraitParser extends ImageParser<PortraitResponse> {   
         @Override
         protected PortraitResponse createResponse() {
             return new PortraitResponse();
@@ -148,6 +150,7 @@ final class EveAPIHelper {
         parserMap.put(CharacterWalletJournalRequest.class, WalletJournalParser.class);
         parserMap.put(CorporationWalletJournalRequest.class, WalletJournalParser.class);
 
+        parserMap.put(CorporationSheetRequest.class, CorporationSheetParser.class);
         parserMap.put(CorporationContractsRequest.class, ContractListParser.class);
         parserMap.put(CharacterContractsRequest.class, ContractListParser.class);
         parserMap.put(CorporationContractItemsRequest.class, ContractItemsParser.class);

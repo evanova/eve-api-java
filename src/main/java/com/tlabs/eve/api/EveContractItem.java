@@ -26,6 +26,51 @@ import java.io.Serializable;
 
 public class EveContractItem extends Object implements Serializable {
 
-	private static final long serialVersionUID = 829616220044617948L;
+    private static final long serialVersionUID = -7114907930568872859L;
 
+    private long typeID;
+	private long recordID;
+	private long quantity;
+	private int rawQuantity;
+	
+	private int singleton;
+	private boolean included;
+    public long getTypeID() {
+        return typeID;
+    }
+    public void setTypeID(long typeID) {
+        this.typeID = typeID;
+    }
+    public long getRecordID() {
+        return recordID;
+    }
+    public void setRecordID(long recordID) {
+        this.recordID = recordID;
+    }
+    public long getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+    public int getRawQuantity() {
+        return rawQuantity;
+    }
+    public void setRawQuantity(int rawQuantity) {
+        this.rawQuantity = rawQuantity;
+    }
+    public int getSingleton() {
+        return singleton;
+    }
+    public void setSingleton(int singleton) {
+        this.singleton = singleton;
+    }
+    public boolean isIncluded() {
+        return included;
+    }
+    public void setIncluded(boolean included) {
+        this.included = included;
+    }
+	
+	
 }
