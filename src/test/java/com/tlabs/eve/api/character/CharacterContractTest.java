@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import com.tlabs.eve.api.AccessInfoRequest;
 import com.tlabs.eve.api.AccessInfoResponse;
+import com.tlabs.eve.api.ContractItemsResponse;
 import com.tlabs.eve.api.ContractListResponse;
 
 public final class CharacterContractTest extends CharacterApiTest {
@@ -52,5 +53,9 @@ public final class CharacterContractTest extends CharacterApiTest {
         }               
     }
     
-    
+    @Test(timeout=10000)
+    public void testContractItems() throws Exception {
+        final CharacterContractItemsRequest r = new CharacterContractItemsRequest(characterKey.keyId, 1);
+        ContractItemsResponse q = apiCall(r);
+    }
 }

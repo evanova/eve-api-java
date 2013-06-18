@@ -29,7 +29,6 @@ public final class MemberTrackingRequest extends CorporationRequest<MemberTracki
 	
 	public MemberTrackingRequest(String corporationID, boolean extended) {
 		super(MemberTrackingResponse.class, "/corp/MemberTracking.xml.aspx", (extended) ? EXTENDED : MASK, corporationID);		
-		putParam("corporationID", corporationID);
 	}
 
 }

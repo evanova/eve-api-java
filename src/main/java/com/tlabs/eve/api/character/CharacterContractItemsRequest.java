@@ -29,15 +29,15 @@ import com.tlabs.eve.api.ContractItemsResponse;
 public final class CharacterContractItemsRequest extends CharacterRequest<ContractItemsResponse> {
 	public static final int MASK = 67108864;
 		
-	private final String contractID;
+	private final long contractID;
 	
-	public CharacterContractItemsRequest(final String charID, final String contractID) {
+	public CharacterContractItemsRequest(final String charID, final long contractID) {
 		super(ContractItemsResponse.class, "/char/ContractItems.xml.aspx", MASK, charID);
 		this.contractID = contractID;
-		putParam("contractID", contractID);
+		putParam("contractID", Long.toString(contractID));
 	}
 
-	public String getContractID() {
+	public long getContractID() {
 		return contractID;
 	}
 	
