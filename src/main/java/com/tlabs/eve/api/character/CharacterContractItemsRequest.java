@@ -34,7 +34,7 @@ public final class CharacterContractItemsRequest extends CharacterRequest<Contra
 	public CharacterContractItemsRequest(final String charID, final long contractID) {
 		super(ContractItemsResponse.class, "/char/ContractItems.xml.aspx", MASK, charID);
 		this.contractID = contractID;
-		putParam("contractID", Long.toString(contractID));
+		putParam("contractID", new long[]{contractID});
 	}
 
 	public long getContractID() {

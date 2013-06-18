@@ -52,7 +52,7 @@ public final class CharacterMailTest extends CharacterApiTest {
         for (int i = 0; i < ids.length; i++) {
             ids[i] = messages.get(i).getNotificationID();
         }        
-        final List<MailMessage> bodies = apiCall(new NotificationTextRequest(characterKey.id, ids)).getMessages();
+        final List<NotificationMessage> bodies = apiCall(new NotificationTextRequest(characterKey.id, ids)).getMessages();
         Assert.assertEquals("Bodies size is different from notification list size.", messages.size(), bodies.size());
     }
     
