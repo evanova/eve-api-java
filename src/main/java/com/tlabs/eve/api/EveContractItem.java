@@ -88,6 +88,9 @@ public class EveContractItem extends Object implements Serializable {
         this.singleton = (singleton == 1);
     }
 
+
+    // 1 if the contract issuer has submitted this item with the contract,
+    // 0 if the issuer is asking for this item in the contract.
     public boolean getIncluded() {
         return included;
     }
