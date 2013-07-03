@@ -37,11 +37,11 @@ public class MarketStatsResponse extends EveCentralResponse {
 		return marketPrices;
 	}
 
-	public final Map<Long, List<MarketPrice>> getBuyOrders() {
+	public final Map<Long, List<MarketPrice>> getBuyPrices() {
 		return buyOrders;
 	}
 
-	public final Map<Long, List<MarketPrice>> getSellOrders() {
+	public final Map<Long, List<MarketPrice>> getSellPrices() {
 		return sellOrders;
 	}
 

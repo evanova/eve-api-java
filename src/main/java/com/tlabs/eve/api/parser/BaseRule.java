@@ -27,8 +27,12 @@ package com.tlabs.eve.api.parser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.apache.commons.digester.Rule;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -102,7 +106,7 @@ public class BaseRule extends Rule {
 				longValue = Long.parseLong(value);//is it really a long value?
 			}
 			catch (NumberFormatException e) {
-				longValue = EveAPI.parseDateTime(value);	
+				longValue = parseDateTime(value);	
 			}
 			
 			return invokeMethod(bean, longMethod, longValue);
@@ -168,4 +172,36 @@ public class BaseRule extends Rule {
 			return null;
 		}		
 	}	
+	
+	private static long parseDateTime(String dateTime) {
+        if (StringUtils.isBlank(dateTime)) {
+            return 0l;
+        }
+        try {
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2010-05-23 16:43:51         
+            return dateFormat.parse(dateTime).getTime();
+        }
+        catch (ParseException e) {
+            //System.err.println("EveAPI.parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());   
+            //return 0l;
+        }
+        try {
+            //Eve central expires
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");         
+            return dateFormat.parse(dateTime).getTime();
+        }
+        catch (ParseException e) {
+            //System.err.println("EveAPI.parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());   
+            //return 0l;
+        }
+        try {
+            //for Eve Central reported time
+            final DateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss");//2010-05-23 16:43:51         
+            return dateFormat.parse(dateTime).getTime();
+        }
+        catch (ParseException e) {
+            System.err.println("EveAPI.parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());   
+            return 0l;
+        }
+    }
 }

@@ -24,6 +24,8 @@ package com.tlabs.eve.evecentral;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
@@ -32,11 +34,18 @@ public final class EveCentralAPI {
 
 	private EveCentralAPI() {
 	}
-
 	public static <T extends EveCentralResponse> T parse(final EveCentralRequest<T> request, Reader r) throws IOException {
+        EveCentralParser<T> p = EveCentralAPIHelper.getParser(request); 
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        copy(new BufferedReader(r), out);
+        out.close();
+        return p.parse(out.toByteArray());
+    }
+
+	public static <T extends EveCentralResponse> T parse(final EveCentralRequest<T> request, InputStream in) throws IOException {
 		EveCentralParser<T> p = EveCentralAPIHelper.getParser(request);	
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		copy(new BufferedReader(r), out);
+		copy(new BufferedReader(new InputStreamReader(in)), out);
 		out.close();
 		return p.parse(out.toByteArray());
 	}

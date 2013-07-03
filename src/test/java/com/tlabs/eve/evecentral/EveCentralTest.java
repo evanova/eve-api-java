@@ -45,6 +45,7 @@ public class EveCentralTest extends HttpClientTest {
 		
 	private final <T extends EveCentralResponse> T callEveCentralAPI(final EveCentralRequest<T> r) {
 		String url = "http://localhost:8080/central" + r.getPage();
+	    //String url = "http://api.eve-central.com" + r.getPage();
 		
 		final List <NameValuePair> nvps = new ArrayList <NameValuePair>();
 		final Map<String, String> params = r.getParameters();		
@@ -57,7 +58,10 @@ public class EveCentralTest extends HttpClientTest {
 		
 		final String result = get(url, nvps);
 		try {
-			return 
+		    if (null == result) {
+		        throw new RuntimeException("Invalid result: null");
+		    }
+			return 			       
 				EveCentralAPI.parse(r, new StringReader(result));
 		}
 		catch (Exception e) {

@@ -38,6 +38,7 @@ final class EveCentralAPIHelper {
         parsers = new HashMap<Class<?>, SoftReference<EveCentralParser<? extends EveCentralResponse>>>();
         
         parserMap.put(MarketStatsRequest.class, MarketStatsParser.class);
+        parserMap.put(MarketQuickLookRequest.class, MarketQuickLookParser.class);
     }
     
     private EveCentralAPIHelper() {
