@@ -23,14 +23,14 @@ package com.tlabs.eve.evecentral;
 
 
 //http://api.eve-central.com/api/marketstat?typeid=34&typeid=35&regionlimit=10000002
-public class MarketStatsRequest extends EveCentralRequest<MarketStatsResponse> {
+public class EveCentralStatsRequest extends EveCentralRequest<EveCentralStatsResponse> {
 
-	public MarketStatsRequest(final long[] types) {
+	public EveCentralStatsRequest(final long[] types) {
 		this(types, -1);
 	}
 	
-	public MarketStatsRequest(final long[] types, long region) {
-		super(MarketStatsResponse.class, "/api/marketstat");
+	public EveCentralStatsRequest(final long[] types, long region) {
+		super(EveCentralStatsResponse.class, "/api/marketstat");
 		//TODO this could be better but EveRequest is a hashmap and we can have multiple typeid= params
 		String p = "";
 		for (long id: types) {

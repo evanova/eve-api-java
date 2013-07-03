@@ -31,7 +31,7 @@ import org.xml.sax.Attributes;
 import com.tlabs.eve.api.parser.BaseRule;
 import com.tlabs.eve.api.parser.SetElementPropertyRule;
 
-public final class MarketQuickLookParser extends EveCentralParser<MarketQuickLookResponse> {
+public final class EveCentralQuickLookParser extends EveCentralParser<EveCentralQuickLookResponse> {
 
 	private static class AddRule extends BaseRule {
 		
@@ -43,21 +43,21 @@ public final class MarketQuickLookParser extends EveCentralParser<MarketQuickLoo
 		
 		@Override
 		public void doBegin(String name, Attributes attributes) {			
-			MarketOrder o = new MarketOrder();			
+			EveCentralOrder o = new EveCentralOrder();			
 			o.setType(this.type);
 			getDigester().push(o);
 		}
 		
 		@Override
 		public void doEnd(String name) {
-		    MarketOrder p = (MarketOrder)digester.pop();
-			MarketQuickLookResponse r = (MarketQuickLookResponse)digester.peek(0);
+		    EveCentralOrder p = (EveCentralOrder)digester.pop();
+			EveCentralQuickLookResponse r = (EveCentralQuickLookResponse)digester.peek(0);
 			r.add(p);
 		}	
 	}
 	
-	public MarketQuickLookParser() {
-		super(MarketQuickLookResponse.class);
+	public EveCentralQuickLookParser() {
+		super(EveCentralQuickLookResponse.class);
 	}
 
 	@Override
@@ -67,8 +67,8 @@ public final class MarketQuickLookParser extends EveCentralParser<MarketQuickLoo
 	    digester.addRule("evec_api/quicklook/hours", new SetElementPropertyRule("postedLastInHours"));
 	    digester.addRule("evec_api/quicklook/minqty", new SetElementPropertyRule("typeMinimumQuantity"));
 	    
-        digester.addRule("evec_api/quicklook/buy_orders/order", new AddRule(MarketOrder.BUY));
-        digester.addRule("evec_api/quicklook/sell_orders/order", new AddRule(MarketOrder.SELL));
+        digester.addRule("evec_api/quicklook/buy_orders/order", new AddRule(EveCentralOrder.BUY));
+        digester.addRule("evec_api/quicklook/sell_orders/order", new AddRule(EveCentralOrder.SELL));
         
         //FIXME why is evec_api/quicklook/*/order/ not working?
 		digester.addRule("evec_api/quicklook/buy_orders/order/region", new SetElementPropertyRule("regionID"));

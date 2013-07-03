@@ -25,10 +25,10 @@ package com.tlabs.eve.evecentral;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MarketQuickLookResponse extends EveCentralResponse {
+public class EveCentralQuickLookResponse extends EveCentralResponse {
     
-	private final List<MarketOrder> buyOrders = new LinkedList<MarketOrder>();
-	private final List<MarketOrder> sellOrders = new LinkedList<MarketOrder>();
+	private final List<EveCentralOrder> buyOrders = new LinkedList<EveCentralOrder>();
+	private final List<EveCentralOrder> sellOrders = new LinkedList<EveCentralOrder>();
 		
 
     private long typeID;
@@ -73,24 +73,24 @@ public class MarketQuickLookResponse extends EveCentralResponse {
         this.postedLastInMillis = postedLastInHours * 60l * 60l * 1000l;
     }
     
-    public final List<MarketOrder> getBuyOrders() {
+    public final List<EveCentralOrder> getBuyOrders() {
 		return buyOrders;
 	}
 
-	public final List<MarketOrder> getSellOrders() {
+	public final List<EveCentralOrder> getSellOrders() {
 		return sellOrders;
 	}
 
-	public void add(MarketOrder p) {
+	public void add(EveCentralOrder p) {
 		switch (p.getType()) {
-		case MarketOrder.BUY:
+		case EveCentralOrder.BUY:
 			this.buyOrders.add(p);
 			break;
-		case MarketOrder.SELL:
+		case EveCentralOrder.SELL:
 		    this.sellOrders.add(p);
 			break;
 		default:
-			throw new IllegalArgumentException("Invalid MarketOrder.type " + p.getType());
+			throw new IllegalArgumentException("Invalid EveCentralOrder.type " + p.getType());
 		}
 	}	
 }

@@ -33,8 +33,8 @@ public class MarketQuickLookTest extends EveCentralTest {
 
 	@Test(timeout=25000) 
 	public void buyOrdersTest() {
-		final MarketQuickLookRequest q = new MarketQuickLookRequest(34l);
-		final MarketQuickLookResponse r = apiCall(q);		
+		final EveCentralQuickLookRequest q = new EveCentralQuickLookRequest(34l);
+		final EveCentralQuickLookResponse r = apiCall(q);		
 		assertTrue(r.getTypeID() > 0);
 		assertTrue(StringUtils.isNotBlank(r.getTypeName()));
 		assertTrue(r.getBuyOrders().size() > 0);
@@ -44,15 +44,15 @@ public class MarketQuickLookTest extends EveCentralTest {
 
     @Test(timeout=25000) 
     public void sellOrdersTest() {
-        final MarketQuickLookRequest q = new MarketQuickLookRequest(34l);
-        final MarketQuickLookResponse r = apiCall(q);
+        final EveCentralQuickLookRequest q = new EveCentralQuickLookRequest(34l);
+        final EveCentralQuickLookResponse r = apiCall(q);
         assertTrue(r.getTypeID() > 0);
         assertTrue(StringUtils.isNotBlank(r.getTypeName()));
         assertTrue(r.getSellOrders().size() > 0);
         marketOrderTest(r.getSellOrders().get(0));        
     }
     
-    private void marketOrderTest(final MarketOrder order) {        
+    private void marketOrderTest(final EveCentralOrder order) {        
         //System.err.println(ToStringBuilder.reflectionToString(order, ToStringStyle.MULTI_LINE_STYLE));
         assertTrue(order.getPrice() > 0);
     }

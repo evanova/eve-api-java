@@ -23,10 +23,10 @@ package com.tlabs.eve.evecentral;
 
 
 //http://api.eve-central.com/api/marketstat?typeid=34&typeid=35&regionlimit=10000002
-public class MarketQuickLookRequest extends EveCentralRequest<MarketQuickLookResponse> {
+public class EveCentralQuickLookRequest extends EveCentralRequest<EveCentralQuickLookResponse> {
 	
-	public MarketQuickLookRequest(final long typeID) {
-		super(MarketQuickLookResponse.class, "/api/quicklook");		
+	public EveCentralQuickLookRequest(final long typeID) {
+		super(EveCentralQuickLookResponse.class, "/api/quicklook");		
 		putParam("typeID", Long.toString(typeID));
 	}	
 }

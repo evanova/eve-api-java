@@ -27,44 +27,44 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class MarketStatsResponse extends EveCentralResponse {
+public class EveCentralStatsResponse extends EveCentralResponse {
 
-	private Map<Long, List<MarketPrice>> marketPrices = new HashMap<Long, List<MarketPrice>>();
-	private Map<Long, List<MarketPrice>> buyOrders = new HashMap<Long, List<MarketPrice>>();
-	private Map<Long, List<MarketPrice>> sellOrders = new HashMap<Long, List<MarketPrice>>();
+	private Map<Long, List<EveCentralPrice>> marketPrices = new HashMap<Long, List<EveCentralPrice>>();
+	private Map<Long, List<EveCentralPrice>> buyOrders = new HashMap<Long, List<EveCentralPrice>>();
+	private Map<Long, List<EveCentralPrice>> sellOrders = new HashMap<Long, List<EveCentralPrice>>();
 		
-	public final Map<Long, List<MarketPrice>> getMarketPrices() {
+	public final Map<Long, List<EveCentralPrice>> getMarketPrices() {
 		return marketPrices;
 	}
 
-	public final Map<Long, List<MarketPrice>> getBuyPrices() {
+	public final Map<Long, List<EveCentralPrice>> getBuyPrices() {
 		return buyOrders;
 	}
 
-	public final Map<Long, List<MarketPrice>> getSellPrices() {
+	public final Map<Long, List<EveCentralPrice>> getSellPrices() {
 		return sellOrders;
 	}
 
-	public void add(MarketPrice p) {
+	public void add(EveCentralPrice p) {
 		switch (p.getType()) {
-		case MarketPrice.MARKET:
+		case EveCentralPrice.MARKET:
 			add(this.marketPrices, p);			
 			break;
-		case MarketPrice.BUY:
+		case EveCentralPrice.BUY:
 			add(this.buyOrders, p);
 			break;
-		case MarketPrice.SELL:
+		case EveCentralPrice.SELL:
 			add(this.sellOrders, p);
 			break;
 		default:
-			throw new IllegalArgumentException("Invalid MarketPrice.type " + p.getType());
+			throw new IllegalArgumentException("Invalid EveCentralPrice.type " + p.getType());
 		}
 	}
 	
-	private static void add(Map<Long, List<MarketPrice>> prices, MarketPrice p) {
-		List<MarketPrice> l = prices.get(Long.valueOf(p.getID()));
+	private static void add(Map<Long, List<EveCentralPrice>> prices, EveCentralPrice p) {
+		List<EveCentralPrice> l = prices.get(Long.valueOf(p.getID()));
 		if (null == l) {
-			l = new LinkedList<MarketPrice>();
+			l = new LinkedList<EveCentralPrice>();
 			prices.put(Long.valueOf(p.getID()), l);
 		}
 		l.add(p);

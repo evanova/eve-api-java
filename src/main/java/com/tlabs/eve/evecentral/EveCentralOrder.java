@@ -24,7 +24,7 @@ package com.tlabs.eve.evecentral;
 
 import java.io.Serializable;
 
-public class MarketOrder extends Object implements Serializable {
+public class EveCentralOrder extends Object implements Serializable {
 
     private static final long serialVersionUID = -2584461952883186908L;
     

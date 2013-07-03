@@ -28,7 +28,7 @@ import org.xml.sax.Attributes;
 import com.tlabs.eve.api.parser.BaseRule;
 import com.tlabs.eve.api.parser.SetElementPropertyRule;
 
-public final class MarketStatsParser extends EveCentralParser<MarketStatsResponse> {
+public final class EveCentralStatsParser extends EveCentralParser<EveCentralStatsResponse> {
 	
 	private static class IdRule extends BaseRule {
 		@Override
@@ -52,7 +52,7 @@ public final class MarketStatsParser extends EveCentralParser<MarketStatsRespons
 		
 		@Override
 		public void doBegin(String name, Attributes attributes) {			
-			MarketPrice p = new MarketPrice();
+			EveCentralPrice p = new EveCentralPrice();
 			p.setID((Long)getDigester().peek());
 			p.setType(this.type);		
 			getDigester().push(p);
@@ -60,22 +60,22 @@ public final class MarketStatsParser extends EveCentralParser<MarketStatsRespons
 		
 		@Override
 		public void doEnd(String name) {
-			MarketPrice p = (MarketPrice)digester.pop();
-			MarketStatsResponse r = (MarketStatsResponse)digester.peek(1);
+			EveCentralPrice p = (EveCentralPrice)digester.pop();
+			EveCentralStatsResponse r = (EveCentralStatsResponse)digester.peek(1);
 			r.add(p);
 		}	
 	}
 	
-	public MarketStatsParser() {
-		super(MarketStatsResponse.class);
+	public EveCentralStatsParser() {
+		super(EveCentralStatsResponse.class);
 	}
 
 	@Override
 	protected void onInit(Digester digester) {		
 		digester.addRule("evec_api/marketstat/type", new IdRule());
-		digester.addRule("evec_api/marketstat/type/all", new AddRule(MarketPrice.MARKET));
-		digester.addRule("evec_api/marketstat/type/buy", new AddRule(MarketPrice.BUY));
-		digester.addRule("evec_api/marketstat/type/sell", new AddRule(MarketPrice.SELL));
+		digester.addRule("evec_api/marketstat/type/all", new AddRule(EveCentralPrice.MARKET));
+		digester.addRule("evec_api/marketstat/type/buy", new AddRule(EveCentralPrice.BUY));
+		digester.addRule("evec_api/marketstat/type/sell", new AddRule(EveCentralPrice.SELL));
 		
 		digester.addRule("evec_api/marketstat/type/*/volume", new SetElementPropertyRule("volume"));
 		digester.addRule("evec_api/marketstat/type/*/avg", new SetElementPropertyRule("average"));
