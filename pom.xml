@@ -4,7 +4,7 @@
 
 	<groupId>com.tlabs.eve</groupId>
 	<artifactId>api</artifactId>
-	<version>2.1</version>
+	<version>2.2</version>
 
 	<name>Evanova Eve API</name>
 	<url>https://bitbucket.org/evanova/eve-api</url>
