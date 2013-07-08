@@ -26,10 +26,9 @@ import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
+import com.tlabs.eve.parser.BaseRule;
 
-public class NamesParser extends EveXMLParser<NamesResponse> {
+public class NamesParser extends EveAPIParser<NamesResponse> {
 	
 	private static final class SetKeyRule extends BaseRule {
 		@Override

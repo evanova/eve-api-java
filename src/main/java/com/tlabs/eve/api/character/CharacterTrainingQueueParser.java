@@ -26,11 +26,11 @@ import java.util.HashMap;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public class CharacterTrainingQueueParser extends EveXMLParser<CharacterTrainingQueueResponse> {
+public class CharacterTrainingQueueParser extends EveAPIParser<CharacterTrainingQueueResponse> {
 
 	private static final HashMap<String, String> properties;
 	static {

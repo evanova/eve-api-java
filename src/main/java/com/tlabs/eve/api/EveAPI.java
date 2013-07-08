@@ -263,24 +263,24 @@ public final class EveAPI {
 	}
 	
 
-    public static <T extends EveResponse> T parse(EveRequest<T> request, InputStream in) throws IOException {
-        EveParser<T> p = EveAPIHelper.getParser(request);
+    public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, InputStream in) throws IOException {
+        EveAPIParser<T> p = EveAPIHelper.getParser(request);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         IOUtils.copy(in, out);
         out.close();
         return p.parse(out.toByteArray());
     }
     
-	public static <T extends EveResponse> T parse(EveRequest<T> request, Reader r) throws IOException {
-        EveParser<T> p = EveAPIHelper.getParser(request);
+	public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, Reader r) throws IOException {
+        EveAPIParser<T> p = EveAPIHelper.getParser(request);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 		IOUtils.copy(new ReaderInputStream(r), out);
 		out.close();
 		return p.parse(out.toByteArray());
 	}
 	
-	public static <T extends EveResponse> T parse(EveRequest<T> request, byte[]  data) throws IOException {
-        EveParser<T> p = EveAPIHelper.getParser(request);		
+	public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, byte[]  data) throws IOException {
+	    EveAPIParser<T> p = EveAPIHelper.getParser(request);		
 		return p.parse(data);
 	}
 	

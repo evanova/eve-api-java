@@ -27,7 +27,7 @@ package com.tlabs.eve.api;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ServerStationsResponse extends EveResponse {
+public class ServerStationsResponse extends EveAPIResponse {
 
     private List<EveStation> stations = new LinkedList<EveStation>();
     

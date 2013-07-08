@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class IndustryJobsResponse extends EveResponse {
+public class IndustryJobsResponse extends EveAPIResponse {
 
 	private List<IndustryJob> jobs;
 

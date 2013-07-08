@@ -22,7 +22,7 @@ package com.tlabs.eve.api;
  */
 
 
-public class CertificateTreeResponse extends EveResponse {
+public class CertificateTreeResponse extends EveAPIResponse {
 
 	private CertificateTree tree = null;
 

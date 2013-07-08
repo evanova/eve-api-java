@@ -29,7 +29,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**@since Eve API V3 (30 Aug 2011*/
-public class CallListResponse extends EveResponse {
+public class CallListResponse extends EveAPIResponse {
 	private static final Log LOG = LogFactory.getLog("EveAPI");
 	
 	private Map<Integer, CallGroup> callGroups = new HashMap<Integer, CallGroup>();

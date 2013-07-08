@@ -25,10 +25,9 @@ package com.tlabs.eve.api;
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
+import com.tlabs.eve.parser.BaseRule;
 
-public class ErrorListParser extends EveXMLParser<ErrorListResponse>{
+public class ErrorListParser extends EveAPIParser<ErrorListResponse>{
 	private static final class AddErrorRule extends BaseRule {
 		@Override
 		public void doBegin(String name, Attributes attributes) {

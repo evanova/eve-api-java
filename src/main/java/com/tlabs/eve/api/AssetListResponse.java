@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class AssetListResponse extends EveResponse {
+public class AssetListResponse extends EveAPIResponse {
 
 	private List<EveAsset> assets;
 	

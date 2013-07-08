@@ -24,13 +24,12 @@ package com.tlabs.eve.api;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
 /**@since Eve API V2*/
 //@see https://forums.eveonline.com/default.aspx?g=posts&t=58316&find=unread
-public class ItemLocationParser extends EveXMLParser<ItemLocationResponse>{
+public class ItemLocationParser extends EveAPIParser<ItemLocationResponse>{
 	
 	public ItemLocationParser() {
 		super(ItemLocationResponse.class);

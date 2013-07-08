@@ -25,11 +25,10 @@ package com.tlabs.eve.api;
 import org.apache.commons.digester.Digester;
 
 import com.tlabs.eve.api.character.EveCharacter;
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 /**@since Eve API V3 (30 Aug 2011*/
-public class AccessInfoParser extends EveXMLParser<AccessInfoResponse>{
+public class AccessInfoParser extends EveAPIParser<AccessInfoResponse>{
 
 	public AccessInfoParser() {
 		super(AccessInfoResponse.class);

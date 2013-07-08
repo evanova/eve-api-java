@@ -25,13 +25,13 @@ package com.tlabs.eve.api.corporation;
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetElementPropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetElementPropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
 //@see http://wiki.eve-id.net/APIv2_Corp_CorporationSheet_XML
-public class CorporationSheetParser extends EveXMLParser<CorporationSheetResponse>{
+public class CorporationSheetParser extends EveAPIParser<CorporationSheetResponse>{
 	
 	private static final class CreateRowRule extends BaseRule {
 

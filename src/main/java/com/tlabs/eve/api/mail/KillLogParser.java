@@ -22,9 +22,9 @@ package com.tlabs.eve.api.mail;
  */
 
 
-import com.tlabs.eve.api.parser.EveXMLParser;
+import com.tlabs.eve.api.EveAPIParser;
 
-public class KillLogParser extends EveXMLParser<KillLogResponse> {
+public class KillLogParser extends EveAPIParser<KillLogResponse> {
 
 	public KillLogParser() {
 		super(KillLogResponse.class);

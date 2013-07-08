@@ -25,11 +25,11 @@ package com.tlabs.eve.api.character;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
-import com.tlabs.eve.api.EveRequest;
-import com.tlabs.eve.api.EveRequest.Authenticated;
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIRequest;
+import com.tlabs.eve.api.EveAPIRequest.Authenticated;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public abstract class CharacterRequest<T extends EveResponse> extends EveRequest<T> implements Authenticated {
+public abstract class CharacterRequest<T extends EveAPIResponse> extends EveAPIRequest<T> implements Authenticated {
 	
 	private String keyID = null;
 	private String key = null;

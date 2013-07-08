@@ -22,7 +22,7 @@ package com.tlabs.eve.api;
  */
 
 
-public class SkillTreeResponse extends EveResponse {
+public class SkillTreeResponse extends EveAPIResponse {
 
 	private EveSkillTree skillTree;
 	

@@ -23,7 +23,7 @@ package com.tlabs.eve.api;
 
 
 
-public class AccountStatusResponse extends EveResponse {
+public class AccountStatusResponse extends EveAPIResponse {
 
 	private AccountStatus accountStatus;
 	

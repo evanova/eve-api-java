@@ -27,11 +27,11 @@ import java.util.Map;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public class CharacterResearchParser extends EveXMLParser<CharacterResearchResponse> {
+public class CharacterResearchParser extends EveAPIParser<CharacterResearchResponse> {
 	
 	private static final Map<String, String> propertyMap;
 	static {

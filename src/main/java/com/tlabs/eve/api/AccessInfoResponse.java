@@ -28,7 +28,7 @@ import java.util.List;
 import com.tlabs.eve.api.character.EveCharacter;
 
 /**@since Eve API V3 (30 Aug 2011*/
-public class AccessInfoResponse extends EveResponse {
+public class AccessInfoResponse extends EveAPIResponse {
 	
 	public static final int UNKNOWN = -1;
 	public static final int CHARACTER = 0;

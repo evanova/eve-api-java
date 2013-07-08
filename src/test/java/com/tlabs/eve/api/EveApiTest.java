@@ -143,7 +143,7 @@ public abstract class EveApiTest extends HttpClientTest {
 		this.keyValue = keyValue;
 	}
 	
-	protected final <T extends EveResponse> T apiCall(final EveRequest<T> r) throws IOException {
+	protected final <T extends EveAPIResponse> T apiCall(final EveAPIRequest<T> r) throws IOException {
 	    final String url = System.getProperty(PROPERTY_API_URL, URL);
 	    
 		T q = callEveAPI(url, r);
@@ -153,11 +153,11 @@ public abstract class EveApiTest extends HttpClientTest {
 		return q;
 	}
 		
-	private <T extends EveResponse> T callEveAPI(final String url, final EveRequest<T> r) throws IOException {
+	private <T extends EveAPIResponse> T callEveAPI(final String url, final EveAPIRequest<T> r) throws IOException {
 		final List <NameValuePair> nvps = new ArrayList <NameValuePair>();
 		
-		if (r instanceof EveRequest.Authenticated) {
-			EveRequest.Authenticated auth = (EveRequest.Authenticated)r;
+		if (r instanceof EveAPIRequest.Authenticated) {
+			EveAPIRequest.Authenticated auth = (EveAPIRequest.Authenticated)r;
 			if (StringUtils.isBlank(auth.getKeyID())) {
 				nvps.add(new BasicNameValuePair("keyID", this.keyID));
 			}

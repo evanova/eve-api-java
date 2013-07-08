@@ -29,10 +29,9 @@ import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
+import com.tlabs.eve.parser.BaseRule;
 
-public class SkillTreeParser extends EveXMLParser<SkillTreeResponse>{
+public class SkillTreeParser extends EveAPIParser<SkillTreeResponse>{
 
 	private static class SkillRowSetRule extends BaseRule {
 
@@ -71,7 +70,7 @@ public class SkillTreeParser extends EveXMLParser<SkillTreeResponse>{
 		
 		digester.addRule(
 				"eveapi/result", 
-				new com.tlabs.eve.api.parser.SetNextRule("setSkillTree"));
+				new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
 		
 		digester.addObjectCreate(
 				"eveapi/result/rowset/row", 
@@ -79,19 +78,19 @@ public class SkillTreeParser extends EveXMLParser<SkillTreeResponse>{
 		
 		digester.addRule(
 				"eveapi/result/rowset/row", 
-				new com.tlabs.eve.api.parser.SetAttributePropertyRule(
+				new com.tlabs.eve.parser.SetAttributePropertyRule(
 						"groupName", "groupID"));
 		
 		digester.addRule(
 				"eveapi/result/rowset/row", 
-				new com.tlabs.eve.api.parser.SetNextRule("addGroup"));
+				new com.tlabs.eve.parser.SetNextRule("addGroup"));
 		
 		digester.addObjectCreate(
 				"eveapi/result/rowset/row/rowset/row", EveSkill.class);
 
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row", 
-				new com.tlabs.eve.api.parser.SetNextRule("addSkill"));
+				new com.tlabs.eve.parser.SetNextRule("addSkill"));
 		
 		Map<String, String> attributes = new HashMap<String, String>();
 		attributes.put("typeName", "skillName");
@@ -100,22 +99,22 @@ public class SkillTreeParser extends EveXMLParser<SkillTreeResponse>{
 		
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row", 
-				new com.tlabs.eve.api.parser.SetAttributePropertyRule(attributes));
+				new com.tlabs.eve.parser.SetAttributePropertyRule(attributes));
 		
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row/description", 
-				new com.tlabs.eve.api.parser.SetElementPropertyRule());
+				new com.tlabs.eve.parser.SetElementPropertyRule());
 		
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row/rank", 
-				new com.tlabs.eve.api.parser.SetElementPropertyRule());
+				new com.tlabs.eve.parser.SetElementPropertyRule());
 		
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row/requiredAttributes/primaryAttribute", 
-				new com.tlabs.eve.api.parser.SetElementPropertyRule());
+				new com.tlabs.eve.parser.SetElementPropertyRule());
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row/requiredAttributes/secondaryAttribute", 
-				new com.tlabs.eve.api.parser.SetElementPropertyRule());
+				new com.tlabs.eve.parser.SetElementPropertyRule());
 				
 		digester.addRule(
 				"eveapi/result/rowset/row/rowset/row/rowset/row", 

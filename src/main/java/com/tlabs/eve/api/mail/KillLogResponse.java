@@ -22,8 +22,8 @@ package com.tlabs.eve.api.mail;
  */
 
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public final class KillLogResponse extends EveResponse {
+public final class KillLogResponse extends EveAPIResponse {
 
 }

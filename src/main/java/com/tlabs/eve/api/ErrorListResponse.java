@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ErrorListResponse extends EveResponse {
+public class ErrorListResponse extends EveAPIResponse {
 
 
 	private Map<Integer, String> errors;//names by id

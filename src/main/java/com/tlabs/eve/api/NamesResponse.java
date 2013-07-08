@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class NamesResponse extends EveResponse {
+public final class NamesResponse extends EveAPIResponse {
 
 	private Map<Long, String> names = new HashMap<Long, String>();
 	private String key;

@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JournalReferenceTypeResponse extends EveResponse {
+public class JournalReferenceTypeResponse extends EveAPIResponse {
 
 	private Map<Long, String> referenceTypes;//names by id
 	

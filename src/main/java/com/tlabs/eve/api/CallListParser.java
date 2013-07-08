@@ -25,11 +25,10 @@ package com.tlabs.eve.api;
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
 /**@since Eve API V3 (30 Aug 2011*/
-public class CallListParser extends EveXMLParser<CallListResponse>{
+public class CallListParser extends EveAPIParser<CallListResponse>{
 
 	private static class GroupOrEntryRule extends BaseRule {
 

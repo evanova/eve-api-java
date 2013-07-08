@@ -27,11 +27,10 @@ import java.util.Map;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public final class WalletTransactionsParser extends EveXMLParser<WalletTransactionsResponse> {
+public final class WalletTransactionsParser extends EveAPIParser<WalletTransactionsResponse> {
 	
 	private static final Map<String, String> attributes;
 	static {

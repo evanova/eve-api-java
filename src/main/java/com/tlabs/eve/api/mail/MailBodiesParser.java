@@ -25,11 +25,11 @@ package com.tlabs.eve.api.mail;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public class MailBodiesParser extends EveXMLParser<MailBodiesResponse> {
+public class MailBodiesParser extends EveAPIParser<MailBodiesResponse> {
 
 	public MailBodiesParser() {
 		super(MailBodiesResponse.class);

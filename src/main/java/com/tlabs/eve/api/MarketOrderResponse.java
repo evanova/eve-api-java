@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class MarketOrderResponse extends EveResponse {
+public class MarketOrderResponse extends EveAPIResponse {
 
 	private List<MarketOrder> buyOrders;
 	private List<MarketOrder> sellOrders;

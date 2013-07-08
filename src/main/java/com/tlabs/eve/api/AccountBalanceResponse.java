@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class AccountBalanceResponse extends EveResponse {
+public class AccountBalanceResponse extends EveAPIResponse {
 
 	private List<AccountBalance> accountBalance;
 

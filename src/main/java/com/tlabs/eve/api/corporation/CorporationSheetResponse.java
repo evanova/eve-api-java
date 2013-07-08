@@ -22,9 +22,9 @@ package com.tlabs.eve.api.corporation;
  */
 
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public class CorporationSheetResponse extends EveResponse {
+public class CorporationSheetResponse extends EveAPIResponse {
 	
 	private CorporationSheet corporationInfo;
 	

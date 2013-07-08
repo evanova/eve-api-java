@@ -28,12 +28,11 @@ import java.util.List;
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public final class CertificateTreeParser extends EveXMLParser<CertificateTreeResponse> {
+public final class CertificateTreeParser extends EveAPIParser<CertificateTreeResponse> {
 	
 	private static class Requirement {
 		

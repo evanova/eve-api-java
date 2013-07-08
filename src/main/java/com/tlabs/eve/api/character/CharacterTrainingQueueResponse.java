@@ -25,9 +25,9 @@ package com.tlabs.eve.api.character;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public class CharacterTrainingQueueResponse extends EveResponse {
+public class CharacterTrainingQueueResponse extends EveAPIResponse {
 
 	private List<SkillInTraining> trainingQueue;
 	

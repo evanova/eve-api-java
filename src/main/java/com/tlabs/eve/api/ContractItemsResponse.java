@@ -28,7 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**@since Eve API V3*/
-public class ContractItemsResponse extends EveResponse {
+public class ContractItemsResponse extends EveAPIResponse {
 	
 	private List<EveContractItem> items = new LinkedList<EveContractItem>();
 	

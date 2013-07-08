@@ -22,7 +22,7 @@ package com.tlabs.eve.api;
  */
 
 
-public class CertificateTreeRequest extends EveRequest<CertificateTreeResponse> {
+public class CertificateTreeRequest extends EveAPIRequest<CertificateTreeResponse> {
 
 	public CertificateTreeRequest() {
 		super(CertificateTreeResponse.class, "/eve/CertificateTree.xml.aspx", 0);

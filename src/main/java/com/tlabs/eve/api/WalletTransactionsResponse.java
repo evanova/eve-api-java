@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class WalletTransactionsResponse extends EveResponse {
+public final class WalletTransactionsResponse extends EveAPIResponse {
 
 	private List<WalletTransaction> transactions = new LinkedList<WalletTransaction>();
 	

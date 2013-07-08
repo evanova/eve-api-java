@@ -24,7 +24,7 @@ package com.tlabs.eve.api;
  */
 
 
-public class ServerStationsRequest extends EveRequest<ServerStationsResponse> {
+public class ServerStationsRequest extends EveAPIRequest<ServerStationsResponse> {
 
     public ServerStationsRequest() {
         super(ServerStationsResponse.class, "/eve/ConquerableStationList.xml.aspx", 0);

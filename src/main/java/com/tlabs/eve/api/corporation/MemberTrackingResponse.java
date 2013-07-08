@@ -25,9 +25,9 @@ package com.tlabs.eve.api.corporation;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public final class MemberTrackingResponse extends EveResponse {
+public final class MemberTrackingResponse extends EveAPIResponse {
 
 	private List<CorporationMember> members;
 	

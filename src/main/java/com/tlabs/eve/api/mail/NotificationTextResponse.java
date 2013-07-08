@@ -25,9 +25,9 @@ package com.tlabs.eve.api.mail;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public class NotificationTextResponse extends EveResponse {
+public class NotificationTextResponse extends EveAPIResponse {
 
 	private List<NotificationMessage> messages = new LinkedList<NotificationMessage>();
 

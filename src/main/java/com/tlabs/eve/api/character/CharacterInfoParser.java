@@ -24,11 +24,11 @@ package com.tlabs.eve.api.character;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetElementPropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.parser.SetElementPropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public final class CharacterInfoParser extends EveXMLParser<CharacterInfoResponse> {
+public final class CharacterInfoParser extends EveAPIParser<CharacterInfoResponse> {
 
 	public CharacterInfoParser() {
 		super(CharacterInfoResponse.class);		

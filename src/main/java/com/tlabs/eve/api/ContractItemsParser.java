@@ -26,11 +26,10 @@ package com.tlabs.eve.api;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetAttributePropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public class ContractItemsParser extends EveXMLParser<ContractItemsResponse>{
+public class ContractItemsParser extends EveAPIParser<ContractItemsResponse>{
 	public ContractItemsParser() {
 		super(ContractItemsResponse.class);
 	}

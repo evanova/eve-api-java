@@ -24,11 +24,10 @@ package com.tlabs.eve.api;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetElementPropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.SetElementPropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public final class AccountStatusParser extends EveXMLParser<AccountStatusResponse> {
+public final class AccountStatusParser extends EveAPIParser<AccountStatusResponse> {
 
 	public AccountStatusParser() {
 		super(AccountStatusResponse.class);

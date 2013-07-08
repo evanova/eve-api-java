@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ItemLocationResponse extends EveResponse {
+public class ItemLocationResponse extends EveAPIResponse {
 
 	private final List<EveItem.Location> locations = new LinkedList<EveItem.Location>();
 		

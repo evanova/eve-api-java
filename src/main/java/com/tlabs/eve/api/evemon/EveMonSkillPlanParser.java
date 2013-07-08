@@ -27,9 +27,9 @@ import org.xml.sax.Attributes;
 
 import com.tlabs.eve.api.character.CharacterTrainingQueueResponse;
 import com.tlabs.eve.api.character.SkillInTraining;
-import com.tlabs.eve.api.parser.AbstractXMLParser;
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.AbstractXMLParser;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetNextRule;
 
 public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrainingQueueResponse> {
 	

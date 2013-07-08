@@ -1,5 +1,8 @@
 package com.tlabs.eve.api;
 
+import com.tlabs.eve.EveRequest;
+import com.tlabs.eve.EveResponse;
+
 /*
  * #%L
  * This source code is part of the Evanova Android application:

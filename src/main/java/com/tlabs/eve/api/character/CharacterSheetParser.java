@@ -33,14 +33,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.Attributes;
 
+import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.api.corporation.CorporationRole;
 import com.tlabs.eve.api.corporation.CorporationTitle;
-import com.tlabs.eve.api.parser.BaseRule;
-import com.tlabs.eve.api.parser.EveXMLParser;
-import com.tlabs.eve.api.parser.SetElementPropertyRule;
-import com.tlabs.eve.api.parser.SetNextRule;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetElementPropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-public final class CharacterSheetParser extends EveXMLParser<CharacterSheetResponse> {
+public final class CharacterSheetParser extends EveAPIParser<CharacterSheetResponse> {
 	private static final Log LOG = LogFactory.getLog("EveAPI");
 	
 	private static final class RowSet {

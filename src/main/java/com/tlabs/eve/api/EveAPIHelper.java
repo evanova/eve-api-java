@@ -28,6 +28,7 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.tlabs.eve.EveParser;
 import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
 import com.tlabs.eve.api.character.CharacterAssetsRequest;
 import com.tlabs.eve.api.character.CharacterContractBidsRequest;
@@ -48,8 +49,6 @@ import com.tlabs.eve.api.character.CharacterTrainingQueueRequest;
 import com.tlabs.eve.api.character.CharacterTrainingRequest;
 import com.tlabs.eve.api.character.CharacterWalletJournalRequest;
 import com.tlabs.eve.api.character.CharacterWalletTransactionsRequest;
-import com.tlabs.eve.api.character.PortraitRequest;
-import com.tlabs.eve.api.character.PortraitResponse;
 import com.tlabs.eve.api.corporation.CorporationAccountBalanceRequest;
 import com.tlabs.eve.api.corporation.CorporationAssetsRequest;
 import com.tlabs.eve.api.corporation.CorporationContractBidsRequest;
@@ -57,8 +56,6 @@ import com.tlabs.eve.api.corporation.CorporationContractItemsRequest;
 import com.tlabs.eve.api.corporation.CorporationContractsRequest;
 import com.tlabs.eve.api.corporation.CorporationIndustryJobsRequest;
 import com.tlabs.eve.api.corporation.CorporationItemLocationRequest;
-import com.tlabs.eve.api.corporation.CorporationLogoRequest;
-import com.tlabs.eve.api.corporation.CorporationLogoResponse;
 import com.tlabs.eve.api.corporation.CorporationMarketOrderRequest;
 import com.tlabs.eve.api.corporation.CorporationSheetParser;
 import com.tlabs.eve.api.corporation.CorporationSheetRequest;
@@ -78,34 +75,16 @@ import com.tlabs.eve.api.mail.NotificationTextParser;
 import com.tlabs.eve.api.mail.NotificationTextRequest;
 import com.tlabs.eve.api.mail.NotificationsParser;
 import com.tlabs.eve.api.mail.NotificationsRequest;
-import com.tlabs.eve.api.server.MessageOfTheDayParser;
-import com.tlabs.eve.api.server.MessageOfTheDayRequest;
-import com.tlabs.eve.api.server.ServerStatusParser;
-import com.tlabs.eve.api.server.ServerStatusRequest;
 
 final class EveAPIHelper {
     
-    private static final Map<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>> parserMap;    
-    private static final HashMap<String, SoftReference<EveParser<? extends EveResponse>>> parsers;
-    
-    public static final class LogoParser extends ImageParser<CorporationLogoResponse> {
-        @Override
-        protected CorporationLogoResponse createResponse() {
-            return new CorporationLogoResponse();
-        }           
-    };
-    
-    public static final class PortraitParser extends ImageParser<PortraitResponse> {   
-        @Override
-        protected PortraitResponse createResponse() {
-            return new PortraitResponse();
-        }           
-    };
+    private static final Map<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>> parserMap;    
+    private static final HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>> parsers;
     
     static {
-        parsers = new HashMap<String, SoftReference<EveParser<?>>>();
+        parsers = new HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>>();
         
-        parserMap = new HashMap<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>>();
+        parserMap = new HashMap<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>>();
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
         
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
@@ -117,7 +96,7 @@ final class EveAPIHelper {
         parserMap.put(CertificateTreeRequest.class, CertificateTreeParser.class);
         parserMap.put(JournalReferenceTypeRequest.class, JournalReferenceTypeParser.class);
         parserMap.put(AccountStatusRequest.class, AccountStatusParser.class);
-        parserMap.put(MessageOfTheDayRequest.class, MessageOfTheDayParser.class);
+        
         parserMap.put(ServerStatusRequest.class, ServerStatusParser.class);
         parserMap.put(ServerStationsRequest.class, ServerStationsParser.class);
         parserMap.put(KillLogRequest.class, KillLogParser.class);
@@ -162,8 +141,6 @@ final class EveAPIHelper {
         parserMap.put(CharacterItemLocationRequest.class, ItemLocationParser.class);
         parserMap.put(CorporationItemLocationRequest.class, ItemLocationParser.class);
         
-        parserMap.put(CorporationLogoRequest.class, LogoParser.class);
-        parserMap.put(PortraitRequest.class, PortraitParser.class);
     }
         
     
@@ -171,12 +148,12 @@ final class EveAPIHelper {
     
 
     @SuppressWarnings("unchecked")
-    public static <T extends EveResponse> EveParser<T> getParser(EveRequest<T> request) {
+    public static <T extends EveAPIResponse> EveAPIParser<T> getParser(EveAPIRequest<T> request) {
         if (null == request) {
-            throw new IllegalArgumentException("Null EveRequest parameter.");
+            throw new IllegalArgumentException("Null EveAPIRequest parameter.");
         }
         
-        SoftReference<EveParser<? extends EveResponse>> ref = parsers.get(request.getClass().getName());
+        SoftReference<EveAPIParser<?>> ref = parsers.get(request.getClass().getName());
         
         EveParser<?> parser = null;
         if (null != ref) {
@@ -184,14 +161,14 @@ final class EveAPIHelper {
         }
         if (null == parser) {
             parser = createParser(request);
-            ref = new SoftReference<EveParser<?>>(parser);
+            ref = new SoftReference(parser);
             parsers.put(request.getClass().getName(), ref);
         }        
-        return (EveParser<T>)parser;
+        return (EveAPIParser<T>)parser;
     }
     
 
-    private static EveParser<?> createParser(EveRequest<? extends EveResponse> request) {
+    private static EveParser<?> createParser(EveAPIRequest<? extends EveAPIResponse> request) {
         final Class<? extends EveParser<?>> parserClass = parserMap.get(request.getClass());
         if (null == parserClass) {
             throw new IllegalArgumentException("No parser found for EveAPIRequest " + request.getClass().getSimpleName());

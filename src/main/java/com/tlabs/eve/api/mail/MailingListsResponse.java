@@ -25,9 +25,9 @@ package com.tlabs.eve.api.mail;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
-public class MailingListsResponse extends EveResponse {
+public class MailingListsResponse extends EveAPIResponse {
 
 	private List<MailingList> mailingLists = new LinkedList<MailingList>();
 

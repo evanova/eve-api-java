@@ -23,7 +23,7 @@ package com.tlabs.eve.api.corporation;
 
 
 //No or limited key
-public final class CorporationSheetRequest extends CorporationRequest<CorporationSheetResponse> implements com.tlabs.eve.api.EveRequest.Public {
+public final class CorporationSheetRequest extends CorporationRequest<CorporationSheetResponse> implements com.tlabs.eve.api.EveAPIRequest.Public {
 	public static final int MASK = 8;
 	public CorporationSheetRequest(String corporationID) {
 		super(CorporationSheetResponse.class, "/corp/CorporationSheet.xml.aspx", MASK, corporationID);		

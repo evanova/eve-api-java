@@ -22,10 +22,10 @@ package com.tlabs.eve.api.character;
  */
 
 
-import com.tlabs.eve.api.EveResponse;
+import com.tlabs.eve.api.EveAPIResponse;
 
 
-public final class CharacterTrainingResponse extends EveResponse {
+public final class CharacterTrainingResponse extends EveAPIResponse {
 	
 
 	private SkillInTraining training;

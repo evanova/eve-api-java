@@ -23,7 +23,7 @@ package com.tlabs.eve.api;
 
 
 
-public final class AccountStatusRequest extends EveRequest<AccountStatusResponse> implements EveRequest.Authenticated {
+public final class AccountStatusRequest extends EveAPIRequest<AccountStatusResponse> implements EveAPIRequest.Authenticated {
 	private String keyID;
 	private String key;
 
