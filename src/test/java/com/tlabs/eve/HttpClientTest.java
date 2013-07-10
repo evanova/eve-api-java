@@ -59,6 +59,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.protocol.HTTP;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.internal.runners.statements.Fail;
 
 public class HttpClientTest {
 
@@ -172,8 +173,10 @@ public class HttpClientTest {
 		HttpClient httpclient = new DefaultHttpClient(connectionManager);
 		try {
 			HttpPost post = new HttpPost(url);	
+			
 			if ((null != parameters) && (parameters.size() > 0)) {
-				post.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
+			    System.out.println("PARAMS ");
+				post.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));				
 			}
 			post.addHeader("content-type", "application/x-www-form-urlencoded");
 			System.out.println(post.getRequestLine());
@@ -182,10 +185,7 @@ public class HttpClientTest {
 			return s;
 		}
 		catch (Exception e) {
-			e.printStackTrace(System.err);
-			//fail(e.getLocalizedMessage());
-			return null;
-			//throw e;
+			throw new RuntimeException(e.getLocalizedMessage(), e);
 		}
 	}	
 	

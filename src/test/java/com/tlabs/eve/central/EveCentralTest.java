@@ -59,13 +59,11 @@ public class EveCentralTest extends HttpClientTest {
 			}
 		}
 		
-		final String result = get(url, nvps);
+		
 		try {
-		    if (null == result) {
-		        throw new RuntimeException("Invalid result: null");
-		    }
+		    final String result = get(url, nvps);
 			return 			       
-				EveCentral.parse(r, new StringReader(result));
+				EveCentral.parse(r, result.getBytes("UTF-8"));
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

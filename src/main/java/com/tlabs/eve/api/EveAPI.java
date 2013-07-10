@@ -24,10 +24,7 @@ package com.tlabs.eve.api;
  */
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,8 +34,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
@@ -260,23 +255,6 @@ public final class EveAPI {
 
 	public static final long getEveTime() {
 		return getEveCalendar().getTimeInMillis();
-	}
-	
-
-    public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, InputStream in) throws IOException {
-        EveAPIParser<T> p = EveAPIHelper.getParser(request);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        IOUtils.copy(in, out);
-        out.close();
-        return p.parse(out.toByteArray());
-    }
-    
-	public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, Reader r) throws IOException {
-        EveAPIParser<T> p = EveAPIHelper.getParser(request);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-		IOUtils.copy(new ReaderInputStream(r), out);
-		out.close();
-		return p.parse(out.toByteArray());
 	}
 	
 	public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, byte[]  data) throws IOException {
