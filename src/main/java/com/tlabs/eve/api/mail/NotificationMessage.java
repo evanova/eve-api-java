@@ -22,34 +22,14 @@ package com.tlabs.eve.api.mail;
  */
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Serializable;
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.tlabs.eve.api.EveAPI;
-
-public class NotificationMessage extends Object implements Serializable {
+public class NotificationMessage extends EveMessage {
 
 	private static final long serialVersionUID = 2130540734211587597L;
 	 
 	//<rowset name="notifications" key="notificationID" columns="notificationID,typeID,senderID,sentDate,read">
 	private long notificationID = -1;
 	private int typeID = -1;
-	
-	private long senderID = -1;
-	private String senderName = "";//not in XML
-	
-	private long sentDate = 0;
-	private boolean read;
-
-	private String body = null;//supposedly a CDATA block 
-	private final Map<String, Long> bodyAttributes = new HashMap<String, Long>();
-	private final Map<Long, Long> wants = new HashMap<Long, Long>();//types ID->Qty
 	
 	public final long getNotificationID() {
 		return notificationID;
@@ -67,127 +47,4 @@ public class NotificationMessage extends Object implements Serializable {
 		this.typeID = typeID;
 	}
 
-	public final long getSenderID() {
-		return senderID;
-	}
-
-	public final String getSenderName() {
-		return senderName;
-	}
-
-	public final void setSenderName(String senderName) {
-		this.senderName = senderName;
-	}
-
-	public final void setSenderID(long senderID) {
-		this.senderID = senderID;
-	}
-
-	public final boolean isRead() {
-		return read;
-	}
-
-	public final void setRead(boolean read) {
-		this.read = read;
-	}
-
-	public final String getBody() {
-		return body;
-	}
-
-	public final void setBody(String body) {
-		if (StringUtils.isBlank(body)) {
-			this.wants.clear();
-			this.bodyAttributes.clear();
-			this.body = "";
-			return;
-		}
-		
-		String b = StringUtils.removeEnd(
-						StringUtils.removeStart(body.trim(), "<![CDATA[").trim(),
-						"]]>").trim();
-		b = StringUtils.remove(b, "{}");
-		this.body = b;
-		parseBodyContent(b);
-	}
-
-	public final void setSentDate(long sentDate) {
-		this.sentDate = sentDate;
-	}
-
-	public final long getSentDate() {
-		return sentDate;
-	}
-
-	public void setSentDate(String d) {
-		sentDate = EveAPI.parseDateTime(d);
-	}
-	
-	private void parseBodyContent(final String b) {
-		this.wants.clear();
-		this.bodyAttributes.clear();
-		
-		BufferedReader r = new BufferedReader(new StringReader(b));
-		String line = null;
-		boolean wanted = false;
-		Long quantity = null;
-		
-		try {
-			while ((line = r.readLine()) != null) {
-				line = line.trim();
-				if (line.length() == 0) {
-					continue;
-				}
-				if (line.startsWith("wants:")) {
-					wanted = true;
-					continue;
-				}
-				if (line.startsWith("- quantity:")) {
-					//quantity (type Id not know yet)
-					quantity = longOf(StringUtils.substringAfter(line, "- quantity:"));
-					continue;
-				}
-				if (line.startsWith("typeID:")) {
-					Long tid = longOf(StringUtils.substringAfter(line, "typeID:"));
-					if (wanted) {
-						this.wants.put(tid, (null == quantity) ? 0L : quantity);
-						quantity = 0L;
-					}
-					else {
-						this.bodyAttributes.put("typeID", tid);
-					}
-					continue;
-				}
-				if (!wanted) {
-					String[] split = StringUtils.split(line, ":");
-					if (split.length == 2) {
-						this.bodyAttributes.put(split[0], longOf(split[1]));
-					}
-				}
-			}
-		}
-		catch (IOException e) {
-			//This should not happen
-		}
-		finally {
-			try {
-				r.close();
-			}
-			catch (IOException uh) {
-				
-			}
-		}
-	}
-	
-	private static final Long longOf(String s) {
-		if (StringUtils.isBlank(s)) {
-			return null;
-		}
-		try {
-			return Long.parseLong(s.trim());
-		}
-		catch (NumberFormatException e) {
-			return null;
-		}
-	}
 }

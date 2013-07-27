@@ -22,11 +22,8 @@ package com.tlabs.eve.api.mail;
  */
 
 
-import java.io.Serializable;
 
-import com.tlabs.eve.api.EveAPI;
-
-public class MailMessage extends Object implements Serializable {
+public class MailMessage extends EveMessage {
 
 	private static final long serialVersionUID = 3521271683902916731L;
 	 /*
@@ -39,26 +36,11 @@ public class MailMessage extends Object implements Serializable {
 	private long messageID = -1;
 	private String title = "";
 
-	//from MailBodiesRequest ONLY (and only the messageID will be filled if this is not null)
-	private String body = null;//supposedly a CDATA block 
-	
-	private long senderID = -1;
-	private String senderName = "";//not in XML
-	
 	private long toListID = -1;
 	private long toCorpOrAllianceID = -1;
 	private String toCharsID = "";
 	
-	private long sentDate = 0;
 	
-	public final String getBody() {
-		return body;
-	}
-
-	public final void setBody(String body) {
-		this.body = body;
-	}
-
 	public final String getTitle() {
 		return title;
 	}
@@ -87,17 +69,6 @@ public class MailMessage extends Object implements Serializable {
 		this.messageID = messageID;
 	}
 
-
-	public final long getSenderID() {
-		return senderID;
-	}
-
-
-	public final void setSenderID(long senderID) {
-		this.senderID = senderID;
-	}
-
-
 	public final long getToListID() {
 		return toListID;
 	}
@@ -114,22 +85,5 @@ public class MailMessage extends Object implements Serializable {
 
 	public final void setToCorpOrAllianceID(long toCorpOrAllianceID) {
 		this.toCorpOrAllianceID = toCorpOrAllianceID;
-	}
-
-
-	public final long getSentDate() {
-		return sentDate;
-	}
-
-	public final String getSenderName() {
-		return senderName;
-	}
-
-	public final void setSenderName(String senderName) {
-		this.senderName = senderName;
-	}
-
-	public void setSentDate(String d) {
-		sentDate = EveAPI.parseDateTime(d);		
 	}
 }
