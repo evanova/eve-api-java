@@ -33,7 +33,7 @@ public class EveAsset extends Object implements Serializable  {
 	private static final long serialVersionUID = 3312515668424970872L;
 
 	private long itemID;//it is the typeID	
-	private String itemName;//Not in XML	
+//	private String itemName;//Not in XML	
 	
 	private long locationID;
 	private String locationName;//Not in XML
@@ -134,17 +134,17 @@ public class EveAsset extends Object implements Serializable  {
 		this.locationName = locationName;
 	}
 
-	public final String getItemName() {
-		return itemName;
-	}
-
-	public final void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
+//	public final String getItemName() {
+//		return itemName;
+//	}
+//
+//	public final void setItemName(String itemName) {
+//		this.itemName = itemName;
+//	}
 
 	public void addAsset(EveAsset item) {
-		item.setLocationID(this.locationID);
-		item.setLocationName(this.locationName);
+//		item.setLocationID(this.locationID);
+//		item.setLocationName(this.locationName);
 		this.items.add(item);		
 	}	
 	
