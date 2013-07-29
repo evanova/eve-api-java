@@ -128,8 +128,8 @@ public final class EveCentralQuickLookParser extends EveCentralParser<EveCentral
         digester.addRule("evec_api/quicklook/sell_orders/order/station_name", new SetElementPropertyRule("stationName"));
         digester.addRule("evec_api/quicklook/sell_orders/order/security", new SetElementPropertyRule("security"));
         digester.addRule("evec_api/quicklook/sell_orders/order/price", new SetElementPropertyRule("price"));
-        digester.addRule("evec_api/quicklook/sell_orders/order/vol_remain", new SetElementPropertyRule("remainingVolume"));
-        digester.addRule("evec_api/quicklook/sell_orders/order/min_volume", new SetElementPropertyRule("minimumVolume"));
+        digester.addRule("evec_api/quicklook/sell_orders/order/vol_remain", new SetElementPropertyRule("volumeRemaining"));
+        digester.addRule("evec_api/quicklook/sell_orders/order/min_volume", new SetElementPropertyRule("volumeMinimum"));
         digester.addRule("evec_api/quicklook/sell_orders/order/expires", new DateExpires());
         digester.addRule("evec_api/quicklook/sell_orders/order/reported_time", new DateReported());
 		
