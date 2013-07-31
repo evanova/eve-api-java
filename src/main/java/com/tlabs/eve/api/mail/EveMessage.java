@@ -44,13 +44,21 @@ public class EveMessage extends Object implements Serializable {
 	private boolean read;
 
 	private String body = null;//supposedly a CDATA block 
-	private final Map<String, Long> bodyAttributes = new HashMap<String, Long>();
-	private final Map<Long, Long> wants = new HashMap<Long, Long>();//types ID->Qty
-	
+	private String title = "";
+
 	protected EveMessage() {
 	    
 	}
-	
+    
+    public final String getTitle() {
+        return title;
+    }
+
+    public final void setTitle(String title) {
+        this.title = title;
+    }
+
+
 	public final long getSenderID() {
 		return senderID;
 	}
@@ -81,20 +89,21 @@ public class EveMessage extends Object implements Serializable {
 
 	public final void setBody(String body) {
 		if (StringUtils.isBlank(body)) {
-			this.wants.clear();
-			this.bodyAttributes.clear();
-			this.body = "";
-			return;
+			this.body = "";			
 		}
+		else {
+		    String b = StringUtils.removeEnd(
+		            StringUtils.removeStart(body.trim(), "<![CDATA[").trim(),
+		            "]]>").trim();
+		    b = StringUtils.remove(b, "{}");
+		    this.body = b;
+		}		
 		
-		String b = StringUtils.removeEnd(
-						StringUtils.removeStart(body.trim(), "<![CDATA[").trim(),
-						"]]>").trim();
-		b = StringUtils.remove(b, "{}");
-		this.body = b;
-		parseBodyContent(b);
+		onBodyChanged(this.body);
 	}
 
+	protected void onBodyChanged(final String body){}
+	
 	public final void setSentDate(long sentDate) {
 		this.sentDate = sentDate;
 	}
@@ -105,73 +114,5 @@ public class EveMessage extends Object implements Serializable {
 
 	public final void setSentDate(String d) {
 		sentDate = EveAPI.parseDateTime(d);
-	}
-	
-	private void parseBodyContent(final String b) {
-		this.wants.clear();
-		this.bodyAttributes.clear();
-		
-		BufferedReader r = new BufferedReader(new StringReader(b));
-		String line = null;
-		boolean wanted = false;
-		Long quantity = null;
-		
-		try {
-			while ((line = r.readLine()) != null) {
-				line = line.trim();
-				if (line.length() == 0) {
-					continue;
-				}
-				if (line.startsWith("wants:")) {
-					wanted = true;
-					continue;
-				}
-				if (line.startsWith("- quantity:")) {
-					//quantity (type Id not know yet)
-					quantity = longOf(StringUtils.substringAfter(line, "- quantity:"));
-					continue;
-				}
-				if (line.startsWith("typeID:")) {
-					Long tid = longOf(StringUtils.substringAfter(line, "typeID:"));
-					if (wanted) {
-						this.wants.put(tid, (null == quantity) ? 0L : quantity);
-						quantity = 0L;
-					}
-					else {
-						this.bodyAttributes.put("typeID", tid);
-					}
-					continue;
-				}
-				if (!wanted) {
-					String[] split = StringUtils.split(line, ":");
-					if (split.length == 2) {
-						this.bodyAttributes.put(split[0], longOf(split[1]));
-					}
-				}
-			}
-		}
-		catch (IOException e) {
-			//This should not happen
-		}
-		finally {
-			try {
-				r.close();
-			}
-			catch (IOException uh) {
-				
-			}
-		}
-	}
-	
-	private static final Long longOf(String s) {
-		if (StringUtils.isBlank(s)) {
-			return null;
-		}
-		try {
-			return Long.parseLong(s.trim());
-		}
-		catch (NumberFormatException e) {
-			return null;
-		}
-	}
+	}	
 }
