@@ -34,22 +34,11 @@ public class MailMessage extends EveMessage {
 	  */
 
 	private long messageID = -1;
-	private String title = "";
 
 	private long toListID = -1;
 	private long toCorpOrAllianceID = -1;
 	private String toCharsID = "";
 	
-	
-	public final String getTitle() {
-		return title;
-	}
-
-	public final void setTitle(String title) {
-		this.title = title;
-	}
-
-
 	public final String getToCharacterIDs() {
 		return toCharsID;
 	}

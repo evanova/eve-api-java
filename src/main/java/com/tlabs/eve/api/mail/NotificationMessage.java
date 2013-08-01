@@ -1,5 +1,11 @@
 package com.tlabs.eve.api.mail;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+
 /*
  * #%L
  * This source code is part of the Evanova Android application:
@@ -27,9 +33,10 @@ public class NotificationMessage extends EveMessage {
 
 	private static final long serialVersionUID = 2130540734211587597L;
 	 
-	//<rowset name="notifications" key="notificationID" columns="notificationID,typeID,senderID,sentDate,read">
 	private long notificationID = -1;
 	private int typeID = -1;
+	
+	private final Map<String, String> bodyAttributes = new HashMap<String, String>();
 	
 	public final long getNotificationID() {
 		return notificationID;
@@ -47,4 +54,22 @@ public class NotificationMessage extends EveMessage {
 		this.typeID = typeID;
 	}
 
+	public final Map<String, String> getAttributes() {
+	    return Collections.unmodifiableMap(this.bodyAttributes);
+	}
+	
+    @Override
+    protected void onBodyChanged(String body) {
+        this.bodyAttributes.clear();
+        if (StringUtils.isBlank(body)) {
+            return;
+        }
+        final String[] lines = StringUtils.split(body, "\n");       
+        for (int i = 0; i < lines.length; i++) {
+            String[] line = StringUtils.split(lines[i].trim(), ":");
+            if (line.length == 2) {
+                this.bodyAttributes.put(line[0].trim(), line[1].trim());
+            }
+        }
+    }    
 }
