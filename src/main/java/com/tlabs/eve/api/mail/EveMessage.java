@@ -22,12 +22,7 @@ package com.tlabs.eve.api.mail;
  */
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.Serializable;
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -73,14 +68,6 @@ public class EveMessage extends Object implements Serializable {
 
 	public final void setSenderID(long senderID) {
 		this.senderID = senderID;
-	}
-
-	public final boolean isRead() {
-		return read;
-	}
-
-	public final void setRead(boolean read) {
-		this.read = read;
 	}
 
 	public final String getBody() {
