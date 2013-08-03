@@ -63,6 +63,14 @@ import com.tlabs.eve.api.corporation.CorporationWalletJournalRequest;
 import com.tlabs.eve.api.corporation.CorporationWalletTransactionsRequest;
 import com.tlabs.eve.api.corporation.MemberTrackingParser;
 import com.tlabs.eve.api.corporation.MemberTrackingRequest;
+import com.tlabs.eve.api.corporation.OutpostDetailsParser;
+import com.tlabs.eve.api.corporation.OutpostDetailsRequest;
+import com.tlabs.eve.api.corporation.OutpostListParser;
+import com.tlabs.eve.api.corporation.OutpostListRequest;
+import com.tlabs.eve.api.corporation.StarbaseDetailsParser;
+import com.tlabs.eve.api.corporation.StarbaseDetailsRequest;
+import com.tlabs.eve.api.corporation.StarbaseListParser;
+import com.tlabs.eve.api.corporation.StarbaseListRequest;
 import com.tlabs.eve.api.mail.KillLogParser;
 import com.tlabs.eve.api.mail.KillLogRequest;
 import com.tlabs.eve.api.mail.MailBodiesParser;
@@ -108,6 +116,11 @@ final class EveAPIHelper {
         
         parserMap.put(MemberTrackingRequest.class, MemberTrackingParser.class);
                 
+        parserMap.put(OutpostListRequest.class, OutpostListParser.class);
+        parserMap.put(OutpostDetailsRequest.class, OutpostDetailsParser.class);
+        parserMap.put(StarbaseListRequest.class, StarbaseListParser.class);
+        parserMap.put(StarbaseDetailsRequest.class, StarbaseDetailsParser.class);
+        
         parserMap.put(CharacterMarketOrderRequest.class, MarketOrderParser.class);
         parserMap.put(CorporationMarketOrderRequest.class, MarketOrderParser.class);
         
