@@ -21,8 +21,6 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
-
 public final class OutpostListRequest extends CorporationRequest<OutpostListResponse> {
 	public static final int MASK = 16384;
 	

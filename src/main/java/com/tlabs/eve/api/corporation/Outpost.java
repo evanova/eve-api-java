@@ -7,16 +7,25 @@ public class Outpost extends Object implements Serializable {
     private static final long serialVersionUID = 4480776659853459976L;
 
     private long stationID;
-    private long ownerID;
     private String stationName;
-    private long solarSystemID;
-    private double dockingCostPerShipVolume;
-    private double officeRentalCost;
-    private long stationTypeID;
-    private float reprocessingEfficiency;
-    private float reprocessingStationTake;
+    
+    private long ownerID;
+    private String ownerName;//Not in XML
     
     private long standingOwnerID;
+    private String standingOwnerName;//Not in XML
+    
+    private long solarSystemID;
+    private String solarSystemName;//Not in XML
+    
+    private double dockingCostPerShipVolume;
+    private double officeRentalCost;
+    
+    private long stationTypeID;
+    private String stationTypeName;//Not in XML
+    
+    private float reprocessingEfficiency;
+    private float reprocessingStationTake;
     
     public Outpost() {
     }
@@ -99,6 +108,38 @@ public class Outpost extends Object implements Serializable {
 
     public void setStandingOwnerID(long standingOwnerID) {
         this.standingOwnerID = standingOwnerID;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getStandingOwnerName() {
+        return standingOwnerName;
+    }
+
+    public void setStandingOwnerName(String standingOwnerName) {
+        this.standingOwnerName = standingOwnerName;
+    }
+
+    public String getSolarSystemName() {
+        return solarSystemName;
+    }
+
+    public void setSolarSystemName(String solarSystemName) {
+        this.solarSystemName = solarSystemName;
+    }
+
+    public String getStationTypeName() {
+        return stationTypeName;
+    }
+
+    public void setStationTypeName(String stationTypeName) {
+        this.stationTypeName = stationTypeName;
     }
 
 }

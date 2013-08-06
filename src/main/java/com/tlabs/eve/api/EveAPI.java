@@ -43,7 +43,7 @@ public final class EveAPI {
 	public static final int CHAR_FULL = /*65461771*/266854027;
 	public static final int CHAR_MIN = /*65461771*/25165832;
 	
-	public static final int CORP_FULL = /*65461775*/66337227;
+	public static final int CORP_FULL = /*65461775*/29356539;
 	public static final int CORP_MIN = /*65461775*/8;
 	
 	public static final AccessGroup[] characterGroups =	new AccessGroup[]{
@@ -172,7 +172,7 @@ public final class EveAPI {
 		StarbaseDetail(131072, 6, "StarbaseDetail", "List of all settings of corporate starbases."), 
 		Shareholders(65536, 1, "Shareholders", "Shareholders of the corporation."), 
 		OutpostServiceDetail(32768, 6, "OutpostServiceDetail", "List of all service settings of corporate outposts."),
-		utpostList(16384, 6, "OutpostList", "List of all outposts controlled by the corporation."), 
+		OutpostList(16384, 6, "OutpostList", "List of all outposts controlled by the corporation."), 
 		Medals(8192, 4, "Medals", "List of all medals created by the corporation."), 
 		MarketOrders(4096, 1, "MarketOrders", "List of all corporate market orders."), 
 

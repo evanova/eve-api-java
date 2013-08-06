@@ -26,12 +26,15 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public final class StarbaseDetailsResponse extends EveAPIResponse {
 
-	private final Starbase starbase;
+	private Starbase starbase;
 	
 	public StarbaseDetailsResponse() {
-		super();
-		starbase = new Starbase();
+		super();		
 	}
+
+    public void setStarbase(Starbase starbase) {
+        this.starbase = starbase;
+    }
 
     public Starbase getStarbase() {
         return starbase;
