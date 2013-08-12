@@ -38,5 +38,11 @@ public class ServerStationsParser extends EveAPIParser<ServerStationsResponse>{
         
         digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                 
         digester.addRule("eveapi/result/rowset/row", new SetNextRule("addStation"));
-	}	
+	}
+
+    @Override
+    protected void doAfterParse(ServerStationsResponse t) {
+        //1H is too short
+        t.setCachedUntil(System.currentTimeMillis() + 48l * 3600l * 1000);
+    }	
 }
