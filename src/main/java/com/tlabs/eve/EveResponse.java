@@ -30,6 +30,8 @@ public abstract class EveResponse extends Object {
     private String errorMessage = null;
     
     private long dateTime;
+    
+    private boolean cached = false;//not in XML. Used by others
     private long cachedUntil;
     
     private byte[] content = null;
@@ -62,6 +64,14 @@ public abstract class EveResponse extends Object {
         this.cachedUntil = cachedUntil;
     }
     
+    public final boolean getCached() {
+        return cached;
+    }
+
+    public void setCached(boolean cached) {
+        this.cached = cached;
+    }
+
     public final byte[] getContent() {
         return content;
     }
