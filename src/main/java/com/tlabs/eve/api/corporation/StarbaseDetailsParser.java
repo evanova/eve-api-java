@@ -28,7 +28,6 @@ import java.util.Map;
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
