@@ -85,23 +85,21 @@ public class AccountAccessTest extends EveApiTest {
 	
 
 	@Test(timeout=10000) 
-	public void validAccountRequestV2() throws Exception {
+	public void validAccountRequest() throws Exception {
 		AccountStatusRequest r = 
 			new AccountStatusRequest(
 				accountKey.keyId, 
-				accountKey.keyValue,
-				false);
+				accountKey.keyValue);
 		AccountStatusResponse q = apiCall(r);	
 	}
 	
 	
 	@Test(timeout=10000) 
-	public void validCharacterRequestV2() throws Exception {
+	public void validCharacterRequest() throws Exception {
 		AccountStatusRequest r = 
 			new AccountStatusRequest(
 				characterKey.keyId, 
-				characterKey.keyValue,
-				false);
+				characterKey.keyValue);
 		AccountStatusResponse q = apiCall(r);	
 	}
 	

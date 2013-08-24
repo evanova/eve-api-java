@@ -20,27 +20,19 @@ package com.tlabs.eve.api;
  * limitations under the License.
  * #L%
  */
-
-
-
 public final class AccountStatusRequest extends EveAPIRequest<AccountStatusResponse> implements EveAPIRequest.Authenticated {
+    public static final int MASK = 33554432;
+    
 	private String keyID;
 	private String key;
 
-	public AccountStatusRequest(String keyID, String key, boolean v1) {
-		super(AccountStatusResponse.class, "/account/AccountStatus.xml.aspx", 33554432);
+	public AccountStatusRequest(String keyID, String key) {
+		super(AccountStatusResponse.class, "/account/AccountStatus.xml.aspx", MASK);
 
 		this.keyID = keyID;		
 		this.key = key;
-
-		if (v1) {
-			putParam("userID", keyID);
-			putParam("apiKey", key);
-		}
-		else {
-			putParam("keyID", keyID);
-			putParam("vCode", key);
-		}
+		putParam("keyID", keyID);
+		putParam("vCode", key);
 	}
 
 	public final String getKeyID() {
