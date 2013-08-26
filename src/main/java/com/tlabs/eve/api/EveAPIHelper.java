@@ -38,6 +38,7 @@ import com.tlabs.eve.api.character.CharacterIndustryJobsRequest;
 import com.tlabs.eve.api.character.CharacterInfoParser;
 import com.tlabs.eve.api.character.CharacterInfoRequest;
 import com.tlabs.eve.api.character.CharacterItemLocationRequest;
+import com.tlabs.eve.api.character.CharacterKillLogRequest;
 import com.tlabs.eve.api.character.CharacterMarketOrderRequest;
 import com.tlabs.eve.api.character.CharacterResearchParser;
 import com.tlabs.eve.api.character.CharacterResearchRequest;
@@ -56,6 +57,7 @@ import com.tlabs.eve.api.corporation.CorporationContractItemsRequest;
 import com.tlabs.eve.api.corporation.CorporationContractsRequest;
 import com.tlabs.eve.api.corporation.CorporationIndustryJobsRequest;
 import com.tlabs.eve.api.corporation.CorporationItemLocationRequest;
+import com.tlabs.eve.api.corporation.CorporationKillLogRequest;
 import com.tlabs.eve.api.corporation.CorporationMarketOrderRequest;
 import com.tlabs.eve.api.corporation.CorporationSheetParser;
 import com.tlabs.eve.api.corporation.CorporationSheetRequest;
@@ -71,8 +73,6 @@ import com.tlabs.eve.api.corporation.StarbaseDetailsParser;
 import com.tlabs.eve.api.corporation.StarbaseDetailsRequest;
 import com.tlabs.eve.api.corporation.StarbaseListParser;
 import com.tlabs.eve.api.corporation.StarbaseListRequest;
-import com.tlabs.eve.api.mail.KillLogParser;
-import com.tlabs.eve.api.mail.KillLogRequest;
 import com.tlabs.eve.api.mail.MailBodiesParser;
 import com.tlabs.eve.api.mail.MailBodiesRequest;
 import com.tlabs.eve.api.mail.MailMessagesParser;
@@ -105,9 +105,10 @@ final class EveAPIHelper {
         parserMap.put(JournalReferenceTypeRequest.class, JournalReferenceTypeParser.class);
         parserMap.put(AccountStatusRequest.class, AccountStatusParser.class);
         
+        parserMap.put(SovereigntyRequest.class, SovereigntyParser.class);
         parserMap.put(ServerStatusRequest.class, ServerStatusParser.class);
-        parserMap.put(ServerStationsRequest.class, ServerStationsParser.class);
-        parserMap.put(KillLogRequest.class, KillLogParser.class);
+        parserMap.put(StationsRequest.class, StationsParser.class);
+        
         parserMap.put(MailBodiesRequest.class, MailBodiesParser.class);
         parserMap.put(MailingListsRequest.class, MailingListsParser.class);
         parserMap.put(MailMessagesRequest.class, MailMessagesParser.class);
@@ -150,6 +151,8 @@ final class EveAPIHelper {
         parserMap.put(CorporationContractBidsRequest.class, ContractBidsParser.class);
         parserMap.put(CharacterContractBidsRequest.class, ContractBidsParser.class);
         
+        parserMap.put(CharacterKillLogRequest.class, KillLogParser.class);
+        parserMap.put(CorporationKillLogRequest.class, KillLogParser.class);
         
         parserMap.put(CharacterItemLocationRequest.class, ItemLocationParser.class);
         parserMap.put(CorporationItemLocationRequest.class, ItemLocationParser.class);

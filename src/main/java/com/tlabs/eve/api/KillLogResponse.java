@@ -1,5 +1,8 @@
 package com.tlabs.eve.api;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /*
  * #%L
  * This source code is part of the Evanova Android application:
@@ -21,28 +24,17 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.parser.SetAttributePropertyRule;
-import com.tlabs.eve.parser.SetNextRule;
 
-public class ServerStationsParser extends EveAPIParser<ServerStationsResponse>{
-		
-	public ServerStationsParser() {
-		super(ServerStationsResponse.class);
-	}
-
-	@Override
-	protected void onInit(Digester digester) {
-	    digester.addObjectCreate("eveapi/result/rowset/row", EveStation.class);
-        
-        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                 
-        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addStation"));
-	}
-
-    @Override
-    protected void doAfterParse(ServerStationsResponse t) {
-        //1H is too short
-        t.setCachedUntil(System.currentTimeMillis() + 48l * 3600l * 1000);
-    }	
+public final class KillLogResponse extends EveAPIResponse {
+    
+    private List<KillMail> killMails = new LinkedList<KillMail>();
+    
+    public List<KillMail> getKillMails() {
+        return this.killMails;
+    }
+       
+    public void addKill(final KillMail k) {
+        this.killMails.add(k);
+    }
 }

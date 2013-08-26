@@ -24,10 +24,10 @@ package com.tlabs.eve.api;
  */
 
 
-public class ServerStationsRequest extends EveAPIRequest<ServerStationsResponse> {
+public final class SovereigntyRequest extends EveAPIRequest<SovereigntyResponse> implements com.tlabs.eve.api.EveAPIRequest.Public {
 
-    public ServerStationsRequest() {
-        super(ServerStationsResponse.class, "/eve/ConquerableStationList.xml.aspx", 0);
+    public SovereigntyRequest() {
+        super(SovereigntyResponse.class, "/eve/Sovereignty.xml.aspx", 0);
     }
 
 }

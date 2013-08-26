@@ -1,4 +1,7 @@
-package com.tlabs.eve.api.mail;
+package com.tlabs.eve.api;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /*
  * #%L
@@ -20,10 +23,19 @@ package com.tlabs.eve.api.mail;
  * limitations under the License.
  * #L%
  */
-
-
-import com.tlabs.eve.api.EveAPIResponse;
-
-public final class KillLogResponse extends EveAPIResponse {
-
+public final class SovereigntyResponse extends EveAPIResponse {
+	
+    private final List<Sovereignty> sovereignty;
+    
+    public SovereigntyResponse() {
+        this.sovereignty = new LinkedList<Sovereignty>();
+    }
+	
+    public void addSovereignty(final Sovereignty s) {
+        this.sovereignty.add(s);
+    }
+    
+    public List<Sovereignty> getSovereignty() {
+        return this.sovereignty;
+    }
 }

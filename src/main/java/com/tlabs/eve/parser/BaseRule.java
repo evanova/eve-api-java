@@ -37,7 +37,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class BaseRule extends Rule {
-	private static final Log LOG = LogFactory.getLog("EveAPI");
+	protected static final Log LOG = LogFactory.getLog("EveAPI");
 	
 	public void doBegin(final String name, final org.xml.sax.Attributes attributes) {
 		

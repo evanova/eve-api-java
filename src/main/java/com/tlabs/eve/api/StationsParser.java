@@ -21,15 +21,28 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import org.apache.commons.digester.Digester;
 
-import org.junit.Assert;
-import org.junit.Test;
-public class EveStationsTest extends EveApiTest {
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
-	@Test(timeout=10000)
-	public void testEveStationsParser() throws Exception {
-		StationsResponse r = apiCall(new StationsRequest());
+public class StationsParser extends EveAPIParser<StationsResponse>{
 		
-		Assert.assertTrue("No station parsed (size=0)", r.getStations().size() > 0);
+	public StationsParser() {
+		super(StationsResponse.class);
 	}
+
+	@Override
+	protected void onInit(Digester digester) {
+	    digester.addObjectCreate("eveapi/result/rowset/row", EveStation.class);
+        
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                 
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addStation"));
+	}
+
+    @Override
+    protected void doAfterParse(StationsResponse t) {
+        //1H is too short
+        t.setCachedUntil(System.currentTimeMillis() + 48l * 3600l * 1000);
+    }	
 }

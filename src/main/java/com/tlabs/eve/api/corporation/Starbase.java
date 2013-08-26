@@ -61,7 +61,26 @@ State   Name    Notes
     }
     
     private static final long serialVersionUID = -7331194775370807147L;
-
+/*
+    private static class Fuel {
+        private long fuelTypeID;
+        private int blocksPerHour;
+        private int factionBonus;
+        
+        public final long getFuelBlockDuration(final long blocksRemaining, final boolean sovereigntyBonus) {
+            float returned = blocksPerHour - (blocksPerHour * 0.1f * factionBonus);        
+            if (sovereigntyBonus) {
+                returned = returned - (blocksPerHour * 0.25f);
+            }            
+            return (long)(returned * 3600f * 1000f) * blocksRemaining;
+        }
+    }
+    
+    private static final Map<Long, Fuel> fuelStation;
+    static {
+        fuelStation = new HashMap<Long, Fuel>();
+    }*/
+    
     private long itemID;//starbase id, not an item type_id
     
     private long typeID;//the item type_id
@@ -215,4 +234,24 @@ State   Name    Notes
         this.fuelTypes.clear();
         this.fuelTypes.putAll(fuelTypes);
     }
+    /*Amarr, (True) Sansha and (Dark) Blood towers use Amarr Fuel Blocks, which use Helium Isotopes
+Caldari and (Dread) Guristas towers use Caldari Fuel Blocks, which use Nitrogen Isotopes
+Gallente and (Shadow) Serpentis towers use Gallente Fuel Blocks, which use Oxygen Isotopes
+Minmatar and (Domination) Angel towers use Minmatar Fuel Blocks, which use Hydrogen Isotopes
+The quantities are:
+Small: 10 blocks / hour, 7200 / 30 days
+Medium: 20 blocks / hour, 14400 / 30 days
+Large: 40 blocks / hour, 28800 / 30 days
+Faction towers use less (10% less for tier 1, 20% less for tier 2). You also get a 25% discount if your alliance holds sovereignty where the tower is anchored.*/
+  /*  public final long getFuelBlockDurationInMillis(final boolean sovereigntyBonus) {
+        final Fuel fuel = fuelStation.get(this.typeID);
+        if (null == fuel) {
+            return 0l;
+        }        
+        final Long blocksRemaining = fuelMap.get(fuel.fuelTypeID);
+        if ((null == blocksRemaining) || (blocksRemaining <= 0)) {
+            return 0l;
+        }
+        return fuel.getFuelBlockDuration(blocksRemaining, sovereigntyBonus);
+    }*/
 }

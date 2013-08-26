@@ -1,11 +1,13 @@
-package com.tlabs.eve.api.mail;
+package com.tlabs.eve.api;
 
 /*
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2011 - 2013 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +24,10 @@ package com.tlabs.eve.api.mail;
  */
 
 
-import com.tlabs.eve.api.character.CharacterRequest;
+public class StationsRequest extends EveAPIRequest<StationsResponse> {
 
-///char/KillLog.xml.aspx
-public final class KillLogRequest extends CharacterRequest<KillLogResponse> {
-	public static final int MASK = 256;
-	public KillLogRequest(String characterID) {
-		super(KillLogResponse.class, "/char/KillLog.xml.aspx", MASK, characterID);
-	}
+    public StationsRequest() {
+        super(StationsResponse.class, "/eve/ConquerableStationList.xml.aspx", 0);
+    }
 
 }
