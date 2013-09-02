@@ -87,6 +87,7 @@ public abstract class AbstractXMLParser<T extends EveResponse> extends Object im
 			this.digester.push(t);
 			t = (T)this.digester.parse(new ByteArrayInputStream(data));
 			t.setContent(data);
+			t.setParsed(true);
 			doAfterParse(t);
 			return t;
 		}

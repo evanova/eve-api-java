@@ -110,10 +110,21 @@ public abstract class EveRequest<T extends EveResponse> extends Object {
             System.err.println(this.getClass().getName());
             throw new RuntimeException(e);
         }
-      }
+    }
 
-   
-
+    public final T createResponse(final byte[] data) {
+        try { 
+            T t = responseClass.newInstance();      
+            t.setContent(data);
+            t.setParsed(false);            
+            return t;
+        }
+        catch(Exception e) {
+            System.err.println(this.getClass().getName());
+            throw new RuntimeException(e);
+        }
+    }
+    
     //removes duplicates
     protected static final String[] filter(String[] names) {
         List<String> l = new ArrayList<String>(names.length);

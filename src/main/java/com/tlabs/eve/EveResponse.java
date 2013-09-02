@@ -30,8 +30,11 @@ public abstract class EveResponse extends Object {
     private String errorMessage = null;
     
     private long dateTime;
+
+    //Indicates wherever the content data is already parsed and this response is completed
+    //This is used for performance/caching reasons
+    private boolean parsed = false;
     
-    private boolean cached = false;//not in XML. Used by others
     private long cachedUntil;
     
     private byte[] content = null;
@@ -64,12 +67,12 @@ public abstract class EveResponse extends Object {
         this.cachedUntil = cachedUntil;
     }
     
-    public final boolean getCached() {
-        return cached;
+    public boolean getParsed() {
+        return parsed;
     }
 
-    public void setCached(boolean cached) {
-        this.cached = cached;
+    public void setParsed(boolean parsed) {
+        this.parsed = parsed;
     }
 
     public final byte[] getContent() {
