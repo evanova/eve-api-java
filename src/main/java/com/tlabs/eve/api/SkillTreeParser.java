@@ -30,9 +30,20 @@ import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
 import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetElementPropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
 public class SkillTreeParser extends EveAPIParser<SkillTreeResponse>{
-
+    
+    private static final Map<String, String> attributeMap;
+    static {
+        attributeMap = new HashMap<String, String>();
+        
+        attributeMap.put("typeName", "skillName");
+        attributeMap.put("typeID", "skillID");
+        attributeMap.put("published", "published");
+    }
 	private static class SkillRowSetRule extends BaseRule {
 
 		@Override
@@ -64,60 +75,24 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate(
-				"eveapi/result", 
-				EveSkillTree.class);
-		
-		digester.addRule(
-				"eveapi/result", 
-				new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
-		
-		digester.addObjectCreate(
-				"eveapi/result/rowset/row", 
-				EveSkillTree.SkillGroup.class);
-		
-		digester.addRule(
-				"eveapi/result/rowset/row", 
-				new com.tlabs.eve.parser.SetAttributePropertyRule(
-						"groupName", "groupID"));
-		
-		digester.addRule(
-				"eveapi/result/rowset/row", 
-				new com.tlabs.eve.parser.SetNextRule("addGroup"));
-		
-		digester.addObjectCreate(
-				"eveapi/result/rowset/row/rowset/row", EveSkill.class);
+		digester.addObjectCreate("eveapi/result", EveSkillTree.class);		
+		digester.addRule("eveapi/result", new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
 
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row", 
-				new com.tlabs.eve.parser.SetNextRule("addSkill"));
+		digester.addObjectCreate("eveapi/result/rowset/row", EveSkillTree.SkillGroup.class);		
+		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());	
+		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addGroup"));
 		
-		Map<String, String> attributes = new HashMap<String, String>();
-		attributes.put("typeName", "skillName");
-		attributes.put("typeID", "skillID");
-		attributes.put("published", "published");
+		digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", EveSkill.class);
+		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetAttributePropertyRule(attributeMap));
+		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetNextRule("addSkill"));
 		
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row", 
-				new com.tlabs.eve.parser.SetAttributePropertyRule(attributes));
+		digester.addRule("eveapi/result/rowset/row/rowset/row/description",	new SetElementPropertyRule());
 		
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row/description", 
-				new com.tlabs.eve.parser.SetElementPropertyRule());
+		digester.addRule("eveapi/result/rowset/row/rowset/row/rank", new SetElementPropertyRule());
 		
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row/rank", 
-				new com.tlabs.eve.parser.SetElementPropertyRule());
-		
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row/requiredAttributes/primaryAttribute", 
-				new com.tlabs.eve.parser.SetElementPropertyRule());
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row/requiredAttributes/secondaryAttribute", 
-				new com.tlabs.eve.parser.SetElementPropertyRule());
+		digester.addRule("eveapi/result/rowset/row/rowset/row/requiredAttributes/primaryAttribute", new SetElementPropertyRule());
+		digester.addRule("eveapi/result/rowset/row/rowset/row/requiredAttributes/secondaryAttribute", new SetElementPropertyRule());
 				
-		digester.addRule(
-				"eveapi/result/rowset/row/rowset/row/rowset/row", 
-				new SkillRowSetRule());		
+		digester.addRule("eveapi/result/rowset/row/rowset/row/rowset/row", new SkillRowSetRule());		
 	}	
 }

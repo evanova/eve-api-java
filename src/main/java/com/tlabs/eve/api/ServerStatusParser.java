@@ -29,7 +29,6 @@ import org.apache.commons.digester.Digester;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 
 public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse> {
-	private static final int CACHE_IN_MN = 5;
 	
 	public ServerStatusParser() {
 		super(ServerStatusResponse.class);
@@ -39,7 +38,7 @@ public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse>
 	protected void doAfterParse(ServerStatusResponse t) {
 		long now = System.currentTimeMillis();		
 		now = now - TimeZone.getDefault().getOffset(now);
-		t.setCachedUntil(now + CACHE_IN_MN * 60l * 1000l);	
+		t.setCachedUntil(now + 5l * 60l * 1000l);	
 	}
 
 	@Override
