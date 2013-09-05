@@ -34,6 +34,7 @@ public abstract class EveResponse extends Object {
     //Indicates wherever the content data is already parsed and this response is completed
     //This is used for performance/caching reasons
     private boolean parsed = false;
+    private boolean cached = false;
     
     private long cachedUntil;
     
@@ -67,6 +68,14 @@ public abstract class EveResponse extends Object {
         this.cachedUntil = cachedUntil;
     }
     
+    public boolean getCached() {
+        return cached;
+    }
+
+    public void setCached(boolean cached) {
+        this.cached = cached;
+    }
+
     public boolean getParsed() {
         return parsed;
     }

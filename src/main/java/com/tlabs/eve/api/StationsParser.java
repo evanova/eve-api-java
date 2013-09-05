@@ -27,7 +27,7 @@ import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 public class StationsParser extends EveAPIParser<StationsResponse>{
-		
+
 	public StationsParser() {
 		super(StationsResponse.class);
 	}
@@ -43,6 +43,6 @@ public class StationsParser extends EveAPIParser<StationsResponse>{
     @Override
     protected void doAfterParse(StationsResponse t) {
         //1H is too short
-        t.setCachedUntil(System.currentTimeMillis() + 48l * 3600l * 1000);
+        t.setCachedUntil(System.currentTimeMillis() + 12l * 3600l * 1000l);
     }	
 }

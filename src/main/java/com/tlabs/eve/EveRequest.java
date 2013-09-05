@@ -104,6 +104,8 @@ public abstract class EveRequest<T extends EveResponse> extends Object {
             T t = responseClass.newInstance();      
             t.setErrorCode(err);
             t.setErrorMessage((null == msg) ? "Error code " + err : msg);
+            t.setParsed(true);
+            t.setCached(false);
             return t;
         }
         catch(Exception e) {

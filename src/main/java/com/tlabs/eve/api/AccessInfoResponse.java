@@ -35,7 +35,7 @@ public class AccessInfoResponse extends EveAPIResponse {
 	public static final int CORPORATION = 1;
 	public static final int ACCOUNT = 2;
 	
-	private long accessMask = 0;
+	private int accessMask = 0;
 	
 	private int type = UNKNOWN;
 	
@@ -48,11 +48,11 @@ public class AccessInfoResponse extends EveAPIResponse {
 		super();
 	}
 	
-	public final long getAccessMask() {
+	public final int getAccessMask() {
 		return accessMask;
 	}
 
-	public final void setAccessMask(long accessMask) {
+	public final void setAccessMask(int accessMask) {
 		this.accessMask = accessMask;
 	}
 
