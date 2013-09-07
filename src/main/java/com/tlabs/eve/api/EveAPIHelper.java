@@ -31,6 +31,7 @@ import java.util.Map;
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
 import com.tlabs.eve.api.character.CharacterAssetsRequest;
+import com.tlabs.eve.api.character.CharacterContactListParser;
 import com.tlabs.eve.api.character.CharacterContactListRequest;
 import com.tlabs.eve.api.character.CharacterContractBidsRequest;
 import com.tlabs.eve.api.character.CharacterContractItemsRequest;
@@ -53,6 +54,7 @@ import com.tlabs.eve.api.character.CharacterWalletJournalRequest;
 import com.tlabs.eve.api.character.CharacterWalletTransactionsRequest;
 import com.tlabs.eve.api.corporation.CorporationAccountBalanceRequest;
 import com.tlabs.eve.api.corporation.CorporationAssetsRequest;
+import com.tlabs.eve.api.corporation.CorporationContactListParser;
 import com.tlabs.eve.api.corporation.CorporationContactListRequest;
 import com.tlabs.eve.api.corporation.CorporationContractBidsRequest;
 import com.tlabs.eve.api.corporation.CorporationContractItemsRequest;
@@ -153,8 +155,8 @@ final class EveAPIHelper {
         parserMap.put(CorporationContractBidsRequest.class, ContractBidsParser.class);
         parserMap.put(CharacterContractBidsRequest.class, ContractBidsParser.class);
         
-        parserMap.put(CorporationContactListRequest.class, EveContactListParser.class);
-        parserMap.put(CharacterContactListRequest.class, EveContactListParser.class);
+        parserMap.put(CorporationContactListRequest.class, CorporationContactListParser.class);
+        parserMap.put(CharacterContactListRequest.class, CharacterContactListParser.class);
         
         parserMap.put(CharacterKillLogRequest.class, KillLogParser.class);
         parserMap.put(CorporationKillLogRequest.class, KillLogParser.class);

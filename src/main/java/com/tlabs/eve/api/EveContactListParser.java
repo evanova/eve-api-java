@@ -25,25 +25,76 @@ package com.tlabs.eve.api;
 
 
 import org.apache.commons.digester.Digester;
+import org.apache.commons.lang.Validate;
+import org.xml.sax.Attributes;
 
+import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
-import com.tlabs.eve.parser.SetNextRule;
 
 public class EveContactListParser extends EveAPIParser<EveContactListResponse> {
-   
-	public EveContactListParser() {
+    private static final class AddContactRule extends SetAttributePropertyRule {
+
+        @Override
+        public void doBegin(String name, Attributes attributes) {
+            if (getDigester().peek() instanceof EveContact.Group) {
+                getDigester().push(new EveContact());
+                super.doBegin(name, attributes);
+            }            
+        }
+
+        @Override
+        public void doEnd(String name) {
+            if (getDigester().peek() instanceof EveContact) {
+                final EveContact contact = (EveContact)getDigester().pop();
+                final EveContact.Group group = (EveContact.Group)getDigester().peek();
+                group.addContact(contact);
+            }
+        }
+        
+    }
+    
+    private static final class AddGroupRule extends BaseRule {
+        private final String filterContactList;
+        
+        public AddGroupRule(final String filterContactListName) {
+            super();
+            this.filterContactList = filterContactListName;
+            Validate.notNull(this.filterContactList);        
+        }
+
+        @Override
+        public void doBegin(String name, Attributes attributes) {
+            final String groupName = attributes.getValue("name");
+            
+            if (this.filterContactList.equals(groupName)) {
+                final EveContact.Group group = new EveContact.Group();
+                group.setName(groupName);
+                getDigester().push(group);
+            }
+        }
+
+        @Override
+        public void doEnd(String name) {
+            if (getDigester().peek() instanceof EveContact.Group) {                
+                final EveContact.Group group = (EveContact.Group)getDigester().pop();
+                final EveContactListResponse r = (EveContactListResponse)getDigester().peek();
+                r.addGroup(group);
+            }
+        }        
+    }
+    
+    private final String filterContactListName;
+    
+	protected EveContactListParser(final String filterContactListName) {
 		super(EveContactListResponse.class);
+		Validate.notNull(filterContactListName);        
+		this.filterContactListName = filterContactListName;
+		Validate.notNull(this.filterContactListName);        
 	}
 
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset", EveContact.Group.class);		
-		digester.addRule("eveapi/result/rowset", new SetAttributePropertyRule());					
-		digester.addRule("eveapi/result/rowset", new SetNextRule("addGroup"));
-		
-		digester.addObjectCreate("eveapi/result/rowset/row", EveContact.class);     
-        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                   
-        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addContact"));
-        
+		digester.addRule("eveapi/result/rowset", new AddGroupRule(this.filterContactListName));		
+		digester.addRule("eveapi/result/rowset/row", new AddContactRule());     
 	}	
 }
