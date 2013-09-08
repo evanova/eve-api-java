@@ -45,7 +45,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse>{
         }
         @Override
         public void doBegin(String name, Attributes attributes) {            
-            if (this.countContracts > this.maxContracts) {
+            if (this.countContracts >= this.maxContracts) {
                 return;
             }
             
@@ -56,7 +56,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse>{
 
         @Override
         public void doBody(String name, String text) {
-            if (this.countContracts > this.maxContracts) {
+            if (this.countContracts >= this.maxContracts) {
                 return;
             }
             super.doBody(name, text);
@@ -64,7 +64,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse>{
 
         @Override
         public void doEnd(String name) {
-            if (this.countContracts > this.maxContracts) {
+            if (this.countContracts >= this.maxContracts) {
                 return;
             }
             

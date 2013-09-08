@@ -53,6 +53,7 @@ public class MessageOfTheDayParser implements EveParser<MessageOfTheDayResponse>
 			message = StringUtils.replace(message, "<br>", "<br/>");
 		}
 		response.setMessage(message);
+		response.setParsed(true);
 		return response;
 	}
 }

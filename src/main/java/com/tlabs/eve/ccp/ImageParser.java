@@ -46,6 +46,7 @@ public abstract class ImageParser<T extends ImageResponse> implements EveParser<
 			now.add(Calendar.DAY_OF_MONTH, 7);
 		}
 		response.setCachedUntil(now.getTimeInMillis());
+		response.setParsed(true);
 		return response;
 	}
 }
