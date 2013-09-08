@@ -24,6 +24,7 @@ package com.tlabs.eve.ccp;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.TimeZone;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -81,7 +82,9 @@ public final class EveRSSParser extends Object implements EveParser<EveRSSRespon
             this.digester.push(t);
             t = (EveRSSResponse)this.digester.parse(new ByteArrayInputStream(data));
             t.setContent(data);
-            t.setParsed(true);            
+            t.setParsed(true); 
+            final long now = System.currentTimeMillis();      
+            t.setCachedUntil(now - TimeZone.getDefault().getOffset(now) + 1l *3600l * 1000l);                      
             return t;
         }        
         catch (SAXException e) {
