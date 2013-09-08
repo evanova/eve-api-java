@@ -36,6 +36,7 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 import com.tlabs.eve.EveParser;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
@@ -96,7 +97,7 @@ public final class EveRSSParser extends Object implements EveParser<EveRSSRespon
   
     private void init(Digester digester) {
         digester.addRule("feed/title", new SetElementPropertyRule());      
-        digester.addRule("feed/link", new SetElementPropertyRule());
+        digester.addRule("feed/link", new SetAttributePropertyRule("href", "link"));
         digester.addRule("feed/updated", new SetElementPropertyRule("dateUpdated"));
         digester.addObjectCreate("feed/entry", EveRSSEntry.class);        
         digester.addRule("feed/entry", new SetNextRule("addEntry"));
@@ -106,7 +107,7 @@ public final class EveRSSParser extends Object implements EveParser<EveRSSRespon
         digester.addRule("feed/entry/published", new SetElementPropertyRule("datePublished"));
         digester.addRule("feed/entry/updated", new SetElementPropertyRule("dateUpdated"));
         digester.addRule("feed/entry/author/name", new SetElementPropertyRule("author"));
-        digester.addRule("feed/entry/link", new SetElementPropertyRule());
+        digester.addRule("feed/entry/link", new SetAttributePropertyRule("href", "link"));
         //in a CDATA block
         digester.addRule("feed/entry/content", new SetElementPropertyRule("htmlContent"));        
     }
