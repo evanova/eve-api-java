@@ -85,7 +85,7 @@ public final class EveRSSParser extends Object implements EveParser<EveRSSRespon
             t.setContent(data);
             t.setParsed(true); 
             final long now = System.currentTimeMillis();      
-            t.setCachedUntil(now - TimeZone.getDefault().getOffset(now) + 1l *3600l * 1000l);                      
+            t.setCachedUntil(now + 24l *3600l * 1000l);
             return t;
         }        
         catch (SAXException e) {

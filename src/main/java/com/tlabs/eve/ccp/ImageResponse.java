@@ -27,4 +27,8 @@ import com.tlabs.eve.EveResponse;
 
 public abstract class ImageResponse extends EveResponse {
 
+    public ImageResponse() {
+        super();
+        setCachedUntil(System.currentTimeMillis() + 24l * 3600l * 1000l);
+    }
 }

@@ -35,6 +35,11 @@ public final class EveRSSResponse extends EveResponse {
     
     private long dateUpdated;
     
+    public EveRSSResponse() {
+        super();
+        setCachedUntil(System.currentTimeMillis() + 24l * 3600l * 1000l);
+    }
+    
     public final List<EveRSSEntry> getEntries() {
         return this.rssEntries;
     }
