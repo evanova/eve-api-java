@@ -105,6 +105,9 @@ public class BaseRule extends Rule {
 			}
 			catch (NumberFormatException e) {
 				longValue = parseDateTime(value);	
+				if (longValue == 0) {
+				    longValue = parserRSSDateTime(value);
+				}
 			}
 			
 			return invokeMethod(bean, longMethod, longValue);
@@ -180,7 +183,25 @@ public class BaseRule extends Rule {
             return dateFormat.parse(dateTime).getTime();
         }
         catch (ParseException e) {
-            System.err.println("EveAPI.parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());   
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());   
+            }
+            return 0l;
+        }   
+    }
+	
+	private static long parserRSSDateTime(String dateTime) {
+        if (StringUtils.isBlank(dateTime)) {
+            return 0l;
+        }
+        try {
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");//2013-09-03T11:29:41Z       
+            return dateFormat.parse(dateTime).getTime();
+        }
+        catch (ParseException e) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("parserRSSDateTime(" + dateTime + "): " + e.getLocalizedMessage());   
+            }   
             return 0l;
         }   
     }

@@ -28,7 +28,7 @@ import java.util.TimeZone;
 import org.apache.commons.lang.StringUtils;
 
 import com.tlabs.eve.EveParser;
-
+@Deprecated //There doesn't seem to be a MTOD page anymore.
 public class MessageOfTheDayParser implements EveParser<MessageOfTheDayResponse> {
 	
 	public MessageOfTheDayResponse parse(byte[] data) throws IOException {

@@ -22,18 +22,15 @@ package com.tlabs.eve.ccp;
  */
 
 
-import com.tlabs.eve.EveResponse;
-@Deprecated //There doesn't seem to be a MTOD page anymore.
-public final class MessageOfTheDayResponse extends EveResponse {
+import java.util.Locale;
 
-	private String message;
-
-	public String getMessage() {
-		return message;
+public final class EveNewsRequest extends EveRSSRequest {
+    //http://newsfeed.eveonline.com/en-US/44/articles/page/1/20/
+    public EveNewsRequest(final Locale locale) {
+        super("/44/articles/page/1/20/", locale);
+    }
+    
+	public EveNewsRequest() {
+		super("/44/articles/page/1/20/");
 	}
-	
-	public void setMessage(String message) {		
-		this.message = message;		
-		setContent(message.getBytes());
-	}		
 }

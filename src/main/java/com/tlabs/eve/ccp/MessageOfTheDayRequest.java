@@ -24,6 +24,7 @@ package com.tlabs.eve.ccp;
 
 import com.tlabs.eve.EveRequest;
 
+@Deprecated //There doesn't seem to be a MTOD page anymore.
 public final class MessageOfTheDayRequest extends EveRequest<MessageOfTheDayResponse> {
 
 	public MessageOfTheDayRequest() {
