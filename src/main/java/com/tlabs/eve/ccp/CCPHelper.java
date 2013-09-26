@@ -55,7 +55,6 @@ final class CCPHelper {
         parserMap = new HashMap<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>>();
         parsers = new HashMap<Class<?>, SoftReference<EveParser<? extends EveResponse>>>();
         
-        parserMap.put(MessageOfTheDayRequest.class, MessageOfTheDayParser.class);
         parserMap.put(EveNewsRequest.class, EveRSSParser.class);
         parserMap.put(CorporationLogoRequest.class, LogoParser.class);
         parserMap.put(PortraitRequest.class, PortraitParser.class);
