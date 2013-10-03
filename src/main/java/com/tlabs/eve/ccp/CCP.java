@@ -22,6 +22,7 @@ package com.tlabs.eve.ccp;
  */
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveRequest;
@@ -32,8 +33,8 @@ public final class CCP {
 	private CCP() {
 	}
 
-	public static <T extends EveResponse> T parse(EveRequest<T> request, byte[] data) throws IOException {
+	public static <T extends EveResponse> T parse(EveRequest<T> request, InputStream in) throws IOException {
 		final EveParser<T> p = CCPHelper.getParser(request);
-		return p.parse(data);
+		return p.parse(in);
 	}
 }

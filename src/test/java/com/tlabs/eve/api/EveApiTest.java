@@ -29,7 +29,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -183,7 +182,7 @@ public abstract class EveApiTest extends HttpClientTest {
 		}
 		
 		String result = post(url + r.getPage(), nvps);		
-		return EveAPI.parse(r, result.getBytes("UTF-8"));				
+		return EveAPI.parse(r, IOUtils.toInputStream(result));				
 	}	
 	
     private static Map<String, List<Key>> loadApiKeys(final InputStream in) throws IOException {

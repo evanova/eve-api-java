@@ -23,7 +23,10 @@ package com.tlabs.eve.ccp;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
+
+import org.apache.commons.io.IOUtils;
 
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.api.EveAPI;
@@ -32,21 +35,22 @@ public abstract class ImageParser<T extends ImageResponse> implements EveParser<
 
 	protected abstract T createResponse();
 		
-	public T parse(byte[] data) throws IOException {		
+	public T parse(InputStream in) throws IOException {		
 		T response = createResponse();		
-		response.setContent(data);
+		final byte[] data = IOUtils.toByteArray(in);
+		response.setImageData(data);
 		
-		Calendar now = EveAPI.getEveCalendar();
+		Calendar cached = EveAPI.getEveCalendar();
 		if (data.length == 0) {
 			//FIXME: arbitrary...
-			now.add(Calendar.HOUR, 1);				
+		    cached.add(Calendar.MINUTE, 5);				
 		}
 		else {
 			//FIXME: arbitrary...
-			now.add(Calendar.DAY_OF_MONTH, 7);
+		    cached.add(Calendar.DAY_OF_MONTH, 7);
 		}
-		response.setCachedUntil(now.getTimeInMillis());
-		response.setParsed(true);
+		response.setCachedUntil(cached.getTimeInMillis());
+		response.setParsed(true);		
 		return response;
 	}
 }

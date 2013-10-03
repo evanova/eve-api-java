@@ -22,19 +22,16 @@ package com.tlabs.eve.central;
  */
 
 
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.tlabs.eve.HttpClientTest;
-import com.tlabs.eve.central.EveCentral;
-import com.tlabs.eve.central.EveCentralRequest;
-import com.tlabs.eve.central.EveCentralResponse;
 
 public class EveCentralTest extends HttpClientTest {
 
@@ -58,12 +55,11 @@ public class EveCentralTest extends HttpClientTest {
 				nvps.add(new BasicNameValuePair(p, params.get(p)));						
 			}
 		}
-		
-		
+				
 		try {
 		    final String result = get(url, nvps);
 			return 			       
-				EveCentral.parse(r, result.getBytes("UTF-8"));
+				EveCentral.parse(r, IOUtils.toInputStream(result));
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

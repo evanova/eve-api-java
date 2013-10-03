@@ -22,9 +22,8 @@ package com.tlabs.eve.ccp;
  */
 
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.TimeZone;
+import java.io.InputStream;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -72,17 +71,13 @@ public final class EveRSSParser extends Object implements EveParser<EveRSSRespon
         init(this.digester);            
     }
     
-    public final EveRSSResponse parse(String s) throws IOException {
-        return parse(s.getBytes());
-    }
-    
-    public synchronized final EveRSSResponse parse(byte[] data) throws IOException {
+    public synchronized final EveRSSResponse parse(InputStream in) throws IOException {
         this.digester.clear();      
         try {           
             EveRSSResponse t = new EveRSSResponse();            
             this.digester.push(t);
-            t = (EveRSSResponse)this.digester.parse(new ByteArrayInputStream(data));
-            t.setContent(data);
+            t = (EveRSSResponse)this.digester.parse(in);
+         //   t.setContent(data);
             t.setParsed(true); 
             final long now = System.currentTimeMillis();      
             t.setCachedUntil(now + 24l *3600l * 1000l);

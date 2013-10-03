@@ -27,9 +27,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.tlabs.eve.central.EveCentralStatsRequest;
-import com.tlabs.eve.central.EveCentralStatsResponse;
-
 public class MarketStatsTest extends EveCentralTest {
 
 	@Test(timeout=10000) 

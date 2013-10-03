@@ -25,6 +25,7 @@ package com.tlabs.eve.api;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -257,9 +258,9 @@ public final class EveAPI {
 		return getEveCalendar().getTimeInMillis();
 	}
 	
-	public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, byte[]  data) throws IOException {
+	public static <T extends EveAPIResponse> T parse(EveAPIRequest<T> request, InputStream in) throws IOException {
 	    EveAPIParser<T> p = EveAPIHelper.getParser(request);		
-		return p.parse(data);
+		return p.parse(in);
 	}
 	
 	public static final long getRequiredSkillPoints(final int rank, final int level) {

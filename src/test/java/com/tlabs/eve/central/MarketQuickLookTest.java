@@ -27,10 +27,6 @@ import static org.junit.Assert.assertTrue;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
-import com.tlabs.eve.central.EveCentralOrder;
-import com.tlabs.eve.central.EveCentralQuickLookRequest;
-import com.tlabs.eve.central.EveCentralQuickLookResponse;
-
 public class MarketQuickLookTest extends EveCentralTest {
 
 	@Test(timeout=25000) 

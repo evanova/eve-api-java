@@ -22,8 +22,8 @@ package com.tlabs.eve.parser;
  */
 
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -74,19 +74,15 @@ public abstract class AbstractXMLParser<T extends EveResponse> extends Object im
 		init(this.digester);			
 	}
 	
-	public final T parse(String s) throws IOException {
-		return parse(s.getBytes());
-	}
-	
 	@SuppressWarnings("unchecked")
-	public synchronized final T parse(byte[] data) throws IOException {
+	public synchronized final T parse(InputStream in) throws IOException {
 		this.digester.clear();		
 		try {			
 			T t = responseClass.newInstance();
 			doBeforeParse(t);
 			this.digester.push(t);
-			t = (T)this.digester.parse(new ByteArrayInputStream(data));
-			t.setContent(data);
+			t = (T)this.digester.parse(in);
+			//t.setContent(data);
 			t.setParsed(true);
 			doAfterParse(t);
 			return t;

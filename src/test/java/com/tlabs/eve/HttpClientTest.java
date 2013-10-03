@@ -59,7 +59,6 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.protocol.HTTP;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.internal.runners.statements.Fail;
 
 public class HttpClientTest {
 
