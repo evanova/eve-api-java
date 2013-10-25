@@ -28,28 +28,22 @@ import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
-import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveResponse;
 
-public abstract class AbstractXMLParser<T extends EveResponse> extends Object implements EveParser<T> {
+public abstract class AbstractXMLParser<T extends EveResponse> extends AbstractEveParser<T> {
 	
 	protected static final Log LOG = LogFactory.getLog("EveAPI");
 	
 	private final Digester digester;
-	private final Class<T> responseClass;
 	
 	public AbstractXMLParser(final Class<T> responseClass) {
-		super();
-		Validate.notNull(responseClass);
-		
-		this.responseClass = responseClass;
+		super(responseClass);
 		this.digester = new Digester();
 		//this.digester.setRules(new ExtendedBaseRules());
 		this.digester.setNamespaceAware(false);
@@ -75,35 +69,19 @@ public abstract class AbstractXMLParser<T extends EveResponse> extends Object im
 	}
 	
 	@SuppressWarnings("unchecked")
-	public synchronized final T parse(InputStream in) throws IOException {
+	protected synchronized final T doParse(final InputStream in, final T t) throws IOException {
 		this.digester.clear();		
 		try {			
-			T t = responseClass.newInstance();
-			doBeforeParse(t);
 			this.digester.push(t);
-			t = (T)this.digester.parse(in);
-			//t.setContent(data);
-			t.setParsed(true);
-			doAfterParse(t);
-			return t;
-		}
-		catch (IllegalAccessException e) {
-			throw new IOException(e.getLocalizedMessage());
-		}
-		catch (InstantiationException e) {
-			throw new IOException(e.getLocalizedMessage());
-		}	
+			return (T)this.digester.parse(in);
+		}		
 		catch (SAXException e) {
 			e.printStackTrace(System.err);
 			throw new IOException(e.getLocalizedMessage());
 		}
-		
-	}
-	protected void doBeforeParse(T t) {
-		
-	}
-	protected void doAfterParse(T t) {
-		
+		finally {
+		    this.digester.clear();
+		}
 	}
 
 	protected void init(Digester digester) {}

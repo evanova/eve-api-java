@@ -22,75 +22,27 @@ package com.tlabs.eve.ccp;
  */
 
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.commons.digester.Digester;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
 
-import com.tlabs.eve.EveParser;
+import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-public final class EveRSSParser extends Object implements EveParser<EveRSSResponse> {
-    
-    protected static final Log LOG = LogFactory.getLog("EveAPI");
-    
-    private final Digester digester;
+public final class EveRSSParser extends AbstractXMLParser<EveRSSResponse> {
     
     public EveRSSParser() {
-        super();
-        this.digester = new Digester();
-        //this.digester.setRules(new ExtendedBaseRules());
-        this.digester.setNamespaceAware(false);
-        this.digester.setValidating(false);
-        
-        //BUG Fixes an Android 1.5 (and apparently in 2.1-update1 too) SAX parser bug: cannot have both at the same time,
-        //but the Android impl checks those feature against each other incorrectly.
-        //This is probably causing or related to the bug described in CharacterSheetParser
-        try {
-            //this.digester.setFeature("http://xml.org/sax/features/namespaces", false);
-            this.digester.setFeature("http://xml.org/sax/features/namespace-prefixes", true);       
-        }
-        catch (SAXNotSupportedException e) {
-            throw new IllegalStateException(e.getLocalizedMessage());
-        }
-        catch (SAXNotRecognizedException e) {
-            throw new IllegalStateException(e.getLocalizedMessage());
-        }
-        catch (ParserConfigurationException e) {
-            throw new IllegalStateException(e.getLocalizedMessage());
-        }
-        init(this.digester);            
+        super(EveRSSResponse.class);           
     }
     
-    public synchronized final EveRSSResponse parse(InputStream in) throws IOException {
-        this.digester.clear();      
-        try {           
-            EveRSSResponse t = new EveRSSResponse();            
-            this.digester.push(t);
-            t = (EveRSSResponse)this.digester.parse(in);
-         //   t.setContent(data);
-            t.setParsed(true); 
-            final long now = System.currentTimeMillis();      
-            t.setCachedUntil(now + 24l *3600l * 1000l);
-            return t;
-        }        
-        catch (SAXException e) {
-            e.printStackTrace(System.err);
-            throw new IOException(e.getLocalizedMessage());
-        }
-        
+    @Override
+    protected void doAfterParse(EveRSSResponse t) {
+        final long now = System.currentTimeMillis();      
+        t.setCachedUntil(now + 24l *3600l * 1000l);
     }
-  
-    private void init(Digester digester) {
+
+    @Override
+    protected void init(Digester digester) {
         digester.addRule("feed/title", new SetElementPropertyRule());      
         digester.addRule("feed/link", new SetAttributePropertyRule("href", "link"));
         digester.addRule("feed/updated", new SetElementPropertyRule("dateUpdated"));
