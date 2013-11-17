@@ -53,6 +53,7 @@ public class CorporationSheet extends Object implements Serializable {
 	
 	private Map<Integer, String> walletDivisions = new HashMap<Integer, String>();
 	private Map<Integer, String> hangarDivisions = new HashMap<Integer, String>();
+	private double walletBalance = -1;//not in XML
 	
 	public long getCorporationID() {
 		return corporationID;
@@ -186,7 +187,15 @@ public class CorporationSheet extends Object implements Serializable {
 	public final Map<Integer, String> getWalletDivisions() {
 		return walletDivisions;
 	}
-	
+
+    public final double getBalance() {
+        return this.walletBalance;
+    }
+
+    public final void setBalance(double walletBalance) {
+        this.walletBalance = walletBalance;
+    }
+
 	public final void addHangarDivision(Integer id, String name) {
 		this.hangarDivisions.put(id, name);
 	}
