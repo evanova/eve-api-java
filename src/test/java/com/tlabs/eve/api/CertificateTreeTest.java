@@ -22,30 +22,27 @@ package com.tlabs.eve.api;
  */
 
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Map;
-
+import org.junit.Assert;
 import org.junit.Test;
-public class CertificateTreeTest extends EveApiTest {
+
+import com.tlabs.eve.api.character.Certificate;
+import com.tlabs.eve.api.character.CertificateTree;
+import com.tlabs.eve.api.character.CertificateTreeParser;
+import com.tlabs.eve.api.character.CertificateTreeResponse;
+public class CertificateTreeTest {
 
 	@Test(timeout=10000)
 	public void testCertificateTreeParser() throws Exception {
-		CertificateTreeResponse r = apiCall(new CertificateTreeRequest());
-		assertNotNull("Null response", r);
-		
-		CertificateTree tree = r.getCertificateTree();
-		assertNotNull("Null CertificateTree", tree);
-				
-		assertTrue("No CertificateTree.Category.", tree.getCategories().size() > 0);
-		
-		Map<Long, Certificate> all = tree.getCertificates();
-		assertTrue("No CertificateTree.Certificate", all.size() > 0);
-		
-		/*for (long id: all.keySet()) {
-			System.out.println(
-					ToStringBuilder.reflectionToString(all.get(id), ToStringStyle.SIMPLE_STYLE));
-		}*/
+	    final CertificateTreeParser parser = new CertificateTreeParser();
+	    final CertificateTreeResponse response = parser.parse(getClass().getResourceAsStream("/certificates.yaml"));
+	    Assert.assertNotNull(response);
+	    Assert.assertNotNull(response.getCertificateTree());
+	    
+	    final CertificateTree tree = response.getCertificateTree();
+	    Assert.assertTrue(tree.getCertificateGroups().size() > 0);
+	    
+	    final Certificate c = tree.getCertificate(50);
+	    Assert.assertEquals("Names don't match.", "Small Energy Turret", c.getName());
+	    
 	}
 }

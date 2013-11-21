@@ -1,4 +1,6 @@
-package com.tlabs.eve.api;
+package com.tlabs.eve.api.character;
+
+import com.tlabs.eve.EveResponse;
 
 /*
  * #%L
@@ -22,11 +24,17 @@ package com.tlabs.eve.api;
  */
 
 
-public class CertificateTreeRequest extends EveAPIRequest<CertificateTreeResponse> {
+public class CertificateTreeResponse extends EveResponse {
 
-	public CertificateTreeRequest() {
-		super(CertificateTreeResponse.class, "/eve/CertificateTree.xml.aspx", 0);
+	private CertificateTree tree = null;
+
+	public final CertificateTree getCertificateTree() {
+		return tree;
 	}
 
-
+	public final void setTree(CertificateTree tree) {
+		this.tree = tree;
+	}
+	
+	
 }

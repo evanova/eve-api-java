@@ -4,7 +4,7 @@
 
 	<groupId>com.tlabs.eve</groupId>
 	<artifactId>api</artifactId>
-	<version>3.2</version>
+	<version>3.3</version>
 
 	<name>Evanova Eve API</name>
 	<url>https://bitbucket.org/evanova/eve-api</url>
@@ -97,6 +97,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.14-SNAPSHOT</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

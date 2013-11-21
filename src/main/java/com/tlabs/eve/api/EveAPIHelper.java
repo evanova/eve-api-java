@@ -104,8 +104,7 @@ final class EveAPIHelper {
         parserMap.put(NamesRequest.class, NamesParser.class);
         parserMap.put(ErrorListRequest.class, ErrorListParser.class);
         
-        parserMap.put(SkillTreeRequest.class, SkillTreeParser.class);
-        parserMap.put(CertificateTreeRequest.class, CertificateTreeParser.class);
+        parserMap.put(SkillTreeRequest.class, SkillTreeParser.class);        
         parserMap.put(JournalReferenceTypeRequest.class, JournalReferenceTypeParser.class);
         parserMap.put(AccountStatusRequest.class, AccountStatusParser.class);
         
