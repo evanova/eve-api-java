@@ -24,8 +24,8 @@ package com.tlabs.eve.api.character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,17 +33,20 @@ public class CertificateTree extends Object implements Serializable {
 
     private static final long serialVersionUID = 3206517506300063885L;
 
-    private Map<Long, List<Certificate>> certificateGroups;//group ID->List
+    private final Map<Long, List<Certificate>> certificateGroups;//group ID->List
+    private final List<Long> groups;//act as a cache for getCertificateGroups()
     
     public CertificateTree() {
         this.certificateGroups = new HashMap<Long, List<Certificate>>();
+        this.groups = new LinkedList<Long>();
     }
     
-    protected final void add(final Certificate c) {
+    public final void add(final Certificate c) {
         List<Certificate> certs = this.certificateGroups.get(c.getGroupID());
         if (null == certs) {
             certs = new ArrayList<Certificate>(5);
             this.certificateGroups.put(c.getGroupID(), certs);
+            this.groups.add(c.getGroupID());
         }
         certs.add(c);
     }
@@ -63,7 +66,7 @@ public class CertificateTree extends Object implements Serializable {
         return this.certificateGroups.get(groupID);
     }
     
-    public final Collection<Long> getCertificateGroups() {
-        return this.certificateGroups.keySet();
+    public final List<Long> getCertificateGroups() {
+        return this.groups;
     }
 }
