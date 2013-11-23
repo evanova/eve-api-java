@@ -39,7 +39,6 @@ public class CertificateTreeTest {
 	    Assert.assertNotNull(response.getCertificateTree());
 	    
 	    final CertificateTree tree = response.getCertificateTree();
-	    Assert.assertTrue(tree.getCertificateGroups().size() > 0);
 	    
 	    final Certificate c = tree.getCertificate(50);
 	    Assert.assertEquals("Names don't match.", "Small Energy Turret", c.getName());

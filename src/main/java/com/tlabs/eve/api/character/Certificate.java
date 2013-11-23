@@ -28,8 +28,30 @@ import java.util.Map;
 
 public class Certificate extends Object implements Serializable {
 
-    public enum Type {
-        BASIC, STANDARD, IMPROVED, ADVANCED, ELITE;
+    public enum Level {
+        BASIC(0), STANDARD(1), IMPROVED(2), ADVANCED(3), ELITE(4);
+        
+        private final int level;
+        private Level(final int level) {
+            this.level = level;
+        }
+        
+        public static Level min(final Level a, final Level b) {
+            if ((null == a) || (null == b)) {
+                return null;
+            }
+            return (a.level <= b.level) ? a : b;
+        }
+
+        public static Level max(final Level a, final Level b) {
+            if (null == a) {
+                return b;
+            }
+            if (null == b) {
+                return a;
+            }
+            return (a.level > b.level) ? a : b;
+        }
     }
     
     private static final long serialVersionUID = -2288742167364516064L;
@@ -41,7 +63,7 @@ public class Certificate extends Object implements Serializable {
     
     private List<Long> recommendedForTypes;
     //Map<Skill ID, Map<Certificate.Type, level>>
-    private Map<Long, Map<Certificate.Type, Integer>> skillTypeLevels;
+    private Map<Long, Map<Certificate.Level, Integer>> skillTypeLevels;
     
     public final long getCertificateID() {
         return certificateID;
@@ -83,11 +105,11 @@ public class Certificate extends Object implements Serializable {
         this.recommendedForTypes = recommendedForTypes;
     }
 
-    public final Map<Long, Map<Certificate.Type, Integer>> getRequiredSkills() {
+    public final Map<Long, Map<Certificate.Level, Integer>> getRequiredSkills() {
         return skillTypeLevels;
     }
 
-    public final void setRequiredSkills(Map<Long, Map<Certificate.Type, Integer>> skillTypeLevels) {
+    public final void setRequiredSkills(Map<Long, Map<Certificate.Level, Integer>> skillTypeLevels) {
         this.skillTypeLevels = skillTypeLevels;
     }
    

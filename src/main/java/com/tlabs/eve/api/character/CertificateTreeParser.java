@@ -73,16 +73,16 @@ public final class CertificateTreeParser extends AbstractYAMLParser<CertificateT
                 certificate.setRecommendedFor(longRecommended);
                 
                 final Map<Integer, Map<String, Integer>> skillTypes = (Map<Integer, Map<String, Integer>>)attributes.get("skillTypes");                
-                final Map<Long, Map<Certificate.Type, Integer>> certificateSkills = new HashMap<Long, Map<Certificate.Type, Integer>>();                
+                final Map<Long, Map<Certificate.Level, Integer>> certificateSkills = new HashMap<Long, Map<Certificate.Level, Integer>>();                
                 if (null != skillTypes) {
                     for (Integer skillId: skillTypes.keySet()) {
                         final Map<String, Integer> levels = skillTypes.get(skillId);
-                        final Map<Certificate.Type, Integer> types = new HashMap<Certificate.Type, Integer>();
-                        types.put(Certificate.Type.BASIC, levels.get("basic"));
-                        types.put(Certificate.Type.STANDARD, levels.get("standard"));
-                        types.put(Certificate.Type.IMPROVED, levels.get("improved"));
-                        types.put(Certificate.Type.ADVANCED, levels.get("advanced"));
-                        types.put(Certificate.Type.ELITE, levels.get("elite"));
+                        final Map<Certificate.Level, Integer> types = new HashMap<Certificate.Level, Integer>();
+                        types.put(Certificate.Level.BASIC, levels.get("basic"));
+                        types.put(Certificate.Level.STANDARD, levels.get("standard"));
+                        types.put(Certificate.Level.IMPROVED, levels.get("improved"));
+                        types.put(Certificate.Level.ADVANCED, levels.get("advanced"));
+                        types.put(Certificate.Level.ELITE, levels.get("elite"));
     
                         certificateSkills.put(Long.valueOf(skillId.longValue()), types);
                     }
