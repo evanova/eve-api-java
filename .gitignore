@@ -28,3 +28,4 @@ Thumbs.db
 .project
 .settings
 src/main/test/resources/apikeys.properties
+/target
