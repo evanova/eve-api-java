@@ -22,27 +22,17 @@ package com.tlabs.eve.api;
  */
 
 
-import java.util.TimeZone;
-
 import org.apache.commons.digester.Digester;
 
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 public final class SovereigntyParser extends EveAPIParser<SovereigntyResponse> {
-	private static final int CACHE_IN_MN = 4 * 60;
 	
 	public SovereigntyParser() {
 		super(SovereigntyResponse.class);
 	} 
 	
-	@Override
-	protected void doAfterParse(SovereigntyResponse t) {
-		long now = System.currentTimeMillis();		
-		now = now - TimeZone.getDefault().getOffset(now);
-		t.setCachedUntil(now + CACHE_IN_MN * 60l * 1000l);	
-	}
-
 	@Override
 	protected void onInit(Digester digester) {		
 	    digester.addObjectCreate("eveapi/result/rowset/row", Sovereignty.class);
