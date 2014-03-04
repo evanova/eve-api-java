@@ -46,6 +46,7 @@ import com.tlabs.eve.api.character.CharacterResearchParser;
 import com.tlabs.eve.api.character.CharacterResearchRequest;
 import com.tlabs.eve.api.character.CharacterSheetParser;
 import com.tlabs.eve.api.character.CharacterSheetRequest;
+import com.tlabs.eve.api.character.CharacterStandingsRequest;
 import com.tlabs.eve.api.character.CharacterTrainingParser;
 import com.tlabs.eve.api.character.CharacterTrainingQueueParser;
 import com.tlabs.eve.api.character.CharacterTrainingQueueRequest;
@@ -65,6 +66,7 @@ import com.tlabs.eve.api.corporation.CorporationKillLogRequest;
 import com.tlabs.eve.api.corporation.CorporationMarketOrderRequest;
 import com.tlabs.eve.api.corporation.CorporationSheetParser;
 import com.tlabs.eve.api.corporation.CorporationSheetRequest;
+import com.tlabs.eve.api.corporation.CorporationStandingsRequest;
 import com.tlabs.eve.api.corporation.CorporationWalletJournalRequest;
 import com.tlabs.eve.api.corporation.CorporationWalletTransactionsRequest;
 import com.tlabs.eve.api.corporation.MemberTrackingParser;
@@ -162,6 +164,9 @@ final class EveAPIHelper {
         
         parserMap.put(CharacterItemLocationRequest.class, ItemLocationParser.class);
         parserMap.put(CorporationItemLocationRequest.class, ItemLocationParser.class);
+        
+        parserMap.put(CharacterStandingsRequest.class, StandingsParser.class);
+        parserMap.put(CorporationStandingsRequest.class, StandingsParser.class);
         
     }
         
