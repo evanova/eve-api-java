@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+	<fittings>
+		<fitting name="Drake - Doctrine Damp Drake">
+			<description value="My damp Drake"/>
+			<shipType value="Drake"/>
+			<hardware slot="low slot 0" type="Damage Control II"/>
+			<hardware slot="low slot 1" type="Ballistic Control System II"/>
+			<hardware slot="low slot 2" type="Ballistic Control System II"/>
+			<hardware slot="low slot 3" type="Nanofiber Internal Structure II"/>
+			<hardware slot="med slot 0" type="Experimental 10MN Microwarpdrive I"/>
+			<hardware slot="med slot 1" type="Stasis Webifier II"/>
+			<hardware slot="med slot 2" type="Warp Disruptor II"/>
+			<hardware slot="med slot 3" type="Warp Scrambler II"/>
+			<hardware slot="med slot 4" type="Large Shield Extender II"/>
+			<hardware slot="med slot 5" type="Large Shield Extender II"/>
+			<hardware slot="hi slot 0" type="Heavy Missile Launcher II"/>
+			<hardware slot="hi slot 1" type="Heavy Missile Launcher II"/>
+			<hardware slot="hi slot 2" type="Heavy Missile Launcher II"/>
+			<hardware slot="hi slot 3" type="Heavy Missile Launcher II"/>
+			<hardware slot="hi slot 4" type="Heavy Missile Launcher II"/>
+			<hardware slot="hi slot 5" type="Heavy Missile Launcher II"/>
+			<hardware slot="rig slot 0" type="Medium Core Defense Field Extender I"/>
+			<hardware slot="rig slot 1" type="Medium Core Defense Field Extender I"/>
+			<hardware slot="rig slot 2" type="Medium Core Defense Field Extender I"/>
+		</fitting>
+		<fitting name="Rifter - Fitted (Rifter)">
+			<description value=""/>
+			<shipType value="Rifter"/>
+			<hardware slot="low slot 0" type="Adaptive Nano Plating I"/>
+			<hardware slot="low slot 1" type="200mm Reinforced Rolled Tungsten Plates I"/>
+			<hardware slot="low slot 2" type="F85 Peripheral Damage System I"/>
+			<hardware slot="med slot 0" type="Limited 1MN Microwarpdrive I"/>
+			<hardware slot="med slot 1" type="X5 Prototype Engine Enervator"/>
+			<hardware slot="med slot 2" type="J5b Phased Prototype Warp Scrambler I"/>
+			<hardware slot="hi slot 0" type="150mm Light AutoCannon I"/>
+			<hardware slot="hi slot 1" type="150mm Light AutoCannon I"/>
+			<hardware slot="hi slot 2" type="150mm Light AutoCannon I"/>
+			<hardware slot="rig slot 0" type="Small Anti-EM Pump I"/>
+			<hardware slot="rig slot 1" type="Small Anti-Explosive Pump I"/>
+			<hardware slot="rig slot 2" type="Small Trimark Armor Pump I"/>
+			<hardware qty="5000" slot="cargo" type="Nuclear S"/>
+			<hardware qty="2000" slot="cargo" type="Phased Plasma S"/>
+			<hardware qty="8912" slot="cargo" type="EMP S"/>
+		</fitting>
+	</fittings>
