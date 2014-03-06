@@ -32,7 +32,7 @@ public class EveFittingParserTest {
     @Test
     public void testName() throws IOException {
         final ShipFitting fit = response.getShipFittings().get(0);
-        Assert.assertEquals(fit.getName(), "Drake - Doctrine Damp Drake");
+        Assert.assertEquals(fit.getName(), "Drake");
     }
     
     @Test

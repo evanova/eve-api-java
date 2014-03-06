@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 	<fittings>
-		<fitting name="Drake - Doctrine Damp Drake">
+		<fitting name="Drake">
 			<description value="My damp Drake"/>
 			<shipType value="Drake"/>
 			<hardware slot="low slot 0" type="Damage Control II"/>
