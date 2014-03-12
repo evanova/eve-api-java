@@ -27,14 +27,14 @@ import java.util.List;
 
 public class ItemLocationResponse extends EveAPIResponse {
 
-	private final List<EveItem.Location> locations = new LinkedList<EveItem.Location>();
+	private final List<EveItemLocation> locations = new LinkedList<EveItemLocation>();
 		
-	public void addLocation(final EveItem.Location location) {
+	public void addLocation(final EveItemLocation location) {
 		this.locations.add(location);
 	}
 
 
-	public List<EveItem.Location> getLocations() {
+	public List<EveItemLocation> getLocations() {
 		return locations;
 	}
 	

@@ -4,8 +4,10 @@ package com.tlabs.eve.api;
  * #%L
  * This source code is part of the Evanova Android application:
  * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
+ * 
+ * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2010 - 2012 Evanova (Traquenard Labs)
+ * Copyright (C) 2011 - 2014 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,23 +24,26 @@ package com.tlabs.eve.api;
  */
 
 
-import org.apache.commons.digester.Digester;
+import java.io.Serializable;
 
-import com.tlabs.eve.parser.SetAttributePropertyRule;
-import com.tlabs.eve.parser.SetNextRule;
+//This is not part of the API but part of the data dump.
+public final class EveItemEffect implements Serializable {
+    
+    public static final int USES_LOW_SLOT = 11;
+    public static final int USES_MEDIUM_SLOT = 13;
+    public static final int USES_HIGH_SLOT = 12;
+    public static final int USES_RIG_SLOT = 2663;
+    
+    private static final long serialVersionUID = -6457985690836261476L;
+    
+    private int effectID;
+    
+    public int getID() {
+        return effectID;
+    }
 
-/**@since Eve API V2*/
-//@see https://forums.eveonline.com/default.aspx?g=posts&t=58316&find=unread
-public class ItemLocationParser extends EveAPIParser<ItemLocationResponse>{
-	
-	public ItemLocationParser() {
-		super(ItemLocationResponse.class);
-	}
+    public void setID(int effectID) {
+        this.effectID = effectID;
+    }
 
-	@Override
-	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset/row", EveItemLocation.class);		
-		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());					
-		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addLocation"));
-	}	
 }
