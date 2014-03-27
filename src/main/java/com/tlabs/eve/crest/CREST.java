@@ -1,4 +1,4 @@
-package com.tlabs.eve.parser;
+package com.tlabs.eve.crest;
 
 /*
  * #%L
@@ -7,7 +7,7 @@ package com.tlabs.eve.parser;
  * 
  * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2011 - 2013 Traquenard Labs
+ * Copyright (C) 2010 - 2012 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,16 +27,14 @@ package com.tlabs.eve.parser;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.tlabs.eve.EveResponse;
+//Facade toward the ...ahem.. Eve API...
+public final class CREST {
 
-public abstract class AbstractCRESTParser<T extends EveResponse> extends AbstractEveParser<T> {
-    
-    public AbstractCRESTParser(final Class<T> responseClass) {
-        super(responseClass);
-    }
-
-    @Override
-    protected T doParse(InputStream in, T response) throws IOException {
-        return response;
-    }
+	private CREST() {}
+	
+	public static <T extends CRESTResponse> T parse(CRESTRequest<T> request, InputStream in) throws IOException {
+	    final CRESTParser<T> p = CRESTHelper.getParser(request);
+        return p.parse(in);
+	}
+	
 }

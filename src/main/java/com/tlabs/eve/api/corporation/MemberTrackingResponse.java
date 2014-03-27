@@ -29,7 +29,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public final class MemberTrackingResponse extends EveAPIResponse {
 
-	private List<CorporationMember> members;
+    private static final long serialVersionUID = 5337975035635672595L;
+
+    private List<CorporationMember> members;
 	
 	public MemberTrackingResponse() {
 		super();

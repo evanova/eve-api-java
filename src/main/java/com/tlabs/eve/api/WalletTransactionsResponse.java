@@ -27,7 +27,9 @@ import java.util.List;
 
 public final class WalletTransactionsResponse extends EveAPIResponse {
 
-	private List<WalletTransaction> transactions = new LinkedList<WalletTransaction>();
+    private static final long serialVersionUID = -2618013377703372798L;
+
+    private List<WalletTransaction> transactions = new LinkedList<WalletTransaction>();
 	
 	public final void addTransaction(WalletTransaction t) {
 		this.transactions.add(t);

@@ -29,7 +29,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class SetNextRule extends BaseRule {
-	private static final Log LOG = LogFactory.getLog("EveAPI");
+	private static final Log LOG = LogFactory.getLog("CREST");
 	
 	private String methodName;
 	

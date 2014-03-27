@@ -45,6 +45,9 @@ public class CorporationSheet extends Object implements Serializable {
 	private long allianceID;
 	private String allianceName;
 
+    private long factionID;
+    private String factionName;
+    
 	private int memberCount;
 	private int memberLimit;
 	
@@ -103,7 +106,6 @@ public class CorporationSheet extends Object implements Serializable {
 		this.ceoID = ceoID;
 	}
 	
-
 	public String getCeoName() {
 		return ceoName;
 	}
@@ -146,7 +148,23 @@ public class CorporationSheet extends Object implements Serializable {
 		this.allianceName = allianceName;
 	}
 
-	public int getMemberCount() {
+	public final long getFactionID() {
+        return factionID;
+    }
+
+    public final void setFactionID(long factionID) {
+        this.factionID = factionID;
+    }
+
+    public final String getFactionName() {
+        return factionName;
+    }
+
+    public final void setFactionName(String factionName) {
+        this.factionName = factionName;
+    }
+
+    public int getMemberCount() {
 		return memberCount;
 	}
 
@@ -161,8 +179,7 @@ public class CorporationSheet extends Object implements Serializable {
 	public void setMemberLimit(int memberLimit) {
 		this.memberLimit = memberLimit;
 	}
-	
-	
+		
 	public float getTaxRate() {
 		return taxRate;
 	}
@@ -171,7 +188,6 @@ public class CorporationSheet extends Object implements Serializable {
 		this.taxRate = taxRate;
 	}
 
-	
 	public float getShares() {
 		return shares;
 	}

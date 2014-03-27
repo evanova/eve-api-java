@@ -28,7 +28,9 @@ import java.util.List;
 
 public class IndustryJobsResponse extends EveAPIResponse {
 
-	private List<IndustryJob> jobs;
+    private static final long serialVersionUID = 2480972831954307791L;
+
+    private List<IndustryJob> jobs;
 
 	public IndustryJobsResponse() {
 		super();		

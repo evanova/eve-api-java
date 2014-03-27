@@ -30,7 +30,9 @@ import com.tlabs.eve.api.character.EveCharacter;
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfoResponse extends EveAPIResponse {
 	
-	public static final int UNKNOWN = -1;
+    private static final long serialVersionUID = -4592852922232440448L;
+    
+    public static final int UNKNOWN = -1;
 	public static final int CHARACTER = 0;
 	public static final int CORPORATION = 1;
 	public static final int ACCOUNT = 2;

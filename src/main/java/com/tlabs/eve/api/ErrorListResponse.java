@@ -27,8 +27,9 @@ import java.util.Map;
 
 public class ErrorListResponse extends EveAPIResponse {
 
+    private static final long serialVersionUID = 1883263792642168903L;
 
-	private Map<Integer, String> errors;//names by id
+    private Map<Integer, String> errors;//names by id
 	
 	public ErrorListResponse() {
 		super();

@@ -33,7 +33,7 @@ public class EveMessage extends Object implements Serializable {
     private static final long serialVersionUID = 4815557437352503649L;
     
     private long senderID = -1;
-	private String senderName = "";//not in XML
+	private String senderName = "";
 	
 	private long sentDate = 0;
 	private boolean read;

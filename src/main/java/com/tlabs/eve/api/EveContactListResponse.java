@@ -29,6 +29,8 @@ import java.util.List;
 
 public final class EveContactListResponse extends EveAPIResponse {
     
+    private static final long serialVersionUID = 1803692879940276962L;
+    
     private final List<EveContact.Group> contactGroups = new LinkedList<EveContact.Group>();
     
     public final List<EveContact.Group> getContactGroups() {

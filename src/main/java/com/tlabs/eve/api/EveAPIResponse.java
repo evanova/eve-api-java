@@ -27,7 +27,9 @@ import com.tlabs.eve.EveResponse;
 
 public abstract class EveAPIResponse extends EveResponse {
 
-	//Authentication failures
+    private static final long serialVersionUID = -8149968321234613949L;
+    
+    //Authentication failures
 	private static final int INVALID_KEYS_MIN = 200;
 	private static final int INVALID_KEYS_MAX = 299;
 	//private static final int INVALID_KEYS[] = {108, 109,202,203,204,205,222};

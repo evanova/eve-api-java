@@ -30,8 +30,9 @@ import org.apache.commons.logging.LogFactory;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class CallListResponse extends EveAPIResponse {
-	private static final Log LOG = LogFactory.getLog("EveAPI");
 	
+    private static final long serialVersionUID = 6542500480340585087L;
+
 	private Map<Integer, CallGroup> callGroups = new HashMap<Integer, CallGroup>();
 	
 	public CallListResponse() {
@@ -45,9 +46,7 @@ public class CallListResponse extends EveAPIResponse {
 	public void addEntry(CallEntry e) {
 		CallGroup g = this.callGroups.get(e.getGroupID());
 		if (null == g) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn("CallGroup with id '" + e.getGroupID() + "' not found.");					
-			}
+			//
 		}
 		else {
 			g.addEntry(e);

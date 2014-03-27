@@ -27,7 +27,9 @@ import java.util.List;
 
 public class StandingsResponse extends EveAPIResponse {
 
-	private List<Standing> corporationStandings;
+    private static final long serialVersionUID = -8557614838323097880L;
+
+    private List<Standing> corporationStandings;
     private List<Standing> agentStandings;
     private List<Standing> factionStandings;
 

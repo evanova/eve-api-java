@@ -1,5 +1,7 @@
 package com.tlabs.eve;
 
+import java.io.Serializable;
+
 /*
  * #%L
  * This source code is part of the Evanova Android application:
@@ -24,7 +26,9 @@ package com.tlabs.eve;
  */
 
 
-public abstract class EveResponse extends Object {
+public abstract class EveResponse extends Object implements Serializable {
+    
+    private static final long serialVersionUID = -7496533657716416645L;
     
     private int errorCode = 0;  
     private String errorMessage = null;

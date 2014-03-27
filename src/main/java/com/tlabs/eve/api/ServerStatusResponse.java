@@ -24,9 +24,10 @@ package com.tlabs.eve.api;
 
 
 public final class ServerStatusResponse extends EveAPIResponse {
-	
-	
-	private int playersOnline = 0;
+		
+    private static final long serialVersionUID = -8218485055974441769L;
+    
+    private int playersOnline = 0;
 	private boolean serverOpen = false;
 	
 	public int getOnlinePlayers() {

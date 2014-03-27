@@ -27,7 +27,9 @@ import java.util.Map;
 
 public class JournalReferenceTypeResponse extends EveAPIResponse {
 
-	private Map<Long, String> referenceTypes;//names by id
+    private static final long serialVersionUID = -1423045891788417599L;
+
+    private Map<Long, String> referenceTypes;//names by id
 	
 	public JournalReferenceTypeResponse() {
 		super();

@@ -24,7 +24,9 @@ package com.tlabs.eve.api;
 
 public class SkillTreeResponse extends EveAPIResponse {
 
-	private EveSkillTree skillTree;
+    private static final long serialVersionUID = 9154818588760810821L;
+
+    private EveSkillTree skillTree;
 	
 	public SkillTreeResponse() {
 		super();

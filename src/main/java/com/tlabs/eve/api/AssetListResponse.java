@@ -28,7 +28,9 @@ import java.util.List;
 
 public class AssetListResponse extends EveAPIResponse {
 
-	private List<EveAsset> assets;
+    private static final long serialVersionUID = 3490157713158182612L;
+
+    private List<EveAsset> assets;
 	
 	public AssetListResponse() {
 		this.assets = new LinkedList<EveAsset>();

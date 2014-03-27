@@ -29,7 +29,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public class CharacterTrainingQueueResponse extends EveAPIResponse {
 
-	private List<SkillInTraining> trainingQueue;
+    private static final long serialVersionUID = -2833478320644411761L;
+
+    private List<SkillInTraining> trainingQueue;
 	
 	public CharacterTrainingQueueResponse() {
 		super();

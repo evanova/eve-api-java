@@ -29,7 +29,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public final class OutpostListResponse extends EveAPIResponse {
 
-	private List<Outpost> outposts;
+    private static final long serialVersionUID = -2522278909885809287L;
+
+    private List<Outpost> outposts;
 	
 	public OutpostListResponse() {
 		super();

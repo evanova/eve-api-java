@@ -27,7 +27,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public final class CharacterSheetResponse extends EveAPIResponse {
 	
-	private EveCharacter character;
+    private static final long serialVersionUID = 2952044155669731849L;
+    
+    private EveCharacter character;
 
 	public EveCharacter getCharacter() {
 		return character;

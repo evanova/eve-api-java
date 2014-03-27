@@ -30,7 +30,9 @@ import java.util.List;
 /**@since Eve API V3*/
 public class ContractItemsResponse extends EveAPIResponse {
 	
-	private List<EveContractItem> items = new LinkedList<EveContractItem>();
+    private static final long serialVersionUID = -2436382675293683168L;
+    
+    private List<EveContractItem> items = new LinkedList<EveContractItem>();
 	
 	public ContractItemsResponse() {
 		super();

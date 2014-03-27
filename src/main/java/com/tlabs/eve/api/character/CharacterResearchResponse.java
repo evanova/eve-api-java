@@ -29,7 +29,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public class CharacterResearchResponse extends EveAPIResponse {
 
-	private List<ResearchJob> jobs;
+    private static final long serialVersionUID = -6541706200116880518L;
+
+    private List<ResearchJob> jobs;
 
 	public CharacterResearchResponse() {
 		super();		

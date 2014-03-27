@@ -29,7 +29,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public final class StarbaseListResponse extends EveAPIResponse {
 
-	private List<Starbase> starbases;
+    private static final long serialVersionUID = -6881766910572039754L;
+
+    private List<Starbase> starbases;
 	
 	public StarbaseListResponse() {
 		super();

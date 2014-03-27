@@ -28,7 +28,9 @@ import java.util.List;
 
 public class AccountBalanceResponse extends EveAPIResponse {
 
-	private List<AccountBalance> accountBalance;
+    private static final long serialVersionUID = 2278419737696580565L;
+
+    private List<AccountBalance> accountBalance;
 
 	public AccountBalanceResponse(){
 		accountBalance = new LinkedList<AccountBalance>();

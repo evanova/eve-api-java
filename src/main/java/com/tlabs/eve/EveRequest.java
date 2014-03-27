@@ -25,7 +25,7 @@ package com.tlabs.eve;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +46,7 @@ public abstract class EveRequest<T extends EveResponse> extends Object {
         super();
         this.responseClass = responseClass;
         this.page = page;
-        this.params = new HashMap<String, String>(2);
+        this.params = new LinkedHashMap<String, String>(2);//Order is important for CREST support
     }
 
     public final String getPage() {

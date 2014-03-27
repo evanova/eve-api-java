@@ -32,6 +32,8 @@ import com.tlabs.eve.api.EveAPIRequest;
 import com.tlabs.eve.ccp.CCP;
 import com.tlabs.eve.central.EveCentral;
 import com.tlabs.eve.central.EveCentralRequest;
+import com.tlabs.eve.crest.CREST;
+import com.tlabs.eve.crest.CRESTRequest;
 
 public final class EveFacade {
 
@@ -45,7 +47,9 @@ public final class EveFacade {
         if (request instanceof EveCentralRequest) {
             return (T)EveCentral.parse((EveCentralRequest)request, in);
         }
-        
+        if (request instanceof CRESTRequest) {
+            return (T)CREST.parse((CRESTRequest)request, in);
+        }
         return (T)CCP.parse(request, in);
     }
 

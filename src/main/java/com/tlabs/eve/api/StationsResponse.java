@@ -29,6 +29,8 @@ import java.util.List;
 
 public class StationsResponse extends EveAPIResponse {
 
+    private static final long serialVersionUID = -5156850963016181222L;
+
     private List<EveStation> stations = new LinkedList<EveStation>();
     
     public void addStation(final EveStation station) {

@@ -25,9 +25,11 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.EveAPIResponse;
 
 
-public final class CharacterInfoResponse extends EveAPIResponse {
-	
-	private EveCharacterInfo characterInfo;
+public final class CharacterInfoResponse extends EveAPIResponse {	
+    
+    private static final long serialVersionUID = -1694114269772030170L;
+    
+    private EveCharacterInfo characterInfo;
 
 	public EveCharacterInfo getCharacterInfo() {
 		return characterInfo;

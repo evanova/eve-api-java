@@ -26,7 +26,9 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public class CorporationSheetResponse extends EveAPIResponse {
 	
-	private CorporationSheet corporationInfo;
+    private static final long serialVersionUID = 8697424725674115722L;
+    
+    private CorporationSheet corporationInfo;
 	
 	public CorporationSheetResponse() {
 		super();

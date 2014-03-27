@@ -93,6 +93,8 @@ public class CorporationSheetParser extends EveAPIParser<CorporationSheetRespons
 		digester.addRule("eveapi/result/url", new SetElementPropertyRule());
 		digester.addRule("eveapi/result/allianceID", new SetElementPropertyRule());
 		digester.addRule("eveapi/result/allianceName", new SetElementPropertyRule());
+		digester.addRule("eveapi/result/factionID", new SetElementPropertyRule());
+        digester.addRule("eveapi/result/factionName", new SetElementPropertyRule());
 		digester.addRule("eveapi/result/taxRate", new SetElementPropertyRule());
 		digester.addRule("eveapi/result/memberCount", new SetElementPropertyRule());
 		digester.addRule("eveapi/result/memberLimit", new SetElementPropertyRule());

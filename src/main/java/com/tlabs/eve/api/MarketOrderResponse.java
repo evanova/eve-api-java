@@ -28,7 +28,9 @@ import java.util.List;
 
 public class MarketOrderResponse extends EveAPIResponse {
 
-	private List<MarketOrder> buyOrders;
+    private static final long serialVersionUID = -8260545530317659668L;
+
+    private List<MarketOrder> buyOrders;
 	private List<MarketOrder> sellOrders;
 	
 	public MarketOrderResponse() {

@@ -28,7 +28,9 @@ import java.util.List;
 /**@since Eve API V3*/
 public class ContractListResponse extends EveAPIResponse {
 	
-	private List<EveContract> eveContracts = new LinkedList<EveContract>();
+    private static final long serialVersionUID = -4879047977717920997L;
+    
+    private List<EveContract> eveContracts = new LinkedList<EveContract>();
 	
 	public ContractListResponse() {
 		super();

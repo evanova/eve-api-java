@@ -37,7 +37,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class BaseRule extends Rule {
-	protected static final Log LOG = LogFactory.getLog("EveAPI");
+	protected static final Log LOG = LogFactory.getLog("CREST");
 	
 	public void doBegin(final String name, final org.xml.sax.Attributes attributes) {
 		

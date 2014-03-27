@@ -28,22 +28,22 @@ import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.digester.Digester;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
+import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveResponse;
 
-public abstract class AbstractXMLParser<T extends EveResponse> extends AbstractEveParser<T> {
-	
-	protected static final Log LOG = LogFactory.getLog("EveAPI");
+public abstract class AbstractXMLParser<T extends EveResponse> implements EveParser<T> {
 	
 	private final Digester digester;
+	private final Class<T> responseClass;
 	
 	public AbstractXMLParser(final Class<T> responseClass) {
-		super(responseClass);
+		super();
+		this.responseClass = responseClass;
+		
 		this.digester = new Digester();
 		//this.digester.setRules(new ExtendedBaseRules());
 		this.digester.setNamespaceAware(false);
@@ -68,22 +68,43 @@ public abstract class AbstractXMLParser<T extends EveResponse> extends AbstractE
 		init(this.digester);			
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected synchronized final T doParse(final InputStream in, final T t) throws IOException {
-		this.digester.clear();		
-		try {			
-			this.digester.push(t);
-			return (T)this.digester.parse(in);
-		}		
-		catch (SAXException e) {
-			e.printStackTrace(System.err);
-			throw new IOException(e.getLocalizedMessage());
-		}
-		finally {
-		    this.digester.clear();
-		}
-	}
-
 	protected void init(Digester digester) {}
-	
+    
+    protected void doBeforeParse(T t) {}
+    
+    protected void doAfterParse(T t) {}
+    
+    public synchronized final T parse(InputStream in) throws IOException {
+        try {           
+            T t = responseClass.newInstance();
+            doBeforeParse(t);
+            t = doParse(in, t);
+            t.setParsed(true);
+            doAfterParse(t);
+            return t;
+        }
+        catch (IllegalAccessException e) {
+            throw new IOException(e.getLocalizedMessage());
+        }
+        catch (InstantiationException e) {
+            throw new IOException(e.getLocalizedMessage());
+        }           
+    }
+    
+    @SuppressWarnings("unchecked")
+    private final T doParse(final InputStream in, final T t) throws IOException {
+        this.digester.clear();      
+        try {           
+            this.digester.push(t);
+            return (T)this.digester.parse(in);
+        }       
+        catch (SAXException e) {
+            e.printStackTrace(System.err);
+            throw new IOException(e.getLocalizedMessage());
+        }
+        finally {
+            this.digester.clear();
+        }
+    }
+
 }
