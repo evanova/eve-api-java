@@ -24,12 +24,12 @@ package com.tlabs.eve.api.character;
  */
 
 
-import com.tlabs.eve.api.EveContactListResponse;
+import com.tlabs.eve.api.ContactListResponse;
 
-public final class CharacterContactListRequest extends CharacterRequest<EveContactListResponse> {
+public final class CharacterContactListRequest extends CharacterRequest<ContactListResponse> {
     public static final int MASK = 16;
     
     public CharacterContactListRequest(final String characterID) {
-        super(EveContactListResponse.class, "/char/ContactList.xml.aspx", MASK, characterID);        
+        super(ContactListResponse.class, "/char/ContactList.xml.aspx", MASK, characterID);        
     }
 }

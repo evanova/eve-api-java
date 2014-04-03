@@ -24,9 +24,9 @@ package com.tlabs.eve.api.character;
  */
 
 
-import com.tlabs.eve.api.EveContactListParser;
+import com.tlabs.eve.api.ContactListParser;
 
-public final class CharacterContactListParser extends EveContactListParser {
+public final class CharacterContactListParser extends ContactListParser {
 
     public CharacterContactListParser() {
         super("contactList");

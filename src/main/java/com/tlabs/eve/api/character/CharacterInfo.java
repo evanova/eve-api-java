@@ -23,7 +23,7 @@ package com.tlabs.eve.api.character;
 
 
 
-public class EveCharacterInfo extends Object {
+public class CharacterInfo extends Object {
 	
 	private long characterID;
 	private String lastKnownLocation;
@@ -40,7 +40,7 @@ public class EveCharacterInfo extends Object {
 	private String alliance;
 	private long allianceDate;
 	
-	public EveCharacterInfo() {
+	public CharacterInfo() {
 		super();
 	}
 

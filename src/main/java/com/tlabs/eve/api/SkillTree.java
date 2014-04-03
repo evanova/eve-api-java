@@ -26,7 +26,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EveSkillTree extends Object implements Serializable  {
+public class SkillTree extends Object implements Serializable  {
 
 	private static final long serialVersionUID = -5581942989288072193L;
 
@@ -34,7 +34,7 @@ public class EveSkillTree extends Object implements Serializable  {
 		
 		private static final long serialVersionUID = -372508696105801667L;
 
-		private List<EveSkill> skills = new LinkedList<EveSkill>();
+		private List<Skill> skills = new LinkedList<Skill>();
 		
 		private String groupName;
 		private long groupID;
@@ -54,13 +54,13 @@ public class EveSkillTree extends Object implements Serializable  {
 			this.groupID = groupID;
 		}
 		
-		public void addSkill(EveSkill skill) {
+		public void addSkill(Skill skill) {
 			skill.setGroupID(this.groupID);
 			skill.setGroupName(this.groupName);
 			this.skills.add(skill);
 		}
 		
-		public List<EveSkill> getSkills() {
+		public List<Skill> getSkills() {
 			return this.skills;
 		}
 	}

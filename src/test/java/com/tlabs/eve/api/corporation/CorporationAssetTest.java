@@ -34,9 +34,9 @@ public final class CorporationAssetTest extends CorporationApiTest {
     public void testFullAssets() throws Exception {
         AssetListResponse assets = 
             apiCall(new CorporationAssetsRequest(corporationKey.id));
-        /*for (EveAsset a: assets.getAssets()) {
+        /*for (Asset a: assets.getAssets()) {
             System.out.println(ToStringBuilder.reflectionToString(a, ToStringStyle.MULTI_LINE_STYLE));
-            for (EveAsset c: a.getAssets()) {
+            for (Asset c: a.getAssets()) {
                 System.out.println(ToStringBuilder.reflectionToString(c, ToStringStyle.MULTI_LINE_STYLE));
             }
         }   */

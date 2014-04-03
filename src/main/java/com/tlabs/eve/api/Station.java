@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 
 
 //Conquerable station only
-public class EveStation {
+public class Station {
 
     private long stationID;
     private String stationName;

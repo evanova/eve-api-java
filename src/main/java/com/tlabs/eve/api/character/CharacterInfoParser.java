@@ -36,7 +36,7 @@ public final class CharacterInfoParser extends EveAPIParser<CharacterInfoRespons
 	
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result", EveCharacterInfo.class);
+		digester.addObjectCreate("eveapi/result", CharacterInfo.class);
 		digester.addRule("eveapi/result", new SetNextRule("setCharacterInfo"));
 		//Share this instance 
 		//(quite unusual for the digester, but in this particular case it's ok)

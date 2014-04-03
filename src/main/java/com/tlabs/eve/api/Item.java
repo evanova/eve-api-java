@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.io.Serializable;
 
 
-public class EveItem extends Object implements Serializable {
+public class Item extends Object implements Serializable {
 
 	private static final long serialVersionUID = 1043774614858911095L;
 
@@ -50,7 +50,7 @@ public class EveItem extends Object implements Serializable {
 	private int marketGroupID;//not in Eve XML
 	private int published;//not in Eve XML
 		
-	public EveItem() {
+	public Item() {
 		super();
 	}
 	

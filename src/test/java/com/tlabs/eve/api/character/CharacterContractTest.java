@@ -47,7 +47,7 @@ public final class CharacterContractTest extends CharacterApiTest {
                 accountKey.keyValue);
         
         AccessInfoResponse q = apiCall(r);
-        for (EveCharacter c: q.getCharacters()) {
+        for (Character c: q.getCharacters()) {
             ContractListResponse contracts = 
                 apiCall(new CharacterContractsRequest(String.valueOf(c.getCharacterID()))); 
         }               

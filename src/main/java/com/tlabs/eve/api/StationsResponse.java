@@ -31,13 +31,13 @@ public class StationsResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = -5156850963016181222L;
 
-    private List<EveStation> stations = new LinkedList<EveStation>();
+    private List<Station> stations = new LinkedList<Station>();
     
-    public void addStation(final EveStation station) {
+    public void addStation(final Station station) {
         this.stations.add(station);
     }
 
-    public List<EveStation> getStations() {
+    public List<Station> getStations() {
         return stations;
     }
 }

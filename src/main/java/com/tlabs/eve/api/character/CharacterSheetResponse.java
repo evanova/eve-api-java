@@ -29,13 +29,13 @@ public final class CharacterSheetResponse extends EveAPIResponse {
 	
     private static final long serialVersionUID = 2952044155669731849L;
     
-    private EveCharacter character;
+    private Character character;
 
-	public EveCharacter getCharacter() {
+	public Character getCharacter() {
 		return character;
 	}
 
-	public void setCharacter(EveCharacter character) {
+	public void setCharacter(Character character) {
 		this.character = character;
 	}
 	

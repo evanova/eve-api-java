@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.io.Serializable;
 
 //Not found in any XML; comes from Eve DB.agtAgents
-public class EveAgent extends Object implements Serializable {
+public class Agent extends Object implements Serializable {
 
 	private static final long serialVersionUID = 3850178814479198316L;
 

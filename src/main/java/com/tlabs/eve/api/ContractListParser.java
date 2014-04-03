@@ -46,7 +46,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse>{
                 return;
             }
             
-            final EveContract contract = new EveContract();
+            final Contract contract = new Contract();
             getDigester().push(contract);            
             super.doBegin(name, attributes);
         }
@@ -65,7 +65,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse>{
                 return;
             }
             
-            final EveContract contract = (EveContract)getDigester().pop();
+            final Contract contract = (Contract)getDigester().pop();
             boolean addContract = false;
             switch (contract.getStatus()) {
                 case IN_PROGRESS:

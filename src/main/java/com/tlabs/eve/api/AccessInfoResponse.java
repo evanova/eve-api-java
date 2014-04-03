@@ -25,7 +25,7 @@ package com.tlabs.eve.api;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.tlabs.eve.api.character.EveCharacter;
+import com.tlabs.eve.api.character.Character;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfoResponse extends EveAPIResponse {
@@ -44,7 +44,7 @@ public class AccessInfoResponse extends EveAPIResponse {
 	private long expires = 0;
 	private long keyID = -1;
 	
-	private List<EveCharacter> characters = new LinkedList<EveCharacter>();
+	private List<Character> characters = new LinkedList<Character>();
 	
 	public AccessInfoResponse() {
 		super();
@@ -99,11 +99,11 @@ public class AccessInfoResponse extends EveAPIResponse {
 		this.keyID = keyID;
 	}
 
-	public void addCharacter(EveCharacter c) {
+	public void addCharacter(Character c) {
 		this.characters.add(c);
 	}
 	
-	public List<EveCharacter> getCharacters() {
+	public List<Character> getCharacters() {
 		return this.characters;
 	}	
 }

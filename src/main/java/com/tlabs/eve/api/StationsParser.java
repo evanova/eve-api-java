@@ -34,7 +34,7 @@ public class StationsParser extends EveAPIParser<StationsResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-	    digester.addObjectCreate("eveapi/result/rowset/row", EveStation.class);
+	    digester.addObjectCreate("eveapi/result/rowset/row", Station.class);
         
         digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                 
         digester.addRule("eveapi/result/rowset/row", new SetNextRule("addStation"));

@@ -49,11 +49,11 @@ public final class AssetListParser extends EveAPIParser<AssetListResponse> {
 	@Override
 	protected void onInit(Digester digester) {
 		
-		digester.addObjectCreate("eveapi/result/rowset/row", EveAsset.class);
+		digester.addObjectCreate("eveapi/result/rowset/row", Asset.class);
 		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule(properties));
 		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addAsset"));
 		
-		digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", EveAsset.class);
+		digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", Asset.class);
 		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetAttributePropertyRule(properties));
 		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetNextRule("addAsset"));
 						

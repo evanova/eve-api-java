@@ -28,7 +28,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.tlabs.eve.api.EveAPI;
 
-public class EveMessage extends Object implements Serializable {
+public class Message extends Object implements Serializable {
     
     private static final long serialVersionUID = 4815557437352503649L;
     
@@ -41,7 +41,7 @@ public class EveMessage extends Object implements Serializable {
 	private String body = null;//supposedly a CDATA block 
 	private String title = "";
 
-	protected EveMessage() {
+	protected Message() {
 	    
 	}
     

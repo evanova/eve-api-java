@@ -24,9 +24,9 @@ package com.tlabs.eve.api.corporation;
  */
 
 
-import com.tlabs.eve.api.EveContactListParser;
+import com.tlabs.eve.api.ContactListParser;
 
-public class CorporationContactListParser extends EveContactListParser {
+public class CorporationContactListParser extends ContactListParser {
 
     public CorporationContactListParser() {
         super("corporateContactList");

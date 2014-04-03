@@ -28,7 +28,7 @@ import java.util.Map;
 
 import org.apache.commons.lang.Validate;
 
-public class EveSkill extends Object implements Serializable  {
+public class Skill extends Object implements Serializable  {
 	
 	private static final long serialVersionUID = -7817873833847609019L;
 
@@ -48,9 +48,9 @@ public class EveSkill extends Object implements Serializable  {
 	private String primaryAttribute;
 	private String secondaryAttribute;
 	
-	protected EveSkill(final EveSkill s) {
+	protected Skill(final Skill s) {
 		this();
-		Validate.notNull(s, "EveSkill");
+		Validate.notNull(s, "Skill");
 		this.primaryAttribute = s.primaryAttribute;
 		this.secondaryAttribute = s.secondaryAttribute;
 		this.requiredSkills.putAll(s.getRequiredSkills());
@@ -63,7 +63,7 @@ public class EveSkill extends Object implements Serializable  {
 		this.published = s.published;
 	}
 	
-	public EveSkill() {
+	public Skill() {
 		super();
 		this.requiredSkills = new HashMap<Long, Integer>();
 	}
@@ -149,7 +149,7 @@ public class EveSkill extends Object implements Serializable  {
 	}
 	
 	public String toString() {
-		return "EveSkill [id=" + this.getSkillID() + "; name=" + this.getSkillName() + "; groupID=" + this.groupID + "; rank=" + this.getRank() + "]";
+		return "Skill [id=" + this.getSkillID() + "; name=" + this.getSkillName() + "; groupID=" + this.groupID + "; rank=" + this.getRank() + "]";
 	}
 	
 }

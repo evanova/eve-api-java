@@ -36,7 +36,7 @@ public class ContractItemsParser extends EveAPIParser<ContractItemsResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset/row", EveContractItem.class);		
+		digester.addObjectCreate("eveapi/result/rowset/row", ContractItem.class);		
 		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());					
 		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addItem"));
 	}	

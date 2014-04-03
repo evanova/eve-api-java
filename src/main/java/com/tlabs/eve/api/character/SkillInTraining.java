@@ -26,9 +26,9 @@ import java.io.Serializable;
 import java.util.Map;
 
 import com.tlabs.eve.api.EveAPI;
-import com.tlabs.eve.api.EveSkill;
+import com.tlabs.eve.api.Skill;
 
-public class SkillInTraining extends EveSkill implements Serializable {
+public class SkillInTraining extends Skill implements Serializable {
 	
 	private static final long serialVersionUID = 1194595186724600630L;
 	
@@ -51,7 +51,7 @@ public class SkillInTraining extends EveSkill implements Serializable {
 		super();
 	}
 	
-	public SkillInTraining(final EveSkill s, final int level) {
+	public SkillInTraining(final Skill s, final int level) {
 		super(s);
 		this.endSkillPoints = 0;		
 		this.startSkillPoints = 0;

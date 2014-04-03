@@ -102,7 +102,7 @@ public final class EveAPI {
 		AccountStatus(33554432, 3, "AccountStatus", "EVE player account status."), 
 		CharacterInfoMore(16777216, 4, "CharacterInfo", "Sensitive Character Information, exposes account balance and last known location on top of the other Character Information call."), 
 		CharacterInfo(8388608, 3, "CharacterInfo", "Character information, exposes skill points and current ship information on top of'Show Info'information."),
-		Location(134217728, 3, "EveItemLocation", "Character location"),
+		Location(134217728, 3, "ItemLocation", "Character location"),
 		
 		WalletTransactions(4194304, 1, "WalletTransactions", "Market transaction journal of character."), 
 		WalletJournal(2097152, 1, "WalletJournal", "Wallet journal of character."), 

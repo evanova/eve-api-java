@@ -34,7 +34,7 @@ public class ContractBidsParser extends EveAPIParser<ContractBidsResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-	    digester.addObjectCreate("eveapi/result/rowset/row", EveContractBid.class);      
+	    digester.addObjectCreate("eveapi/result/rowset/row", ContractBid.class);      
         digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());                   
         digester.addRule("eveapi/result/rowset/row", new SetNextRule("addBid"));
 	}	

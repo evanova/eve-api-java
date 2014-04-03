@@ -26,9 +26,9 @@ package com.tlabs.eve.api;
 
 import java.io.Serializable;
 
-//EveItemLocation.aspx.xml
+//ItemLocation.aspx.xml
 //@see https://forums.eveonline.com/default.aspx?g=posts&t=58316&find=unread
-public class EveItemLocation extends Object implements Serializable {
+public class ItemLocation extends Object implements Serializable {
 	
 	private static final long serialVersionUID = -2001543279500079655L;
 

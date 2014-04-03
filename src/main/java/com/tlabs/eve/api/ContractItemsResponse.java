@@ -32,17 +32,17 @@ public class ContractItemsResponse extends EveAPIResponse {
 	
     private static final long serialVersionUID = -2436382675293683168L;
     
-    private List<EveContractItem> items = new LinkedList<EveContractItem>();
+    private List<ContractItem> items = new LinkedList<ContractItem>();
 	
 	public ContractItemsResponse() {
 		super();
 	}
 	
-	public void addItem(EveContractItem c) {
+	public void addItem(ContractItem c) {
 		this.items.add(c);
 	}
 	
-	public final List<EveContractItem> getItems() {
+	public final List<ContractItem> getItems() {
 		return this.items;
 	}
 }

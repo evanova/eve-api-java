@@ -27,7 +27,7 @@ package com.tlabs.eve.api;
 import java.io.Serializable;
 
 //This is not part of the API but part of the data dump.
-public final class EveItemAttribute implements Serializable {
+public final class ItemAttribute implements Serializable {
     
     private static final long serialVersionUID = 1486870784673678791L;
     

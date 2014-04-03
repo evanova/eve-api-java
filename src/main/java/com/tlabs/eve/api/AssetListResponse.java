@@ -30,17 +30,17 @@ public class AssetListResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = 3490157713158182612L;
 
-    private List<EveAsset> assets;
+    private List<Asset> assets;
 	
 	public AssetListResponse() {
-		this.assets = new LinkedList<EveAsset>();
+		this.assets = new LinkedList<Asset>();
 	}
 	
-	public void addAsset(EveAsset item) {
+	public void addAsset(Asset item) {
 		this.assets.add(item);
 	}
 	
-	public List<EveAsset> getAssets() {
+	public List<Asset> getAssets() {
 		return this.assets;
 	}
 }

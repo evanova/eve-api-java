@@ -28,7 +28,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-public class EveAsset extends Object implements Serializable  {
+public class Asset extends Object implements Serializable  {
 
 	private static final long serialVersionUID = 3312515668424970872L;
 
@@ -43,9 +43,9 @@ public class EveAsset extends Object implements Serializable  {
 	private String inventoryFlagName;//not in XML
 	private boolean packaged;
 	
-	private List<EveAsset> items = new LinkedList<EveAsset>();
+	private List<Asset> items = new LinkedList<Asset>();
 	
-	public EveAsset() {
+	public Asset() {
 		super();
 	}
 	
@@ -133,19 +133,19 @@ public class EveAsset extends Object implements Serializable  {
 		this.locationName = locationName;
 	}
 
-	public void addAsset(EveAsset item) {
+	public void addAsset(Asset item) {
 		this.items.add(item);		
 	}	
 	
-	public final List<EveAsset> getAssets() {
+	public final List<Asset> getAssets() {
 		return items;
 	}
 
-	public final void setAssets(List<EveAsset> items) {
+	public final void setAssets(List<Asset> items) {
 		this.items = items;
 	}
 
-	public final List<EveAsset> getContainedItems() {
+	public final List<Asset> getContainedItems() {
 		return this.items; 
 	}
 	

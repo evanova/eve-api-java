@@ -29,14 +29,14 @@ public class ItemLocationResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = -5989726486896932934L;
 
-    private final List<EveItemLocation> locations = new LinkedList<EveItemLocation>();
+    private final List<ItemLocation> locations = new LinkedList<ItemLocation>();
 		
-	public void addLocation(final EveItemLocation location) {
+	public void addLocation(final ItemLocation location) {
 		this.locations.add(location);
 	}
 
 
-	public List<EveItemLocation> getLocations() {
+	public List<ItemLocation> getLocations() {
 		return locations;
 	}
 	

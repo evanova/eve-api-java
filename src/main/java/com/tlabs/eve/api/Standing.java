@@ -33,6 +33,9 @@ public class Standing extends Object implements Serializable {
     
     private float standing;
 
+    private long locationID;//Not in XML
+    private String locationName;//Not in XML
+    
     public final String getFromName() {
         return fromName;
     }
@@ -55,6 +58,22 @@ public class Standing extends Object implements Serializable {
 
     public final void setStanding(float standing) {
         this.standing = standing;
+    }
+
+    public final long getLocationID() {
+        return locationID;
+    }
+
+    public final void setLocationID(long locationID) {
+        this.locationID = locationID;
+    }
+
+    public final String getLocationName() {
+        return locationName;
+    }
+
+    public final void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
     
     

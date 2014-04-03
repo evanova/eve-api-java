@@ -29,7 +29,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.tlabs.eve.api.EveSkillTree.SkillGroup;
+import com.tlabs.eve.api.SkillTree.SkillGroup;
 public class SkillTreeTest extends EveApiTest {
 
 	@Test(timeout=10000)
@@ -37,11 +37,11 @@ public class SkillTreeTest extends EveApiTest {
 		SkillTreeResponse r = apiCall(new SkillTreeRequest());
 		assertNotNull("Null response", r);
 		
-		EveSkillTree tree = r.getSkillTree();
+		SkillTree tree = r.getSkillTree();
 		assertNotNull("Null Skill Tree", tree);
 				
 		List<SkillGroup> all = tree.getGroups();
-		assertTrue("No EveSkillTree.Certificate", all.size() > 0);
+		assertTrue("No SkillTree.Certificate", all.size() > 0);
 		
 		/*for (SkillGroup g: all) {
 			System.out.println(

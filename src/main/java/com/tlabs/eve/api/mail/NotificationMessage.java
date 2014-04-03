@@ -29,7 +29,7 @@ import org.apache.commons.lang.StringUtils;
 
 
 
-public class NotificationMessage extends EveMessage {
+public class NotificationMessage extends Message {
 
 	private static final long serialVersionUID = 2130540734211587597L;
 	 

@@ -37,7 +37,7 @@ public class ItemLocationParser extends EveAPIParser<ItemLocationResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset/row", EveItemLocation.class);		
+		digester.addObjectCreate("eveapi/result/rowset/row", ItemLocation.class);		
 		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());					
 		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addLocation"));
 	}	

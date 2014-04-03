@@ -48,7 +48,7 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse>{
 
 		@Override
 		public void doBegin(String name, Attributes attributes) {
-			EveSkill skill = (EveSkill)getDigester().peek();
+			Skill skill = (Skill)getDigester().peek();
 			
 			String typeID = attributes.getValue("typeID");
 			if (StringUtils.isNotBlank(typeID)) {
@@ -75,14 +75,14 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse>{
 
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result", EveSkillTree.class);		
+		digester.addObjectCreate("eveapi/result", SkillTree.class);		
 		digester.addRule("eveapi/result", new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
 
-		digester.addObjectCreate("eveapi/result/rowset/row", EveSkillTree.SkillGroup.class);		
+		digester.addObjectCreate("eveapi/result/rowset/row", SkillTree.SkillGroup.class);		
 		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());	
 		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addGroup"));
 		
-		digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", EveSkill.class);
+		digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", Skill.class);
 		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetAttributePropertyRule(attributeMap));
 		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetNextRule("addSkill"));
 		

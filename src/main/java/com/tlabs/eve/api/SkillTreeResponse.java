@@ -26,17 +26,17 @@ public class SkillTreeResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = 9154818588760810821L;
 
-    private EveSkillTree skillTree;
+    private SkillTree skillTree;
 	
 	public SkillTreeResponse() {
 		super();
 	}
 	
-	public void setSkillTree(EveSkillTree skillTree) {
+	public void setSkillTree(SkillTree skillTree) {
 		this.skillTree = skillTree;
 	}
 
-	public EveSkillTree getSkillTree() {
+	public SkillTree getSkillTree() {
 		return this.skillTree;
 	}
 }

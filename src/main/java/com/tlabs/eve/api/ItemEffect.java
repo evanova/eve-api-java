@@ -7,7 +7,7 @@ package com.tlabs.eve.api;
  * 
  * ------------------------------------------------------------------------
  * %%
- * Copyright (C) 2011 - 2013 Traquenard Labs
+ * Copyright (C) 2011 - 2014 Traquenard Labs
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,20 +24,26 @@ package com.tlabs.eve.api;
  */
 
 
-import java.util.LinkedList;
-import java.util.List;
+import java.io.Serializable;
 
-public final class EveContactListResponse extends EveAPIResponse {
+//This is not part of the API but part of the data dump.
+public final class ItemEffect implements Serializable {
     
-    private static final long serialVersionUID = 1803692879940276962L;
+    public static final int USES_LOW_SLOT = 11;
+    public static final int USES_MEDIUM_SLOT = 13;
+    public static final int USES_HIGH_SLOT = 12;
+    public static final int USES_RIG_SLOT = 2663;
     
-    private final List<EveContact.Group> contactGroups = new LinkedList<EveContact.Group>();
+    private static final long serialVersionUID = -6457985690836261476L;
     
-    public final List<EveContact.Group> getContactGroups() {
-        return this.contactGroups;
+    private int effectID;
+    
+    public int getID() {
+        return effectID;
     }
 
-    public final void addGroup(final EveContact.Group group) {
-        this.contactGroups.add(group);
+    public void setID(int effectID) {
+        this.effectID = effectID;
     }
+
 }
