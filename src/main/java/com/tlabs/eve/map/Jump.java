@@ -11,20 +11,9 @@ public class Jump extends Object implements Serializable {
     private final SolarSystem from;
     private final SolarSystem to;
     
-    private double weight;
-    
     public Jump(final SolarSystem from, final SolarSystem to) {
         this.from = from;
         this.to = to;
-    }
-
-   // @Override
-    public final double getWeight() {
-        return weight;
-    }
-
-    public final void setWeight(double weight) {
-        this.weight = weight;
     }
 
     public final SolarSystem getFrom() {
