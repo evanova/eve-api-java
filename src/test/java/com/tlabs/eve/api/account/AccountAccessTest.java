@@ -33,7 +33,7 @@ import com.tlabs.eve.api.AccessInfoResponse;
 import com.tlabs.eve.api.AccountStatusRequest;
 import com.tlabs.eve.api.AccountStatusResponse;
 import com.tlabs.eve.api.EveApiTest;
-import com.tlabs.eve.api.character.Character;
+import com.tlabs.eve.api.character.Capsuleer;
 
 public class AccountAccessTest extends EveApiTest {
 
@@ -113,9 +113,9 @@ public class AccountAccessTest extends EveApiTest {
 		AccountStatusResponse q = testEveAPI(Api.APIV2, r);	
 	}*/
 	
-	private static final void print(final List<Character> eves) {
+	private static final void print(final List<Capsuleer> eves) {
 		System.out.println("\nCharacters:");
-		for (Character c : eves) {
+		for (Capsuleer c : eves) {
 			System.out.println(c.getCharacterName() + " - "	+ c.getCorporationName());
 		}
 	}

@@ -26,7 +26,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.tlabs.eve.api.character.Character;
+import com.tlabs.eve.api.character.Capsuleer;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfo extends Object implements Serializable {
@@ -46,7 +46,7 @@ public class AccessInfo extends Object implements Serializable {
 	private long keyID = -1;
 	private String key = "";
 	
-	private List<Character> characters = new LinkedList<Character>();
+	private List<Capsuleer> characters = new LinkedList<Capsuleer>();
 	
 	public AccessInfo() {
 		super();
@@ -109,11 +109,11 @@ public class AccessInfo extends Object implements Serializable {
 		this.key = key;
 	}
 
-	public void addCharacter(Character c) {
+	public void addCharacter(Capsuleer c) {
 		this.characters.add(c);
 	}
 	
-	public List<Character> getCharacters() {
+	public List<Capsuleer> getCharacters() {
 		return this.characters;
 	}	
 }

@@ -32,7 +32,7 @@ import com.tlabs.eve.api.EveAPI;
 import com.tlabs.eve.api.corporation.CorporationRole;
 import com.tlabs.eve.api.corporation.CorporationTitle;
 
-public class Character extends Object implements Serializable {
+public class Capsuleer extends Object implements Serializable {
 
 	private static final long serialVersionUID = -6450367183672623211L;
 
@@ -108,7 +108,7 @@ public class Character extends Object implements Serializable {
 	private List<CorporationTitle> corporationTitles;
 	private List<Long> certificates;//ids
 	
-	public Character() {
+	public Capsuleer() {
 		super();
 		this.skills = new LinkedList<CharacterSkill>();		
 		this.skillsMap = new HashMap<Long, CharacterSkill>();
@@ -117,7 +117,7 @@ public class Character extends Object implements Serializable {
 		this.certificates = new LinkedList<Long>();
 	}
 	
-	public Character(Character other) {
+	public Capsuleer(Capsuleer other) {
 		this();
 		
 		this.characterID = other.characterID;

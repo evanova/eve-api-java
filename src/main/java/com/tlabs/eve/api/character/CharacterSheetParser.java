@@ -116,7 +116,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 		@Override
 		public void doEnd(String name) {
 			RowSet rs = (RowSet)getDigester().pop();
-			Character character = (Character)getDigester().peek();
+			Capsuleer character = (Capsuleer)getDigester().peek();
 			
 			if ("skills".equalsIgnoreCase(rs.getRowName().trim())) {
 				addSkills(character, rs.getRows());
@@ -141,7 +141,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 			}
 		}
 		
-		private void addSkills(Character c, List<Map<String, String>> attrs) {
+		private void addSkills(Capsuleer c, List<Map<String, String>> attrs) {
 			for (Map<String, String> attr: attrs) {
 				CharacterSkill skill = new CharacterSkill();
 				try {					
@@ -160,7 +160,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 			}
 		}
 		
-		private void addRoles(Character c, List<Map<String, String>> attrs, int type) {
+		private void addRoles(Capsuleer c, List<Map<String, String>> attrs, int type) {
 			for (Map<String, String> attr: attrs) {
 				try {
 					CorporationRole role = new CorporationRole(type);
@@ -178,7 +178,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 			}
 		}
 		
-		private void addTitles(Character c, List<Map<String, String>> attrs) {
+		private void addTitles(Capsuleer c, List<Map<String, String>> attrs) {
 			for (Map<String, String> attr: attrs) {
 				try {
 					CorporationTitle title = new CorporationTitle();
@@ -195,7 +195,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 				}
 			}
 		}
-		private void addCertificates(Character c, List<Map<String, String>> attrs) {
+		private void addCertificates(Capsuleer c, List<Map<String, String>> attrs) {
 			for (Map<String, String> attr: attrs) {
 				try {
 					c.addCertificate(Long.parseLong(attr.get("certificateID")));
@@ -229,7 +229,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 	
 	@Override
 	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result", Character.class);
+		digester.addObjectCreate("eveapi/result", Capsuleer.class);
 		digester.addRule("eveapi/result", new SetNextRule("setCharacter"));
 
 		digester.addRule("eveapi/result/rowset", new CreateRowSetRule());
@@ -258,7 +258,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 		digester.addRule("eveapi/result/attributes/willpower", setElementPropertyRule);
 		
 		digester.addObjectCreate(
-				"eveapi/result/attributeEnhancers/intelligenceBonus", Character.AttributeEnhancer.class);
+				"eveapi/result/attributeEnhancers/intelligenceBonus", Capsuleer.AttributeEnhancer.class);
 		digester.addRule(
 				"eveapi/result/attributeEnhancers/intelligenceBonus", new SetNextRule("setIntelligenceEnhancer"));
 		digester.addRule(
@@ -267,7 +267,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 				"eveapi/result/attributeEnhancers/intelligenceBonus/augmentatorValue", setElementPropertyRule);
 		
 		digester.addObjectCreate(
-				"eveapi/result/attributeEnhancers/memoryBonus", Character.AttributeEnhancer.class);
+				"eveapi/result/attributeEnhancers/memoryBonus", Capsuleer.AttributeEnhancer.class);
 		digester.addRule(
 				"eveapi/result/attributeEnhancers/memoryBonus", new SetNextRule("setMemoryEnhancer"));
 		digester.addRule(
@@ -276,7 +276,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 				"eveapi/result/attributeEnhancers/memoryBonus/augmentatorValue", setElementPropertyRule);
 		
 		digester.addObjectCreate(
-				"eveapi/result/attributeEnhancers/charismaBonus", Character.AttributeEnhancer.class);
+				"eveapi/result/attributeEnhancers/charismaBonus", Capsuleer.AttributeEnhancer.class);
 		digester.addRule(
 				"eveapi/result/attributeEnhancers/charismaBonus", new SetNextRule("setCharismaEnhancer"));
 		digester.addRule(
@@ -285,7 +285,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 				"eveapi/result/attributeEnhancers/charismaBonus/augmentatorValue", setElementPropertyRule);
 		
 		digester.addObjectCreate(
-				"eveapi/result/attributeEnhancers/perceptionBonus", Character.AttributeEnhancer.class);
+				"eveapi/result/attributeEnhancers/perceptionBonus", Capsuleer.AttributeEnhancer.class);
 		digester.addRule(
 				"eveapi/result/attributeEnhancers/perceptionBonus", new SetNextRule("setPerceptionEnhancer"));
 		digester.addRule(
@@ -294,7 +294,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 				"eveapi/result/attributeEnhancers/perceptionBonus/augmentatorValue", setElementPropertyRule);
 		
 		digester.addObjectCreate(
-				"eveapi/result/attributeEnhancers/willpowerBonus", Character.AttributeEnhancer.class);
+				"eveapi/result/attributeEnhancers/willpowerBonus", Capsuleer.AttributeEnhancer.class);
 		digester.addRule(
 				"eveapi/result/attributeEnhancers/willpowerBonus", new SetNextRule("setWillpowerEnhancer"));
 		digester.addRule(
