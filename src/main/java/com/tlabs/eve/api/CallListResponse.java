@@ -25,9 +25,6 @@ package com.tlabs.eve.api;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 /**@since Eve API V3 (30 Aug 2011*/
 public class CallListResponse extends EveAPIResponse {
 	
