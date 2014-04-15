@@ -51,10 +51,10 @@ public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
         return findShortestPath(this, from, to);
     }  
     
-    public static final List<Jump> findShortestPath(final UniverseMap graph, final long from, final long to) {
+    public static List<Jump> findShortestPath(final UniverseMap graph, final long from, final long to) {
         final SolarSystem fromSystem = graph.getVertex(from);
         final SolarSystem toSystem = graph.getVertex(to);        
-        return DijkstraShortestPath.findPathBetween(graph, fromSystem, toSystem);
-        //return BellmanFordShortestPath.findPathBetween(graph, fromSystem, toSystem);
+        
+        return DijkstraShortestPath.findPathBetween(graph, fromSystem, toSystem);                
     }    
 }

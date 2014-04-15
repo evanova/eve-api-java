@@ -53,6 +53,14 @@ import com.tlabs.eve.api.character.CharacterTrainingQueueRequest;
 import com.tlabs.eve.api.character.CharacterTrainingRequest;
 import com.tlabs.eve.api.character.CharacterWalletJournalRequest;
 import com.tlabs.eve.api.character.CharacterWalletTransactionsRequest;
+import com.tlabs.eve.api.character.PlanetaryColoniesParser;
+import com.tlabs.eve.api.character.PlanetaryColoniesRequest;
+import com.tlabs.eve.api.character.PlanetaryLinksParser;
+import com.tlabs.eve.api.character.PlanetaryLinksRequest;
+import com.tlabs.eve.api.character.PlanetaryPinsParser;
+import com.tlabs.eve.api.character.PlanetaryPinsRequest;
+import com.tlabs.eve.api.character.PlanetaryRoutesParser;
+import com.tlabs.eve.api.character.PlanetaryRoutesRequest;
 import com.tlabs.eve.api.corporation.CorporationAccountBalanceRequest;
 import com.tlabs.eve.api.corporation.CorporationAssetsRequest;
 import com.tlabs.eve.api.corporation.CorporationContactListParser;
@@ -168,6 +176,10 @@ final class EveAPIHelper {
         parserMap.put(CharacterStandingsRequest.class, StandingsParser.class);
         parserMap.put(CorporationStandingsRequest.class, StandingsParser.class);
         
+        parserMap.put(PlanetaryColoniesRequest.class, PlanetaryColoniesParser.class);
+        parserMap.put(PlanetaryLinksRequest.class, PlanetaryLinksParser.class);
+        parserMap.put(PlanetaryPinsRequest.class, PlanetaryPinsParser.class);
+        parserMap.put(PlanetaryRoutesRequest.class, PlanetaryRoutesParser.class);
     }
         
     
