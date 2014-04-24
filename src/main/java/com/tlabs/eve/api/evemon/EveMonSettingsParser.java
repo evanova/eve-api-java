@@ -41,7 +41,7 @@ public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettings
 		propertyMap.put("vCode", "key");
 		propertyMap.put("accessMask", "accessMask");
 		propertyMap.put("type", "type");
-		propertyMap.put("expires", "expires");
+		//propertyMap.put("expires", "expires");//Dont use it; it's illformed and wrong.
 		//propertyMap.put("lastUpdate", "");
 		//propertyMap.put("monitored", "");		
 	}
@@ -51,8 +51,8 @@ public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettings
 	}
 	
 	protected void init(final Digester digester) {
-		digester.addObjectCreate("Settings/apiKeys/apiKey", AccessInfo.class);
-		digester.addRule("Settings/apiKeys/apiKey", new SetAttributePropertyRule(propertyMap));
-		digester.addRule("Settings/apiKeys/apiKey", new SetNextRule("addApiKey"));
+		digester.addObjectCreate("Settings/apiKeys/apikey", AccessInfo.class);
+		digester.addRule("Settings/apiKeys/apikey", new SetAttributePropertyRule(propertyMap));
+		digester.addRule("Settings/apiKeys/apikey", new SetNextRule("addApiKey"));
 	}
 }

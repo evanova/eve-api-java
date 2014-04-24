@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" revision="4162">
+  <compatibility>Default</compatibility>
+  <apiKeys>
+    <apikey id="1234567890" vCode="3242387SSDF234opojSDDSFsdfjsdglk3242347324324ljkj423423423234322" accessMask="268435455" type="Account" expires="0001-01-01T00:00:00" lastUpdate="2014-04-23T22:28:09.553137Z" monitored="true">
+      <ignoredCharacters />
+    </apikey>
+    <apikey id="0987654321" vCode="1242387SSDF234opojSDDSFsdfjsdglk3242347324324ljkj423423423234322" accessMask="67108863" type="Corporation" expires="0001-01-01T00:00:00" lastUpdate="2014-04-23T22:28:09.6846537Z" monitored="true">
+      <ignoredCharacters />
+    </apikey>    
+  </apiKeys>
+  
+</Settings>
