@@ -10,13 +10,13 @@ public class SolarSystem extends Object implements Serializable {
     private String solarSystemName;
 
     private long constellationID;
-    private transient String constellationName;
+    private String constellationName;
     
     private long regionID;
-    private transient String regionName;
+    private String regionName;
     
-    private long factionID;
-    private transient String factionName;
+    private long holderID;
+    private String holderName;
     
     private float securityStatus;
     
@@ -97,21 +97,21 @@ public class SolarSystem extends Object implements Serializable {
 	public void setRegionName(String regionName) {
 		this.regionName = regionName;
 	}
-
-	public long getFactionID() {
-		return factionID;
+	
+	public long getHolderID() {
+		return holderID;
 	}
 
-	public void setFactionID(long factionID) {
-		this.factionID = factionID;
+	public void setHolderID(long holderID) {
+		this.holderID = holderID;
 	}
 
-	public String getFactionName() {
-		return factionName;
+	public String getHolderName() {
+		return holderName;
 	}
 
-	public void setFactionName(String factionName) {
-		this.factionName = factionName;
+	public void setHolderName(String holderName) {
+		this.holderName = holderName;
 	}
 
 	@Override
