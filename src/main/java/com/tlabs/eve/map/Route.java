@@ -1,6 +1,8 @@
 package com.tlabs.eve.map;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Route extends Object implements Serializable {
@@ -9,12 +11,16 @@ public class Route extends Object implements Serializable {
 
 	private final List<SolarSystem> jumps;
 	
-	protected Route(final List<SolarSystem> route) {		
+	public Route() {		
+		this(new ArrayList<SolarSystem>(0));				
+	}
+	
+	public Route(final List<SolarSystem> route) {		
 		this.jumps = route;				
 	}
 
 	public final List<SolarSystem> getRoute() {
-		return jumps;
+		return Collections.unmodifiableList(jumps);
 	}
 
 	public final int size() {

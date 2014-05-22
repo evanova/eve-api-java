@@ -234,21 +234,4 @@ public class MarketOrder extends Object implements Serializable  {
         this.stationName = stationName;
     }
 	
-	/*orderID	 int	Unique order ID for this order. Note that these are not guaranteed to be unique forever, they can recycle. But they are unique for the purpose of one data pull.
-	charID	 int	ID of the character that physically placed this order.
-	stationID	 int	ID of the station the order was placed in.
-	volEntered	 int	Quantity of items required/offered to begin with.
-	volRemaining	 int	Quantity of items still for sale or still desired.
-	minVolume	 int	For bids (buy orders), the minimum quantity that must be sold in one sale in order to be accepted by this order.
-	orderState	 byte	Valid states: 0 = open/active, 1 = closed, 2 = expired (or fulfilled), 3 = cancelled, 4 = pending, 5 = character deleted.
-	typeID	 short	ID of the type (references the invTypes table) of the items this order is buying/selling.
-	range	 short	The range this order is good for. For sell orders, this is always 32767. For buy orders, allowed values are: -1 = station, 0 = solar system, 1 = 1 jump, 2 = 2 jumps, ..., 32767 = region.
-	accountKey	 short	Which division this order is using as its account. Always 1000 for characters, but in the range 1000 to 1006 for corporations.
-	duration	 short	How many days this order is good for. Expiration is issued + duration in days.
-	escrow	 decimal	How much ISK is in escrow. Valid for buy orders only (I believe).
-	price	 decimal	The cost per unit for this order.
-	bid	 bool	If true, this order is a bid (buy order). Else, sell order.
-	issued	 datetime	When this order was issued.*/
-	
-	
 }

@@ -24,6 +24,8 @@ package com.tlabs.eve.api;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
 public class WalletJournalEntry extends Object implements Serializable {
 
 	private static final long serialVersionUID = 106263246493601523L;
@@ -40,7 +42,7 @@ public class WalletJournalEntry extends Object implements Serializable {
 	private String ownerName2;
 	private long ownerID2;
 	
-	private String reason;
+	private String reason = "";
 	
 	private double amount;
 	private double balance;
@@ -98,7 +100,13 @@ public class WalletJournalEntry extends Object implements Serializable {
 		return reason;
 	}
 	public final void setReason(String reason) {
-		this.reason = reason;
+		if (StringUtils.isBlank(reason)) {
+			this.reason = "";
+		}
+		else {
+			//Not sure why this is there, but it is.
+			this.reason = StringUtils.removeStart(reason, "DESC:").trim();
+		}
 	}
 	public final double getAmount() {
 		return amount;
