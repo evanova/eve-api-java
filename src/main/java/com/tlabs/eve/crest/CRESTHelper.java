@@ -39,6 +39,7 @@ final class CRESTHelper {
         
         parserMap.put(IncursionRequest.class, IncursionParser.class);
         parserMap.put(AllianceRequest.class, AllianceParser.class);
+        parserMap.put(MarketHistoryRequest.class, MarketHistoryParser.class);
     }
     
     private CRESTHelper() {
