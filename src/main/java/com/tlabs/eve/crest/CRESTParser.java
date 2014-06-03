@@ -35,22 +35,24 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.tlabs.eve.EveParser;
 
 public abstract class CRESTParser<T extends CRESTResponse> implements EveParser<T> {
-    
+	private static final ObjectMapper mapper;
+	static {
+		mapper = new ObjectMapper();
+	    mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	}
+	
     private final Class<T> responseClass;
-    private final ObjectMapper mapper;
+    
     
     public CRESTParser(final Class<T> responseClass) {
         super();
-        this.responseClass = responseClass;
-        this.mapper = new ObjectMapper();
-        this.mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        init(mapper);
+        this.responseClass = responseClass;            
     }
 
     @Override
     public T parse(InputStream in) throws IOException {
         try {
-            T response = this.mapper.readValue(in, this.responseClass);
+            T response = mapper.readValue(in, this.responseClass);
             response.setParsed(true);                      
             return response;
         }
@@ -62,7 +64,4 @@ public abstract class CRESTParser<T extends CRESTResponse> implements EveParser<
         }
     }
     
-    protected void init(final org.codehaus.jackson.map.ObjectMapper mapper) {
-        
-    }
 }

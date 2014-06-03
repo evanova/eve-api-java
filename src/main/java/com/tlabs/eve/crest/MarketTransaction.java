@@ -26,5 +26,53 @@ public class MarketTransaction extends Object implements Serializable {
     
     @JsonProperty("date")
     private Date date;
+
+	public long getVolume() {
+		return volume;
+	}
+
+	public void setVolume(long volume) {
+		this.volume = volume;
+	}
+
+	public long getOrderCount() {
+		return orderCount;
+	}
+
+	public void setOrderCount(long orderCount) {
+		this.orderCount = orderCount;
+	}
+
+	public float getLowPrice() {
+		return lowPrice;
+	}
+
+	public void setLowPrice(float lowPrice) {
+		this.lowPrice = lowPrice;
+	}
+
+	public float getHighPrice() {
+		return highPrice;
+	}
+
+	public void setHighPrice(float highPrice) {
+		this.highPrice = highPrice;
+	}
+
+	public float getAveragePrice() {
+		return averagePrice;
+	}
+
+	public void setAveragePrice(float averagePrice) {
+		this.averagePrice = averagePrice;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
     
 }
