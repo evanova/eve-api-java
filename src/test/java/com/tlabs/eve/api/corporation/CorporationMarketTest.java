@@ -23,7 +23,6 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -32,11 +31,10 @@ import com.tlabs.eve.api.MarketOrderResponse;
 
 public final class CorporationMarketTest extends CorporationApiTest {
 
-    @Test(timeout=10000)
+    @Test(timeout = 10000)
     public void testFullMarketOrders() throws Exception {
-        MarketOrderResponse orders = 
-            apiCall(new CorporationMarketOrderRequest(corporationKey.id));
+        MarketOrderResponse orders = apiCall(new CorporationMarketOrderRequest(corporationKey.id));
         assertEquals("Error Code", 0, orders.getErrorCode());
-        
-    }   
+
+    }
 }

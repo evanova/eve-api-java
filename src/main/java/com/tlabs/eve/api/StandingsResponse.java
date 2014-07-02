@@ -21,7 +21,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,38 +32,32 @@ public class StandingsResponse extends EveAPIResponse {
     private List<Standing> agentStandings;
     private List<Standing> factionStandings;
 
-	public StandingsResponse() {
-		super();		
-		this.corporationStandings = new LinkedList<Standing>();
-		this.agentStandings = new LinkedList<Standing>();
-		this.factionStandings = new LinkedList<Standing>();
-	}
-
-	
-	public final List<Standing> getCorporationStandings() {
-        return corporationStandings;
+    public StandingsResponse() {
+        super();
+        this.corporationStandings = new LinkedList<Standing>();
+        this.agentStandings = new LinkedList<Standing>();
+        this.factionStandings = new LinkedList<Standing>();
     }
 
+    public final List<Standing> getCorporationStandings() {
+        return corporationStandings;
+    }
 
     public final List<Standing> getAgentStandings() {
         return agentStandings;
     }
 
-
     public final List<Standing> getFactionStandings() {
         return factionStandings;
     }
 
-
     public void addCorporationStanding(Standing j) {
-		this.corporationStandings.add(j);
-	}
-	
+        this.corporationStandings.add(j);
+    }
 
     public void addAgentStanding(Standing j) {
         this.agentStandings.add(j);
     }
-    
 
     public void addFactionStanding(Standing j) {
         this.factionStandings.add(j);

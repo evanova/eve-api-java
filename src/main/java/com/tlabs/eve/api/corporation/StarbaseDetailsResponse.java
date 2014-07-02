@@ -21,7 +21,6 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import com.tlabs.eve.api.EveAPIResponse;
 
 public final class StarbaseDetailsResponse extends EveAPIResponse {
@@ -29,10 +28,10 @@ public final class StarbaseDetailsResponse extends EveAPIResponse {
     private static final long serialVersionUID = 1457176289681565044L;
 
     private Starbase starbase;
-	
-	public StarbaseDetailsResponse() {
-		super();		
-	}
+
+    public StarbaseDetailsResponse() {
+        super();
+    }
 
     public void setStarbase(Starbase starbase) {
         this.starbase = starbase;
@@ -41,6 +40,5 @@ public final class StarbaseDetailsResponse extends EveAPIResponse {
     public Starbase getStarbase() {
         return starbase;
     }
-	
-	
+
 }

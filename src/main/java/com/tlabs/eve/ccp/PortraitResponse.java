@@ -21,8 +21,6 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
-
 public final class PortraitResponse extends ImageResponse {
 
 }

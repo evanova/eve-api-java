@@ -21,7 +21,6 @@ package com.tlabs.eve.api.evemon;
  * #L%
  */
 
-
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
@@ -32,31 +31,31 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrainingQueueResponse> {
-	
-	private static final class PropertyRules extends BaseRule {
-		@Override
-		public void doBegin(String name, Attributes attributes) {
-			SkillInTraining t = (SkillInTraining)getDigester().peek();
-			t.setSkillID(Long.parseLong(attributes.getValue("skillID")));
-			t.setSkillLevel(Integer.parseInt(attributes.getValue("level")));
-			t.setSkillName(attributes.getValue("skill"));
-			String type = attributes.getValue("type");
-			if ("prerequisite".equalsIgnoreCase(type)) {
+
+    private static final class PropertyRules extends BaseRule {
+        @Override
+        public void doBegin(String name, Attributes attributes) {
+            SkillInTraining t = (SkillInTraining) getDigester().peek();
+            t.setSkillID(Long.parseLong(attributes.getValue("skillID")));
+            t.setSkillLevel(Integer.parseInt(attributes.getValue("level")));
+            t.setSkillName(attributes.getValue("skill"));
+            String type = attributes.getValue("type");
+            if ("prerequisite".equalsIgnoreCase(type)) {
                 t.setType(SkillInTraining.Type.REQUIRED);
             }
             else {
                 t.setType(SkillInTraining.Type.PLAN);
             }
-		}		
-	}
-	
-	public EveMonSkillPlanParser() {
-		super(CharacterTrainingQueueResponse.class);		
-	}
-	
-	protected void init(final Digester digester) {
-		digester.addObjectCreate("plan/entry", SkillInTraining.class);
-		digester.addRule("plan/entry", new PropertyRules());
-		digester.addRule("plan/entry", new SetNextRule("addTraining"));
-	}
+        }
+    }
+
+    public EveMonSkillPlanParser() {
+        super(CharacterTrainingQueueResponse.class);
+    }
+
+    protected void init(final Digester digester) {
+        digester.addObjectCreate("plan/entry", SkillInTraining.class);
+        digester.addRule("plan/entry", new PropertyRules());
+        digester.addRule("plan/entry", new SetNextRule("addTraining"));
+    }
 }

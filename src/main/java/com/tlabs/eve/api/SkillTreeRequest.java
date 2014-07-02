@@ -21,12 +21,10 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
-
 public final class SkillTreeRequest extends EveAPIRequest<SkillTreeResponse> {
 
-	public SkillTreeRequest() {
-		super(SkillTreeResponse.class, "/eve/SkillTree.xml.aspx", 0);
-	}
+    public SkillTreeRequest() {
+        super(SkillTreeResponse.class, "/eve/SkillTree.xml.aspx", 0);
+    }
 
 }

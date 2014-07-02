@@ -23,11 +23,10 @@ import com.tlabs.eve.api.StandingsResponse;
  * #L%
  */
 
-
-
 public class CharacterStandingsRequest extends CharacterRequest<StandingsResponse> {
-	public static final int MASK = 524288;
-	public CharacterStandingsRequest(String charID) {
-		super(StandingsResponse.class, "/char/Standings.xml.aspx", MASK, charID);
-	}
+    public static final int MASK = 524288;
+
+    public CharacterStandingsRequest(String charID) {
+        super(StandingsResponse.class, "/char/Standings.xml.aspx", MASK, charID);
+    }
 }

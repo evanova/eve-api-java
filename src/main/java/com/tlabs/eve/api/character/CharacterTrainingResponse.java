@@ -21,9 +21,7 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import com.tlabs.eve.api.EveAPIResponse;
-
 
 public final class CharacterTrainingResponse extends EveAPIResponse {
 
@@ -31,14 +29,12 @@ public final class CharacterTrainingResponse extends EveAPIResponse {
 
     private SkillInTraining training;
 
-	public SkillInTraining getTraining() {
-		return training;
-	}
+    public SkillInTraining getTraining() {
+        return training;
+    }
 
-	public void setTraining(SkillInTraining training) {
-		this.training = training;
-	}
-	
-	
-	
+    public void setTraining(SkillInTraining training) {
+        this.training = training;
+    }
+
 }

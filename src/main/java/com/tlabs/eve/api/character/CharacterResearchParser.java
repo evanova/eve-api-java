@@ -21,7 +21,6 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,25 +31,25 @@ import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 public class CharacterResearchParser extends EveAPIParser<CharacterResearchResponse> {
-	
-	private static final Map<String, String> propertyMap;
-	static {
-		propertyMap = new HashMap<String, String>();
-		propertyMap.put("agentID", "agentID");
-		propertyMap.put("skillTypeID", "skillTypeID");
-		propertyMap.put("researchStartDate", "startDate");
-		propertyMap.put("pointsPerDay", "pointsDaily");
-		propertyMap.put("remainderPoints", "pointsRemaining");
-	}
-	
-	public CharacterResearchParser() {
-		super(CharacterResearchResponse.class);
-	}
 
-	@Override
-	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset/row", ResearchJob.class);		
-		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule(propertyMap));					
-		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addJob"));
-	}
+    private static final Map<String, String> propertyMap;
+    static {
+        propertyMap = new HashMap<String, String>();
+        propertyMap.put("agentID", "agentID");
+        propertyMap.put("skillTypeID", "skillTypeID");
+        propertyMap.put("researchStartDate", "startDate");
+        propertyMap.put("pointsPerDay", "pointsDaily");
+        propertyMap.put("remainderPoints", "pointsRemaining");
+    }
+
+    public CharacterResearchParser() {
+        super(CharacterResearchResponse.class);
+    }
+
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addObjectCreate("eveapi/result/rowset/row", ResearchJob.class);
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule(propertyMap));
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addJob"));
+    }
 }

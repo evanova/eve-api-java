@@ -21,7 +21,6 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import org.apache.commons.digester.Digester;
 
 import com.tlabs.eve.api.EveAPIParser;
@@ -29,15 +28,15 @@ import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 public final class OutpostListParser extends EveAPIParser<OutpostListResponse> {
-	
-	public OutpostListParser() {
-		super(OutpostListResponse.class);
-	}
-	
-	@Override
-	protected void onInit(Digester digester) {
-	    digester.addObjectCreate("eveapi/result/rowset/row", Outpost.class);
+
+    public OutpostListParser() {
+        super(OutpostListResponse.class);
+    }
+
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addObjectCreate("eveapi/result/rowset/row", Outpost.class);
         digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());
         digester.addRule("eveapi/result/rowset/row", new SetNextRule("addOutpost"));
-	}	
+    }
 }

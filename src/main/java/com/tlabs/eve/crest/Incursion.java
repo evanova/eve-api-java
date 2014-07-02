@@ -11,19 +11,19 @@ public class Incursion implements Serializable {
 
     @JsonProperty("influence")
     private float influence;
-        
+
     @JsonProperty("hasBoss")
     private boolean hasBoss;
-    
+
     @JsonProperty("state")
     private String state;
-    
+
     private long stagingSolarSystemID;
     private String stagingSolarSystemName;
-    
+
     private long constellationID;
     private String constellationName;
-    
+
     public final float getInfluence() {
         return influence;
     }
@@ -58,12 +58,10 @@ public class Incursion implements Serializable {
         this.stagingSolarSystemName = stagingSolarSystem.get("name");
     }
 
-    
     @JsonProperty("constellation")
     public final void setConstellation(Map<String, String> constellation) {
         this.constellationID = Long.parseLong(constellation.get("id"));
         this.constellationName = constellation.get("name");
     }
-    
-    
+
 }

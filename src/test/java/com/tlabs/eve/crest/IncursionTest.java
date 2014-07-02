@@ -11,8 +11,8 @@ public class IncursionTest extends EveCRESTTest {
         final IncursionRequest request = new IncursionRequest();
         final IncursionResponse response = apiCall(request);
         System.out.println(ToStringBuilder.reflectionToString(response, ToStringStyle.MULTI_LINE_STYLE));
-        
-        for (Object o: response.getItems()) {
+
+        for (Object o : response.getItems()) {
             System.out.println(ToStringBuilder.reflectionToString(o));
         }
     }

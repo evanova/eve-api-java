@@ -21,7 +21,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import org.apache.commons.digester.Digester;
 
 import com.tlabs.eve.parser.SetAttributePropertyRule;
@@ -29,14 +28,14 @@ import com.tlabs.eve.parser.SetNextRule;
 
 public class IndustryJobsParser extends EveAPIParser<IndustryJobsResponse> {
 
-	public IndustryJobsParser() {
-		super(IndustryJobsResponse.class);
-	}
+    public IndustryJobsParser() {
+        super(IndustryJobsResponse.class);
+    }
 
-	@Override
-	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset/row", IndustryJob.class);		
-		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());					
-		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addJob"));
-	}
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addObjectCreate("eveapi/result/rowset/row", IndustryJob.class);
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addJob"));
+    }
 }

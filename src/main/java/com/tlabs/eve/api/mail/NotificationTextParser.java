@@ -21,7 +21,6 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
-
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 
@@ -31,22 +30,22 @@ import com.tlabs.eve.parser.SetNextRule;
 
 public class NotificationTextParser extends EveAPIParser<NotificationTextResponse> {
 
-	public NotificationTextParser() {
-		super(NotificationTextResponse.class);
-	}
+    public NotificationTextParser() {
+        super(NotificationTextResponse.class);
+    }
 
-	@Override
-	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result/rowset/row", NotificationMessage.class);
-		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addMessage"));
-		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule() {
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addObjectCreate("eveapi/result/rowset/row", NotificationMessage.class);
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addMessage"));
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule() {
 
-			@Override
-			public void doBody(String name, String text) {
-				super.doBody(name, text);
-				NotificationMessage m = (NotificationMessage)digester.peek();
-				m.setBody(StringUtils.isBlank(text) ? "" : text);
-			}			
-		});	
-	}
+            @Override
+            public void doBody(String name, String text) {
+                super.doBody(name, text);
+                NotificationMessage m = (NotificationMessage) digester.peek();
+                m.setBody(StringUtils.isBlank(text) ? "" : text);
+            }
+        });
+    }
 }

@@ -15,13 +15,13 @@ package com.tlabs.eve.api;
 
 import java.io.Serializable;
 
-public class ContractItem extends Object implements Serializable {
+public class ContractItem implements Serializable {
 
     private static final long serialVersionUID = -7114907930568872859L;
 
     private long typeID;
     private String typeName; //not in XML
-    
+
     private long recordID;
     private long quantity;
 
@@ -87,7 +87,6 @@ public class ContractItem extends Object implements Serializable {
     public void setSingleton(int singleton) {
         this.singleton = (singleton == 1);
     }
-
 
     // 1 if the contract issuer has submitted this item with the contract,
     // 0 if the issuer is asking for this item in the contract.

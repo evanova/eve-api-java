@@ -21,115 +21,113 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
+public class CharacterInfo {
 
+    private long characterID;
+    private String lastKnownLocation;
+    private float securityStatus;
 
-public class CharacterInfo extends Object {
-	
-	private long characterID;
-	private String lastKnownLocation;
-	private float securityStatus;
-	
-	private long skillPoints = 0;
-	
-	private String shipName;
-	private long shipTypeID;
-	private String shipTypeName;
-	
-	private long corporationDate;
-	private long allianceID = 0;
-	private String alliance;
-	private long allianceDate;
-	
-	public CharacterInfo() {
-		super();
-	}
+    private long skillPoints = 0;
 
-	public long getCharacterID() {
-		return characterID;
-	}
+    private String shipName;
+    private long shipTypeID;
+    private String shipTypeName;
 
-	public void setCharacterID(long characterID) {
-		this.characterID = characterID;
-	}
+    private long corporationDate;
+    private long allianceID = 0;
+    private String alliance;
+    private long allianceDate;
 
-	public String getLastKnownLocation() {
-		return lastKnownLocation;
-	}
+    public CharacterInfo() {
+        super();
+    }
 
-	public void setLastKnownLocation(String lastKnownLocation) {
-		this.lastKnownLocation = lastKnownLocation;
-	}
+    public long getCharacterID() {
+        return characterID;
+    }
 
-	public float getSecurityStatus() {
-		return securityStatus;
-	}
+    public void setCharacterID(long characterID) {
+        this.characterID = characterID;
+    }
 
-	public void setSecurityStatus(float securityStatus) {
-		this.securityStatus = securityStatus;
-	}
+    public String getLastKnownLocation() {
+        return lastKnownLocation;
+    }
 
-	public long getSkillPoints() {
-		return skillPoints;
-	}
+    public void setLastKnownLocation(String lastKnownLocation) {
+        this.lastKnownLocation = lastKnownLocation;
+    }
 
-	public void setSkillPoints(long skillPoints) {
-		this.skillPoints = skillPoints;
-	}
-	
-	public String getShipName() {
-		return shipName;
-	}
+    public float getSecurityStatus() {
+        return securityStatus;
+    }
 
-	public void setShipName(String shipName) {
-		this.shipName = shipName;
-	}
+    public void setSecurityStatus(float securityStatus) {
+        this.securityStatus = securityStatus;
+    }
 
-	public long getShipTypeID() {
-		return shipTypeID;
-	}
+    public long getSkillPoints() {
+        return skillPoints;
+    }
 
-	public void setShipTypeID(long shipTypeID) {
-		this.shipTypeID = shipTypeID;
-	}
-	
-	public String getShipTypeName() {
-		return shipTypeName;
-	}
+    public void setSkillPoints(long skillPoints) {
+        this.skillPoints = skillPoints;
+    }
 
-	public void setShipTypeName(String shipTypeName) {
-		this.shipTypeName = shipTypeName;
-	}
+    public String getShipName() {
+        return shipName;
+    }
 
-	public long getCorporationDate() {
-		return corporationDate;
-	}
+    public void setShipName(String shipName) {
+        this.shipName = shipName;
+    }
 
-	public void setCorporationDate(long corporationDate) {
-		this.corporationDate = corporationDate;
-	}
+    public long getShipTypeID() {
+        return shipTypeID;
+    }
 
-	public long getAllianceID() {
-		return allianceID;
-	}
+    public void setShipTypeID(long shipTypeID) {
+        this.shipTypeID = shipTypeID;
+    }
 
-	public void setAllianceID(long allianceID) {
-		this.allianceID = allianceID;
-	}
+    public String getShipTypeName() {
+        return shipTypeName;
+    }
 
-	public String getAlliance() {
-		return alliance;
-	}
+    public void setShipTypeName(String shipTypeName) {
+        this.shipTypeName = shipTypeName;
+    }
 
-	public void setAlliance(String alliance) {
-		this.alliance = alliance;
-	}
+    public long getCorporationDate() {
+        return corporationDate;
+    }
 
-	public long getAllianceDate() {
-		return allianceDate;
-	}
+    public void setCorporationDate(long corporationDate) {
+        this.corporationDate = corporationDate;
+    }
 
-	public void setAllianceDate(long allianceDate) {
-		this.allianceDate = allianceDate;
-	}
+    public long getAllianceID() {
+        return allianceID;
+    }
+
+    public void setAllianceID(long allianceID) {
+        this.allianceID = allianceID;
+    }
+
+    public String getAlliance() {
+        return alliance;
+    }
+
+    public void setAlliance(String alliance) {
+        this.alliance = alliance;
+    }
+
+    public long getAllianceDate() {
+        return allianceDate;
+    }
+
+    public void setAllianceDate(long allianceDate) {
+        this.allianceDate = allianceDate;
+    }
 
 }

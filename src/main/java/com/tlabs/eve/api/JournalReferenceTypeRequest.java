@@ -21,12 +21,10 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
-
 public final class JournalReferenceTypeRequest extends EveAPIRequest<JournalReferenceTypeResponse> {
 
-	public JournalReferenceTypeRequest() {
-		super(JournalReferenceTypeResponse.class, "/eve/RefTypes.xml.aspx", 0);
-	}
+    public JournalReferenceTypeRequest() {
+        super(JournalReferenceTypeResponse.class, "/eve/RefTypes.xml.aspx", 0);
+    }
 
 }

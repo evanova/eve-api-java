@@ -31,3 +31,5 @@ src/main/test/resources/apikeys.properties
 /target
 /bin
 /build
+.idea/
+api.iml

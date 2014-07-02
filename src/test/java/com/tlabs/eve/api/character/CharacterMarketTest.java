@@ -23,19 +23,16 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import org.junit.Test;
 
 import com.tlabs.eve.api.MarketOrderResponse;
 
 public final class CharacterMarketTest extends CharacterApiTest {
 
-
-    @Test(timeout=10000)
+    @Test(timeout = 10000)
     public void testFullMarketOrders() throws Exception {
-        MarketOrderResponse orders = 
-            apiCall(new CharacterMarketOrderRequest(characterKey.id));
-        
-    }   
+        MarketOrderResponse orders = apiCall(new CharacterMarketOrderRequest(characterKey.id));
+
+    }
 
 }

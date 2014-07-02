@@ -21,32 +21,30 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import com.tlabs.eve.EveRequest;
 
-
 public abstract class EveAPIRequest<T extends EveAPIResponse> extends EveRequest<T> {
-	
-	/**Since Key API V2.*/
-	public interface Authenticated {
-		public String getKeyID();		
-		
-		public String getKey();
-	}
-	
-	/** Tag interface*/
-	public interface Public {}
-	
-	private final int mask;
-	
-	
-	protected EveAPIRequest(Class<T> responseClass, String page, int mask) {
-		super(responseClass, page);
-		this.mask = mask;
-	}
-	
-	public final int getMask() {
-		return mask;
-	}
+
+    /**Since Key API V2.*/
+    public interface Authenticated {
+        public String getKeyID();
+
+        public String getKey();
+    }
+
+    /** Tag interface*/
+    public interface Public {
+    }
+
+    private final int mask;
+
+    protected EveAPIRequest(Class<T> responseClass, String page, int mask) {
+        super(responseClass, page);
+        this.mask = mask;
+    }
+
+    public final int getMask() {
+        return mask;
+    }
 
 }

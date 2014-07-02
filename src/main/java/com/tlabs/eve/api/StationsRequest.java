@@ -23,7 +23,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 public class StationsRequest extends EveAPIRequest<StationsResponse> {
 
     public StationsRequest() {

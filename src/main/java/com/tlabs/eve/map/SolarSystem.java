@@ -1,8 +1,8 @@
 package com.tlabs.eve.map;
+
 import java.io.Serializable;
 
-
-public class SolarSystem extends Object implements Serializable {
+public class SolarSystem implements Serializable {
 
     private static final long serialVersionUID = 5766090205082445945L;
 
@@ -11,18 +11,18 @@ public class SolarSystem extends Object implements Serializable {
 
     private long constellationID;
     private String constellationName;
-    
+
     private long regionID;
     private String regionName;
-    
+
     private long holderID;
     private String holderName;
-    
+
     private float securityStatus;
-    
+
     private transient int shipJumps;
     private transient int shipKills;
-    
+
     public SolarSystem() {
     }
 
@@ -51,72 +51,72 @@ public class SolarSystem extends Object implements Serializable {
     }
 
     public int getShipJumps() {
-		return shipJumps;
-	}
+        return shipJumps;
+    }
 
-	public void setShipJumps(int shipJumps) {
-		this.shipJumps = shipJumps;
-	}
+    public void setShipJumps(int shipJumps) {
+        this.shipJumps = shipJumps;
+    }
 
-	public int getShipKills() {
-		return shipKills;
-	}
+    public int getShipKills() {
+        return shipKills;
+    }
 
-	public void setShipKills(int shipKills) {
-		this.shipKills = shipKills;
-	}
+    public void setShipKills(int shipKills) {
+        this.shipKills = shipKills;
+    }
 
-	public long getConstellationID() {
-		return constellationID;
-	}
+    public long getConstellationID() {
+        return constellationID;
+    }
 
-	public void setConstellationID(long constellationID) {
-		this.constellationID = constellationID;
-	}
+    public void setConstellationID(long constellationID) {
+        this.constellationID = constellationID;
+    }
 
-	public String getConstellationName() {
-		return constellationName;
-	}
+    public String getConstellationName() {
+        return constellationName;
+    }
 
-	public void setConstellationName(String constellationName) {
-		this.constellationName = constellationName;
-	}
+    public void setConstellationName(String constellationName) {
+        this.constellationName = constellationName;
+    }
 
-	public long getRegionID() {
-		return regionID;
-	}
+    public long getRegionID() {
+        return regionID;
+    }
 
-	public void setRegionID(long regionID) {
-		this.regionID = regionID;
-	}
+    public void setRegionID(long regionID) {
+        this.regionID = regionID;
+    }
 
-	public String getRegionName() {
-		return regionName;
-	}
+    public String getRegionName() {
+        return regionName;
+    }
 
-	public void setRegionName(String regionName) {
-		this.regionName = regionName;
-	}
-	
-	public long getHolderID() {
-		return holderID;
-	}
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
+    }
 
-	public void setHolderID(long holderID) {
-		this.holderID = holderID;
-	}
+    public long getHolderID() {
+        return holderID;
+    }
 
-	public String getHolderName() {
-		return holderName;
-	}
+    public void setHolderID(long holderID) {
+        this.holderID = holderID;
+    }
 
-	public void setHolderName(String holderName) {
-		this.holderName = holderName;
-	}
+    public String getHolderName() {
+        return holderName;
+    }
 
-	@Override
+    public void setHolderName(String holderName) {
+        this.holderName = holderName;
+    }
+
+    @Override
     public int hashCode() {
-       return (int)this.solarSystemID;
+        return (int) this.solarSystemID;
     }
 
     @Override
@@ -124,6 +124,6 @@ public class SolarSystem extends Object implements Serializable {
         if (!(obj instanceof SolarSystem)) {
             return false;
         }
-        return this.solarSystemID == ((SolarSystem)obj).getSolarSystemID();
-    }    
+        return this.solarSystemID == ((SolarSystem) obj).getSolarSystemID();
+    }
 }

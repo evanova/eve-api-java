@@ -23,7 +23,6 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
@@ -31,38 +30,39 @@ import org.apache.commons.lang.StringUtils;
 public class EveRSSEntry implements Serializable {
 
     private static final long serialVersionUID = -8047807156394679404L;
-    
+
     private String id;
     private String title;
     private long datePublished;
     private long dateUpdated;
     private String author;
     private String link;
-    
+
     private String htmlContent;
-   /* 
-    <entry>
-    <id>http://community.eveonline.com/news/news-channels/eve-online-news/eve-online-odyssey-1.1-has-been-deployed/</id>
-    <title type="html">EVE Online: Odyssey 1.1 has been deployed!</title>
-    <published>2013-09-03T11:29:41Z</published>
-    <updated>2013-09-03T11:29:41Z</updated>
-    <author>
-      <name>CCP Falcon</name>
-      <uri>92532650</uri>
-    </author>
-    <link rel="alternate" href="http://community.eveonline.com/news/news-channels/eve-online-news/eve-online-odyssey-1.1-has-been-deployed/" />
-    <content type="html"><![CDATA[<p>
-    EVE Online: Odyssey 1.1 has been succesfully deployed.</p>
-<p>
-    This release brings a host of fixes along with new features and changes, including&nbsp;balancing of Mindlink implants and Warfare Link modules, as well as changes to medium turrets, energy vampire systems, Command Ships, Heavy Assault Cruisers and Industrials. A reorganization of the skill tree and changes to the names of several skill groups are also included as well as a number of improvements to the user interface and localization.</p>
-<p>
-    Please see the full <a href="http://community.eveonline.com/news/patch-notes/patch-notes-for-odyssey-1.1">patch notes</a> for further details on the contents of the Odyssey 1.1 point release. More detailed information on specific changes is available in recent <a href="http://community.eveonline.com/news/dev-blogs/">dev blogs</a> from the EVE Dev Team.</p>
-<p>
-    To report any issues you encounter, please <a href="https://forums.eveonline.com/default.aspx?g=posts&amp;m=3564755">use this thread</a>, and for general feedback please<a href="https://forums.eveonline.com/default.aspx?g=posts&amp;m=3564756"> post here.</a></p>
-]]></content>
-    <simple xmlns="http://ccp/custom">EVE Online: Odyssey 1.1 has been deployed!</simple>
-    <unique xmlns="http://ccp/custom">eve-online-odyssey-1.1-has-been-deployed</unique>
-  </entry>*/
+
+    /* 
+     <entry>
+     <id>http://community.eveonline.com/news/news-channels/eve-online-news/eve-online-odyssey-1.1-has-been-deployed/</id>
+     <title type="html">EVE Online: Odyssey 1.1 has been deployed!</title>
+     <published>2013-09-03T11:29:41Z</published>
+     <updated>2013-09-03T11:29:41Z</updated>
+     <author>
+       <name>CCP Falcon</name>
+       <uri>92532650</uri>
+     </author>
+     <link rel="alternate" href="http://community.eveonline.com/news/news-channels/eve-online-news/eve-online-odyssey-1.1-has-been-deployed/" />
+     <content type="html"><![CDATA[<p>
+     EVE Online: Odyssey 1.1 has been succesfully deployed.</p>
+    <p>
+     This release brings a host of fixes along with new features and changes, including&nbsp;balancing of Mindlink implants and Warfare Link modules, as well as changes to medium turrets, energy vampire systems, Command Ships, Heavy Assault Cruisers and Industrials. A reorganization of the skill tree and changes to the names of several skill groups are also included as well as a number of improvements to the user interface and localization.</p>
+    <p>
+     Please see the full <a href="http://community.eveonline.com/news/patch-notes/patch-notes-for-odyssey-1.1">patch notes</a> for further details on the contents of the Odyssey 1.1 point release. More detailed information on specific changes is available in recent <a href="http://community.eveonline.com/news/dev-blogs/">dev blogs</a> from the EVE Dev Team.</p>
+    <p>
+     To report any issues you encounter, please <a href="https://forums.eveonline.com/default.aspx?g=posts&amp;m=3564755">use this thread</a>, and for general feedback please<a href="https://forums.eveonline.com/default.aspx?g=posts&amp;m=3564756"> post here.</a></p>
+    ]]></content>
+     <simple xmlns="http://ccp/custom">EVE Online: Odyssey 1.1 has been deployed!</simple>
+     <unique xmlns="http://ccp/custom">eve-online-odyssey-1.1-has-been-deployed</unique>
+    </entry>*/
 
     public String getId() {
         return id;
@@ -117,10 +117,7 @@ public class EveRSSEntry implements Serializable {
     }
 
     public void setHtmlContent(String htmlContent) {
-        this.htmlContent = StringUtils.removeEnd(
-                StringUtils.removeStart(htmlContent.trim(), "<![CDATA[").trim(),
-                "]]>").trim();        
+        this.htmlContent = StringUtils.removeEnd(StringUtils.removeStart(htmlContent.trim(), "<![CDATA[").trim(), "]]>").trim();
     }
-
 
 }

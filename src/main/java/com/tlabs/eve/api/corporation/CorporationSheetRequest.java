@@ -21,12 +21,12 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 //No or limited key
 public final class CorporationSheetRequest extends CorporationRequest<CorporationSheetResponse> implements com.tlabs.eve.api.EveAPIRequest.Public {
-	public static final int MASK = 8;
-	public CorporationSheetRequest(String corporationID) {
-		super(CorporationSheetResponse.class, "/corp/CorporationSheet.xml.aspx", MASK, corporationID);		
-	}
-	
+    public static final int MASK = 8;
+
+    public CorporationSheetRequest(String corporationID) {
+        super(CorporationSheetResponse.class, "/corp/CorporationSheet.xml.aspx", MASK, corporationID);
+    }
+
 }

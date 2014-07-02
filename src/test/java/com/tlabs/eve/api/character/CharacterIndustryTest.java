@@ -23,17 +23,15 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import org.junit.Test;
 
 import com.tlabs.eve.api.IndustryJobsResponse;
 
 public final class CharacterIndustryTest extends CharacterApiTest {
 
-
-    @Test(timeout=10000)
-    public void testIndustryJobs() throws Exception {       
-        IndustryJobsResponse r = apiCall(new CharacterIndustryJobsRequest(characterKey.id));            
+    @Test(timeout = 10000)
+    public void testIndustryJobs() throws Exception {
+        IndustryJobsResponse r = apiCall(new CharacterIndustryJobsRequest(characterKey.id));
     }
-    
+
 }

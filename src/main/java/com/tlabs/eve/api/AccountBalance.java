@@ -21,44 +21,42 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.Serializable;
 
-public class AccountBalance extends Object implements Serializable {
+public class AccountBalance implements Serializable {
 
-	private static final long serialVersionUID = -5420167201513912042L;
+    private static final long serialVersionUID = -5420167201513912042L;
 
-	private long accountID;
-	private long accountKey;
-	
-	private double balance;
+    private long accountID;
+    private long accountKey;
 
-	public long getAccountID() {
-		return accountID;
-	}
-	
-	public void setAccountID(long accountID) {
-		this.accountID = accountID;
-	}
+    private double balance;
 
-	public long getAccountKey() {
-		return accountKey;
-	}
+    public long getAccountID() {
+        return accountID;
+    }
 
-	
-	public void setAccountKey(long accountKey) {
-		this.accountKey = accountKey;
-	}
+    public void setAccountID(long accountID) {
+        this.accountID = accountID;
+    }
 
-	public double getBalance() {
-		return balance;
-	}
+    public long getAccountKey() {
+        return accountKey;
+    }
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}	
-	
-	public void setBalance(String balance) {
-		this.balance = Double.parseDouble(balance);
-	}
+    public void setAccountKey(long accountKey) {
+        this.accountKey = accountKey;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = Double.parseDouble(balance);
+    }
 }

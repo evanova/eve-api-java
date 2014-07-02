@@ -23,7 +23,6 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -37,24 +36,19 @@ import com.tlabs.eve.api.WalletTransactionsResponse;
 
 public final class CorporationWalletTest extends CorporationApiTest {
 
+    @Test(timeout = 10000)
+    public void testCorporationBalance() throws Exception {
+        AccountBalanceResponse r = apiCall(new CorporationAccountBalanceRequest(corporationKey.id));
 
-    @Test(timeout=10000)
-    public void testCorporationBalance() throws Exception {     
-        AccountBalanceResponse r = 
-            apiCall(            
-                new CorporationAccountBalanceRequest(corporationKey.id)); 
-        
         List<AccountBalance> account = r.getAccountBalance();
         assertTrue("Account size=0", account.size() > 0);
-    }   
+    }
 
-    @Test(timeout=10000)
+    @Test(timeout = 10000)
     public void testFullCorporationWallet() throws Exception {
-        WalletJournalResponse journal = 
-            apiCall(new CorporationWalletJournalRequest(corporationKey.id, 1000));
-        
-        WalletTransactionsResponse transactions = 
-            apiCall(new CorporationWalletTransactionsRequest(corporationKey.id, 1000));     
-    }   
-    
+        WalletJournalResponse journal = apiCall(new CorporationWalletJournalRequest(corporationKey.id, 1000));
+
+        WalletTransactionsResponse transactions = apiCall(new CorporationWalletTransactionsRequest(corporationKey.id, 1000));
+    }
+
 }

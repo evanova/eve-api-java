@@ -21,22 +21,21 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
 
 import com.tlabs.eve.api.EveAPIResponse;
 
 public class NotificationsResponse extends EveAPIResponse {
-	
-	private List<NotificationMessage> messages = new LinkedList<NotificationMessage>();
 
-	public final List<NotificationMessage> getMessages() {
-		return messages;
-	}
+    private List<NotificationMessage> messages = new LinkedList<NotificationMessage>();
 
-	public final void addMessage(NotificationMessage m) {
-		this.messages.add(m);
-	}
-	
+    public final List<NotificationMessage> getMessages() {
+        return messages;
+    }
+
+    public final void addMessage(NotificationMessage m) {
+        this.messages.add(m);
+    }
+
 }

@@ -21,7 +21,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.util.TimeZone;
 
 import org.apache.commons.digester.Digester;
@@ -29,21 +28,21 @@ import org.apache.commons.digester.Digester;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 
 public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse> {
-	
-	public ServerStatusParser() {
-		super(ServerStatusResponse.class);
-	}
-	
-	@Override
-	protected void doAfterParse(ServerStatusResponse t) {
-		long now = System.currentTimeMillis();		
-		now = now - TimeZone.getDefault().getOffset(now);
-		t.setCachedUntil(now + 5l * 60l * 1000l);	
-	}
 
-	@Override
-	protected void onInit(Digester digester) {		
-		digester.addRule("eveapi/result/serverOpen", new SetElementPropertyRule());
-		digester.addRule("eveapi/result/onlinePlayers", new SetElementPropertyRule());		
-	}	
+    public ServerStatusParser() {
+        super(ServerStatusResponse.class);
+    }
+
+    @Override
+    protected void doAfterParse(ServerStatusResponse t) {
+        long now = System.currentTimeMillis();
+        now = now - TimeZone.getDefault().getOffset(now);
+        t.setCachedUntil(now + 5l * 60l * 1000l);
+    }
+
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addRule("eveapi/result/serverOpen", new SetElementPropertyRule());
+        digester.addRule("eveapi/result/onlinePlayers", new SetElementPropertyRule());
+    }
 }

@@ -21,7 +21,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,65 +33,64 @@ import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-public class SkillTreeParser extends EveAPIParser<SkillTreeResponse>{
-    
+public class SkillTreeParser extends EveAPIParser<SkillTreeResponse> {
+
     private static final Map<String, String> attributeMap;
     static {
         attributeMap = new HashMap<String, String>();
-        
+
         attributeMap.put("typeName", "skillName");
         attributeMap.put("typeID", "skillID");
         attributeMap.put("published", "published");
     }
-	private static class SkillRowSetRule extends BaseRule {
 
-		@Override
-		public void doBegin(String name, Attributes attributes) {
-			Skill skill = (Skill)getDigester().peek();
-			
-			String typeID = attributes.getValue("typeID");
-			if (StringUtils.isNotBlank(typeID)) {
-				//that's a required skill ID and its level
-				skill.addRequiredSkill(
-						Integer.parseInt(typeID), 
-						Integer.parseInt(attributes.getValue("skillLevel")));
-				return;
-			}
-			
-			/*String bonusType = attributes.getValue("bonusType");
-			if (StringUtils.isNotBlank(bonusType)) {
-				skill.addSkillBonus(
-						bonusType,
-						attributes.getValue("bonusValue"));
-				return;
-			}	*/		
-		}	
-	}
-	
-	public SkillTreeParser() {
-		super(SkillTreeResponse.class);
-	}
+    private static class SkillRowSetRule extends BaseRule {
 
-	@Override
-	protected void onInit(Digester digester) {
-		digester.addObjectCreate("eveapi/result", SkillTree.class);		
-		digester.addRule("eveapi/result", new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
+        @Override
+        public void doBegin(String name, Attributes attributes) {
+            Skill skill = (Skill) getDigester().peek();
 
-		digester.addObjectCreate("eveapi/result/rowset/row", SkillTree.SkillGroup.class);		
-		digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());	
-		digester.addRule("eveapi/result/rowset/row", new SetNextRule("addGroup"));
-		
-		digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", Skill.class);
-		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetAttributePropertyRule(attributeMap));
-		digester.addRule("eveapi/result/rowset/row/rowset/row", new SetNextRule("addSkill"));
-		
-		digester.addRule("eveapi/result/rowset/row/rowset/row/description",	new SetElementPropertyRule());
-		
-		digester.addRule("eveapi/result/rowset/row/rowset/row/rank", new SetElementPropertyRule());
-		
-		digester.addRule("eveapi/result/rowset/row/rowset/row/requiredAttributes/primaryAttribute", new SetElementPropertyRule());
-		digester.addRule("eveapi/result/rowset/row/rowset/row/requiredAttributes/secondaryAttribute", new SetElementPropertyRule());
-				
-		digester.addRule("eveapi/result/rowset/row/rowset/row/rowset/row", new SkillRowSetRule());		
-	}	
+            String typeID = attributes.getValue("typeID");
+            if (StringUtils.isNotBlank(typeID)) {
+                //that's a required skill ID and its level
+                skill.addRequiredSkill(Integer.parseInt(typeID), Integer.parseInt(attributes.getValue("skillLevel")));
+                return;
+            }
+
+            /*String bonusType = attributes.getValue("bonusType");
+            if (StringUtils.isNotBlank(bonusType)) {
+            	skill.addSkillBonus(
+            			bonusType,
+            			attributes.getValue("bonusValue"));
+            	return;
+            }	*/
+        }
+    }
+
+    public SkillTreeParser() {
+        super(SkillTreeResponse.class);
+    }
+
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addObjectCreate("eveapi/result", SkillTree.class);
+        digester.addRule("eveapi/result", new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
+
+        digester.addObjectCreate("eveapi/result/rowset/row", SkillTree.SkillGroup.class);
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addGroup"));
+
+        digester.addObjectCreate("eveapi/result/rowset/row/rowset/row", Skill.class);
+        digester.addRule("eveapi/result/rowset/row/rowset/row", new SetAttributePropertyRule(attributeMap));
+        digester.addRule("eveapi/result/rowset/row/rowset/row", new SetNextRule("addSkill"));
+
+        digester.addRule("eveapi/result/rowset/row/rowset/row/description", new SetElementPropertyRule());
+
+        digester.addRule("eveapi/result/rowset/row/rowset/row/rank", new SetElementPropertyRule());
+
+        digester.addRule("eveapi/result/rowset/row/rowset/row/requiredAttributes/primaryAttribute", new SetElementPropertyRule());
+        digester.addRule("eveapi/result/rowset/row/rowset/row/requiredAttributes/secondaryAttribute", new SetElementPropertyRule());
+
+        digester.addRule("eveapi/result/rowset/row/rowset/row/rowset/row", new SkillRowSetRule());
+    }
 }

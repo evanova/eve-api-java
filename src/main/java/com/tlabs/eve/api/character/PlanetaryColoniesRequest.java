@@ -24,13 +24,12 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 //https://forums.eveonline.com/default.aspx?g=posts&m=4469997#post4469997
 public final class PlanetaryColoniesRequest extends CharacterRequest<PlanetaryColoniesResponse> {
-	public static final int MASK = 2;
-	
-	public PlanetaryColoniesRequest(String charID) {
-		super(PlanetaryColoniesResponse.class, "/char/PlanetaryColonies.xml.aspx", MASK, charID);		
-	}
-		
+    public static final int MASK = 2;
+
+    public PlanetaryColoniesRequest(String charID) {
+        super(PlanetaryColoniesResponse.class, "/char/PlanetaryColonies.xml.aspx", MASK, charID);
+    }
+
 }

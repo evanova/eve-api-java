@@ -23,7 +23,6 @@ package com.tlabs.eve.crest;
  * #L%
  */
 
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -35,25 +34,23 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.tlabs.eve.EveParser;
 
 public abstract class CRESTParser<T extends CRESTResponse> implements EveParser<T> {
-	private static final ObjectMapper mapper;
-	static {
-		mapper = new ObjectMapper();
-	    mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-	}
-	
+    private static final ObjectMapper mapper;
+    static {
+        mapper = new ObjectMapper();
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
     private final Class<T> responseClass;
-    
-    
+
     public CRESTParser(final Class<T> responseClass) {
         super();
-        this.responseClass = responseClass;            
+        this.responseClass = responseClass;
     }
 
     @Override
     public T parse(InputStream in) throws IOException {
         try {
             T response = mapper.readValue(in, this.responseClass);
-            response.setParsed(true);                      
             return response;
         }
         catch (JsonMappingException e) {
@@ -63,5 +60,5 @@ public abstract class CRESTParser<T extends CRESTResponse> implements EveParser<
             throw new IOException(e);
         }
     }
-    
+
 }

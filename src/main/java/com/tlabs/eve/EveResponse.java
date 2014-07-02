@@ -25,33 +25,28 @@ import java.io.Serializable;
  * #L%
  */
 
+public abstract class EveResponse implements Serializable {
 
-public abstract class EveResponse extends Object implements Serializable {
-    
     private static final long serialVersionUID = -7496533657716416645L;
-    
-    private int errorCode = 0;  
+
+    private int errorCode = 0;
     private String errorMessage = null;
-    
+
     private long dateTime;
 
-    //Indicates wherever the content data is already parsed and this response is completed
-    //This is used for performance/caching reasons
-    private boolean parsed = false;
     private boolean cached = false;
-    
+
     private long cachedUntil;
-    
+
     private byte[] content = null;
-    
 
     public EveResponse() {
         super();
-        long now = System.currentTimeMillis();;
+        long now = System.currentTimeMillis();
         this.dateTime = now;
         this.cachedUntil = now;
     }
-    
+
     /** Eve Time*/
     public final long getDateTime() {
         return dateTime;
@@ -66,12 +61,12 @@ public abstract class EveResponse extends Object implements Serializable {
     public final long getCachedUntil() {
         return cachedUntil;
     }
-    
+
     /** Eve Time*/
     public final void setCachedUntil(long cachedUntil) {
         this.cachedUntil = cachedUntil;
     }
-    
+
     public boolean getCached() {
         return cached;
     }
@@ -80,22 +75,14 @@ public abstract class EveResponse extends Object implements Serializable {
         this.cached = cached;
     }
 
-    public boolean getParsed() {
-        return parsed;
-    }
-
-    public void setParsed(boolean parsed) {
-        this.parsed = parsed;
-    }
-
     public final byte[] getContent() {
         return content;
     }
 
     public final void setContent(byte[] content) {
         this.content = content;
-    }       
-    
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }
@@ -111,9 +98,9 @@ public abstract class EveResponse extends Object implements Serializable {
     public final int getErrorCode() {
         return errorCode;
     }
-    
+
     public final boolean hasError() {
         return errorCode > 0;
     }
-    
+
 }

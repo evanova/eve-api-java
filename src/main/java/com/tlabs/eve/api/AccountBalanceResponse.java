@@ -21,10 +21,8 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
-
 
 public class AccountBalanceResponse extends EveAPIResponse {
 
@@ -32,17 +30,16 @@ public class AccountBalanceResponse extends EveAPIResponse {
 
     private List<AccountBalance> accountBalance;
 
-	public AccountBalanceResponse(){
-		accountBalance = new LinkedList<AccountBalance>();
-	}
-	
-	public List<AccountBalance> getAccountBalance() {
-		return accountBalance;
-	}
+    public AccountBalanceResponse() {
+        accountBalance = new LinkedList<AccountBalance>();
+    }
 
-	public void addAccountBalance(AccountBalance accountBalance) {
-		this.accountBalance.add(accountBalance);
-	}
-	
-	
+    public List<AccountBalance> getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void addAccountBalance(AccountBalance accountBalance) {
+        this.accountBalance.add(accountBalance);
+    }
+
 }

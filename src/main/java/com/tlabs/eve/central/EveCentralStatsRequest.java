@@ -21,31 +21,36 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-
 //http://api.eve-central.com/api/marketstat?typeid=34&typeid=35&regionlimit=10000002
 public class EveCentralStatsRequest extends EveCentralRequest<EveCentralStatsResponse> {
 
-	public EveCentralStatsRequest(final long[] types) {
-		this(types, -1);
-	}
-	
-	public EveCentralStatsRequest(final long[] types, long region) {
-		super(EveCentralStatsResponse.class, "/api/marketstat");
-		//TODO this could be better but EveAPIRequest is a hashmap and we can have multiple typeid= params
-		String p = "";
-		for (long id: types) {
-			if (p.length() == 0) {
-				p = "" + id;
-			}
-			else {
-				p = p + "&typeid=" + id;
-			}
-		}
-		if (region > 0) {
-			p = p + "&regionlimit=" + region;
-		}
-		putParam("typeid", p);
-	}
+    private final long regionID;
 
-	
+    public EveCentralStatsRequest(final long[] types) {
+        this(types, -1);
+    }
+
+    public EveCentralStatsRequest(final long[] types, long region) {
+        super(EveCentralStatsResponse.class, "/api/marketstat");
+        this.regionID = region;
+
+        if (region > 0) {
+            putParam("regionlimit", Long.toString(region));
+        }
+
+        String p = "";
+        for (long id : types) {
+            if (p.length() == 0) {
+                p = "" + id;
+            }
+            else {
+                p = p + "&typeid=" + id;
+            }
+        }
+        putParam("typeid", p);
+    }
+
+    public final long getRegionID() {
+        return regionID;
+    }
 }

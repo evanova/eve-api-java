@@ -21,7 +21,6 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,16 +32,16 @@ public class CharacterResearchResponse extends EveAPIResponse {
 
     private List<ResearchJob> jobs;
 
-	public CharacterResearchResponse() {
-		super();		
-		this.jobs = new LinkedList<ResearchJob>();
-	}
+    public CharacterResearchResponse() {
+        super();
+        this.jobs = new LinkedList<ResearchJob>();
+    }
 
-	public List<ResearchJob> getJobs() {
-		return this.jobs;
-	}
-	
-	public void addJob(ResearchJob j) {
-		this.jobs.add(j);
-	}
+    public List<ResearchJob> getJobs() {
+        return this.jobs;
+    }
+
+    public void addJob(ResearchJob j) {
+        this.jobs.add(j);
+    }
 }

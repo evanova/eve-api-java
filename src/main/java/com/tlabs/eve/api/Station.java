@@ -23,7 +23,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 //Conquerable station only
 public class Station {
 

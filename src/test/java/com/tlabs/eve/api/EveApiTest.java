@@ -21,7 +21,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,19 +47,18 @@ import org.junit.BeforeClass;
 import com.tlabs.eve.HttpClientTest;
 
 public abstract class EveApiTest extends HttpClientTest {
-	
+
     private static final String PROPERTY_API_KEYS = "com.tlabs.eve.api.keys.properties";
     private static final String PROPERTY_API_URL = "com.tlabs.eve.api.url";
-    
-	public static final String URL = "http://localhost:8080/api";
-	
+
+    public static final String URL = "http://localhost:8080/api";
 
     public static final class Key {
         public final String keyId;
         public final String keyValue;
-        
+
         public final String id;//complementary id 
-        
+
         private static Key create(String[] split, boolean assertId) {
             Validate.notNull(split, "split");
             Validate.isTrue(split.length > 1, "split length=" + split.length);
@@ -71,7 +69,7 @@ public abstract class EveApiTest extends HttpClientTest {
                 return new Key(split[0], split[1], split[2], assertId);
             }
         }
-        
+
         private Key(String keyId, String keyValue, String id, boolean assertId) {
             Validate.isTrue(StringUtils.isNotBlank(keyId), "keyId");
             Validate.isTrue(StringUtils.isNotBlank(keyValue), "keyValue");
@@ -83,143 +81,143 @@ public abstract class EveApiTest extends HttpClientTest {
             this.id = id;
         }
     }
-        
+
     private static final Map<String, List<Key>> APIKEYS = new HashMap<String, List<Key>>();
-    
-	private String keyID;
-	private String keyValue;
-	
-	protected Key accountKey;
-	protected Key corporationKey;
-	protected Key characterKey;
-	 
-	@BeforeClass
-	public static void setupApiKeys() throws IOException {
-	    APIKEYS.clear();
-	    
-	    final String propertyKeys = System.getProperty(PROPERTY_API_KEYS, "/apikeys.properties");
-	    
-	    InputStream in = EveApiTest.class.getResourceAsStream(propertyKeys);
-	    if (null == in) {
-	        final File fin = new File(propertyKeys);
-	        if (fin.exists()) {
-	            in = new BufferedInputStream(new FileInputStream(fin));
-	        }
-	    }
-	    
-	    if (null == in) {
-	        throw new IOException("Cannot find '" + propertyKeys + "'");
-	    }
-	    try {
-	        Map<String, List<Key>> keys = loadApiKeys(in);	        
-	        APIKEYS.putAll(keys);
-	    }
-	    finally {
-	        IOUtils.closeQuietly(in);
-	    }
-	}
-	
-	@Before
-	public final void initializeApiKeys() {
-	    final List<Key> accounts = APIKEYS.get("v2.account.full");
-	    this.accountKey = CollectionUtils.isEmpty(accounts) ? null : accounts.get(0);
-	    Assert.assertNotNull("No account key found.", this.accountKey); 
-	    
-	    final List<Key> corps = APIKEYS.get("v2.corporation.full");
+
+    private String keyID;
+    private String keyValue;
+
+    protected Key accountKey;
+    protected Key corporationKey;
+    protected Key characterKey;
+
+    @BeforeClass
+    public static void setupApiKeys() throws IOException {
+        APIKEYS.clear();
+
+        final String propertyKeys = System.getProperty(PROPERTY_API_KEYS, "/apikeys.properties");
+
+        InputStream in = EveApiTest.class.getResourceAsStream(propertyKeys);
+        if (null == in) {
+            final File fin = new File(propertyKeys);
+            if (fin.exists()) {
+                in = new BufferedInputStream(new FileInputStream(fin));
+            }
+        }
+
+        if (null == in) {
+            throw new IOException("Cannot find '" + propertyKeys + "'");
+        }
+        try {
+            Map<String, List<Key>> keys = loadApiKeys(in);
+            APIKEYS.putAll(keys);
+        }
+        finally {
+            IOUtils.closeQuietly(in);
+        }
+    }
+
+    @Before
+    public final void initializeApiKeys() {
+        final List<Key> accounts = APIKEYS.get("v2.account.full");
+        this.accountKey = CollectionUtils.isEmpty(accounts) ? null : accounts.get(0);
+        Assert.assertNotNull("No account key found.", this.accountKey);
+
+        final List<Key> corps = APIKEYS.get("v2.corporation.full");
         this.corporationKey = CollectionUtils.isEmpty(corps) ? null : corps.get(0);
-        Assert.assertNotNull("No corporation key found.", this.corporationKey); 
-        
+        Assert.assertNotNull("No corporation key found.", this.corporationKey);
+
         final List<Key> characters = APIKEYS.get("v2.character.full");
         this.characterKey = CollectionUtils.isEmpty(characters) ? null : characters.get(0);
-        Assert.assertNotNull("No characters key found.", this.characterKey); 
-	}
-	
-	protected final void setKeyID(String keyID) {
-		this.keyID = keyID;
-	}
+        Assert.assertNotNull("No characters key found.", this.characterKey);
+    }
 
-	protected final void setKeyValue(String keyValue) {
-		this.keyValue = keyValue;
-	}
-	
-	protected final <T extends EveAPIResponse> T apiCall(final EveAPIRequest<T> r) throws IOException {
-	    final String url = System.getProperty(PROPERTY_API_URL, URL);
-	    
-		T q = callEveAPI(url, r);
-		if (q.getErrorCode() != 0) {
-			throw new IllegalArgumentException("Eve API Error " + q.getErrorCode());
-		}
-		return q;
-	}
-		
-	private <T extends EveAPIResponse> T callEveAPI(final String url, final EveAPIRequest<T> r) throws IOException {
-		final List <NameValuePair> nvps = new ArrayList <NameValuePair>();
-		
-		if (r instanceof EveAPIRequest.Authenticated) {
-			EveAPIRequest.Authenticated auth = (EveAPIRequest.Authenticated)r;
-			if (StringUtils.isBlank(auth.getKeyID())) {
-				nvps.add(new BasicNameValuePair("keyID", this.keyID));
-			}
-			else {
-				nvps.add(new BasicNameValuePair("keyID", auth.getKeyID()));
-			}
-			if (StringUtils.isBlank(auth.getKey())) {
-				nvps.add(new BasicNameValuePair("vCode", this.keyValue));
-			}
-			else {
-				nvps.add(new BasicNameValuePair("vCode", auth.getKey()));
-			}
-		}
-		
-		final Map<String, String> params = r.getParameters();		
-		for (String p: params.keySet()) {
-			if (!"vCode".equalsIgnoreCase(p) && !"keyID".equalsIgnoreCase(p)) {
-				String v = params.get(p);
-				if (StringUtils.isNotBlank(v)) {
-					nvps.add(new BasicNameValuePair(p, params.get(p)));						
-				}
-			}
-		}
-		
-		String result = post(url + r.getPage(), nvps);		
-		return EveAPI.parse(r, IOUtils.toInputStream(result));				
-	}	
-	
+    protected final void setKeyID(String keyID) {
+        this.keyID = keyID;
+    }
+
+    protected final void setKeyValue(String keyValue) {
+        this.keyValue = keyValue;
+    }
+
+    protected final <T extends EveAPIResponse> T apiCall(final EveAPIRequest<T> r) throws IOException {
+        final String url = System.getProperty(PROPERTY_API_URL, URL);
+
+        T q = callEveAPI(url, r);
+        if (q.getErrorCode() != 0) {
+            throw new IllegalArgumentException("Eve API Error " + q.getErrorCode());
+        }
+        return q;
+    }
+
+    private <T extends EveAPIResponse> T callEveAPI(final String url, final EveAPIRequest<T> r) throws IOException {
+        final List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+
+        if (r instanceof EveAPIRequest.Authenticated) {
+            EveAPIRequest.Authenticated auth = (EveAPIRequest.Authenticated) r;
+            if (StringUtils.isBlank(auth.getKeyID())) {
+                nvps.add(new BasicNameValuePair("keyID", this.keyID));
+            }
+            else {
+                nvps.add(new BasicNameValuePair("keyID", auth.getKeyID()));
+            }
+            if (StringUtils.isBlank(auth.getKey())) {
+                nvps.add(new BasicNameValuePair("vCode", this.keyValue));
+            }
+            else {
+                nvps.add(new BasicNameValuePair("vCode", auth.getKey()));
+            }
+        }
+
+        final Map<String, String> params = r.getParameters();
+        for (String p : params.keySet()) {
+            if (!"vCode".equalsIgnoreCase(p) && !"keyID".equalsIgnoreCase(p)) {
+                String v = params.get(p);
+                if (StringUtils.isNotBlank(v)) {
+                    nvps.add(new BasicNameValuePair(p, params.get(p)));
+                }
+            }
+        }
+
+        String result = post(url + r.getPage(), nvps);
+        return EveAPI.parse(r, IOUtils.toInputStream(result));
+    }
+
     private static Map<String, List<Key>> loadApiKeys(final InputStream in) throws IOException {
         final Map<String, List<Key>> keys = new HashMap<String, List<Key>>();
-        final BufferedReader r = new BufferedReader(new InputStreamReader(in)); 
+        final BufferedReader r = new BufferedReader(new InputStreamReader(in));
         String l = null;
         while ((l = r.readLine()) != null) {
-                l = l.trim();
-                if (l.length() == 0) {
-                    continue;
-                }
-                if (l.startsWith("#")) {
-                    continue;
-                }
-                String[] split = StringUtils.split(l, "=");
-                if ((null == split) || (split.length != 2)) {
-                    continue;
-                }
-                String property = split[0];
-                String value = split[1];
-                if (StringUtils.isBlank(property) || StringUtils.isBlank(value)) {
-                    continue;
-                }
-                
-                String[] splitValue = StringUtils.split(value, ":");
-                if ((null == splitValue) || split.length < 2) {
-                    continue;
-                }
-                final Key k = Key.create(splitValue, false);
-                List<Key> current = keys.get(property);
-                if (null == current) {
-                    current = new LinkedList<Key>();
-                    keys.put(property, current);
-                }
-                current.add(k);
+            l = l.trim();
+            if (l.length() == 0) {
+                continue;
+            }
+            if (l.startsWith("#")) {
+                continue;
+            }
+            String[] split = StringUtils.split(l, "=");
+            if ((null == split) || (split.length != 2)) {
+                continue;
+            }
+            String property = split[0];
+            String value = split[1];
+            if (StringUtils.isBlank(property) || StringUtils.isBlank(value)) {
+                continue;
+            }
+
+            String[] splitValue = StringUtils.split(value, ":");
+            if ((null == splitValue) || split.length < 2) {
+                continue;
+            }
+            final Key k = Key.create(splitValue, false);
+            List<Key> current = keys.get(property);
+            if (null == current) {
+                current = new LinkedList<Key>();
+                keys.put(property, current);
+            }
+            current.add(k);
         }//while               
-       return keys;
+        return keys;
     }
-    
+
 }

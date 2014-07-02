@@ -1,4 +1,5 @@
 package com.tlabs.eve.map;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +8,6 @@ import java.util.Map;
 import org.jgrapht.EdgeFactory;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleDirectedGraph;
-
 
 public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
     private static final long serialVersionUID = -2393159504475366045L;
@@ -24,7 +24,7 @@ public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
     }
 
     private Map<Long, SolarSystem> solarSystems;
-    
+
     public UniverseMap() {
         super(new UniverseEdgeFactory());
         this.solarSystems = new HashMap<Long, SolarSystem>();
@@ -45,17 +45,18 @@ public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
             throw new IllegalArgumentException("SolarSystem not found " + id);
         }
         return s;
-    }        
+    }
+
     //FIXME return List<SolarSystem> and hide the Jump class
     public final List<Jump> findShortestPath(final long from, final long to) {
         return findShortestPath(this, from, to);
-    }  
-    
+    }
+
     //FIXME return List<SolarSystem> and hide the Jump class
     public static List<Jump> findShortestPath(final UniverseMap graph, final long from, final long to) {
         final SolarSystem fromSystem = graph.getVertex(from);
-        final SolarSystem toSystem = graph.getVertex(to);        
-        
-        return DijkstraShortestPath.findPathBetween(graph, fromSystem, toSystem);                
-    }    
+        final SolarSystem toSystem = graph.getVertex(to);
+
+        return DijkstraShortestPath.findPathBetween(graph, fromSystem, toSystem);
+    }
 }

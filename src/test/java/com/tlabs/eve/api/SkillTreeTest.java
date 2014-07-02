@@ -21,7 +21,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -30,22 +29,23 @@ import java.util.List;
 import org.junit.Test;
 
 import com.tlabs.eve.api.SkillTree.SkillGroup;
+
 public class SkillTreeTest extends EveApiTest {
 
-	@Test(timeout=10000)
-	public void testSkillTreeParser() throws Exception {
-		SkillTreeResponse r = apiCall(new SkillTreeRequest());
-		assertNotNull("Null response", r);
-		
-		SkillTree tree = r.getSkillTree();
-		assertNotNull("Null Skill Tree", tree);
-				
-		List<SkillGroup> all = tree.getGroups();
-		assertTrue("No SkillTree.Certificate", all.size() > 0);
-		
-		/*for (SkillGroup g: all) {
-			System.out.println(
-					ToStringBuilder.reflectionToString(g, ToStringStyle.SIMPLE_STYLE));
-		}*/
-	}
+    @Test(timeout = 10000)
+    public void testSkillTreeParser() throws Exception {
+        SkillTreeResponse r = apiCall(new SkillTreeRequest());
+        assertNotNull("Null response", r);
+
+        SkillTree tree = r.getSkillTree();
+        assertNotNull("Null Skill Tree", tree);
+
+        List<SkillGroup> all = tree.getGroups();
+        assertTrue("No SkillTree.Certificate", all.size() > 0);
+
+        /*for (SkillGroup g: all) {
+        	System.out.println(
+        			ToStringBuilder.reflectionToString(g, ToStringStyle.SIMPLE_STYLE));
+        }*/
+    }
 }

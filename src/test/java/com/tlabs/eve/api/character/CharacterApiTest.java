@@ -21,17 +21,16 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import org.junit.Before;
 
 import com.tlabs.eve.api.EveApiTest;
 
 public abstract class CharacterApiTest extends EveApiTest {
 
-	@Before
-	public void onCharacterSetup() {
-		setKeyID(characterKey.keyId);
-		setKeyValue(characterKey.keyValue);
-	}
+    @Before
+    public void onCharacterSetup() {
+        setKeyID(characterKey.keyId);
+        setKeyValue(characterKey.keyValue);
+    }
 
 }

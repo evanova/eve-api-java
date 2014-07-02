@@ -21,134 +21,131 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CorporationSheet extends Object implements Serializable {
+public class CorporationSheet implements Serializable {
 
-	private static final long serialVersionUID = 7615990349864525058L;
+    private static final long serialVersionUID = 7615990349864525058L;
 
-	private long corporationID;
-	private String corporationName;
-	private String description;
-	private String url;
-	private String ticker;
+    private long corporationID;
+    private String corporationName;
+    private String description;
+    private String url;
+    private String ticker;
 
-	private long ceoID;
-	private String ceoName;
+    private long ceoID;
+    private String ceoName;
 
-	private long stationID;
-	private String stationName;
+    private long stationID;
+    private String stationName;
 
-	private long allianceID;
-	private String allianceName;
+    private long allianceID;
+    private String allianceName;
 
     private long factionID;
     private String factionName;
-    
-	private int memberCount;
-	private int memberLimit;
-	
-	private float taxRate;
-	private float shares;
-	
-	private Map<Integer, String> walletDivisions = new HashMap<Integer, String>();
-	private Map<Integer, String> hangarDivisions = new HashMap<Integer, String>();
-	private double walletBalance = -1;//not in XML
-	
-	public long getCorporationID() {
-		return corporationID;
-	}
 
-	public void setCorporationID(long corporationID) {
-		this.corporationID = corporationID;
-	}
+    private int memberCount;
+    private int memberLimit;
 
-	public String getCorporationName() {
-		return corporationName;
-	}
+    private float taxRate;
+    private float shares;
 
-	public void setCorporationName(String corporationName) {
-		this.corporationName = corporationName;
-	}
+    private Map<Integer, String> walletDivisions = new HashMap<Integer, String>();
+    private Map<Integer, String> hangarDivisions = new HashMap<Integer, String>();
+    private double walletBalance = -1;//not in XML
 
-	public String getDescription() {
-		return description;
-	}
+    public long getCorporationID() {
+        return corporationID;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setCorporationID(long corporationID) {
+        this.corporationID = corporationID;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getCorporationName() {
+        return corporationName;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setCorporationName(String corporationName) {
+        this.corporationName = corporationName;
+    }
 
-	public String getTicker() {
-		return ticker;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setTicker(String ticker) {
-		this.ticker = ticker;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public long getCeoID() {
-		return ceoID;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setCeoID(long ceoID) {
-		this.ceoID = ceoID;
-	}
-	
-	public String getCeoName() {
-		return ceoName;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setCeoName(String ceoName) {
-		this.ceoName = ceoName;
-	}
+    public String getTicker() {
+        return ticker;
+    }
 
-	public long getStationID() {
-		return stationID;
-	}
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
 
-	public void setStationID(long stationID) {
-		this.stationID = stationID;
-	}
+    public long getCeoID() {
+        return ceoID;
+    }
 
-	
-	public String getStationName() {
-		return stationName;
-	}
+    public void setCeoID(long ceoID) {
+        this.ceoID = ceoID;
+    }
 
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
+    public String getCeoName() {
+        return ceoName;
+    }
 
-	public long getAllianceID() {
-		return allianceID;
-	}
+    public void setCeoName(String ceoName) {
+        this.ceoName = ceoName;
+    }
 
-	public void setAllianceID(long allianceID) {
-		this.allianceID = allianceID;
-	}
+    public long getStationID() {
+        return stationID;
+    }
 
-	
-	public String getAllianceName() {
-		return allianceName;
-	}
+    public void setStationID(long stationID) {
+        this.stationID = stationID;
+    }
 
-	public void setAllianceName(String allianceName) {
-		this.allianceName = allianceName;
-	}
+    public String getStationName() {
+        return stationName;
+    }
 
-	public final long getFactionID() {
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+
+    public long getAllianceID() {
+        return allianceID;
+    }
+
+    public void setAllianceID(long allianceID) {
+        this.allianceID = allianceID;
+    }
+
+    public String getAllianceName() {
+        return allianceName;
+    }
+
+    public void setAllianceName(String allianceName) {
+        this.allianceName = allianceName;
+    }
+
+    public final long getFactionID() {
         return factionID;
     }
 
@@ -165,44 +162,44 @@ public class CorporationSheet extends Object implements Serializable {
     }
 
     public int getMemberCount() {
-		return memberCount;
-	}
+        return memberCount;
+    }
 
-	public void setMemberCount(int memberCount) {
-		this.memberCount = memberCount;
-	}
-	
-	public int getMemberLimit() {
-		return memberLimit;
-	}
+    public void setMemberCount(int memberCount) {
+        this.memberCount = memberCount;
+    }
 
-	public void setMemberLimit(int memberLimit) {
-		this.memberLimit = memberLimit;
-	}
-		
-	public float getTaxRate() {
-		return taxRate;
-	}
+    public int getMemberLimit() {
+        return memberLimit;
+    }
 
-	public void setTaxRate(float taxRate) {
-		this.taxRate = taxRate;
-	}
+    public void setMemberLimit(int memberLimit) {
+        this.memberLimit = memberLimit;
+    }
 
-	public float getShares() {
-		return shares;
-	}
+    public float getTaxRate() {
+        return taxRate;
+    }
 
-	public void setShares(float shares) {
-		this.shares = shares;
-	}
-	
-	public final void addWalletDivision(Integer id, String name) {
-		this.walletDivisions.put(id, name);
-	}
-	
-	public final Map<Integer, String> getWalletDivisions() {
-		return walletDivisions;
-	}
+    public void setTaxRate(float taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public float getShares() {
+        return shares;
+    }
+
+    public void setShares(float shares) {
+        this.shares = shares;
+    }
+
+    public final void addWalletDivision(Integer id, String name) {
+        this.walletDivisions.put(id, name);
+    }
+
+    public final Map<Integer, String> getWalletDivisions() {
+        return walletDivisions;
+    }
 
     public final double getBalance() {
         return this.walletBalance;
@@ -212,12 +209,12 @@ public class CorporationSheet extends Object implements Serializable {
         this.walletBalance = walletBalance;
     }
 
-	public final void addHangarDivision(Integer id, String name) {
-		this.hangarDivisions.put(id, name);
-	}
-	
-	public final Map<Integer, String> getHangarDivisions() {
-		return hangarDivisions;
-	}
+    public final void addHangarDivision(Integer id, String name) {
+        this.hangarDivisions.put(id, name);
+    }
+
+    public final Map<Integer, String> getHangarDivisions() {
+        return hangarDivisions;
+    }
 
 }

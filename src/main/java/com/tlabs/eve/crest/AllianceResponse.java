@@ -19,7 +19,7 @@ public class AllianceResponse extends CRESTResponse {
     public void setAlliances(final List<Alliance> alliances) {
         this.alliances.addAll(alliances);
     }
-     
+
     public void setAlliance(final Alliance alliance) {
         this.alliances.add(alliance);
     }

@@ -23,7 +23,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,58 +98,58 @@ import com.tlabs.eve.api.mail.NotificationsParser;
 import com.tlabs.eve.api.mail.NotificationsRequest;
 
 final class EveAPIHelper {
-    
-    private static final Map<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>> parserMap;    
+
+    private static final Map<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>> parserMap;
     private static final HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>> parsers;
-    
+
     static {
         parsers = new HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>>();
-        
+
         parserMap = new HashMap<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>>();
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
-        
+
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
         parserMap.put(CallListRequest.class, CallListParser.class);
         parserMap.put(NamesRequest.class, NamesParser.class);
         parserMap.put(ErrorListRequest.class, ErrorListParser.class);
-        
-        parserMap.put(SkillTreeRequest.class, SkillTreeParser.class);        
+
+        parserMap.put(SkillTreeRequest.class, SkillTreeParser.class);
         parserMap.put(JournalReferenceTypeRequest.class, JournalReferenceTypeParser.class);
         parserMap.put(AccountStatusRequest.class, AccountStatusParser.class);
-        
+
         parserMap.put(SovereigntyRequest.class, SovereigntyParser.class);
         parserMap.put(ServerStatusRequest.class, ServerStatusParser.class);
         parserMap.put(StationsRequest.class, StationsParser.class);
-        
+
         parserMap.put(MailBodiesRequest.class, MailBodiesParser.class);
         parserMap.put(MailingListsRequest.class, MailingListsParser.class);
         parserMap.put(MailMessagesRequest.class, MailMessagesParser.class);
-        parserMap.put(NotificationsRequest.class, NotificationsParser.class);        
+        parserMap.put(NotificationsRequest.class, NotificationsParser.class);
         parserMap.put(NotificationTextRequest.class, NotificationTextParser.class);
-        
+
         parserMap.put(MemberTrackingRequest.class, MemberTrackingParser.class);
-                
+
         parserMap.put(OutpostListRequest.class, OutpostListParser.class);
         parserMap.put(OutpostDetailsRequest.class, OutpostDetailsParser.class);
         parserMap.put(StarbaseListRequest.class, StarbaseListParser.class);
         parserMap.put(StarbaseDetailsRequest.class, StarbaseDetailsParser.class);
-        
+
         parserMap.put(CharacterMarketOrderRequest.class, MarketOrderParser.class);
         parserMap.put(CorporationMarketOrderRequest.class, MarketOrderParser.class);
-        
+
         parserMap.put(CharacterAccountBalanceRequest.class, AccountBalanceParser.class);
         parserMap.put(CorporationAccountBalanceRequest.class, AccountBalanceParser.class);
         parserMap.put(CharacterAssetsRequest.class, AssetListParser.class);
         parserMap.put(CorporationAssetsRequest.class, AssetListParser.class);
         parserMap.put(CharacterIndustryJobsRequest.class, IndustryJobsParser.class);
         parserMap.put(CorporationIndustryJobsRequest.class, IndustryJobsParser.class);
-        
+
         parserMap.put(CharacterResearchRequest.class, CharacterResearchParser.class);
         parserMap.put(CharacterSheetRequest.class, CharacterSheetParser.class);
         parserMap.put(CharacterInfoRequest.class, CharacterInfoParser.class);
         parserMap.put(CharacterTrainingQueueRequest.class, CharacterTrainingQueueParser.class);
         parserMap.put(CharacterTrainingRequest.class, CharacterTrainingParser.class);
-        
+
         parserMap.put(CharacterWalletTransactionsRequest.class, WalletTransactionsParser.class);
         parserMap.put(CorporationWalletTransactionsRequest.class, WalletTransactionsParser.class);
         parserMap.put(CharacterWalletJournalRequest.class, WalletJournalParser.class);
@@ -160,40 +159,39 @@ final class EveAPIHelper {
         parserMap.put(CorporationContractsRequest.class, ContractListParser.class);
         parserMap.put(CharacterContractsRequest.class, ContractListParser.class);
         parserMap.put(CorporationContractItemsRequest.class, ContractItemsParser.class);
-        parserMap.put(CharacterContractItemsRequest.class, ContractItemsParser.class);        
+        parserMap.put(CharacterContractItemsRequest.class, ContractItemsParser.class);
         parserMap.put(CorporationContractBidsRequest.class, ContractBidsParser.class);
         parserMap.put(CharacterContractBidsRequest.class, ContractBidsParser.class);
-        
+
         parserMap.put(CorporationContactListRequest.class, CorporationContactListParser.class);
         parserMap.put(CharacterContactListRequest.class, CharacterContactListParser.class);
-        
+
         parserMap.put(CharacterKillLogRequest.class, KillLogParser.class);
         parserMap.put(CorporationKillLogRequest.class, KillLogParser.class);
-        
+
         parserMap.put(CharacterItemLocationRequest.class, ItemLocationParser.class);
         parserMap.put(CorporationItemLocationRequest.class, ItemLocationParser.class);
-        
+
         parserMap.put(CharacterStandingsRequest.class, StandingsParser.class);
         parserMap.put(CorporationStandingsRequest.class, StandingsParser.class);
-        
+
         parserMap.put(PlanetaryColoniesRequest.class, PlanetaryColoniesParser.class);
         parserMap.put(PlanetaryLinksRequest.class, PlanetaryLinksParser.class);
         parserMap.put(PlanetaryPinsRequest.class, PlanetaryPinsParser.class);
         parserMap.put(PlanetaryRoutesRequest.class, PlanetaryRoutesParser.class);
     }
-        
-    
-    private EveAPIHelper() {}
-    
+
+    private EveAPIHelper() {
+    }
 
     @SuppressWarnings("unchecked")
     public static <T extends EveAPIResponse> EveAPIParser<T> getParser(EveAPIRequest<T> request) {
         if (null == request) {
             throw new IllegalArgumentException("Null EveAPIRequest parameter.");
         }
-        
+
         SoftReference<EveAPIParser<?>> ref = parsers.get(request.getClass().getName());
-        
+
         EveParser<?> parser = null;
         if (null != ref) {
             parser = ref.get();
@@ -202,10 +200,9 @@ final class EveAPIHelper {
             parser = createParser(request);
             ref = new SoftReference(parser);
             parsers.put(request.getClass().getName(), ref);
-        }        
-        return (EveAPIParser<T>)parser;
+        }
+        return (EveAPIParser<T>) parser;
     }
-    
 
     private static EveParser<?> createParser(EveAPIRequest<? extends EveAPIResponse> request) {
         final Class<? extends EveParser<?>> parserClass = parserMap.get(request.getClass());

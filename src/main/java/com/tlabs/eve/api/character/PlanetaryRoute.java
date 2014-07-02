@@ -2,80 +2,80 @@ package com.tlabs.eve.api.character;
 
 import java.io.Serializable;
 
-public class PlanetaryRoute extends Object implements Serializable {
+public class PlanetaryRoute implements Serializable {
 
-	private static final long serialVersionUID = -3629780760607505499L;
+    private static final long serialVersionUID = -3629780760607505499L;
 
-	/*<rowset name="routes" key="routeID" 
-	 * columns="
-	 * routeID,
-	 * sourcePinID,
-	 * destinationPinID,
-	 * contentTypeID,
-	 * contentTypeName,
-	 * quantity,
-	 * waypoint1,
-	 * waypoint2,
-	 * waypoint3,
-	 * waypoint4,
-	 * waypoint5">
-	 * 
-	 */
-	
-	private long routeID;
-	private long sourcePinID;
-	private long destinationPinID;
-	
-	private long contentTypeID;
-	private String contentTypeName;
-	
-	private float quantity;
+    /*<rowset name="routes" key="routeID" 
+     * columns="
+     * routeID,
+     * sourcePinID,
+     * destinationPinID,
+     * contentTypeID,
+     * contentTypeName,
+     * quantity,
+     * waypoint1,
+     * waypoint2,
+     * waypoint3,
+     * waypoint4,
+     * waypoint5">
+     * 
+     */
 
-	public long getRouteID() {
-		return routeID;
-	}
+    private long routeID;
+    private long sourcePinID;
+    private long destinationPinID;
 
-	public void setRouteID(long routeID) {
-		this.routeID = routeID;
-	}
+    private long contentTypeID;
+    private String contentTypeName;
 
-	public long getSourcePinID() {
-		return sourcePinID;
-	}
+    private float quantity;
 
-	public void setSourcePinID(long sourcePinID) {
-		this.sourcePinID = sourcePinID;
-	}
+    public long getRouteID() {
+        return routeID;
+    }
 
-	public long getDestinationPinID() {
-		return destinationPinID;
-	}
+    public void setRouteID(long routeID) {
+        this.routeID = routeID;
+    }
 
-	public void setDestinationPinID(long destinationPinID) {
-		this.destinationPinID = destinationPinID;
-	}
+    public long getSourcePinID() {
+        return sourcePinID;
+    }
 
-	public long getContentTypeID() {
-		return contentTypeID;
-	}
+    public void setSourcePinID(long sourcePinID) {
+        this.sourcePinID = sourcePinID;
+    }
 
-	public void setContentTypeID(long contentTypeID) {
-		this.contentTypeID = contentTypeID;
-	}
+    public long getDestinationPinID() {
+        return destinationPinID;
+    }
 
-	public String getContentTypeName() {
-		return contentTypeName;
-	}
+    public void setDestinationPinID(long destinationPinID) {
+        this.destinationPinID = destinationPinID;
+    }
 
-	public void setContentTypeName(String contentTypeName) {
-		this.contentTypeName = contentTypeName;
-	}
+    public long getContentTypeID() {
+        return contentTypeID;
+    }
 
-	public float getQuantity() {
-		return quantity;
-	}
+    public void setContentTypeID(long contentTypeID) {
+        this.contentTypeID = contentTypeID;
+    }
 
-	public void setQuantity(float quantity) {
-		this.quantity = quantity;
-	}		
+    public String getContentTypeName() {
+        return contentTypeName;
+    }
+
+    public void setContentTypeName(String contentTypeName) {
+        this.contentTypeName = contentTypeName;
+    }
+
+    public float getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
 }

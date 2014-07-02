@@ -15,10 +15,10 @@ package com.tlabs.eve.api;
 
 import java.io.Serializable;
 
-public class ContractBid extends Object implements Serializable {
+public class ContractBid implements Serializable {
 
     private static final long serialVersionUID = -5988962546869289837L;
-    
+
     private long bidID;
     private long contractID;
     private long bidderID;

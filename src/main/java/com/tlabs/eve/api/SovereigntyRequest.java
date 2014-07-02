@@ -23,7 +23,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 public final class SovereigntyRequest extends EveAPIRequest<SovereigntyResponse> implements com.tlabs.eve.api.EveAPIRequest.Public {
 
     public SovereigntyRequest() {

@@ -21,7 +21,6 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
 import java.util.Locale;
 
 public final class EveNewsRequest extends EveRSSRequest {
@@ -29,8 +28,8 @@ public final class EveNewsRequest extends EveRSSRequest {
     public EveNewsRequest(final Locale locale) {
         super("/44/articles/page/1/20/", locale);
     }
-    
-	public EveNewsRequest() {
-		super("/44/articles/page/1/20/");
-	}
+
+    public EveNewsRequest() {
+        super("/44/articles/page/1/20/");
+    }
 }

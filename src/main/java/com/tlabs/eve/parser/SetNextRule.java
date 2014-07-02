@@ -21,7 +21,6 @@ package com.tlabs.eve.parser;
  * #L%
  */
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -29,43 +28,42 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class SetNextRule extends BaseRule {
-	private static final Log LOG = LogFactory.getLog("CREST");
-	
-	private String methodName;
-	
-	public SetNextRule(String methodName) {
-		super();
-		this.methodName = methodName;
-	}
+    private static final Log LOG = LogFactory.getLog("CREST");
 
-	@Override
-	public void doEnd(String name) {
-		Object toSet = getDigester().peek(0);
-		Object bean = getDigester().peek(1);
-		
-		try {
-			Method addMethod = bean.getClass().getMethod(this.methodName, toSet.getClass());
-			addMethod.invoke(bean, toSet);
-		}
-		catch (NoSuchMethodException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(e.getLocalizedMessage(), e);
-			}
-			LOG.warn(bean.getClass().getSimpleName() + " NoSuchMethodException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
-		}
-		catch (InvocationTargetException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(e.getLocalizedMessage(), e);
-			}
-			LOG.warn(bean.getClass().getSimpleName() + " InvocationTargetException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
-		}
-		catch (IllegalAccessException e) {
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(e.getLocalizedMessage(), e);
-			}
-			LOG.warn(bean.getClass().getSimpleName() + " IllegalAccessException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");			
-		}
-	}
-	
-	
+    private String methodName;
+
+    public SetNextRule(String methodName) {
+        super();
+        this.methodName = methodName;
+    }
+
+    @Override
+    public void doEnd(String name) {
+        Object toSet = getDigester().peek(0);
+        Object bean = getDigester().peek(1);
+
+        try {
+            Method addMethod = bean.getClass().getMethod(this.methodName, toSet.getClass());
+            addMethod.invoke(bean, toSet);
+        }
+        catch (NoSuchMethodException e) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(e.getLocalizedMessage(), e);
+            }
+            LOG.warn(bean.getClass().getSimpleName() + " NoSuchMethodException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
+        }
+        catch (InvocationTargetException e) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(e.getLocalizedMessage(), e);
+            }
+            LOG.warn(bean.getClass().getSimpleName() + " InvocationTargetException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
+        }
+        catch (IllegalAccessException e) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(e.getLocalizedMessage(), e);
+            }
+            LOG.warn(bean.getClass().getSimpleName() + " IllegalAccessException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
+        }
+    }
+
 }

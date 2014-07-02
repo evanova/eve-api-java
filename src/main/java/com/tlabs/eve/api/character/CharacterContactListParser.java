@@ -23,7 +23,6 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import com.tlabs.eve.api.ContactListParser;
 
 public final class CharacterContactListParser extends ContactListParser {

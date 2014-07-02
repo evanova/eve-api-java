@@ -21,17 +21,16 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.Serializable;
 
-public class Sovereignty extends Object implements Serializable  {
-    
+public class Sovereignty implements Serializable {
+
     private static final long serialVersionUID = 4243263776307067707L;
 
     private long allianceID = -1;
     private long factionID = -1;
     private long corporationID = -1;
-    
+
     private long solarSystemID = -1;
     private String solarSystemName;
 
@@ -74,5 +73,5 @@ public class Sovereignty extends Object implements Serializable  {
     public void setSolarSystemName(String solarSystemName) {
         this.solarSystemName = solarSystemName;
     }
-		
+
 }

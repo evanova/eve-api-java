@@ -17,30 +17,31 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class KillMail extends Object implements Serializable {
+public class KillMail implements Serializable {
 
     private static final long serialVersionUID = -1891358193881112867L;
 
     private static class Involved implements Serializable {
-        
+
         private static final long serialVersionUID = -4352852587580693948L;
-        
+
         private long characterID;
         private String characterName;
-        
+
         private long corporationID;
         private String corporationName;
-        
+
         private long allianceID;
         private String allianceName;
-        
+
         private long factionID;
         private String factionName;
 
         private long shipTypeID;
         private String shipTypeName; //not in XML
-        
-        protected Involved() {}
+
+        protected Involved() {
+        }
 
         public final long getCharacterID() {
             return characterID;
@@ -120,20 +121,20 @@ public class KillMail extends Object implements Serializable {
 
         public final void setShipTypeName(String shipTypeName) {
             this.shipTypeName = shipTypeName;
-        };
-                
+        }
+
     }
-    
+
     public static final class Victim extends Involved {
-        
+
         private static final long serialVersionUID = -4276984991545067644L;
-        
+
         private long damateTaken;
-        
+
         public Victim() {
             super();
         }
-        
+
         public long getDamateTaken() {
             return damateTaken;
         }
@@ -143,19 +144,19 @@ public class KillMail extends Object implements Serializable {
         }
 
     }
-    
+
     public static final class Attacker extends Involved {
-        
+
         private static final long serialVersionUID = 8185151910449167245L;
-        
+
         private float securityStatus;
-        
+
         private long weaponTypeID;
         private String weaponTypeName;//not in XML
-        
+
         private int damageDone;
         private boolean finalBlow;
-        
+
         public Attacker() {
             super();
         }
@@ -198,79 +199,92 @@ public class KillMail extends Object implements Serializable {
 
         public void setFinalBlow(boolean finalBlow) {
             this.finalBlow = finalBlow;
-        }                        
+        }
     }
 
     public static final class Item implements Serializable {
-        
+
         private static final long serialVersionUID = -16761854905584607L;
 
         private List<Item> items = new LinkedList<Item>();
-        
+
         private long typeID;
         private String typeName; //not in XML
-        
+
         private int flag;
         private boolean singleton;
-        
+
         private int quantityDropped;
         private int quantityDestroyed;
-        
+
         public int getFlag() {
             return flag;
         }
+
         public void setFlag(int flag) {
             this.flag = flag;
         }
+
         public List<Item> getItems() {
             return items;
         }
+
         public void setItems(List<Item> items) {
             this.items = items;
         }
+
         public long getTypeID() {
             return typeID;
         }
+
         public void setTypeID(long typeID) {
             this.typeID = typeID;
         }
+
         public String getTypeName() {
             return typeName;
         }
+
         public void setTypeName(String typeName) {
             this.typeName = typeName;
         }
+
         public boolean isSingleton() {
             return singleton;
         }
+
         public void setSingleton(boolean singleton) {
             this.singleton = singleton;
         }
+
         public int getQuantityDropped() {
             return quantityDropped;
         }
+
         public void setQuantityDropped(int quantityDropped) {
             this.quantityDropped = quantityDropped;
         }
+
         public int getQuantityDestroyed() {
             return quantityDestroyed;
         }
+
         public void setQuantityDestroyed(int quantityDestroyed) {
             this.quantityDestroyed = quantityDestroyed;
-        }                
+        }
     }
-    
+
     private long killID;
     private long solarSystemID;
     private String solarSystemName;//not in XML
-    
+
     private long moonID;
     private long killTime;
 
     private Victim victim = new Victim();
     private List<Attacker> attackers = new LinkedList<Attacker>();
     private List<Item> items = new LinkedList<Item>();
-    
+
     public long getKillID() {
         return killID;
     }
@@ -334,9 +348,9 @@ public class KillMail extends Object implements Serializable {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    
+
     public final boolean getFinalBlow(final long attackerId) {
-        for (Attacker a: this.attackers) {
+        for (Attacker a : this.attackers) {
             if (a.getFinalBlow() && (a.getCharacterID() == attackerId)) {
                 return true;
             }

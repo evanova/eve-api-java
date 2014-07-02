@@ -22,33 +22,33 @@ package com.tlabs.eve.api;
  */
 public final class AccountStatusRequest extends EveAPIRequest<AccountStatusResponse> implements EveAPIRequest.Authenticated {
     public static final int MASK = 33554432;
-    
-	private String keyID;
-	private String key;
 
-	public AccountStatusRequest(String keyID, String key) {
-		super(AccountStatusResponse.class, "/account/AccountStatus.xml.aspx", MASK);
+    private String keyID;
+    private String key;
 
-		this.keyID = keyID;		
-		this.key = key;
-		putParam("keyID", keyID);
-		putParam("vCode", key);
-	}
+    public AccountStatusRequest(String keyID, String key) {
+        super(AccountStatusResponse.class, "/account/AccountStatus.xml.aspx", MASK);
 
-	public final String getKeyID() {
-		return keyID;
-	}
+        this.keyID = keyID;
+        this.key = key;
+        putParam("keyID", keyID);
+        putParam("vCode", key);
+    }
 
-	public final void setKeyID(String keyID) {
-		this.keyID = keyID;
-	}
+    public final String getKeyID() {
+        return keyID;
+    }
 
-	public final String getKey() {
-		return key;
-	}
+    public final void setKeyID(String keyID) {
+        this.keyID = keyID;
+    }
 
-	public final void setKey(String key) {
-		this.key = key;
-	}
-	
+    public final String getKey() {
+        return key;
+    }
+
+    public final void setKey(String key) {
+        this.key = key;
+    }
+
 }

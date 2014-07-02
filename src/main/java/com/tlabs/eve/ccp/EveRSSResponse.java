@@ -21,29 +21,28 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
 
 import com.tlabs.eve.EveResponse;
 
 public final class EveRSSResponse extends EveResponse {
-		
+
     private List<EveRSSEntry> rssEntries = new LinkedList<EveRSSEntry>();
     private String title;
     private String link;
-    
+
     private long dateUpdated;
-    
+
     public EveRSSResponse() {
         super();
-        setCachedUntil(System.currentTimeMillis() + 24l * 3600l * 1000l);
+        setCachedUntil(System.currentTimeMillis() + (3600l * 1000l));
     }
-    
+
     public final List<EveRSSEntry> getEntries() {
         return this.rssEntries;
     }
-    
+
     public final void addEntry(final EveRSSEntry entry) {
         this.rssEntries.add(entry);
     }
@@ -71,6 +70,5 @@ public final class EveRSSResponse extends EveResponse {
     public void setLink(String link) {
         this.link = link;
     }
-    
-    
+
 }

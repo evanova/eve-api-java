@@ -21,156 +21,154 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import java.io.Serializable;
 
-public class CorporationMember extends Object implements Serializable  {
+public class CorporationMember implements Serializable {
 
-	private static final long serialVersionUID = -6308580576878031835L;
+    private static final long serialVersionUID = -6308580576878031835L;
 
-	private long characterID;
-	
-	private String name;
-	
-	private long startDateTime;
-	
-	private long baseID;
-	
-	private String base;
-	
-	private String title;
-	
-	private long logonDateTime;
-	
-	private long logoffDateTime;
-	
-	private long locationID;
-	
-	private String location;
-	
-	private int shipTypeID;
-	
-	private String shipType;
-	
-	private long roles;
-	
-	private long grantableRoles;
-	
-	public CorporationMember(){
-		super();
-	}
+    private long characterID;
 
-	public long getCharacterID() {
-		return characterID;
-	}
+    private String name;
 
-	public void setCharacterID(long characterID) {
-		this.characterID = characterID;
-	}
+    private long startDateTime;
 
-	public String getName() {
-		return name;
-	}
+    private long baseID;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String base;
 
-	public long getStartDateTime() {
-		return startDateTime;
-	}
+    private String title;
 
-	public void setStartDateTime(long startDateTime) {
-		this.startDateTime = startDateTime;
-	}
+    private long logonDateTime;
 
-	public long getBaseID() {
-		return baseID;
-	}
+    private long logoffDateTime;
 
-	public void setBaseID(long baseID) {
-		this.baseID = baseID;
-	}
+    private long locationID;
 
-	public String getBase() {
-		return base;
-	}
+    private String location;
 
-	public void setBase(String base) {
-		this.base = base;
-	}
+    private int shipTypeID;
 
-	public String getTitle() {
-		return title;
-	}
+    private String shipType;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private long roles;
 
-	public long getLogonDateTime() {
-		return logonDateTime;
-	}
+    private long grantableRoles;
 
-	public void setLogonDateTime(long logonDateTime) {
-		this.logonDateTime = logonDateTime;
-	}
+    public CorporationMember() {
+        super();
+    }
 
-	public long getLogoffDateTime() {
-		return logoffDateTime;
-	}
+    public long getCharacterID() {
+        return characterID;
+    }
 
-	public void setLogoffDateTime(long logoffDateTime) {
-		this.logoffDateTime = logoffDateTime;
-	}
+    public void setCharacterID(long characterID) {
+        this.characterID = characterID;
+    }
 
-	public long getLocationID() {
-		return locationID;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setLocationID(long locationID) {
-		this.locationID = locationID;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public long getStartDateTime() {
+        return startDateTime;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setStartDateTime(long startDateTime) {
+        this.startDateTime = startDateTime;
+    }
 
-	public int getShipTypeID() {
-		return shipTypeID;
-	}
+    public long getBaseID() {
+        return baseID;
+    }
 
-	public void setShipTypeID(int shipTypeID) {
-		this.shipTypeID = shipTypeID;
-	}
+    public void setBaseID(long baseID) {
+        this.baseID = baseID;
+    }
 
-	public String getShipType() {
-		return shipType;
-	}
+    public String getBase() {
+        return base;
+    }
 
-	public void setShipType(String shipType) {
-		this.shipType = shipType;
-	}
+    public void setBase(String base) {
+        this.base = base;
+    }
 
-	public long getRoles() {
-		return roles;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setRoles(long roles) {
-		this.roles = roles;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public long getGrantableRoles() {
-		return grantableRoles;
-	}
+    public long getLogonDateTime() {
+        return logonDateTime;
+    }
 
-	public void setGrantableRoles(long grantableRoles) {
-		this.grantableRoles = grantableRoles;
-	}
-	
-	
+    public void setLogonDateTime(long logonDateTime) {
+        this.logonDateTime = logonDateTime;
+    }
+
+    public long getLogoffDateTime() {
+        return logoffDateTime;
+    }
+
+    public void setLogoffDateTime(long logoffDateTime) {
+        this.logoffDateTime = logoffDateTime;
+    }
+
+    public long getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(long locationID) {
+        this.locationID = locationID;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getShipTypeID() {
+        return shipTypeID;
+    }
+
+    public void setShipTypeID(int shipTypeID) {
+        this.shipTypeID = shipTypeID;
+    }
+
+    public String getShipType() {
+        return shipType;
+    }
+
+    public void setShipType(String shipType) {
+        this.shipType = shipType;
+    }
+
+    public long getRoles() {
+        return roles;
+    }
+
+    public void setRoles(long roles) {
+        this.roles = roles;
+    }
+
+    public long getGrantableRoles() {
+        return grantableRoles;
+    }
+
+    public void setGrantableRoles(long grantableRoles) {
+        this.grantableRoles = grantableRoles;
+    }
+
 }

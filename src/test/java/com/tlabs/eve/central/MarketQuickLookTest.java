@@ -21,7 +21,6 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
@@ -29,31 +28,31 @@ import org.junit.Test;
 
 public class MarketQuickLookTest extends EveCentralTest {
 
-	@Test(timeout=25000) 
-	public void buyOrdersTest() {
-		final EveCentralQuickLookRequest q = new EveCentralQuickLookRequest(34l);
-		final EveCentralQuickLookResponse r = apiCall(q);		
-		assertTrue(r.getTypeID() > 0);		
-		assertTrue(StringUtils.isNotBlank(r.getTypeName()));
-		assertTrue(r.getBuyOrders().size() > 0);
-		
-		marketOrderTest(r.getBuyOrders().get(0));		
-	}
+    @Test(timeout = 25000)
+    public void buyOrdersTest() {
+        final EveCentralQuickLookRequest q = new EveCentralQuickLookRequest(34l);
+        final EveCentralQuickLookResponse r = apiCall(q);
+        assertTrue(r.getTypeID() > 0);
+        assertTrue(StringUtils.isNotBlank(r.getTypeName()));
+        assertTrue(r.getBuyOrders().size() > 0);
 
-    @Test(timeout=25000) 
+        marketOrderTest(r.getBuyOrders().get(0));
+    }
+
+    @Test(timeout = 25000)
     public void sellOrdersTest() {
         final EveCentralQuickLookRequest q = new EveCentralQuickLookRequest(34l);
         final EveCentralQuickLookResponse r = apiCall(q);
         assertTrue(r.getTypeID() > 0);
         assertTrue(StringUtils.isNotBlank(r.getTypeName()));
         assertTrue(r.getSellOrders().size() > 0);
-        marketOrderTest(r.getSellOrders().get(0));        
+        marketOrderTest(r.getSellOrders().get(0));
     }
-    
-    private void marketOrderTest(final EveCentralOrder order) {        
+
+    private void marketOrderTest(final EveCentralOrder order) {
         //System.err.println(ToStringBuilder.reflectionToString(order, ToStringStyle.MULTI_LINE_STYLE));
         assertTrue(order.getOrderID() > 0);
         assertTrue(order.getPrice() > 0);
     }
-    
+
 }

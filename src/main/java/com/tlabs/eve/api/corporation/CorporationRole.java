@@ -21,45 +21,43 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import java.io.Serializable;
 
-public class CorporationRole extends Object implements Serializable {
-	
-	private static final long serialVersionUID = -6935531269888699875L;
-	
-	public static final int AT_CORP = 0;
-	public static final int AT_HQ = 1;
-	public static final int AT_BASE = 2;
-	public static final int AT_OTHER = 3;
-	
-	private int type;
-	private long roleID;
-	private String roleName;
-	
-	public CorporationRole(int type) {
-		this.type = type;
-	}
+public class CorporationRole implements Serializable {
 
-	public long getRoleID() {
-		return roleID;
-	}
+    private static final long serialVersionUID = -6935531269888699875L;
 
-	public void setRoleID(long roleID) {
-		this.roleID = roleID;
-	}
+    public static final int AT_CORP = 0;
+    public static final int AT_HQ = 1;
+    public static final int AT_BASE = 2;
+    public static final int AT_OTHER = 3;
 
-	public String getRoleName() {
-		return roleName;
-	}
+    private int type;
+    private long roleID;
+    private String roleName;
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+    public CorporationRole(int type) {
+        this.type = type;
+    }
 
-	public int getType() {
-		return type;
-	}
-	
-	
+    public long getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(long roleID) {
+        this.roleID = roleID;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public int getType() {
+        return type;
+    }
+
 }

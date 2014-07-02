@@ -23,7 +23,6 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,40 +37,39 @@ final class CCPHelper {
         @Override
         protected CorporationLogoResponse createResponse() {
             return new CorporationLogoResponse();
-        }           
-    };
-    
-    public static final class PortraitParser extends ImageParser<PortraitResponse> {   
+        }
+    }
+
+    public static final class PortraitParser extends ImageParser<PortraitResponse> {
         @Override
         protected PortraitResponse createResponse() {
             return new PortraitResponse();
-        }           
-    };
-    
-    private static final Map<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>> parserMap;    
+        }
+    }
+
+    private static final Map<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>> parserMap;
     private static final Map<Class<?>, SoftReference<EveParser<? extends EveResponse>>> parsers;
-   
+
     static {
         parserMap = new HashMap<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>>();
         parsers = new HashMap<Class<?>, SoftReference<EveParser<? extends EveResponse>>>();
-        
+
         parserMap.put(EveNewsRequest.class, EveRSSParser.class);
         parserMap.put(CorporationLogoRequest.class, LogoParser.class);
         parserMap.put(PortraitRequest.class, PortraitParser.class);
     }
-    
+
     private CCPHelper() {
     }
-
 
     @SuppressWarnings("unchecked")
     public static <T extends EveResponse> EveParser<T> getParser(final EveRequest<T> request) {
         if (null == request) {
             throw new IllegalArgumentException("Null EveAPIRequest parameter.");
         }
-        
+
         SoftReference<EveParser<? extends EveResponse>> ref = parsers.get(request.getClass().getName());
-        
+
         EveParser<?> parser = null;
         if (null != ref) {
             parser = ref.get();
@@ -80,10 +78,9 @@ final class CCPHelper {
             parser = createParser(request);
             ref = new SoftReference<EveParser<?>>(parser);
             parsers.put(request.getClass(), ref);
-        }        
-        return (EveParser<T>)parser;
+        }
+        return (EveParser<T>) parser;
     }
-    
 
     private static EveParser<?> createParser(final EveRequest<? extends EveResponse> request) {
         final Class<? extends EveParser<?>> parserClass = parserMap.get(request.getClass());
@@ -100,5 +97,5 @@ final class CCPHelper {
             throw new IllegalArgumentException(e.getLocalizedMessage(), e);
         }
     }
-    
+
 }

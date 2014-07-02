@@ -21,30 +21,29 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
-
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.tlabs.eve.api.EveAPI;
 
-public class Message extends Object implements Serializable {
-    
+public class Message implements Serializable {
+
     private static final long serialVersionUID = 4815557437352503649L;
-    
+
     private long senderID = -1;
-	private String senderName = "";
-	
-	private long sentDate = 0;
-	private boolean read;
+    private String senderName = "";
 
-	private String body = null;//supposedly a CDATA block 
-	private String title = "";
+    private long sentDate = 0;
+    private boolean read;
 
-	protected Message() {
-	    
-	}
-    
+    private String body = null;//supposedly a CDATA block 
+    private String title = "";
+
+    protected Message() {
+
+    }
+
     public final String getTitle() {
         return title;
     }
@@ -53,53 +52,51 @@ public class Message extends Object implements Serializable {
         this.title = title;
     }
 
+    public final long getSenderID() {
+        return senderID;
+    }
 
-	public final long getSenderID() {
-		return senderID;
-	}
+    public final String getSenderName() {
+        return senderName;
+    }
 
-	public final String getSenderName() {
-		return senderName;
-	}
+    public final void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
 
-	public final void setSenderName(String senderName) {
-		this.senderName = senderName;
-	}
+    public final void setSenderID(long senderID) {
+        this.senderID = senderID;
+    }
 
-	public final void setSenderID(long senderID) {
-		this.senderID = senderID;
-	}
+    public final String getBody() {
+        return body;
+    }
 
-	public final String getBody() {
-		return body;
-	}
+    public final void setBody(String body) {
+        if (StringUtils.isBlank(body)) {
+            this.body = "";
+        }
+        else {
+            String b = StringUtils.removeEnd(StringUtils.removeStart(body.trim(), "<![CDATA[").trim(), "]]>").trim();
+            b = StringUtils.remove(b, "{}");
+            this.body = b;
+        }
 
-	public final void setBody(String body) {
-		if (StringUtils.isBlank(body)) {
-			this.body = "";			
-		}
-		else {
-		    String b = StringUtils.removeEnd(
-		            StringUtils.removeStart(body.trim(), "<![CDATA[").trim(),
-		            "]]>").trim();
-		    b = StringUtils.remove(b, "{}");
-		    this.body = b;
-		}		
-		
-		onBodyChanged(this.body);
-	}
+        onBodyChanged(this.body);
+    }
 
-	protected void onBodyChanged(final String body){}
-	
-	public final void setSentDate(long sentDate) {
-		this.sentDate = sentDate;
-	}
+    protected void onBodyChanged(final String body) {
+    }
 
-	public final long getSentDate() {
-		return sentDate;
-	}
+    public final void setSentDate(long sentDate) {
+        this.sentDate = sentDate;
+    }
 
-	public final void setSentDate(String d) {
-		sentDate = EveAPI.parseDateTime(d);
-	}	
+    public final long getSentDate() {
+        return sentDate;
+    }
+
+    public final void setSentDate(String d) {
+        sentDate = EveAPI.parseDateTime(d);
+    }
 }

@@ -21,180 +21,178 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.Serializable;
 
+public class Item implements Serializable {
 
-public class Item extends Object implements Serializable {
+    private static final long serialVersionUID = 1043774614858911095L;
 
-	private static final long serialVersionUID = 1043774614858911095L;
+    private long itemID;//it is the typeID	
+    private String itemName;//item name;//not in Eve XML
 
-	private long itemID;//it is the typeID	
-	private String itemName;//item name;//not in Eve XML
-			
-	private int raceID;//not in Eve XML
-	
-	private String description;////not in Eve XML
-	private long categoryID;//not in Eve XML
-	private String categoryName;//not in Eve XML
-	private long groupID;//not in Eve XML
-	private String groupName;//not in Eve XML
-	private long metaGroupID;//not in Eve XML
-	private String metaGroupName;//not in Eve XML
-	private double mass;//not in Eve XML
-	private double volume;//not in Eve XML
-	private double capacity;//not in Eve XML
-	private float duplicateChange;//not in Eve XML
-	private long portion;//not in Eve XML
-	private double basePrice;//not in Eve XML
-	private int marketGroupID;//not in Eve XML
-	private int published;//not in Eve XML
-		
-	public Item() {
-		super();
-	}
-	
-	public String getName() {
-		return itemName;
-	}
+    private int raceID;//not in Eve XML
 
-	public void setName(String name) {
-		this.itemName = name;
-	}
+    private String description;////not in Eve XML
+    private long categoryID;//not in Eve XML
+    private String categoryName;//not in Eve XML
+    private long groupID;//not in Eve XML
+    private String groupName;//not in Eve XML
+    private long metaGroupID;//not in Eve XML
+    private String metaGroupName;//not in Eve XML
+    private double mass;//not in Eve XML
+    private double volume;//not in Eve XML
+    private double capacity;//not in Eve XML
+    private float duplicateChange;//not in Eve XML
+    private long portion;//not in Eve XML
+    private double basePrice;//not in Eve XML
+    private long marketGroupID;//not in Eve XML
+    private int published;//not in Eve XML
 
-	public long getItemID() {
-		return itemID;
-	}
+    public Item() {
+        super();
+    }
 
-	public void setItemID(long itemID) {
-		this.itemID = itemID;
-	}
-	
-	public final int getRaceID() {
-		return raceID;
-	}
+    public String getName() {
+        return itemName;
+    }
 
-	public final void setRaceID(int raceID) {
-		this.raceID = raceID;
-	}
+    public void setName(String name) {
+        this.itemName = name;
+    }
 
-	public final String getDescription() {
-		return description;
-	}
+    public long getItemID() {
+        return itemID;
+    }
 
-	public final void setDescription(String description) {
-		this.description = description;
-	}
+    public void setItemID(long itemID) {
+        this.itemID = itemID;
+    }
 
-	public final long getCategoryID() {
-		return categoryID;
-	}
+    public final int getRaceID() {
+        return raceID;
+    }
 
-	public final void setCategoryID(long categoryID) {
-		this.categoryID = categoryID;
-	}
+    public final void setRaceID(int raceID) {
+        this.raceID = raceID;
+    }
 
-	public final String getCategoryName() {
-		return categoryName;
-	}
+    public final String getDescription() {
+        return description;
+    }
 
-	public final void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
+    public final void setDescription(String description) {
+        this.description = description;
+    }
 
-	public final long getGroupID() {
-		return groupID;
-	}
+    public final long getCategoryID() {
+        return categoryID;
+    }
 
-	public final void setGroupID(long groupID) {
-		this.groupID = groupID;
-	}
+    public final void setCategoryID(long categoryID) {
+        this.categoryID = categoryID;
+    }
 
-	public final String getGroupName() {
-		return groupName;
-	}
+    public final String getCategoryName() {
+        return categoryName;
+    }
 
-	public final void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
+    public final void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
-	public final long getMetaGroupID() {
-		return metaGroupID;
-	}
+    public final long getGroupID() {
+        return groupID;
+    }
 
-	public final void setMetaGroupID(long metaGroupID) {
-		this.metaGroupID = metaGroupID;
-	}
+    public final void setGroupID(long groupID) {
+        this.groupID = groupID;
+    }
 
-	public final String getMetaGroupName() {
-		return metaGroupName;
-	}
+    public final String getGroupName() {
+        return groupName;
+    }
 
-	public final void setMetaGroupName(String metaGroupName) {
-		this.metaGroupName = metaGroupName;
-	}
+    public final void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 
-	public final double getMass() {
-		return mass;
-	}
+    public final long getMetaGroupID() {
+        return metaGroupID;
+    }
 
-	public final void setMass(double mass) {
-		this.mass = mass;
-	}
+    public final void setMetaGroupID(long metaGroupID) {
+        this.metaGroupID = metaGroupID;
+    }
 
-	public final double getVolume() {
-		return volume;
-	}
+    public final String getMetaGroupName() {
+        return metaGroupName;
+    }
 
-	public final void setVolume(double volume) {
-		this.volume = volume;
-	}
+    public final void setMetaGroupName(String metaGroupName) {
+        this.metaGroupName = metaGroupName;
+    }
 
-	public final double getCapacity() {
-		return capacity;
-	}
+    public final double getMass() {
+        return mass;
+    }
 
-	public final void setCapacity(double capacity) {
-		this.capacity = capacity;
-	}
+    public final void setMass(double mass) {
+        this.mass = mass;
+    }
 
-	public final float getDuplicateChange() {
-		return duplicateChange;
-	}
+    public final double getVolume() {
+        return volume;
+    }
 
-	public final void setDuplicateChange(float duplicateChange) {
-		this.duplicateChange = duplicateChange;
-	}
+    public final void setVolume(double volume) {
+        this.volume = volume;
+    }
 
-	public final long getPortion() {
-		return portion;
-	}
+    public final double getCapacity() {
+        return capacity;
+    }
 
-	public final void setPortion(long portion) {
-		this.portion = portion;
-	}
+    public final void setCapacity(double capacity) {
+        this.capacity = capacity;
+    }
 
-	public final double getBasePrice() {
-		return basePrice;
-	}
+    public final float getDuplicateChange() {
+        return duplicateChange;
+    }
 
-	public final void setBasePrice(double basePrice) {
-		this.basePrice = basePrice;
-	}
+    public final void setDuplicateChange(float duplicateChange) {
+        this.duplicateChange = duplicateChange;
+    }
 
-	public final int getMarketGroupID() {
-		return marketGroupID;
-	}
+    public final long getPortion() {
+        return portion;
+    }
 
-	public final void setMarketGroupID(int marketGroupID) {
-		this.marketGroupID = marketGroupID;
-	}
+    public final void setPortion(long portion) {
+        this.portion = portion;
+    }
 
-	public final int getPublished() {
-		return published;
-	}
+    public final double getBasePrice() {
+        return basePrice;
+    }
 
-	public final void setPublished(int published) {
-		this.published = published;
-	}
+    public final void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public final long getMarketGroupID() {
+        return marketGroupID;
+    }
+
+    public final void setMarketGroupID(long marketGroupID) {
+        this.marketGroupID = marketGroupID;
+    }
+
+    public final int getPublished() {
+        return published;
+    }
+
+    public final void setPublished(int published) {
+        this.published = published;
+    }
 }

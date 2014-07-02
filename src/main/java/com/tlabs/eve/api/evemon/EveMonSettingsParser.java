@@ -21,7 +21,6 @@ package com.tlabs.eve.api.evemon;
  * #L%
  */
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,25 +33,25 @@ import com.tlabs.eve.parser.SetNextRule;
 
 public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettingsResponse> {
 
-	private static final Map<String, String> propertyMap;
-	static {
-		propertyMap = new HashMap<String, String>();
-		propertyMap.put("id", "keyID");
-		propertyMap.put("vCode", "key");
-		propertyMap.put("accessMask", "accessMask");
-		propertyMap.put("type", "type");
-		//propertyMap.put("expires", "expires");//Dont use it; it's illformed and wrong.
-		//propertyMap.put("lastUpdate", "");
-		//propertyMap.put("monitored", "");		
-	}
-	
-	public EveMonSettingsParser() {
-		super(EveMonSettingsResponse.class);		
-	}
-	
-	protected void init(final Digester digester) {
-		digester.addObjectCreate("Settings/apiKeys/apikey", AccessInfo.class);
-		digester.addRule("Settings/apiKeys/apikey", new SetAttributePropertyRule(propertyMap));
-		digester.addRule("Settings/apiKeys/apikey", new SetNextRule("addApiKey"));
-	}
+    private static final Map<String, String> propertyMap;
+    static {
+        propertyMap = new HashMap<String, String>();
+        propertyMap.put("id", "keyID");
+        propertyMap.put("vCode", "key");
+        propertyMap.put("accessMask", "accessMask");
+        propertyMap.put("type", "type");
+        //propertyMap.put("expires", "expires");//Dont use it; it's illformed and wrong.
+        //propertyMap.put("lastUpdate", "");
+        //propertyMap.put("monitored", "");		
+    }
+
+    public EveMonSettingsParser() {
+        super(EveMonSettingsResponse.class);
+    }
+
+    protected void init(final Digester digester) {
+        digester.addObjectCreate("Settings/apiKeys/apikey", AccessInfo.class);
+        digester.addRule("Settings/apiKeys/apikey", new SetAttributePropertyRule(propertyMap));
+        digester.addRule("Settings/apiKeys/apikey", new SetNextRule("addApiKey"));
+    }
 }

@@ -9,11 +9,10 @@ public class MarketHistoryTest extends EveCRESTTest {
     public void testParseHistory() throws Exception {
         final MarketHistoryRequest request = new MarketHistoryRequest(10000041l, 587l);
         final MarketHistoryResponse response = apiCall(request);
-        
-        for (Object o: response.getHistory()) {
+
+        for (Object o : response.getHistory()) {
             System.out.println(ToStringBuilder.reflectionToString(o));
         }
     }
-    
 
 }

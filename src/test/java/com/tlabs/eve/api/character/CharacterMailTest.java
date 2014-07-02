@@ -23,7 +23,6 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import java.util.List;
 
 import junit.framework.Assert;
@@ -41,38 +40,38 @@ import com.tlabs.eve.api.mail.NotificationsRequest;
 
 public final class CharacterMailTest extends CharacterApiTest {
 
-    @Test(timeout=10000)
-    public void testMailNotifications() throws Exception {       
+    @Test(timeout = 10000)
+    public void testMailNotifications() throws Exception {
         List<NotificationMessage> messages = apiCall(new NotificationsRequest(characterKey.id)).getMessages();
         if (messages.size() == 0) {
             return;
         }
-        
+
         final long[] ids = new long[messages.size()];
         for (int i = 0; i < ids.length; i++) {
             ids[i] = messages.get(i).getNotificationID();
-        }        
+        }
         final List<NotificationMessage> bodies = apiCall(new NotificationTextRequest(characterKey.id, ids)).getMessages();
         Assert.assertEquals("Bodies size is different from notification list size.", messages.size(), bodies.size());
     }
-    
-    @Test(timeout=10000)
-    public void testMailingLists() throws Exception {       
-        List<MailingList> r = apiCall(new MailingListsRequest(characterKey.id)).getMailingLists();     
+
+    @Test(timeout = 10000)
+    public void testMailingLists() throws Exception {
+        List<MailingList> r = apiCall(new MailingListsRequest(characterKey.id)).getMailingLists();
     }
-    
-    @Test(timeout=10000)
-    public void testMailMessages() throws Exception {       
-        final List<MailMessage> messages = apiCall(new MailMessagesRequest(characterKey.id)).getMessages();    
+
+    @Test(timeout = 10000)
+    public void testMailMessages() throws Exception {
+        final List<MailMessage> messages = apiCall(new MailMessagesRequest(characterKey.id)).getMessages();
         if (messages.size() == 0) {
             return;
         }
-        
+
         final long[] ids = new long[messages.size()];
         for (int i = 0; i < ids.length; i++) {
             ids[i] = messages.get(i).getMessageID();
         }
-        final List<MailMessage> bodies = apiCall(new MailBodiesRequest(characterKey.id, ids)).getMessages();     
+        final List<MailMessage> bodies = apiCall(new MailBodiesRequest(characterKey.id, ids)).getMessages();
         Assert.assertEquals("Bodies size is different from mail list size.", messages.size(), bodies.size());
     }
 }

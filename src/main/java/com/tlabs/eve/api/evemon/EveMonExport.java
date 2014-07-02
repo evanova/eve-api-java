@@ -23,7 +23,6 @@ package com.tlabs.eve.api.evemon;
  * #L%
  */
 
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -34,28 +33,26 @@ import com.tlabs.eve.api.character.SkillInTraining;
 
 public final class EveMonExport {
     private static final String ENTRY = "\n\t<entry skillID=\"%d\" skill=\"%s\" level=\"%d\" priority=\"%d\" type=\"%s\"/>";
-    
-    private EveMonExport() {}
 
-    public static int export(
-            final String title,
-            final List<SkillInTraining> queue, 
-            final OutputStream out) throws IOException {    
-        
+    private EveMonExport() {
+    }
+
+    public static int export(final String title, final List<SkillInTraining> queue, final OutputStream out) throws IOException {
+
         BufferedWriter w = new BufferedWriter(new OutputStreamWriter(out));
         w.write("<?xml version=\"1.0\"?>\n");
         w.write("<plan xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" name=\"" + title + "\" revision=\"3860\">");
-        
+
         int priority = 0;
-        for (SkillInTraining t: queue) {        
+        for (SkillInTraining t : queue) {
             String type = null;
             switch (t.getType()) {
-                case COMPLETED:
-                case QUEUE:                 
-                    break;
-                case PLAN:
-                    type = "Planned";                   
-                    break;          
+            case COMPLETED:
+            case QUEUE:
+                break;
+            case PLAN:
+                type = "Planned";
+                break;
             }//switch
             if (null != type) {
                 w.write(String.format(ENTRY, t.getSkillID(), t.getSkillName(), t.getSkillLevel(), priority, type));
@@ -67,5 +64,5 @@ public final class EveMonExport {
         w.flush();
         return priority;
     }
-        
+
 }

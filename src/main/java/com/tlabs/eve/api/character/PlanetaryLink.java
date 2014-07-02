@@ -2,38 +2,37 @@ package com.tlabs.eve.api.character;
 
 import java.io.Serializable;
 
-public class PlanetaryLink extends Object implements Serializable {
+public class PlanetaryLink implements Serializable {
 
-	private static final long serialVersionUID = -7659113808390806789L;
+    private static final long serialVersionUID = -7659113808390806789L;
 
-	private long sourcePinID;
-	private long destinationPinID;
-	
-	private int linkLevel;
+    private long sourcePinID;
+    private long destinationPinID;
 
-	public long getSourcePinID() {
-		return sourcePinID;
-	}
+    private int linkLevel;
 
-	public void setSourcePinID(long sourcePinID) {
-		this.sourcePinID = sourcePinID;
-	}
+    public long getSourcePinID() {
+        return sourcePinID;
+    }
 
-	public long getDestinationPinID() {
-		return destinationPinID;
-	}
+    public void setSourcePinID(long sourcePinID) {
+        this.sourcePinID = sourcePinID;
+    }
 
-	public void setDestinationPinID(long destinationPinID) {
-		this.destinationPinID = destinationPinID;
-	}
+    public long getDestinationPinID() {
+        return destinationPinID;
+    }
 
-	public int getLinkLevel() {
-		return linkLevel;
-	}
+    public void setDestinationPinID(long destinationPinID) {
+        this.destinationPinID = destinationPinID;
+    }
 
-	public void setLinkLevel(int linkLevel) {
-		this.linkLevel = linkLevel;
-	}
-	
-	
+    public int getLinkLevel() {
+        return linkLevel;
+    }
+
+    public void setLinkLevel(int linkLevel) {
+        this.linkLevel = linkLevel;
+    }
+
 }

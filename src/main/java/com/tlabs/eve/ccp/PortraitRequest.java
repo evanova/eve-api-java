@@ -21,44 +21,42 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
-
 public final class PortraitRequest extends ImageRequest<PortraitResponse> {
-	public enum Size {
-		S64("64"), S128("128"), S256("256"), S512("512");
-		
-		private String value;
-		
-		private Size(String value) {
-			this.value = value;
-		}
-		
-		public String getSize() {
-			return this.value;
-		}
-	}
-	
-	private static final String URL = "/Character/%1$s_%2$s.jpg";
-	
-	private PortraitRequest.Size size;
-	private String characterID;
-	
-	public PortraitRequest(String characterID) {
-		this(characterID, PortraitRequest.Size.S512);
-	}
-	
-	public PortraitRequest(String characterID, PortraitRequest.Size size) {
-		super(PortraitResponse.class, String.format(URL, characterID, size.getSize()));		
-		this.size = size;
-		this.characterID = characterID;
-	}
+    public enum Size {
+        S64("64"), S128("128"), S256("256"), S512("512");
 
-	public PortraitRequest.Size getSize() {
-		return size;
-	}
+        private String value;
 
-	public final String getCharacterID() {
-		return characterID;
-	}
+        private Size(String value) {
+            this.value = value;
+        }
+
+        public String getSize() {
+            return this.value;
+        }
+    }
+
+    private static final String URL = "/Character/%1$s_%2$s.jpg";
+
+    private PortraitRequest.Size size;
+    private String characterID;
+
+    public PortraitRequest(String characterID) {
+        this(characterID, PortraitRequest.Size.S512);
+    }
+
+    public PortraitRequest(String characterID, PortraitRequest.Size size) {
+        super(PortraitResponse.class, String.format(URL, characterID, size.getSize()));
+        this.size = size;
+        this.characterID = characterID;
+    }
+
+    public PortraitRequest.Size getSize() {
+        return size;
+    }
+
+    public final String getCharacterID() {
+        return characterID;
+    }
 
 }

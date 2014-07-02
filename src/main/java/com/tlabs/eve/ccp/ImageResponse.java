@@ -23,8 +23,6 @@ import com.tlabs.eve.EveResponse;
  * #L%
  */
 
-
-
 public abstract class ImageResponse extends EveResponse {
 
     public ImageResponse() {
@@ -39,6 +37,5 @@ public abstract class ImageResponse extends EveResponse {
     public final void setImageData(byte[] imageData) {
         super.setContent(imageData);
     }
-    
-    
+
 }

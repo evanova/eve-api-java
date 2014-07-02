@@ -24,12 +24,11 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
-
 public final class CharacterTrainingRequest extends CharacterRequest<CharacterTrainingResponse> {
-	public static final int MASK = 131072;
-	public CharacterTrainingRequest(String charID) {
-		super(CharacterTrainingResponse.class, "/char/SkillInTraining.xml.aspx", MASK, charID);		
-	}
-		
+    public static final int MASK = 131072;
+
+    public CharacterTrainingRequest(String charID) {
+        super(CharacterTrainingResponse.class, "/char/SkillInTraining.xml.aspx", MASK, charID);
+    }
+
 }

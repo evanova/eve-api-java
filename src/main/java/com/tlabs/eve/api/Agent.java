@@ -21,137 +21,135 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.Serializable;
 
 //Not found in any XML; comes from Eve DB.agtAgents
-public class Agent extends Object implements Serializable {
+public class Agent implements Serializable {
 
-	private static final long serialVersionUID = 3850178814479198316L;
+    private static final long serialVersionUID = 3850178814479198316L;
 
-	private long agentID;
-	private String agentName;
-	
-	private long divisionID;
-	private String divisionName;//?
-	
-	
-	private long locationID;
-	private String locationName;//locations
-	
-	private long corporationID;
-	private String corporationName;
-	
-	private int level;
-	private int quality;
-	
-	private long typeID;
-	private String typeName;
-	
-	private boolean locatorAgent = false;
+    private long agentID;
+    private String agentName;
 
-	public long getID() {
-		return agentID;
-	}
+    private long divisionID;
+    private String divisionName;//?
 
-	public void setID(long agentID) {
-		this.agentID = agentID;
-	}
+    private long locationID;
+    private String locationName;//locations
 
-	public String getName() {
-		return agentName;
-	}
+    private long corporationID;
+    private String corporationName;
 
-	public void setName(String agentName) {
-		this.agentName = agentName;
-	}
+    private int level;
+    private int quality;
 
-	public long getLocationID() {
-		return locationID;
-	}
+    private long typeID;
+    private String typeName;
 
-	public void setLocationID(long locationID) {
-		this.locationID = locationID;
-	}
+    private boolean locatorAgent = false;
 
-	public String getLocation() {
-		return locationName;
-	}
+    public long getID() {
+        return agentID;
+    }
 
-	public void setLocation(String locationName) {
-		this.locationName = locationName;
-	}
+    public void setID(long agentID) {
+        this.agentID = agentID;
+    }
 
-	public long getCorporationID() {
-		return corporationID;
-	}
+    public String getName() {
+        return agentName;
+    }
 
-	public void setCorporationID(long corporationID) {
-		this.corporationID = corporationID;
-	}
+    public void setName(String agentName) {
+        this.agentName = agentName;
+    }
 
-	public String getCorporation() {
-		return corporationName;
-	}
+    public long getLocationID() {
+        return locationID;
+    }
 
-	public void setCorporation(String corporationName) {
-		this.corporationName = corporationName;
-	}
+    public void setLocationID(long locationID) {
+        this.locationID = locationID;
+    }
 
-	public int getLevel() {
-		return level;
-	}
+    public String getLocation() {
+        return locationName;
+    }
 
-	public void setLevel(int level) {
-		this.level = level;
-	}
+    public void setLocation(String locationName) {
+        this.locationName = locationName;
+    }
 
-	public int getQuality() {
-		return quality;
-	}
+    public long getCorporationID() {
+        return corporationID;
+    }
 
-	public void setQuality(int quality) {
-		this.quality = quality;
-	}
+    public void setCorporationID(long corporationID) {
+        this.corporationID = corporationID;
+    }
 
-	public long getTypeID() {
-		return typeID;
-	}
+    public String getCorporation() {
+        return corporationName;
+    }
 
-	public void setTypeID(long typeID) {
-		this.typeID = typeID;
-	}
+    public void setCorporation(String corporationName) {
+        this.corporationName = corporationName;
+    }
 
-	public String getType() {
-		return typeName;
-	}
+    public int getLevel() {
+        return level;
+    }
 
-	public void setType(String typeName) {
-		this.typeName = typeName;
-	}
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
-	public boolean getLocator() {
-		return locatorAgent;
-	}
+    public int getQuality() {
+        return quality;
+    }
 
-	public void setLocator(boolean locatorAgent) {
-		this.locatorAgent = locatorAgent;
-	}
+    public void setQuality(int quality) {
+        this.quality = quality;
+    }
 
-	public long getDivisionID() {
-		return divisionID;
-	}
+    public long getTypeID() {
+        return typeID;
+    }
 
-	public void setDivisionID(long divisionID) {
-		this.divisionID = divisionID;
-	}
+    public void setTypeID(long typeID) {
+        this.typeID = typeID;
+    }
 
-	public String getDivisionName() {
-		return divisionName;
-	}
+    public String getType() {
+        return typeName;
+    }
 
-	public void setDivisionName(String divisionName) {
-		this.divisionName = divisionName;
-	};
-	
+    public void setType(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public boolean getLocator() {
+        return locatorAgent;
+    }
+
+    public void setLocator(boolean locatorAgent) {
+        this.locatorAgent = locatorAgent;
+    }
+
+    public long getDivisionID() {
+        return divisionID;
+    }
+
+    public void setDivisionID(long divisionID) {
+        this.divisionID = divisionID;
+    }
+
+    public String getDivisionName() {
+        return divisionName;
+    }
+
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
+    }
+
 }

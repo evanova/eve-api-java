@@ -4,145 +4,146 @@ import java.io.Serializable;
 
 import com.tlabs.eve.api.EveAPI;
 
-public class PlanetaryPin extends Object implements Serializable {
+public class PlanetaryPin implements Serializable {
 
-	private static final long serialVersionUID = -45893431241726263L;
+    private static final long serialVersionUID = -45893431241726263L;
 
-	private long pinID;
-	
-	private long ownerID;
-	private String ownerName;
-	
-	private long planetID;
-	private String planetName;
-	
-	private long typeID;
-	private String typeName;
-	
-	private long schematicID;
-	
-	private long lastLaunchTime;
-	private long cycleTime;
-	private long installTime;
-	private long expiryTime;
-	
-	private float quantityPerCycle;
-	//private float headRadius;
+    private long pinID;
 
-	public long getPinID() {
-		return pinID;
-	}
+    private long ownerID;
+    private String ownerName;
 
-	public void setPinID(long pinID) {
-		this.pinID = pinID;
-	}
+    private long planetID;
+    private String planetName;
 
-	public long getOwnerID() {
-		return ownerID;
-	}
+    private long typeID;
+    private String typeName;
 
-	public void setOwnerID(long ownerID) {
-		this.ownerID = ownerID;
-	}
+    private long schematicID;
 
-	public String getOwnerName() {
-		return ownerName;
-	}
+    private long lastLaunchTime;
+    private long cycleTime;
+    private long installTime;
+    private long expiryTime;
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
+    private float quantityPerCycle;
 
-	public long getPlanetID() {
-		return planetID;
-	}
+    //private float headRadius;
 
-	public void setPlanetID(long planetID) {
-		this.planetID = planetID;
-	}
+    public long getPinID() {
+        return pinID;
+    }
 
-	public String getPlanetName() {
-		return planetName;
-	}
+    public void setPinID(long pinID) {
+        this.pinID = pinID;
+    }
 
-	public void setPlanetName(String planetName) {
-		this.planetName = planetName;
-	}
+    public long getOwnerID() {
+        return ownerID;
+    }
 
-	public long getTypeID() {
-		return typeID;
-	}
+    public void setOwnerID(long ownerID) {
+        this.ownerID = ownerID;
+    }
 
-	public void setTypeID(long typeID) {
-		this.typeID = typeID;
-	}
+    public String getOwnerName() {
+        return ownerName;
+    }
 
-	public String getTypeName() {
-		return typeName;
-	}
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
+    public long getPlanetID() {
+        return planetID;
+    }
 
-	public long getSchematicID() {
-		return schematicID;
-	}
+    public void setPlanetID(long planetID) {
+        this.planetID = planetID;
+    }
 
-	public void setSchematicID(long schematicID) {
-		this.schematicID = schematicID;
-	}
+    public String getPlanetName() {
+        return planetName;
+    }
 
-	public long getLastLaunchTime() {
-		return lastLaunchTime;
-	}
+    public void setPlanetName(String planetName) {
+        this.planetName = planetName;
+    }
 
-	public void setLastLaunchTime(long lastLaunchTime) {
-		this.lastLaunchTime = lastLaunchTime;
-	}
-	
-	public void setLastLaunchTime(String lastLaunchTime) {
-		this.lastLaunchTime = EveAPI.parseDateTime(lastLaunchTime);
-	}
-	
-	public long getCycleTime() {
-		return cycleTime;
-	}
+    public long getTypeID() {
+        return typeID;
+    }
 
-	public void setCycleTime(long cycleTime) {
-		this.cycleTime = cycleTime;
-	}
+    public void setTypeID(long typeID) {
+        this.typeID = typeID;
+    }
 
-	public long getInstallTime() {
-		return installTime;
-	}
+    public String getTypeName() {
+        return typeName;
+    }
 
-	public void setInstallTime(long installTime) {
-		this.installTime = installTime;
-	}
-	
-	public void setInstallTime(String installTime) {
-		this.installTime = EveAPI.parseDateTime(installTime);
-	}
-	
-	public long getExpiryTime() {
-		return expiryTime;
-	}
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
-	public void setExpiryTime(long expiryTime) {
-		this.expiryTime = expiryTime;
-	}
+    public long getSchematicID() {
+        return schematicID;
+    }
 
-	public void setExpiryTime(String expiryTime) {
-		this.expiryTime = EveAPI.parseDateTime(expiryTime);
-	}
+    public void setSchematicID(long schematicID) {
+        this.schematicID = schematicID;
+    }
 
-	public float getQuantityPerCycle() {
-		return quantityPerCycle;
-	}
+    public long getLastLaunchTime() {
+        return lastLaunchTime;
+    }
 
-	public void setQuantityPerCycle(float quantityPerCycle) {
-		this.quantityPerCycle = quantityPerCycle;
-	}
-	
+    public void setLastLaunchTime(long lastLaunchTime) {
+        this.lastLaunchTime = lastLaunchTime;
+    }
+
+    public void setLastLaunchTime(String lastLaunchTime) {
+        this.lastLaunchTime = EveAPI.parseDateTime(lastLaunchTime);
+    }
+
+    public long getCycleTime() {
+        return cycleTime;
+    }
+
+    public void setCycleTime(long cycleTime) {
+        this.cycleTime = cycleTime;
+    }
+
+    public long getInstallTime() {
+        return installTime;
+    }
+
+    public void setInstallTime(long installTime) {
+        this.installTime = installTime;
+    }
+
+    public void setInstallTime(String installTime) {
+        this.installTime = EveAPI.parseDateTime(installTime);
+    }
+
+    public long getExpiryTime() {
+        return expiryTime;
+    }
+
+    public void setExpiryTime(long expiryTime) {
+        this.expiryTime = expiryTime;
+    }
+
+    public void setExpiryTime(String expiryTime) {
+        this.expiryTime = EveAPI.parseDateTime(expiryTime);
+    }
+
+    public float getQuantityPerCycle() {
+        return quantityPerCycle;
+    }
+
+    public void setQuantityPerCycle(float quantityPerCycle) {
+        this.quantityPerCycle = quantityPerCycle;
+    }
+
 }

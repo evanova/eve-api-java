@@ -21,7 +21,6 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
 import java.util.Locale;
 
 import com.tlabs.eve.EveRequest;
@@ -30,8 +29,8 @@ public class EveRSSRequest extends EveRequest<EveRSSResponse> {
     protected EveRSSRequest(final String page, final Locale locale) {
         super(EveRSSResponse.class, "/" + locale.getLanguage() + "-" + locale.getCountry() + page);
     }
-    
+
     protected EveRSSRequest(final String page) {
-		super(EveRSSResponse.class, "/en-US" + page);
-	}
+        super(EveRSSResponse.class, "/en-US" + page);
+    }
 }

@@ -21,21 +21,20 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.Serializable;
 
-public class Standing extends Object implements Serializable {
+public class Standing implements Serializable {
 
     private static final long serialVersionUID = -9069702849389351438L;
 
     private String fromName;
     private long fromID;
-    
+
     private float standing;
 
     private long locationID;//Not in XML
     private String locationName;//Not in XML
-    
+
     public final String getFromName() {
         return fromName;
     }
@@ -75,6 +74,5 @@ public class Standing extends Object implements Serializable {
     public final void setLocationName(String locationName) {
         this.locationName = locationName;
     }
-    
-    
+
 }

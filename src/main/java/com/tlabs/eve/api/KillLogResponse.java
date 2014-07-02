@@ -24,18 +24,16 @@ import java.util.List;
  * #L%
  */
 
-
-
 public final class KillLogResponse extends EveAPIResponse {
-    
+
     private static final long serialVersionUID = -5581824066223953632L;
-    
+
     private List<KillMail> killMails = new LinkedList<KillMail>();
-    
+
     public List<KillMail> getKillMails() {
         return this.killMails;
     }
-       
+
     public void addKill(final KillMail k) {
         this.killMails.add(k);
     }

@@ -30,11 +30,11 @@ import com.tlabs.eve.EveResponse;
 
 public final class CCP {
 
-	private CCP() {
-	}
+    private CCP() {
+    }
 
-	public static <T extends EveResponse> T parse(EveRequest<T> request, InputStream in) throws IOException {
-		final EveParser<T> p = CCPHelper.getParser(request);
-		return p.parse(in);
-	}
+    public static <T extends EveResponse> T parse(EveRequest<T> request, InputStream in) throws IOException {
+        final EveParser<T> p = CCPHelper.getParser(request);
+        return p.parse(in);
+    }
 }

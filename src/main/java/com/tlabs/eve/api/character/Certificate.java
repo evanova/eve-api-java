@@ -21,21 +21,21 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Certificate extends Object implements Serializable {
+public class Certificate implements Serializable {
 
     public enum Level {
         BASIC(0), STANDARD(1), IMPROVED(2), ADVANCED(3), ELITE(4);
-        
+
         private final int level;
+
         private Level(final int level) {
             this.level = level;
         }
-        
+
         public static Level min(final Level a, final Level b) {
             if ((null == a) || (null == b)) {
                 return null;
@@ -53,18 +53,18 @@ public class Certificate extends Object implements Serializable {
             return (a.level > b.level) ? a : b;
         }
     }
-    
+
     private static final long serialVersionUID = -2288742167364516064L;
 
     private long certificateID;
     private long groupID;
     private String name;
     private String description;
-    
+
     private List<Long> recommendedForTypes;
     //Map<Skill ID, Map<Certificate.Type, level>>
     private Map<Long, Map<Certificate.Level, Integer>> skillTypeLevels;
-    
+
     public final long getCertificateID() {
         return certificateID;
     }
@@ -112,5 +112,5 @@ public class Certificate extends Object implements Serializable {
     public final void setRequiredSkills(Map<Long, Map<Certificate.Level, Integer>> skillTypeLevels) {
         this.skillTypeLevels = skillTypeLevels;
     }
-   
+
 }

@@ -23,7 +23,6 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import com.tlabs.eve.api.ContactListParser;
 
 public class CorporationContactListParser extends ContactListParser {

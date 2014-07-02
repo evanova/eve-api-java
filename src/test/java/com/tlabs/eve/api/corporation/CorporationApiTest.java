@@ -21,22 +21,16 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-
 import org.junit.Before;
 
 import com.tlabs.eve.api.EveApiTest;
 
 public abstract class CorporationApiTest extends EveApiTest {
 
-	@Before
-	public void onCorporationSetup() {
-		setKeyID(corporationKey.keyId);
-		setKeyValue(corporationKey.keyValue);
-	}
-
-
-	
-
+    @Before
+    public void onCorporationSetup() {
+        setKeyID(corporationKey.keyId);
+        setKeyValue(corporationKey.keyValue);
+    }
 
 }
-

@@ -21,27 +21,26 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
 import com.tlabs.eve.parser.BaseRule;
 
-public class ErrorListParser extends EveAPIParser<ErrorListResponse>{
-	private static final class AddErrorRule extends BaseRule {
-		@Override
-		public void doBegin(String name, Attributes attributes) {
-			ErrorListResponse r = (ErrorListResponse)this.digester.peek();
-			r.addError(Integer.parseInt(attributes.getValue("errorCode")), attributes.getValue("errorText"));
-		}		
-	}
-	
-	public ErrorListParser() {
-		super(ErrorListResponse.class);
-	}
+public class ErrorListParser extends EveAPIParser<ErrorListResponse> {
+    private static final class AddErrorRule extends BaseRule {
+        @Override
+        public void doBegin(String name, Attributes attributes) {
+            ErrorListResponse r = (ErrorListResponse) this.digester.peek();
+            r.addError(Integer.parseInt(attributes.getValue("errorCode")), attributes.getValue("errorText"));
+        }
+    }
 
-	@Override
-	protected void onInit(Digester digester) {
-		digester.addRule("eveapi/result/rowset/row", new AddErrorRule());
-	}	
+    public ErrorListParser() {
+        super(ErrorListResponse.class);
+    }
+
+    @Override
+    protected void onInit(Digester digester) {
+        digester.addRule("eveapi/result/rowset/row", new AddErrorRule());
+    }
 }

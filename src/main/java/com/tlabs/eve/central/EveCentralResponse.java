@@ -21,7 +21,6 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-
 import com.tlabs.eve.EveResponse;
 
 public abstract class EveCentralResponse extends EveResponse {

@@ -23,7 +23,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,11 +34,11 @@ public class Contact implements Serializable {
     public static final class Group implements Serializable {
 
         private static final long serialVersionUID = -2407846777057225386L;
-        
+
         private String groupName;
 
         private final List<Contact> contacts = new LinkedList<Contact>();
-                
+
         public List<Contact> getContacts() {
             return contacts;
         }
@@ -47,7 +46,7 @@ public class Contact implements Serializable {
         public void addContact(final Contact contact) {
             this.contacts.add(contact);
         }
-       
+
         public String getName() {
             return groupName;
         }

@@ -21,11 +21,9 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
-
 public final class ServerStatusRequest extends EveAPIRequest<ServerStatusResponse> {
- 
-	public ServerStatusRequest() {
-		super(ServerStatusResponse.class, "/server/ServerStatus.xml.aspx", 0);		
-	}
+
+    public ServerStatusRequest() {
+        super(ServerStatusResponse.class, "/server/ServerStatus.xml.aspx", 0);
+    }
 }

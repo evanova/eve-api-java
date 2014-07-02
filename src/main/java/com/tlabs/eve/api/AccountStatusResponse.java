@@ -21,25 +21,22 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
-
 public class AccountStatusResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = -5174573369896642855L;
 
     private AccountStatus accountStatus;
-	
-	public AccountStatusResponse() {
-		this.accountStatus = new AccountStatus();
-	}
 
-	public AccountStatus getAccountStatus() {
-		return accountStatus;
-	}
+    public AccountStatusResponse() {
+        this.accountStatus = new AccountStatus();
+    }
 
-	public void setAccountStatus(AccountStatus accountStatus) {
-		this.accountStatus = accountStatus;
-	}
-	
-	
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
 }

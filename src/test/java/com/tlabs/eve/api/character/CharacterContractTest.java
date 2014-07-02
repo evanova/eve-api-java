@@ -23,7 +23,6 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import org.junit.Test;
 
 import com.tlabs.eve.api.AccessInfoRequest;
@@ -33,27 +32,22 @@ import com.tlabs.eve.api.ContractListResponse;
 
 public final class CharacterContractTest extends CharacterApiTest {
 
-    @Test(timeout=10000)
+    @Test(timeout = 10000)
     public void testValidContract() throws Exception {
-        ContractListResponse contracts = 
-            apiCall(new CharacterContractsRequest(characterKey.id));
+        ContractListResponse contracts = apiCall(new CharacterContractsRequest(characterKey.id));
     }
-    
-    
-    @Test(timeout=10000)
+
+    @Test(timeout = 10000)
     public void testAllCharacterContracts() throws Exception {
-        AccessInfoRequest r = new AccessInfoRequest(
-                accountKey.keyId, 
-                accountKey.keyValue);
-        
+        AccessInfoRequest r = new AccessInfoRequest(accountKey.keyId, accountKey.keyValue);
+
         AccessInfoResponse q = apiCall(r);
-        for (Capsuleer c: q.getCharacters()) {
-            ContractListResponse contracts = 
-                apiCall(new CharacterContractsRequest(String.valueOf(c.getCharacterID()))); 
-        }               
+        for (Capsuleer c : q.getCharacters()) {
+            ContractListResponse contracts = apiCall(new CharacterContractsRequest(String.valueOf(c.getCharacterID())));
+        }
     }
-    
-    @Test(timeout=10000)
+
+    @Test(timeout = 10000)
     public void testContractItems() throws Exception {
         final CharacterContractItemsRequest r = new CharacterContractItemsRequest(characterKey.keyId, 1);
         ContractItemsResponse q = apiCall(r);

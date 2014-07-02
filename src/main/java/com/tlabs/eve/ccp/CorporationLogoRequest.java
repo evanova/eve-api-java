@@ -21,44 +21,42 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-
-
 public final class CorporationLogoRequest extends ImageRequest<CorporationLogoResponse> {
-	public enum Size {
-		S64("64"), S256("256");
-		
-		private String value;
-		
-		private Size(String value) {
-			this.value = value;
-		}
-		
-		public String getSize() {
-			return this.value;
-		}
-	}
-	
-	private static final String URL = "/Corporation/%1$s_%2$s.png";
-	
-	private CorporationLogoRequest.Size size;
-	private String corporationID;
-	
-	public CorporationLogoRequest(String corpID) {
-		this(corpID, Size.S256);
-	}
-	
-	public CorporationLogoRequest(String corpID, CorporationLogoRequest.Size size) {
-		super(CorporationLogoResponse.class, String.format(URL, corpID, size.getSize()));
-		this.corporationID = corpID;
-		this.size = size;
-	}
+    public enum Size {
+        S64("64"), S256("256");
 
-	public CorporationLogoRequest.Size getSize() {
-		return size;
-	}
+        private String value;
 
-	public final String getCorporationID() {
-		return corporationID;
-	}
-	
+        private Size(String value) {
+            this.value = value;
+        }
+
+        public String getSize() {
+            return this.value;
+        }
+    }
+
+    private static final String URL = "/Corporation/%1$s_%2$s.png";
+
+    private CorporationLogoRequest.Size size;
+    private String corporationID;
+
+    public CorporationLogoRequest(String corpID) {
+        this(corpID, Size.S256);
+    }
+
+    public CorporationLogoRequest(String corpID, CorporationLogoRequest.Size size) {
+        super(CorporationLogoResponse.class, String.format(URL, corpID, size.getSize()));
+        this.corporationID = corpID;
+        this.size = size;
+    }
+
+    public CorporationLogoRequest.Size getSize() {
+        return size;
+    }
+
+    public final String getCorporationID() {
+        return corporationID;
+    }
+
 }

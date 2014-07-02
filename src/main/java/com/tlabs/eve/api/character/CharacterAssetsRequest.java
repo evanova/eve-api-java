@@ -21,15 +21,14 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-
 import com.tlabs.eve.api.AssetListResponse;
 
 public final class CharacterAssetsRequest extends CharacterRequest<AssetListResponse> {
-	
-	public static final int MASK = 2; 
-	
-	public CharacterAssetsRequest(String characterID) {
-		super(AssetListResponse.class, "/char/AssetList.xml.aspx", MASK, characterID);		
-	}
+
+    public static final int MASK = 2;
+
+    public CharacterAssetsRequest(String characterID) {
+        super(AssetListResponse.class, "/char/AssetList.xml.aspx", MASK, characterID);
+    }
 
 }

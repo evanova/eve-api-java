@@ -21,10 +21,8 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
-
 
 public class IndustryJobsResponse extends EveAPIResponse {
 
@@ -32,16 +30,16 @@ public class IndustryJobsResponse extends EveAPIResponse {
 
     private List<IndustryJob> jobs;
 
-	public IndustryJobsResponse() {
-		super();		
-		this.jobs = new LinkedList<IndustryJob>();
-	}
+    public IndustryJobsResponse() {
+        super();
+        this.jobs = new LinkedList<IndustryJob>();
+    }
 
-	public List<IndustryJob> getJobs() {
-		return this.jobs;
-	}
-	
-	public void addJob(IndustryJob j) {
-		this.jobs.add(j);
-	}
+    public List<IndustryJob> getJobs() {
+        return this.jobs;
+    }
+
+    public void addJob(IndustryJob j) {
+        this.jobs.add(j);
+    }
 }

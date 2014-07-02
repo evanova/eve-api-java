@@ -21,7 +21,6 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,15 +28,14 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 public class MailingListsResponse extends EveAPIResponse {
 
-	private List<MailingList> mailingLists = new LinkedList<MailingList>();
+    private List<MailingList> mailingLists = new LinkedList<MailingList>();
 
-	public final List<MailingList> getMailingLists() {
-		return mailingLists;
-	}
+    public final List<MailingList> getMailingLists() {
+        return mailingLists;
+    }
 
-	public final void addMailingList(MailingList m) {
-		this.mailingLists.add(m);
-	}
-	
-	
+    public final void addMailingList(MailingList m) {
+        this.mailingLists.add(m);
+    }
+
 }
