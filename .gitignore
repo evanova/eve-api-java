@@ -27,7 +27,7 @@ Thumbs.db
 .classpath
 .project
 .settings
-src/main/test/resources/apikeys.properties
+/src/main/test/resources/apikeys.properties
 /target
 /bin
 /build

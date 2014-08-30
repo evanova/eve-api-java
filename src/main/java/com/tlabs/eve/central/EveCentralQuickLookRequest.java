@@ -25,7 +25,15 @@ package com.tlabs.eve.central;
 public class EveCentralQuickLookRequest extends EveCentralRequest<EveCentralQuickLookResponse> {
 
     public EveCentralQuickLookRequest(final long typeID) {
+        this(typeID, -1);
+    }
+
+    public EveCentralQuickLookRequest(final long typeID, long regionID) {
         super(EveCentralQuickLookResponse.class, "/api/quicklook");
         putParam("typeid", Long.toString(typeID));
+
+        if (regionID != -1) {
+            putParam("regionlimit", Long.toString(regionID));
+        }
     }
 }
