@@ -33,7 +33,7 @@ public final class ItemEffect implements Serializable {
     public static final int USES_HIGH_SLOT = 12;
     public static final int USES_RIG_SLOT = 2663;
 
-    //public static final int USES_SUBSYSTEM = 2663;
+    public static final int USES_SUBSYSTEM = 3772;
 
     private static final long serialVersionUID = -6457985690836261476L;
 

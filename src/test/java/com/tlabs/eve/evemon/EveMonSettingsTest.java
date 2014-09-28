@@ -1,13 +1,13 @@
 package com.tlabs.eve.evemon;
 
-import java.io.InputStream;
+import com.tlabs.eve.api.evemon.EveMonSettingsParser;
+import com.tlabs.eve.api.evemon.EveMonSettingsResponse;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.tlabs.eve.api.evemon.EveMonSettingsParser;
-import com.tlabs.eve.api.evemon.EveMonSettingsResponse;
+import java.io.InputStream;
 
 public class EveMonSettingsTest {
 

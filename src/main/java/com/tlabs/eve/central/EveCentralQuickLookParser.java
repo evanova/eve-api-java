@@ -21,17 +21,17 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetElementPropertyRule;
 
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.parser.BaseRule;
-import com.tlabs.eve.parser.SetAttributePropertyRule;
-import com.tlabs.eve.parser.SetElementPropertyRule;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public final class EveCentralQuickLookParser extends EveCentralParser<EveCentralQuickLookResponse> {
 

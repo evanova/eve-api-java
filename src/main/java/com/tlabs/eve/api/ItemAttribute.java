@@ -104,6 +104,7 @@ public final class ItemAttribute implements Serializable {
     public static final int FIT_LOW_SLOTS = 12;
     public static final int FIT_MEDIUM_SLOTS = 13;
     public static final int FIT_HIGH_SLOTS = 14;
+    public static final int FIT_SUBSYSTEM_SLOTS = 3772;
     public static final int FIT_RIGS_SLOTS = 1137;
 
     public static final int FIT_LAUNCHERS = 101;

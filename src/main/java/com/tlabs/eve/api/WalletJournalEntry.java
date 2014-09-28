@@ -21,9 +21,9 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.StringUtils;
+
+import java.io.Serializable;
 
 public class WalletJournalEntry implements Serializable {
 

@@ -21,9 +21,9 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import java.io.Serializable;
-
 import com.tlabs.eve.api.EveAPI;
+
+import java.io.Serializable;
 
 public class ResearchJob implements Serializable {
 

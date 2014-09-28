@@ -21,9 +21,9 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.util.List;
-
 import com.tlabs.eve.api.character.Capsuleer;
+
+import java.util.List;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfoResponse extends EveAPIResponse {

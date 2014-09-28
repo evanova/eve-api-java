@@ -23,12 +23,12 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.Validate;
 import org.xml.sax.Attributes;
-
-import com.tlabs.eve.parser.BaseRule;
-import com.tlabs.eve.parser.SetAttributePropertyRule;
 
 public class ContactListParser extends EveAPIParser<ContactListResponse> {
     private static final class AddContactRule extends SetAttributePropertyRule {

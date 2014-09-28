@@ -21,9 +21,9 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-import org.junit.Before;
-
 import com.tlabs.eve.api.EveApiTest;
+
+import org.junit.Before;
 
 public abstract class CorporationApiTest extends EveApiTest {
 

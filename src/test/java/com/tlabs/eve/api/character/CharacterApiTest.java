@@ -21,9 +21,9 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import org.junit.Before;
-
 import com.tlabs.eve.api.EveApiTest;
+
+import org.junit.Before;
 
 public abstract class CharacterApiTest extends EveApiTest {
 

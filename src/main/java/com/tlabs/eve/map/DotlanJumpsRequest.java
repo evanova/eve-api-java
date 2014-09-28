@@ -1,11 +1,11 @@
 package com.tlabs.eve.map;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.tlabs.eve.EveRequest;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.tlabs.eve.EveRequest;
+import java.util.LinkedList;
+import java.util.List;
 
 public final class DotlanJumpsRequest extends EveRequest<DotlanRouteResponse> {
 

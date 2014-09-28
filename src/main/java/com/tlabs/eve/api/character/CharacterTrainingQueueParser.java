@@ -21,13 +21,13 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import java.util.HashMap;
-
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
+
+import java.util.HashMap;
 
 public class CharacterTrainingQueueParser extends EveAPIParser<CharacterTrainingQueueResponse> {
 

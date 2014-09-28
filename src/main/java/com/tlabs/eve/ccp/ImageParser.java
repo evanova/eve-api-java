@@ -21,14 +21,14 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Calendar;
+import com.tlabs.eve.EveParser;
+import com.tlabs.eve.api.EveAPI;
 
 import org.apache.commons.io.IOUtils;
 
-import com.tlabs.eve.EveParser;
-import com.tlabs.eve.api.EveAPI;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Calendar;
 
 public abstract class ImageParser<T extends ImageResponse> implements EveParser<T> {
 

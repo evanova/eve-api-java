@@ -21,12 +21,12 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveRequest;
 import com.tlabs.eve.EveResponse;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public final class CCP {
 

@@ -21,18 +21,18 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.parser.BaseRule;
-import com.tlabs.eve.parser.SetAttributePropertyRule;
-import com.tlabs.eve.parser.SetNextRule;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 //@see http://wiki.eve-id.net/APIv2_Char_KillLog_XML
 public class KillLogParser extends EveAPIParser<KillLogResponse> {

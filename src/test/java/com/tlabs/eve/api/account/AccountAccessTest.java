@@ -21,18 +21,18 @@ package com.tlabs.eve.api.account;
  * #L%
  */
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
-import org.junit.Test;
-
 import com.tlabs.eve.api.AccessInfoRequest;
 import com.tlabs.eve.api.AccessInfoResponse;
 import com.tlabs.eve.api.AccountStatusRequest;
 import com.tlabs.eve.api.AccountStatusResponse;
 import com.tlabs.eve.api.EveApiTest;
 import com.tlabs.eve.api.character.Capsuleer;
+
+import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 public class AccountAccessTest extends EveApiTest {
 

@@ -21,10 +21,10 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-import static org.junit.Assert.assertTrue;
-
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class MarketQuickLookTest extends EveCentralTest {
 

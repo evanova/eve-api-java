@@ -23,12 +23,6 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import java.util.List;
-
-import junit.framework.Assert;
-
-import org.junit.Test;
-
 import com.tlabs.eve.api.mail.MailBodiesRequest;
 import com.tlabs.eve.api.mail.MailMessage;
 import com.tlabs.eve.api.mail.MailMessagesRequest;
@@ -37,6 +31,12 @@ import com.tlabs.eve.api.mail.MailingListsRequest;
 import com.tlabs.eve.api.mail.NotificationMessage;
 import com.tlabs.eve.api.mail.NotificationTextRequest;
 import com.tlabs.eve.api.mail.NotificationsRequest;
+
+import junit.framework.Assert;
+
+import org.junit.Test;
+
+import java.util.List;
 
 public final class CharacterMailTest extends CharacterApiTest {
 

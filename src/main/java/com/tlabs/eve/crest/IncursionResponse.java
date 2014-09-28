@@ -1,8 +1,8 @@
 package com.tlabs.eve.crest;
 
-import java.util.List;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import java.util.List;
 
 public class IncursionResponse extends CRESTResponse {
 

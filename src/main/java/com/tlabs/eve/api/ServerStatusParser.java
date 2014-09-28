@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.util.TimeZone;
+import com.tlabs.eve.parser.SetElementPropertyRule;
 
 import org.apache.commons.digester.Digester;
 
-import com.tlabs.eve.parser.SetElementPropertyRule;
+import java.util.TimeZone;
 
 public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse> {
 

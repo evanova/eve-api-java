@@ -21,14 +21,14 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
+import com.tlabs.eve.api.SkillTree.SkillGroup;
 
 import org.junit.Test;
 
-import com.tlabs.eve.api.SkillTree.SkillGroup;
+import java.util.List;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class SkillTreeTest extends EveApiTest {
 

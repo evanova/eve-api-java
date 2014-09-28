@@ -23,15 +23,15 @@ package com.tlabs.eve.crest;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.tlabs.eve.EveParser;
 
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.tlabs.eve.EveParser;
+import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class CRESTParser<T extends CRESTResponse> implements EveParser<T> {
     private static final ObjectMapper mapper;

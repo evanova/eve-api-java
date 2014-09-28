@@ -23,9 +23,9 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import org.junit.Test;
-
 import com.tlabs.eve.api.IndustryJobsResponse;
+
+import org.junit.Test;
 
 public final class CharacterIndustryTest extends CharacterApiTest {
 

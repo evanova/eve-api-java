@@ -21,11 +21,11 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import java.io.Serializable;
-import java.util.Map;
-
 import com.tlabs.eve.api.EveAPI;
 import com.tlabs.eve.api.Skill;
+
+import java.io.Serializable;
+import java.util.Map;
 
 public class SkillInTraining extends Skill implements Serializable {
 

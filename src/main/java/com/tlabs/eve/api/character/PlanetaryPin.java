@@ -1,8 +1,8 @@
 package com.tlabs.eve.api.character;
 
-import java.io.Serializable;
-
 import com.tlabs.eve.api.EveAPI;
+
+import java.io.Serializable;
 
 public class PlanetaryPin implements Serializable {
 

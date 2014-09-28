@@ -21,15 +21,15 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
+import com.tlabs.eve.api.EveAPI;
+import com.tlabs.eve.api.corporation.CorporationRole;
+import com.tlabs.eve.api.corporation.CorporationTitle;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import com.tlabs.eve.api.EveAPI;
-import com.tlabs.eve.api.corporation.CorporationRole;
-import com.tlabs.eve.api.corporation.CorporationTitle;
 
 public class Capsuleer implements Serializable {
 

@@ -21,10 +21,10 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
+import com.tlabs.eve.api.EveAPIResponse;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.tlabs.eve.api.EveAPIResponse;
 
 public final class MemberTrackingResponse extends EveAPIResponse {
 

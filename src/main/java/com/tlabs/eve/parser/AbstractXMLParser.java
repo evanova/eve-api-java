@@ -21,18 +21,18 @@ package com.tlabs.eve.parser;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.xml.parsers.ParserConfigurationException;
+import com.tlabs.eve.EveParser;
+import com.tlabs.eve.EveResponse;
 
 import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
-import com.tlabs.eve.EveParser;
-import com.tlabs.eve.EveResponse;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 public abstract class AbstractXMLParser<T extends EveResponse> implements EveParser<T> {
 

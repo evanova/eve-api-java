@@ -21,11 +21,11 @@ package com.tlabs.eve.central;
  * #L%
  */
 
+import com.tlabs.eve.parser.AbstractXMLParser;
+
 import org.apache.commons.digester.Digester;
 import org.apache.commons.digester.Rule;
 import org.xml.sax.Attributes;
-
-import com.tlabs.eve.parser.AbstractXMLParser;
 
 public abstract class EveCentralParser<T extends EveCentralResponse> extends AbstractXMLParser<T> {
 

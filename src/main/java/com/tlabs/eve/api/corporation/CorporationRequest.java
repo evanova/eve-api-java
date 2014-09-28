@@ -21,12 +21,12 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-
 import com.tlabs.eve.api.EveAPIRequest;
 import com.tlabs.eve.api.EveAPIRequest.Authenticated;
 import com.tlabs.eve.api.EveAPIResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 
 public abstract class CorporationRequest<T extends EveAPIResponse> extends EveAPIRequest<T> implements Authenticated {
 

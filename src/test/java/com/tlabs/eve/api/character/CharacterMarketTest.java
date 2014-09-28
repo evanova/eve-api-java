@@ -23,9 +23,9 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import org.junit.Test;
-
 import com.tlabs.eve.api.MarketOrderResponse;
+
+import org.junit.Test;
 
 public final class CharacterMarketTest extends CharacterApiTest {
 

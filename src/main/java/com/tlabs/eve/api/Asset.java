@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 
 public class Asset implements Serializable {
 

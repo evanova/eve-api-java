@@ -21,16 +21,16 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.tlabs.eve.HttpClientTest;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.tlabs.eve.HttpClientTest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class EveCentralTest extends HttpClientTest {
 

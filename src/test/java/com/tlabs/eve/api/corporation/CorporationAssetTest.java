@@ -23,9 +23,9 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-import org.junit.Test;
-
 import com.tlabs.eve.api.AssetListResponse;
+
+import org.junit.Test;
 
 public final class CorporationAssetTest extends CorporationApiTest {
 

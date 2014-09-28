@@ -21,10 +21,10 @@ package com.tlabs.eve.parser;
  * #L%
  */
 
+import org.xml.sax.Attributes;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.xml.sax.Attributes;
 
 //FIXME: only because Android 1.5 and commons-beanutil fail...
 public class SetAttributePropertyRule extends BaseRule {

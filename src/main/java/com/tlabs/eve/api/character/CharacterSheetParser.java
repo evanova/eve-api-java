@@ -21,10 +21,12 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.api.corporation.CorporationRole;
+import com.tlabs.eve.api.corporation.CorporationTitle;
+import com.tlabs.eve.parser.BaseRule;
+import com.tlabs.eve.parser.SetElementPropertyRule;
+import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
@@ -32,12 +34,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.api.EveAPIParser;
-import com.tlabs.eve.api.corporation.CorporationRole;
-import com.tlabs.eve.api.corporation.CorporationTitle;
-import com.tlabs.eve.parser.BaseRule;
-import com.tlabs.eve.parser.SetElementPropertyRule;
-import com.tlabs.eve.parser.SetNextRule;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public final class CharacterSheetParser extends EveAPIParser<CharacterSheetResponse> {
     private static final Log LOG = LogFactory.getLog("CREST");

@@ -21,10 +21,10 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
 
 public final class AccountStatusParser extends EveAPIParser<AccountStatusResponse> {
 

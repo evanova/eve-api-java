@@ -1,5 +1,12 @@
 package com.tlabs.eve.map;
 
+import com.tlabs.eve.EveParser;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -11,13 +18,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamSource;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import com.tlabs.eve.EveParser;
 
 //This parser scrapes Dotlan HTML and this is really bad.
 public class DotlanRouteParser implements EveParser<DotlanRouteResponse> {

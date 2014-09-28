@@ -23,9 +23,9 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.StringUtils;
+
+import java.io.Serializable;
 
 public class EveRSSEntry implements Serializable {
 

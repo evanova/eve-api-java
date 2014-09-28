@@ -21,13 +21,13 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-import org.xml.sax.Attributes;
-
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
+import org.xml.sax.Attributes;
 
 //@see http://wiki.eve-id.net/APIv2_Corp_CorporationSheet_XML
 public class CorporationSheetParser extends EveAPIParser<CorporationSheetResponse> {

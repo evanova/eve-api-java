@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import org.apache.commons.lang.Validate;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.lang.Validate;
 
 public class Skill implements Serializable {
 

@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-import org.xml.sax.Attributes;
-
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
+
+import org.apache.commons.digester.Digester;
+import org.xml.sax.Attributes;
 
 public class StandingsParser extends EveAPIParser<StandingsResponse> {
 

@@ -21,11 +21,11 @@ package com.tlabs.eve.parser;
  * #L%
  */
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class SetNextRule extends BaseRule {
     private static final Log LOG = LogFactory.getLog("CREST");

@@ -23,16 +23,16 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
-import org.junit.Test;
-
 import com.tlabs.eve.api.AccountBalance;
 import com.tlabs.eve.api.AccountBalanceResponse;
 import com.tlabs.eve.api.WalletJournalResponse;
 import com.tlabs.eve.api.WalletTransactionsResponse;
+
+import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 public final class CorporationWalletTest extends CorporationApiTest {
 

@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.api.character.Capsuleer;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
-import com.tlabs.eve.api.character.Capsuleer;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfo implements Serializable {

@@ -1,9 +1,9 @@
 package com.tlabs.eve.crest;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import org.codehaus.jackson.annotate.JsonProperty;
 
 public class MarketTransaction implements Serializable {
 

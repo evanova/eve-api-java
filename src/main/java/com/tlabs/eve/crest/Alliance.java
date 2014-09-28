@@ -1,8 +1,8 @@
 package com.tlabs.eve.crest;
 
-import java.io.Serializable;
-
 import org.codehaus.jackson.annotate.JsonProperty;
+
+import java.io.Serializable;
 
 public class Alliance implements Serializable {
 

@@ -21,10 +21,10 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.parser.BaseRule;
+
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
-
-import com.tlabs.eve.parser.BaseRule;
 
 public class ErrorListParser extends EveAPIParser<ErrorListResponse> {
     private static final class AddErrorRule extends BaseRule {

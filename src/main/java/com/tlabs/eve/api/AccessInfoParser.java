@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.api.character.Capsuleer;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfoParser extends EveAPIParser<AccessInfoResponse> {

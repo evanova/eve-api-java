@@ -1,10 +1,10 @@
 package com.tlabs.eve.api.evemon;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.tlabs.eve.EveResponse;
 import com.tlabs.eve.api.AccessInfo;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class EveMonSettingsResponse extends EveResponse {
 

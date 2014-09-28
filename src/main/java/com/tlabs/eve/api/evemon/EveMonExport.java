@@ -23,13 +23,13 @@ package com.tlabs.eve.api.evemon;
  * #L%
  */
 
+import com.tlabs.eve.api.character.SkillInTraining;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.List;
-
-import com.tlabs.eve.api.character.SkillInTraining;
 
 public final class EveMonExport {
     private static final String ENTRY = "\n\t<entry skillID=\"%d\" skill=\"%s\" level=\"%d\" priority=\"%d\" type=\"%s\"/>";

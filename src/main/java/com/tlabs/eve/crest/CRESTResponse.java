@@ -1,8 +1,8 @@
 package com.tlabs.eve.crest;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-
 import com.tlabs.eve.EveResponse;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 public class CRESTResponse extends EveResponse {
 

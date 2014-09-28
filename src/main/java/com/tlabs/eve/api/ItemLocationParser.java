@@ -21,10 +21,10 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
 
 /**@since Eve API V2*/
 //@see https://forums.eveonline.com/default.aspx?g=posts&t=58316&find=unread

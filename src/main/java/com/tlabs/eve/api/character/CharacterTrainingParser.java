@@ -21,11 +21,11 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
 
 public final class CharacterTrainingParser extends EveAPIParser<CharacterTrainingResponse> {
 

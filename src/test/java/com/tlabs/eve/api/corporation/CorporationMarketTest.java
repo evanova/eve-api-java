@@ -23,11 +23,11 @@ package com.tlabs.eve.api.corporation;
  * #L%
  */
 
-import static org.junit.Assert.assertEquals;
+import com.tlabs.eve.api.MarketOrderResponse;
 
 import org.junit.Test;
 
-import com.tlabs.eve.api.MarketOrderResponse;
+import static org.junit.Assert.assertEquals;
 
 public final class CorporationMarketTest extends CorporationApiTest {
 

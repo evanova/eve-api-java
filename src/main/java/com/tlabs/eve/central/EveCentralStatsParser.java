@@ -21,11 +21,11 @@ package com.tlabs.eve.central;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-import org.xml.sax.Attributes;
-
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
+
+import org.apache.commons.digester.Digester;
+import org.xml.sax.Attributes;
 
 public final class EveCentralStatsParser extends EveCentralParser<EveCentralStatsResponse> {
 

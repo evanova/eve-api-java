@@ -23,12 +23,12 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import org.junit.Test;
-
 import com.tlabs.eve.api.AccessInfoRequest;
 import com.tlabs.eve.api.AccessInfoResponse;
 import com.tlabs.eve.api.ContractItemsResponse;
 import com.tlabs.eve.api.ContractListResponse;
+
+import org.junit.Test;
 
 public final class CharacterContractTest extends CharacterApiTest {
 

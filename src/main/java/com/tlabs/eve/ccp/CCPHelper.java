@@ -23,13 +23,13 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveRequest;
 import com.tlabs.eve.EveResponse;
+
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
 
 final class CCPHelper {
 

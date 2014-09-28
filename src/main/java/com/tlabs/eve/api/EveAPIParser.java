@@ -21,16 +21,16 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.tlabs.eve.parser.AbstractXMLParser;
+import com.tlabs.eve.parser.BaseRule;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 
-import com.tlabs.eve.parser.AbstractXMLParser;
-import com.tlabs.eve.parser.BaseRule;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXMLParser<T> {
 

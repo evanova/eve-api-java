@@ -24,16 +24,16 @@ package com.tlabs.eve.parser;
  * #L%
  */
 
+import org.apache.commons.digester.Rule;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import org.apache.commons.digester.Rule;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 public class BaseRule extends Rule {
     protected static final Log LOG = LogFactory.getLog("CREST");

@@ -1,13 +1,13 @@
 package com.tlabs.eve.map;
 
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.alg.DijkstraShortestPath;
+import org.jgrapht.graph.SimpleDirectedGraph;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.jgrapht.EdgeFactory;
-import org.jgrapht.alg.DijkstraShortestPath;
-import org.jgrapht.graph.SimpleDirectedGraph;
 
 public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
     private static final long serialVersionUID = -2393159504475366045L;

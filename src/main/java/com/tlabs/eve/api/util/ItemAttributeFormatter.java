@@ -23,10 +23,10 @@ package com.tlabs.eve.api.util;
  * #L%
  */
 
+import com.tlabs.eve.api.ItemAttribute;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.tlabs.eve.api.ItemAttribute;
 
 public final class ItemAttributeFormatter {
 

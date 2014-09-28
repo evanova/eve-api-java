@@ -21,12 +21,12 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
-
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
+import org.apache.commons.lang.StringUtils;
 
 public class MailBodiesParser extends EveAPIParser<MailBodiesResponse> {
 

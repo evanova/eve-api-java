@@ -23,9 +23,6 @@ package com.tlabs.eve;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.tlabs.eve.api.EveAPI;
 import com.tlabs.eve.api.EveAPIRequest;
 import com.tlabs.eve.ccp.CCP;
@@ -33,6 +30,9 @@ import com.tlabs.eve.central.EveCentral;
 import com.tlabs.eve.central.EveCentralRequest;
 import com.tlabs.eve.crest.CREST;
 import com.tlabs.eve.crest.CRESTRequest;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public final class EveFacade {
 

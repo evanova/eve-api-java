@@ -23,10 +23,6 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
 import com.tlabs.eve.api.character.CharacterAssetsRequest;
@@ -96,6 +92,10 @@ import com.tlabs.eve.api.mail.NotificationTextParser;
 import com.tlabs.eve.api.mail.NotificationTextRequest;
 import com.tlabs.eve.api.mail.NotificationsParser;
 import com.tlabs.eve.api.mail.NotificationsRequest;
+
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
 
 final class EveAPIHelper {
 

@@ -21,11 +21,11 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.parser.BaseRule;
+
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
-
-import com.tlabs.eve.parser.BaseRule;
 
 public class NamesParser extends EveAPIParser<NamesResponse> {
 

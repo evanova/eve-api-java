@@ -21,6 +21,18 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.HttpClientTest;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,18 +45,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-
-import com.tlabs.eve.HttpClientTest;
 
 public abstract class EveApiTest extends HttpClientTest {
 

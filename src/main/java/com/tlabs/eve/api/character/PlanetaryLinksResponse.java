@@ -1,9 +1,9 @@
 package com.tlabs.eve.api.character;
 
+import com.tlabs.eve.api.EveAPIResponse;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import com.tlabs.eve.api.EveAPIResponse;
 
 public class PlanetaryLinksResponse extends EveAPIResponse {
 

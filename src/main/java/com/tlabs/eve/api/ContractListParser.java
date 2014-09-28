@@ -21,12 +21,12 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import java.util.TimeZone;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
 
 import org.apache.commons.digester.Digester;
 import org.xml.sax.Attributes;
 
-import com.tlabs.eve.parser.SetAttributePropertyRule;
+import java.util.TimeZone;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class ContractListParser extends EveAPIParser<ContractListResponse> {

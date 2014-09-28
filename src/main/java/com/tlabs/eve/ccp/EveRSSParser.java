@@ -21,12 +21,12 @@ package com.tlabs.eve.ccp;
  * #L%
  */
 
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
 
 public final class EveRSSParser extends AbstractXMLParser<EveRSSResponse> {
 

@@ -21,10 +21,10 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
+import com.tlabs.eve.api.EveAPIResponse;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import com.tlabs.eve.api.EveAPIResponse;
 
 public class MailBodiesResponse extends EveAPIResponse {
 

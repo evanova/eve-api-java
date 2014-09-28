@@ -23,11 +23,11 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
+import com.tlabs.eve.api.AssetListResponse;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
-
-import com.tlabs.eve.api.AssetListResponse;
 
 public final class CharacterAssetTest extends CharacterApiTest {
 

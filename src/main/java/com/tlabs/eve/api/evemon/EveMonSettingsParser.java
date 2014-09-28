@@ -21,15 +21,15 @@ package com.tlabs.eve.api.evemon;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.digester.Digester;
-
 import com.tlabs.eve.api.AccessInfo;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
+
+import org.apache.commons.digester.Digester;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettingsResponse> {
 

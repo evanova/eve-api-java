@@ -21,12 +21,12 @@ package com.tlabs.eve.crest;
  * #L%
  */
 
-import java.io.IOException;
-import java.util.Map;
+import com.tlabs.eve.HttpClientTest;
 
 import org.apache.commons.io.IOUtils;
 
-import com.tlabs.eve.HttpClientTest;
+import java.io.IOException;
+import java.util.Map;
 
 public abstract class EveCRESTTest extends HttpClientTest {
 

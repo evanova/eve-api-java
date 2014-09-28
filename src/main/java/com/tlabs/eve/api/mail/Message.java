@@ -21,11 +21,11 @@ package com.tlabs.eve.api.mail;
  * #L%
  */
 
-import java.io.Serializable;
+import com.tlabs.eve.api.EveAPI;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.tlabs.eve.api.EveAPI;
+import java.io.Serializable;
 
 public class Message implements Serializable {
 
