@@ -71,10 +71,18 @@ public final class ItemAttribute implements Serializable {
     public static final int CAPACITOR_NEED_MULTIPLIER = 216;
 
     public static final int CPU_NEED = 50;
+    public static final int CPU_LOAD = 49;
     public static final int CPU_CAPACITY = 48;
+    public static final int CPU_NEED_MULTIPLIER = 202;//Factor to adjust module cpu need by.
+    public static final int CPU_NEED_BONUS = 310;
+    public static final int CPU_OUTPUT_BONUS = 424;
 
     public static final int POWER_NEED = 30;
+    public static final int POWER_LOAD = 15;//Current load of power core
     public static final int POWER_CAPACITY = 11;
+    public static final int POWER_OUTPUT_BONUS = 121;
+    public static final int POWER_OUTPUT_MULTIPLIER = 145;//Multiplier to power core output.
+    public static final int POWER_OUTPUT_ADD = 1378;
 
     public static final int TARGETING_RANGE = 76;
     public static final int TARGETING_TARGETS = 192;
@@ -112,6 +120,11 @@ public final class ItemAttribute implements Serializable {
     public static final int FIT_DRONES = 106;
     public static final int FIT_UPGRADES = 1154;//rigs/hardware hardpoints
 
+    /*10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 974
+10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 975
+10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 977
+10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 976
+10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 1281*/
     /*    attributeID attributeName          description                                                                           iconID defaultValue published displayName                 unitID stackable highIsGood categoryID 
         ----------- ---------------------- ------------------------------------------------------------------------------------- ------ ------------ --------- --------------------------- ------ --------- ---------- ---------- 
                  12 lowSlots               The number of low power slots on the ship.                                               295          0.0 true      Low Slots                      122 true      true                1

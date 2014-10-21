@@ -114,36 +114,31 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         @Override
         public void doEnd(String name) {
-            RowSet rs = (RowSet) getDigester().pop();
+            final RowSet rs = (RowSet) getDigester().pop();
+            final String rowName = rs.getRowName().trim();
             Capsuleer character = (Capsuleer) getDigester().peek();
 
-            if ("skills".equalsIgnoreCase(rs.getRowName().trim())) {
+            if ("skills".equalsIgnoreCase(rowName)) {
                 addSkills(character, rs.getRows());
             }
-            else
-                if ("corporationRoles".equalsIgnoreCase(rs.getRowName().trim())) {
+            else if ("corporationRoles".equalsIgnoreCase(rowName)) {
                     addRoles(character, rs.getRows(), CorporationRole.AT_CORP);
-                }
-                else
-                    if ("corporationRolesAtHQ".equalsIgnoreCase(rs.getRowName().trim())) {
-                        addRoles(character, rs.getRows(), CorporationRole.AT_HQ);
-                    }
-                    else
-                        if ("corporationRolesAtBase".equalsIgnoreCase(rs.getRowName().trim())) {
-                            addRoles(character, rs.getRows(), CorporationRole.AT_BASE);
-                        }
-                        else
-                            if ("corporationRolesAtOther".equalsIgnoreCase(rs.getRowName().trim())) {
-                                addRoles(character, rs.getRows(), CorporationRole.AT_OTHER);
-                            }
-                            else
-                                if ("corporationTitles".equalsIgnoreCase(rs.getRowName().trim())) {
-                                    addTitles(character, rs.getRows());
-                                }
-                                else
-                                    if ("certificates".equalsIgnoreCase(rs.getRowName().trim())) {
-                                        addCertificates(character, rs.getRows());
-                                    }
+            }
+            else if ("corporationRolesAtHQ".equalsIgnoreCase(rowName)) {
+                addRoles(character, rs.getRows(), CorporationRole.AT_HQ);
+            }
+            else if ("corporationRolesAtBase".equalsIgnoreCase(rowName)) {
+                addRoles(character, rs.getRows(), CorporationRole.AT_BASE);
+            }
+            else if ("corporationRolesAtOther".equalsIgnoreCase(rowName)) {
+                addRoles(character, rs.getRows(), CorporationRole.AT_OTHER);
+            }
+            else if ("corporationTitles".equalsIgnoreCase(rowName)) {
+                addTitles(character, rs.getRows());
+            }
+            else if ("certificates".equalsIgnoreCase(rowName)) {
+                addCertificates(character, rs.getRows());
+            }
         }
 
         private void addSkills(Capsuleer c, List<Map<String, String>> attrs) {
