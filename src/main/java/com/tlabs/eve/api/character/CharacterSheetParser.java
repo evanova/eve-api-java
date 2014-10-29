@@ -139,9 +139,18 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
             else if ("certificates".equalsIgnoreCase(rowName)) {
                 addCertificates(character, rs.getRows());
             }
+            else if ("jumpClones".equalsIgnoreCase(rowName)) {
+                addJumpClones(character, rs.getRows());
+            }
+            else if ("implants".equalsIgnoreCase(rowName)) {
+                addImplants(character, rs.getRows());
+            }
+            else if ("jumpCloneImplants".equalsIgnoreCase(rowName)) {
+                addJumpCloneImplants(character, rs.getRows());
+            }
         }
 
-        private void addSkills(Capsuleer c, List<Map<String, String>> attrs) {
+        private static void addSkills(Capsuleer c, List<Map<String, String>> attrs) {
             for (Map<String, String> attr : attrs) {
                 CharacterSkill skill = new CharacterSkill();
                 try {
@@ -160,7 +169,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
             }
         }
 
-        private void addRoles(Capsuleer c, List<Map<String, String>> attrs, int type) {
+        private static void addRoles(Capsuleer c, List<Map<String, String>> attrs, int type) {
             for (Map<String, String> attr : attrs) {
                 try {
                     CorporationRole role = new CorporationRole(type);
@@ -178,7 +187,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
             }
         }
 
-        private void addTitles(Capsuleer c, List<Map<String, String>> attrs) {
+        private static void addTitles(Capsuleer c, List<Map<String, String>> attrs) {
             for (Map<String, String> attr : attrs) {
                 try {
                     CorporationTitle title = new CorporationTitle();
@@ -196,7 +205,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
             }
         }
 
-        private void addCertificates(Capsuleer c, List<Map<String, String>> attrs) {
+        private static void addCertificates(Capsuleer c, List<Map<String, String>> attrs) {
             for (Map<String, String> attr : attrs) {
                 try {
                     c.addCertificate(Long.parseLong(attr.get("certificateID")));
@@ -207,6 +216,35 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
                         LOG.debug("addCertificates: NumberFormatException: " + e.getLocalizedMessage());
                     }
                 }
+            }
+        }
+
+        private static void addJumpClones(Capsuleer c, List<Map<String, String>> attrs) {
+            for (Map<String, String> attr : attrs) {
+                Capsuleer.JumpClone jumpClone = new Capsuleer.JumpClone();
+                jumpClone.setName(attr.get("cloneName"));
+                jumpClone.setCloneID(Long.parseLong(attr.get("jumpCloneID")));
+                jumpClone.setTypeID(Long.parseLong(attr.get("typeID")));
+                jumpClone.setLocationID(Long.parseLong(attr.get("locationID")));
+                c.addJumpClone(jumpClone);
+            }
+        }
+
+        private static void addImplants(Capsuleer c, List<Map<String, String>> attrs) {
+            for (Map<String, String> attr : attrs) {
+                Capsuleer.Implant implant = new Capsuleer.Implant();
+                implant.setTypeName(attr.get("typeName"));
+                implant.setTypeID(Long.parseLong(attr.get("typeID")));
+                c.addImplant(implant);
+            }
+        }
+
+        private static void addJumpCloneImplants(Capsuleer c, List<Map<String, String>> attrs) {
+            for (Map<String, String> attr : attrs) {
+                Capsuleer.Implant implant = new Capsuleer.Implant();
+                implant.setTypeName(attr.get("typeName"));
+                implant.setTypeID(Long.parseLong(attr.get("typeID")));
+                c.addJumpCloneImplant(Long.parseLong(attr.get("jumpCloneID")), implant);
             }
         }
     }
@@ -252,6 +290,18 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
         digester.addRule("eveapi/result/cloneSkillPoints", setElementPropertyRule);
         digester.addRule("eveapi/result/balance", setElementPropertyRule);
 
+        digester.addRule("eveapi/result/homeStationID", setElementPropertyRule);
+        digester.addRule("eveapi/result/lastRespecDate", setElementPropertyRule);
+        digester.addRule("eveapi/result/lastTimedRespec", setElementPropertyRule);
+        digester.addRule("eveapi/result/freeRespecs", setElementPropertyRule);
+        digester.addRule("eveapi/result/freeSkillPoints", setElementPropertyRule);
+
+        digester.addRule("eveapi/result/jumpActivation", setElementPropertyRule);
+        digester.addRule("eveapi/result/jumpFatigue", setElementPropertyRule);
+        digester.addRule("eveapi/result/jumpLastUpdate", setElementPropertyRule);
+
+        digester.addRule("eveapi/result/remoteStationDate", setElementPropertyRule);
+
         digester.addRule("eveapi/result/attributes/intelligence", setElementPropertyRule);
         digester.addRule("eveapi/result/attributes/memory", setElementPropertyRule);
         digester.addRule("eveapi/result/attributes/charisma", setElementPropertyRule);
@@ -282,6 +332,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
         digester.addRule("eveapi/result/attributeEnhancers/willpowerBonus", new SetNextRule("setWillpowerEnhancer"));
         digester.addRule("eveapi/result/attributeEnhancers/willpowerBonus/augmentatorName", setElementPropertyRule);
         digester.addRule("eveapi/result/attributeEnhancers/willpowerBonus/augmentatorValue", setElementPropertyRule);
+
 
     }
 }

@@ -26,6 +26,7 @@ import com.tlabs.eve.api.corporation.CorporationRole;
 import com.tlabs.eve.api.corporation.CorporationTitle;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class Capsuleer implements Serializable {
 
     private static final long serialVersionUID = -6450367183672623211L;
 
+    @Deprecated //since Phoebe
     public static class AttributeEnhancer implements Serializable {
 
         private static final long serialVersionUID = 2889918310631341232L;
@@ -63,6 +65,78 @@ public class Capsuleer implements Serializable {
         }
     }
 
+    public static class JumpClone {
+
+        private long cloneID;
+        private long typeID;
+        private long locationID;
+
+        private String name;
+
+        private final List<Implant> implants = new ArrayList<Implant>(10);
+
+        public void addImplant(final Implant p) {
+            this.implants.add(p);
+        }
+
+        public List<Implant> getImplants() {
+            return implants;
+        }
+
+        public long getCloneID() {
+            return cloneID;
+        }
+
+        public void setCloneID(long cloneID) {
+            this.cloneID = cloneID;
+        }
+
+        public long getTypeID() {
+            return typeID;
+        }
+
+        public void setTypeID(long typeID) {
+            this.typeID = typeID;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public long getLocationID() {
+            return locationID;
+        }
+
+        public void setLocationID(long locationID) {
+            this.locationID = locationID;
+        }
+    }
+
+    public static class Implant {
+        private long typeID;
+        private String typeName;
+
+        public long getTypeID() {
+            return typeID;
+        }
+
+        public void setTypeID(long typeID) {
+            this.typeID = typeID;
+        }
+
+        public String getTypeName() {
+            return typeName;
+        }
+
+        public void setTypeName(String typeName) {
+            this.typeName = typeName;
+        }
+    }
+
     private long characterID;
     private String characterName;
     private long birthdate;
@@ -76,10 +150,13 @@ public class Capsuleer implements Serializable {
     private long factionID;
     private String factionName;
 
+    private long homeStationID;
+
     private double balance;
 
     private String cloneName;
     private long cloneSkillPoints;
+    private long cloneJumpDate;//since Phoebe
 
     private String gender;
     private String bloodLine;
@@ -87,8 +164,13 @@ public class Capsuleer implements Serializable {
     private String race;
 
     private List<CharacterSkill> skills;
-    private Map<Long, CharacterSkill> skillsMap;//skills per ID	
+    private Map<Long, CharacterSkill> skillsMap;//skills per ID
     private long skillPoints = 0; //computed
+    private long freeSkillPoints;//since Phoebe
+
+    private long lastRespecDate;
+    private long lastTimedRespec;
+    private int freeRespecs;
 
     private int intelligence;
     private AttributeEnhancer intelligenceEnhancer;
@@ -105,9 +187,20 @@ public class Capsuleer implements Serializable {
     private int memory;
     private AttributeEnhancer memoryEnhancer;
 
+    private long jumpActivation;
+    private long jumpFatigue;
+    private long jumpLastUpdate;
+
+    //something on Phoebe about moving clones.
+    private long remoteStationDate;
+
     private List<CorporationRole> corporationRoles;
     private List<CorporationTitle> corporationTitles;
     private List<Long> certificates;//ids
+
+
+    private List<JumpClone> jumpClones;
+    private List<Implant> implants;
 
     public Capsuleer() {
         super();
@@ -116,6 +209,8 @@ public class Capsuleer implements Serializable {
         this.corporationRoles = new LinkedList<CorporationRole>();
         this.corporationTitles = new LinkedList<CorporationTitle>();
         this.certificates = new LinkedList<Long>();
+        this.jumpClones = new LinkedList<JumpClone>();
+        this.implants = new LinkedList<Implant>();
     }
 
     public Capsuleer(Capsuleer other) {
@@ -251,6 +346,14 @@ public class Capsuleer implements Serializable {
 
     public void setFactionName(String factionName) {
         this.factionName = factionName;
+    }
+
+    public long getHomeStationID() {
+        return homeStationID;
+    }
+
+    public void setHomeStationID(long homeStationID) {
+        this.homeStationID = homeStationID;
     }
 
     public double getBalance() {
@@ -459,5 +562,130 @@ public class Capsuleer implements Serializable {
 
     public final void setBirthdate(String birthdate) {
         this.birthdate = EveAPI.parseDateTime(birthdate);
+    }
+
+    public long getCloneJumpDate() {
+        return cloneJumpDate;
+    }
+
+    public void setCloneJumpDate(long cloneJumpDate) {
+        this.cloneJumpDate = cloneJumpDate;
+    }
+
+    public void setCloneJumpDate(String cloneJumpDate) {
+        this.cloneJumpDate = EveAPI.parseDateTime(cloneJumpDate);
+    }
+
+    public long getFreeSkillPoints() {
+        return freeSkillPoints;
+    }
+
+    public void setFreeSkillPoints(long freeSkillPoints) {
+        this.freeSkillPoints = freeSkillPoints;
+    }
+
+    public long getLastRespecDate() {
+        return lastRespecDate;
+    }
+
+    public void setLastRespecDate(long lastRespecDate) {
+        this.lastRespecDate = lastRespecDate;
+    }
+
+    public void setLastRespecDate(String lastRespecDate) {
+        this.lastRespecDate = EveAPI.parseDateTime(lastRespecDate);
+    }
+
+    public long getLastTimedRespec() {
+        return lastTimedRespec;
+    }
+
+    public void setLastTimedRespec(long lastTimedRespec) {
+        this.lastTimedRespec = lastTimedRespec;
+    }
+
+    public void setLastTimedRespec(String lastTimedRespec) {
+        this.lastTimedRespec = EveAPI.parseDateTime(lastTimedRespec);
+    }
+
+    public int getFreeRespecs() {
+        return freeRespecs;
+    }
+
+    public void setFreeRespecs(int freeRespecs) {
+        this.freeRespecs = freeRespecs;
+    }
+
+    public void addImplant(final Implant implant) {
+        this.implants.add(implant);
+    }
+
+    public List<Implant> getImplants() {
+        return this.implants;
+    }
+
+    public long getJumpActivation() {
+        return jumpActivation;
+    }
+
+    public void setJumpActivation(long jumpActivation) {
+        this.jumpActivation = jumpActivation;
+    }
+
+    public void setJumpActivation(String jumpActivation) {
+        this.jumpActivation = EveAPI.parseDateTime(jumpActivation);
+    }
+
+    public long getJumpFatigue() {
+        return jumpFatigue;
+    }
+
+    public void setJumpFatigue(long jumpFatigue) {
+        this.jumpFatigue = jumpFatigue;
+    }
+
+    public void setJumpFatigue(String jumpFatigue) {
+        this.jumpFatigue = EveAPI.parseDateTime(jumpFatigue);
+    }
+
+    public long getJumpLastUpdate() {
+        return jumpLastUpdate;
+    }
+
+    public void setJumpLastUpdate(long jumpLastUpdate) {
+        this.jumpLastUpdate = jumpLastUpdate;
+    }
+
+    public void setJumpLastUpdate(String jumpLastUpdate) {
+        this.jumpLastUpdate = EveAPI.parseDateTime(jumpLastUpdate);
+    }
+
+    public long getRemoteStationDate() {
+        return remoteStationDate;
+    }
+
+    public void setRemoteStationDate(long remoteStationDate) {
+        this.remoteStationDate = remoteStationDate;
+    }
+
+    public void setRemoteStationDate(String remoteStationDate) {
+        this.remoteStationDate = EveAPI.parseDateTime(remoteStationDate);
+    }
+
+    public List<JumpClone> getJumpClones() {
+        return this.jumpClones;
+    }
+
+    public void addJumpClone(final JumpClone c) {
+        this.jumpClones.add(c);
+    }
+
+    public void addJumpCloneImplant(final long jumpCloneID, final Implant implant) {
+        for (JumpClone c: this.jumpClones) {
+            if (c.getCloneID() == jumpCloneID) {
+                c.addImplant(implant);
+                return;
+            }
+        }
     }
 }
