@@ -21,7 +21,7 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import com.tlabs.eve.api.character.Capsuleer;
+import com.tlabs.eve.api.character.CharacterSheet;
 
 import java.util.List;
 
@@ -87,12 +87,12 @@ public class AccessInfoResponse extends EveAPIResponse {
     }
 
     @Deprecated
-    public void addCharacter(Capsuleer c) {
+    public void addCharacter(CharacterSheet c) {
         this.accessInfo.addCharacter(c);
     }
 
     @Deprecated
-    public List<Capsuleer> getCharacters() {
+    public List<CharacterSheet> getCharacters() {
         return this.accessInfo.getCharacters();
     }
 }

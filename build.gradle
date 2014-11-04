@@ -3,12 +3,12 @@ apply plugin: 'java'
 repositories {
         mavenCentral()
         jcenter()
-    }
+}
+
 group = 'com.tlabs.eve'
 version = '4.0'
 
 dependencies {
-    
     compile 'commons-logging:commons-logging:1.1.+'
     compile 'commons-lang:commons-lang:2.6'
 

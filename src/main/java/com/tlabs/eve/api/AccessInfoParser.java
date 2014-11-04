@@ -21,7 +21,7 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import com.tlabs.eve.api.character.Capsuleer;
+import com.tlabs.eve.api.character.CharacterSheet;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
@@ -37,7 +37,7 @@ public class AccessInfoParser extends EveAPIParser<AccessInfoResponse> {
     @Override
     protected void onInit(Digester digester) {
         digester.addRule("eveapi/result/key", new SetAttributePropertyRule());
-        digester.addObjectCreate("eveapi/result/key/rowset/row", Capsuleer.class);
+        digester.addObjectCreate("eveapi/result/key/rowset/row", CharacterSheet.class);
         digester.addRule("eveapi/result/key/rowset/row", new SetAttributePropertyRule());
         digester.addRule("eveapi/result/key/rowset/row", new SetNextRule("addCharacter"));
     }

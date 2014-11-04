@@ -42,7 +42,7 @@ public final class CharacterContractTest extends CharacterApiTest {
         AccessInfoRequest r = new AccessInfoRequest(accountKey.keyId, accountKey.keyValue);
 
         AccessInfoResponse q = apiCall(r);
-        for (Capsuleer c : q.getCharacters()) {
+        for (CharacterSheet c : q.getCharacters()) {
             ContractListResponse contracts = apiCall(new CharacterContractsRequest(String.valueOf(c.getCharacterID())));
         }
     }

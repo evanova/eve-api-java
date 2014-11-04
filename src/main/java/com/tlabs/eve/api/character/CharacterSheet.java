@@ -32,38 +32,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Capsuleer implements Serializable {
+public class CharacterSheet implements Serializable {
 
     private static final long serialVersionUID = -6450367183672623211L;
-
-    @Deprecated //since Phoebe
-    public static class AttributeEnhancer implements Serializable {
-
-        private static final long serialVersionUID = 2889918310631341232L;
-
-        private String augmentatorName;
-        private int augmentatorValue;
-
-        public String getAugmentatorName() {
-            return augmentatorName;
-        }
-
-        public void setAugmentatorName(String augmentatorName) {
-            this.augmentatorName = augmentatorName;
-        }
-
-        public int getAugmentatorValue() {
-            return augmentatorValue;
-        }
-
-        public void setAugmentatorValue(int augmentatorValue) {
-            this.augmentatorValue = augmentatorValue;
-        }
-
-        public void setAugmentatorValue(String augmentatorValue) {
-            this.augmentatorValue = Integer.parseInt(augmentatorValue);
-        }
-    }
 
     public static class JumpClone {
 
@@ -173,19 +144,10 @@ public class Capsuleer implements Serializable {
     private int freeRespecs;
 
     private int intelligence;
-    private AttributeEnhancer intelligenceEnhancer;
-
     private int charisma;
-    private AttributeEnhancer charismaEnhancer;
-
     private int willpower;
-    private AttributeEnhancer willpowerEnhancer;
-
     private int perception;
-    private AttributeEnhancer perceptionEnhancer;
-
     private int memory;
-    private AttributeEnhancer memoryEnhancer;
 
     private long jumpActivation;
     private long jumpFatigue;
@@ -202,7 +164,7 @@ public class Capsuleer implements Serializable {
     private List<JumpClone> jumpClones;
     private List<Implant> implants;
 
-    public Capsuleer() {
+    public CharacterSheet() {
         super();
         this.skills = new LinkedList<CharacterSkill>();
         this.skillsMap = new HashMap<Long, CharacterSkill>();
@@ -211,25 +173,6 @@ public class Capsuleer implements Serializable {
         this.certificates = new LinkedList<Long>();
         this.jumpClones = new LinkedList<JumpClone>();
         this.implants = new LinkedList<Implant>();
-    }
-
-    public Capsuleer(Capsuleer other) {
-        this();
-
-        this.characterID = other.characterID;
-        this.characterName = other.characterName;
-
-        this.corporationID = other.corporationID;
-        this.corporationName = other.corporationName;
-
-        this.balance = other.balance;
-
-        this.cloneName = other.cloneName;
-        this.cloneSkillPoints = other.cloneSkillPoints;
-
-        this.gender = other.gender;
-        this.bloodLine = other.bloodLine;
-        this.race = other.race;
     }
 
     public long getSkillPoints() {
@@ -470,86 +413,6 @@ public class Capsuleer implements Serializable {
 
     public void setMemory(String memory) {
         this.memory = Integer.parseInt(memory);
-    }
-
-    public AttributeEnhancer getIntelligenceEnhancer() {
-        return intelligenceEnhancer;
-    }
-
-    public void setIntelligenceEnhancer(AttributeEnhancer intelligenceEnhancer) {
-        this.intelligenceEnhancer = intelligenceEnhancer;
-    }
-
-    public AttributeEnhancer getCharismaEnhancer() {
-        return charismaEnhancer;
-    }
-
-    public void setCharismaEnhancer(AttributeEnhancer charismaEnhancer) {
-        this.charismaEnhancer = charismaEnhancer;
-    }
-
-    public AttributeEnhancer getWillpowerEnhancer() {
-        return willpowerEnhancer;
-    }
-
-    public void setWillpowerEnhancer(AttributeEnhancer willpowerEnhancer) {
-        this.willpowerEnhancer = willpowerEnhancer;
-    }
-
-    public AttributeEnhancer getPerceptionEnhancer() {
-        return perceptionEnhancer;
-    }
-
-    public void setPerceptionEnhancer(AttributeEnhancer perceptionEnhancer) {
-        this.perceptionEnhancer = perceptionEnhancer;
-    }
-
-    public AttributeEnhancer getMemoryEnhancer() {
-        return memoryEnhancer;
-    }
-
-    public void setMemoryEnhancer(AttributeEnhancer memoryEnhancer) {
-        this.memoryEnhancer = memoryEnhancer;
-    }
-
-    public Integer getIntelligenceEnhancerValue() {
-        return (null == intelligenceEnhancer) ? null : intelligenceEnhancer.getAugmentatorValue();
-    }
-
-    public String getIntelligenceEnhancerName() {
-        return (null == intelligenceEnhancer) ? null : intelligenceEnhancer.getAugmentatorName();
-    }
-
-    public Integer getMemoryEnhancerValue() {
-        return (null == memoryEnhancer) ? null : memoryEnhancer.getAugmentatorValue();
-    }
-
-    public String getMemoryEnhancerName() {
-        return (null == memoryEnhancer) ? null : memoryEnhancer.getAugmentatorName();
-    }
-
-    public Integer getCharismaEnhancerValue() {
-        return (null == charismaEnhancer) ? null : charismaEnhancer.getAugmentatorValue();
-    }
-
-    public String getCharismaEnhancerName() {
-        return (null == charismaEnhancer) ? null : charismaEnhancer.getAugmentatorName();
-    }
-
-    public Integer getWillpowerEnhancerValue() {
-        return (null == willpowerEnhancer) ? null : willpowerEnhancer.getAugmentatorValue();
-    }
-
-    public String getWillpowerEnhancerName() {
-        return (null == willpowerEnhancer) ? null : willpowerEnhancer.getAugmentatorName();
-    }
-
-    public Integer getPerceptionEnhancerValue() {
-        return (null == perceptionEnhancer) ? null : perceptionEnhancer.getAugmentatorValue();
-    }
-
-    public String getPerceptionEnhancerName() {
-        return (null == perceptionEnhancer) ? null : perceptionEnhancer.getAugmentatorName();
     }
 
     public final long getBirthdate() {

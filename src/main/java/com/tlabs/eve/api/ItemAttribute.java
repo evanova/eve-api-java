@@ -102,6 +102,7 @@ public final class ItemAttribute implements Serializable {
     public static final int SECONDARY_PILOT_ATTRIBUTE = 181;
 
     public static final int PRIMARY_SKILL = 182;
+    public static final int PRIMARY_SKILL_LEVEL = 277;
     public static final int SECONDARY_SKILL = 183;
 
     public static final int TECH_LEVEL = 422;
@@ -119,6 +120,13 @@ public final class ItemAttribute implements Serializable {
     public static final int FIT_TURRETS = 102;
     public static final int FIT_DRONES = 106;
     public static final int FIT_UPGRADES = 1154;//rigs/hardware hardpoints
+
+    //Character related
+    public static final int BONUS_CHARISMA = 175;
+    public static final int BONUS_INTELLIGENCE = 176;
+    public static final int BONUS_MEMORY = 177;
+    public static final int BONUS_PERCEPTION = 178;
+    public static final int BONUS_WILLPOWER = 179;
 
     /*10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 974
 10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 975

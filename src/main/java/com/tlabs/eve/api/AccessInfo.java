@@ -21,7 +21,7 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-import com.tlabs.eve.api.character.Capsuleer;
+import com.tlabs.eve.api.character.CharacterSheet;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -45,7 +45,7 @@ public class AccessInfo implements Serializable {
     private long keyID = -1;
     private String key = "";
 
-    private List<Capsuleer> characters = new LinkedList<Capsuleer>();
+    private List<CharacterSheet> characters = new LinkedList<CharacterSheet>();
 
     public AccessInfo() {
         super();
@@ -108,11 +108,11 @@ public class AccessInfo implements Serializable {
         this.key = key;
     }
 
-    public void addCharacter(Capsuleer c) {
+    public void addCharacter(CharacterSheet c) {
         this.characters.add(c);
     }
 
-    public List<Capsuleer> getCharacters() {
+    public List<CharacterSheet> getCharacters() {
         return this.characters;
     }
 }
