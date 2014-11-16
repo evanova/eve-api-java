@@ -32,18 +32,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class CharacterSheet implements Serializable {
+public final class CharacterSheet implements Serializable {
 
     private static final long serialVersionUID = -6450367183672623211L;
 
-    public static class JumpClone {
+    public static final class JumpClone {
 
         private long cloneID;
         private long typeID;
         private long locationID;
 
         private String name;
-
+        private String location;//not in XML
         private final List<Implant> implants = new ArrayList<Implant>(10);
 
         public void addImplant(final Implant p) {
@@ -85,11 +85,22 @@ public class CharacterSheet implements Serializable {
         public void setLocationID(long locationID) {
             this.locationID = locationID;
         }
+
+        public String getLocation() {
+            return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
+        }
     }
 
-    public static class Implant {
+    public static final class Implant {
+
         private long typeID;
         private String typeName;
+
+        private String description;//Not in XML
 
         public long getTypeID() {
             return typeID;
@@ -105,6 +116,14 @@ public class CharacterSheet implements Serializable {
 
         public void setTypeName(String typeName) {
             this.typeName = typeName;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
     }
 

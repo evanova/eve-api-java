@@ -32,8 +32,17 @@ public class Contract implements Serializable {
     private static final long serialVersionUID = -2606077397367047795L;
 
     public static enum Status {
-        UNKNOWN("Unknown", 0), IN_PROGRESS("InProgress", 1), OUTSTANDING("Outstanding", 2), COMPLETED_COMPLETED("Completed", 3), COMPLETED_ISSUER("CompletedByIssuer", 4), COMPLETED_CONTRACTOR(
-                "CompletedByContractor", 5), CANCELLED("Cancelled", 6), REJECTED("Rejected", 7), FAILED("Failed", 8), DELETED("Deleted", 9), REVERSED("Reversed", 10);
+        UNKNOWN("Unknown", 0),
+        IN_PROGRESS("InProgress", 1),
+        OUTSTANDING("Outstanding", 2),
+        COMPLETED_COMPLETED("Completed", 3),
+        COMPLETED_ISSUER("CompletedByIssuer", 4),
+        COMPLETED_CONTRACTOR("CompletedByContractor", 5),
+        CANCELLED("Cancelled", 6),
+        REJECTED("Rejected", 7),
+        FAILED("Failed", 8),
+        DELETED("Deleted", 9),
+        REVERSED("Reversed", 10);
 
         private String name;
         private int value;
@@ -75,7 +84,10 @@ public class Contract implements Serializable {
     }
 
     public static enum Type {
-        UNKNOWN("Unknown", 0), AUCTION("Auction", 1), EXCHANGE("ItemExchange", 2), COURIER("Courier", 3);
+        UNKNOWN("Unknown", 0),
+        AUCTION("Auction", 1),
+        EXCHANGE("ItemExchange", 2),
+        COURIER("Courier", 3);
 
         private String name;
         private int value;
