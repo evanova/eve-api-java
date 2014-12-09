@@ -39,7 +39,6 @@ public final class CharacterSheet implements Serializable {
     public static final class JumpClone {
 
         private long cloneID;
-        private long typeID;
         private long locationID;
 
         private String name;
@@ -60,14 +59,6 @@ public final class CharacterSheet implements Serializable {
 
         public void setCloneID(long cloneID) {
             this.cloneID = cloneID;
-        }
-
-        public long getTypeID() {
-            return typeID;
-        }
-
-        public void setTypeID(long typeID) {
-            this.typeID = typeID;
         }
 
         public String getName() {
@@ -145,7 +136,6 @@ public final class CharacterSheet implements Serializable {
     private double balance;
 
     private String cloneName;
-    private long cloneSkillPoints;
     private long cloneJumpDate;//since Phoebe
 
     private String gender;
@@ -332,14 +322,6 @@ public final class CharacterSheet implements Serializable {
 
     public void setCloneName(String cloneName) {
         this.cloneName = cloneName;
-    }
-
-    public long getCloneSkillPoints() {
-        return cloneSkillPoints;
-    }
-
-    public void setCloneSkillPoints(long cloneSkillPoints) {
-        this.cloneSkillPoints = cloneSkillPoints;
     }
 
     public String getGender() {

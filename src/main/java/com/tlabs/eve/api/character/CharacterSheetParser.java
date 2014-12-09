@@ -224,7 +224,6 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
                 CharacterSheet.JumpClone jumpClone = new CharacterSheet.JumpClone();
                 jumpClone.setName(attr.get("cloneName"));
                 jumpClone.setCloneID(Long.parseLong(attr.get("jumpCloneID")));
-                jumpClone.setTypeID(Long.parseLong(attr.get("typeID")));
                 jumpClone.setLocationID(Long.parseLong(attr.get("locationID")));
                 c.addJumpClone(jumpClone);
             }
