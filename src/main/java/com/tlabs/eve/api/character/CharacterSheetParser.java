@@ -285,7 +285,6 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
         digester.addRule("eveapi/result/gender", setElementPropertyRule);
         digester.addRule("eveapi/result/corporationName", setElementPropertyRule);
         digester.addRule("eveapi/result/corporationID", setElementPropertyRule);
-        digester.addRule("eveapi/result/cloneName", setElementPropertyRule);
         digester.addRule("eveapi/result/cloneJumpDate", setElementPropertyRule);
         digester.addRule("eveapi/result/cloneSkillPoints", setElementPropertyRule);
         digester.addRule("eveapi/result/balance", setElementPropertyRule);

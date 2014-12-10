@@ -135,7 +135,6 @@ public final class CharacterSheet implements Serializable {
 
     private double balance;
 
-    private String cloneName;
     private long cloneJumpDate;//since Phoebe
 
     private String gender;
@@ -314,14 +313,6 @@ public final class CharacterSheet implements Serializable {
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    public String getCloneName() {
-        return cloneName;
-    }
-
-    public void setCloneName(String cloneName) {
-        this.cloneName = cloneName;
     }
 
     public String getGender() {
