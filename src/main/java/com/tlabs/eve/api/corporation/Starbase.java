@@ -95,8 +95,8 @@ public class Starbase implements Serializable {
     private long standingOwnerID;
     private String standingOwnerName;//not in XML
 
-    private Map<Long, Long> fuelMap = new HashMap<Long, Long>();//typeid/volume; only in details
-    private Map<Long, String> fuelTypes = new HashMap<Long, String>();//not in XML
+    private Map<Long, Long> fuelMap = new HashMap<>();//typeid/volume; only in details
+    private Map<Long, String> fuelTypes = new HashMap<>();//not in XML
 
     private boolean allowAllianceMembers = false;//only in details
     private boolean allowCorporationMembers = false;//only in details

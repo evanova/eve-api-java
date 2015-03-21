@@ -33,7 +33,7 @@ public class SkillTree implements Serializable {
 
         private static final long serialVersionUID = -372508696105801667L;
 
-        private List<Skill> skills = new LinkedList<Skill>();
+        private List<Skill> skills = new LinkedList<>();
 
         private String groupName;
         private long groupID;
@@ -65,7 +65,7 @@ public class SkillTree implements Serializable {
         }
     }
 
-    private List<SkillGroup> groups = new LinkedList<SkillGroup>();
+    private List<SkillGroup> groups = new LinkedList<>();
 
     public void addGroup(SkillGroup skillGroup) {
         this.groups.add(skillGroup);

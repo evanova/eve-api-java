@@ -12,7 +12,7 @@ public class PlanetaryLinksResponse extends EveAPIResponse {
     private final List<PlanetaryLink> links;
 
     public PlanetaryLinksResponse() {
-        this.links = new LinkedList<PlanetaryLink>();
+        this.links = new LinkedList<>();
     }
 
     public void addLink(final PlanetaryLink link) {

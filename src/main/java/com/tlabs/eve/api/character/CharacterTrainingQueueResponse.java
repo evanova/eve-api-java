@@ -34,7 +34,7 @@ public class CharacterTrainingQueueResponse extends EveAPIResponse {
 
     public CharacterTrainingQueueResponse() {
         super();
-        this.trainingQueue = new LinkedList<SkillInTraining>();
+        this.trainingQueue = new LinkedList<>();
     }
 
     public void addTraining(SkillInTraining training) {

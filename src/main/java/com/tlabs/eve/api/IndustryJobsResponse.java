@@ -32,7 +32,7 @@ public class IndustryJobsResponse extends EveAPIResponse {
 
     public IndustryJobsResponse() {
         super();
-        this.jobs = new LinkedList<IndustryJob>();
+        this.jobs = new LinkedList<>();
     }
 
     public List<IndustryJob> getJobs() {

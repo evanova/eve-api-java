@@ -33,7 +33,7 @@ public class CharacterTrainingQueueParser extends EveAPIParser<CharacterTraining
 
     private static final HashMap<String, String> properties;
     static {
-        properties = new HashMap<String, String>();
+        properties = new HashMap<>();
         properties.put("queuePosition", "queuePosition");
         properties.put("typeID", "skillID");
         properties.put("level", "skillLevel");

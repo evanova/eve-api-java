@@ -28,7 +28,7 @@ import java.util.List;
 
 public class NotificationsResponse extends EveAPIResponse {
 
-    private List<NotificationMessage> messages = new LinkedList<NotificationMessage>();
+    private List<NotificationMessage> messages = new LinkedList<>();
 
     public final List<NotificationMessage> getMessages() {
         return messages;

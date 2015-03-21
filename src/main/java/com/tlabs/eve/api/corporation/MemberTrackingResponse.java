@@ -34,7 +34,7 @@ public final class MemberTrackingResponse extends EveAPIResponse {
 
     public MemberTrackingResponse() {
         super();
-        members = new ArrayList<CorporationMember>();
+        members = new ArrayList<>();
     }
 
     public void addCorpMember(CorporationMember member) {

@@ -75,7 +75,7 @@ public class DotlanRouteParser implements EveParser<DotlanRouteResponse> {
     }
 
     private static List<SolarSystem> parseTable(final Node rootNode) {
-        final List<SolarSystem> routes = new ArrayList<SolarSystem>();
+        final List<SolarSystem> routes = new ArrayList<>();
         final NodeList trs = rootNode.getChildNodes();
 
         String region = "";

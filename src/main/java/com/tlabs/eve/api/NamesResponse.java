@@ -28,7 +28,7 @@ public final class NamesResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = -8548006791679363095L;
 
-    private Map<Long, String> names = new HashMap<Long, String>();
+    private Map<Long, String> names = new HashMap<>();
     private String key;
 
     public void add(long id, String name) {

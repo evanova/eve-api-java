@@ -31,7 +31,7 @@ public class AssetListResponse extends EveAPIResponse {
     private List<Asset> assets;
 
     public AssetListResponse() {
-        this.assets = new LinkedList<Asset>();
+        this.assets = new LinkedList<>();
     }
 
     public void addAsset(Asset item) {

@@ -45,7 +45,7 @@ public abstract class EveRequest<T extends EveResponse> {
         super();
         this.responseClass = responseClass;
         this.page = page;
-        this.params = new LinkedHashMap<String, String>(2);//Order is important for CREST support
+        this.params = new LinkedHashMap<>(2);//Order is important for CREST support
     }
 
     public final String getPage() {
@@ -103,7 +103,7 @@ public abstract class EveRequest<T extends EveResponse> {
 
     //removes duplicates
     protected static String[] filter(String[] names) {
-        List<String> l = new ArrayList<String>(names.length);
+        List<String> l = new ArrayList<>(names.length);
         for (String s : names) {
             if (!l.contains(s)) {
                 l.add(s);
@@ -114,7 +114,7 @@ public abstract class EveRequest<T extends EveResponse> {
 
     //removes duplicates
     protected static long[] filter(long[] ids) {
-        List<Long> l = new ArrayList<Long>(ids.length);
+        List<Long> l = new ArrayList<>(ids.length);
         for (Long id : ids) {
             if (!l.contains(id)) {
                 l.add(id);
@@ -130,7 +130,7 @@ public abstract class EveRequest<T extends EveResponse> {
 
     //removes duplicates
     protected static long[] filter(Long[] ids) {
-        List<Long> l = new ArrayList<Long>(ids.length);
+        List<Long> l = new ArrayList<>(ids.length);
         for (Long id : ids) {
             if (!l.contains(id)) {
                 l.add(id);
@@ -139,7 +139,7 @@ public abstract class EveRequest<T extends EveResponse> {
         Long[] fck = l.toArray(new Long[l.size()]);
         long[] r = new long[fck.length];
         for (int i = 0; i < fck.length; i++) {
-            r[i] = fck[i].longValue();
+            r[i] = fck[i];
         }
         return r;
     }

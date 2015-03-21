@@ -168,8 +168,8 @@ public class Contract implements Serializable {
     private double buyout;
     private double volume;
 
-    private List<ContractItem> items = new LinkedList<ContractItem>();
-    private List<ContractBid> bids = new LinkedList<ContractBid>();
+    private List<ContractItem> items = new LinkedList<>();
+    private List<ContractBid> bids = new LinkedList<>();
 
     public final long getContractID() {
         return contractID;

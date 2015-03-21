@@ -51,8 +51,8 @@ final class CCPHelper {
     private static final Map<Class<?>, SoftReference<EveParser<? extends EveResponse>>> parsers;
 
     static {
-        parserMap = new HashMap<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>>();
-        parsers = new HashMap<Class<?>, SoftReference<EveParser<? extends EveResponse>>>();
+        parserMap = new HashMap<>();
+        parsers = new HashMap<>();
 
         parserMap.put(EveNewsRequest.class, EveRSSParser.class);
         parserMap.put(GameNewsRequest.class, EveRSSParser.class);
@@ -92,10 +92,7 @@ final class CCPHelper {
         try {
             return parserClass.newInstance();
         }
-        catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(e.getLocalizedMessage(), e);
-        }
-        catch (InstantiationException e) {
+        catch (IllegalAccessException | InstantiationException e) {
             throw new IllegalArgumentException(e.getLocalizedMessage(), e);
         }
     }

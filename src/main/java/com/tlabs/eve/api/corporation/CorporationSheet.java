@@ -53,8 +53,8 @@ public class CorporationSheet implements Serializable {
     private float taxRate;
     private float shares;
 
-    private Map<Integer, String> walletDivisions = new HashMap<Integer, String>();
-    private Map<Integer, String> hangarDivisions = new HashMap<Integer, String>();
+    private Map<Integer, String> walletDivisions = new HashMap<>();
+    private Map<Integer, String> hangarDivisions = new HashMap<>();
     private double walletBalance = -1;//not in XML
 
     public long getCorporationID() {

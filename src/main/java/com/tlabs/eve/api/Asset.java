@@ -42,7 +42,7 @@ public class Asset implements Serializable {
     private String inventoryFlagName;//not in XML
     private boolean packaged;
 
-    private List<Asset> items = new LinkedList<Asset>();
+    private List<Asset> items = new LinkedList<>();
 
     public Asset() {
         super();
@@ -108,12 +108,7 @@ public class Asset implements Serializable {
     }
 
     public void setPackaged(String packaged) {
-        if ("0".equals(packaged)) {
-            this.packaged = true;
-        }
-        else {
-            this.packaged = false;
-        }
+        this.packaged = "0".equals(packaged);
     }
 
     public final String getInventoryName() {

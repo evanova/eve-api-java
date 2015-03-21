@@ -27,7 +27,7 @@ public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
 
     public UniverseMap() {
         super(new UniverseEdgeFactory());
-        this.solarSystems = new HashMap<Long, SolarSystem>();
+        this.solarSystems = new HashMap<>();
     }
 
     @Override

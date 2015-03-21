@@ -34,7 +34,7 @@ public final class StarbaseListResponse extends EveAPIResponse {
 
     public StarbaseListResponse() {
         super();
-        starbases = new ArrayList<Starbase>();
+        starbases = new ArrayList<>();
     }
 
     public void addStarbase(Starbase starbase) {

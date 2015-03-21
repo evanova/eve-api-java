@@ -32,7 +32,7 @@ public class ErrorListResponse extends EveAPIResponse {
 
     public ErrorListResponse() {
         super();
-        this.errors = new HashMap<Integer, String>();
+        this.errors = new HashMap<>();
     }
 
     public Map<Integer, String> getErrors() {

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class MailingListsResponse extends EveAPIResponse {
 
-    private List<MailingList> mailingLists = new LinkedList<MailingList>();
+    private List<MailingList> mailingLists = new LinkedList<>();
 
     public final List<MailingList> getMailingLists() {
         return mailingLists;

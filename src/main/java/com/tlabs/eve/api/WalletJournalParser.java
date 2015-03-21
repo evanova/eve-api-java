@@ -33,7 +33,7 @@ public final class WalletJournalParser extends EveAPIParser<WalletJournalRespons
 
     private static final Map<String, String> attributes;
     static {
-        attributes = new HashMap<String, String>();
+        attributes = new HashMap<>();
         attributes.put("refID", "id");
         attributes.put("date", "when");
         attributes.put("refTypeID", "refTypeID");

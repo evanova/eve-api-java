@@ -42,13 +42,13 @@ public class SetAttributePropertyRule extends BaseRule {
 
     public SetAttributePropertyRule(String xmlProperty, String beanProperty) {
         super();
-        this.propertyMap = new HashMap<String, String>(1);
+        this.propertyMap = new HashMap<>(1);
         this.propertyMap.put(xmlProperty, beanProperty);
     }
 
     public SetAttributePropertyRule(String... properties) {
         super();
-        this.propertyMap = new HashMap<String, String>();
+        this.propertyMap = new HashMap<>();
         for (String s : properties) {
             this.propertyMap.put(s, s);
         }

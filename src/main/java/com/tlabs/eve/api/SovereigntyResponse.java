@@ -30,7 +30,7 @@ public final class SovereigntyResponse extends EveAPIResponse {
     private final List<Sovereignty> sovereignty;
 
     public SovereigntyResponse() {
-        this.sovereignty = new LinkedList<Sovereignty>();
+        this.sovereignty = new LinkedList<>();
     }
 
     public void addSovereignty(final Sovereignty s) {

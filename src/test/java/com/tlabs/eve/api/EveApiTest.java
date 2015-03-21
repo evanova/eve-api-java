@@ -82,7 +82,7 @@ public abstract class EveApiTest extends HttpClientTest {
         }
     }
 
-    private static final Map<String, List<Key>> APIKEYS = new HashMap<String, List<Key>>();
+    private static final Map<String, List<Key>> APIKEYS = new HashMap<>();
 
     private String keyID;
     private String keyValue;
@@ -151,7 +151,7 @@ public abstract class EveApiTest extends HttpClientTest {
     }
 
     private <T extends EveAPIResponse> T callEveAPI(final String url, final EveAPIRequest<T> r) throws IOException {
-        final List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        final List<NameValuePair> nvps = new ArrayList<>();
 
         if (r instanceof EveAPIRequest.Authenticated) {
             EveAPIRequest.Authenticated auth = (EveAPIRequest.Authenticated) r;
@@ -184,7 +184,7 @@ public abstract class EveApiTest extends HttpClientTest {
     }
 
     private static Map<String, List<Key>> loadApiKeys(final InputStream in) throws IOException {
-        final Map<String, List<Key>> keys = new HashMap<String, List<Key>>();
+        final Map<String, List<Key>> keys = new HashMap<>();
         final BufferedReader r = new BufferedReader(new InputStreamReader(in));
         String l = null;
         while ((l = r.readLine()) != null) {
@@ -212,7 +212,7 @@ public abstract class EveApiTest extends HttpClientTest {
             final Key k = Key.create(splitValue, false);
             List<Key> current = keys.get(property);
             if (null == current) {
-                current = new LinkedList<Key>();
+                current = new LinkedList<>();
                 keys.put(property, current);
             }
             current.add(k);

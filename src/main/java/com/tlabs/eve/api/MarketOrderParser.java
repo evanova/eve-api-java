@@ -33,7 +33,7 @@ public class MarketOrderParser extends EveAPIParser<MarketOrderResponse> {
 
     private static final Map<String, String> attributes;
     static {
-        attributes = new HashMap<String, String>();
+        attributes = new HashMap<>();
         attributes.put("orderID", "orderID");
         attributes.put("charID", "characterID");
         attributes.put("stationID", "stationID");

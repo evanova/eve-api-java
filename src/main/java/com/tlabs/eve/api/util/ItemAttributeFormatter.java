@@ -79,7 +79,7 @@ public final class ItemAttributeFormatter {
     private static final Map<Integer, AttributeFormat> attributesFormat;
 
     static {
-        attributesFormat = new HashMap<Integer, AttributeFormat>();
+        attributesFormat = new HashMap<>();
         attributesFormat.put(ItemAttribute.MASS, new UnitFormat("Kg"));
         attributesFormat.put(ItemAttribute.VOLUME, new UnitFormat("m3"));
 

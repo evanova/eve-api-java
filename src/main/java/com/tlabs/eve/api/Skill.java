@@ -64,7 +64,7 @@ public class Skill implements Serializable {
 
     public Skill() {
         super();
-        this.requiredSkills = new HashMap<Long, Integer>();
+        this.requiredSkills = new HashMap<>();
     }
 
     public boolean getPublished() {

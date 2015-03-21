@@ -34,7 +34,7 @@ public class CharacterResearchParser extends EveAPIParser<CharacterResearchRespo
 
     private static final Map<String, String> propertyMap;
     static {
-        propertyMap = new HashMap<String, String>();
+        propertyMap = new HashMap<>();
         propertyMap.put("agentID", "agentID");
         propertyMap.put("skillTypeID", "skillTypeID");
         propertyMap.put("researchStartDate", "startDate");

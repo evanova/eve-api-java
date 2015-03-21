@@ -55,13 +55,7 @@ public abstract class AbstractXMLParser<T extends EveResponse> implements EvePar
             //this.digester.setFeature("http://xml.org/sax/features/namespaces", false);
             this.digester.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
         }
-        catch (SAXNotSupportedException e) {
-            throw new IllegalStateException(e.getLocalizedMessage());
-        }
-        catch (SAXNotRecognizedException e) {
-            throw new IllegalStateException(e.getLocalizedMessage());
-        }
-        catch (ParserConfigurationException e) {
+        catch (SAXNotSupportedException | ParserConfigurationException | SAXNotRecognizedException e) {
             throw new IllegalStateException(e.getLocalizedMessage());
         }
         init(this.digester);
@@ -84,10 +78,7 @@ public abstract class AbstractXMLParser<T extends EveResponse> implements EvePar
             doAfterParse(t);
             return t;
         }
-        catch (IllegalAccessException e) {
-            throw new IOException(e.getLocalizedMessage());
-        }
-        catch (InstantiationException e) {
+        catch (IllegalAccessException | InstantiationException e) {
             throw new IOException(e.getLocalizedMessage());
         }
     }

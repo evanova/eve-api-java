@@ -32,7 +32,7 @@ public final class AssetListParser extends EveAPIParser<AssetListResponse> {
 
     private static final HashMap<String, String> properties;
     static {
-        properties = new HashMap<String, String>();
+        properties = new HashMap<>();
         properties.put("locationID", "locationID");
         properties.put("typeID", "itemID");//the itemID in the XML is a temporary ID
         properties.put("quantity", "quantity");

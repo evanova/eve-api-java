@@ -34,7 +34,7 @@ public final class OutpostListResponse extends EveAPIResponse {
 
     public OutpostListResponse() {
         super();
-        outposts = new ArrayList<Outpost>();
+        outposts = new ArrayList<>();
     }
 
     public void addOutpost(Outpost outpost) {

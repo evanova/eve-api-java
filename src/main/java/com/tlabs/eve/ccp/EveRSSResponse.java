@@ -28,7 +28,7 @@ import java.util.List;
 
 public final class EveRSSResponse extends EveResponse {
 
-    private List<EveRSSEntry> rssEntries = new LinkedList<EveRSSEntry>();
+    private List<EveRSSEntry> rssEntries = new LinkedList<>();
     private String title;
     private String link;
 

@@ -12,7 +12,7 @@ public class PlanetaryRoutesResponse extends EveAPIResponse {
     private final List<PlanetaryRoute> routes;
 
     public PlanetaryRoutesResponse() {
-        this.routes = new LinkedList<PlanetaryRoute>();
+        this.routes = new LinkedList<>();
     }
 
     public void addRoute(final PlanetaryRoute route) {

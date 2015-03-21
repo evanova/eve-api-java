@@ -33,8 +33,8 @@ final class CRESTHelper {
     private static final Map<Class<?>, SoftReference<CRESTParser<? extends CRESTResponse>>> parsers;
 
     static {
-        parserMap = new HashMap<Class<? extends CRESTRequest<?>>, Class<? extends CRESTParser<?>>>();
-        parsers = new HashMap<Class<?>, SoftReference<CRESTParser<? extends CRESTResponse>>>();
+        parserMap = new HashMap<>();
+        parsers = new HashMap<>();
 
         parserMap.put(IncursionRequest.class, IncursionParser.class);
         parserMap.put(AllianceRequest.class, AllianceParser.class);
@@ -72,10 +72,7 @@ final class CRESTHelper {
         try {
             return parserClass.newInstance();
         }
-        catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(e.getLocalizedMessage(), e);
-        }
-        catch (InstantiationException e) {
+        catch (IllegalAccessException | InstantiationException e) {
             throw new IllegalArgumentException(e.getLocalizedMessage(), e);
         }
     }

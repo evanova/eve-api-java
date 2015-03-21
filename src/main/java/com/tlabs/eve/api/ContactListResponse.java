@@ -30,7 +30,7 @@ public final class ContactListResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = 1803692879940276962L;
 
-    private final List<Contact.Group> contactGroups = new LinkedList<Contact.Group>();
+    private final List<Contact.Group> contactGroups = new LinkedList<>();
 
     public final List<Contact.Group> getContactGroups() {
         return this.contactGroups;

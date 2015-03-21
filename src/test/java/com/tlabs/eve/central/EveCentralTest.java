@@ -46,7 +46,7 @@ public class EveCentralTest extends HttpClientTest {
         String url = "http://localhost:8080/central" + r.getPage();
         //String url = "http://api.eve-central.com" + r.getPage();
 
-        final List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        final List<NameValuePair> nvps = new ArrayList<>();
         final Map<String, String> params = r.getParameters();
         for (String p : params.keySet()) {
             String v = params.get(p);

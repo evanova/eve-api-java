@@ -9,7 +9,7 @@ public class AllianceResponse extends CRESTResponse {
 
     private static final long serialVersionUID = -1191289543661432529L;
 
-    private final List<Alliance> alliances = new LinkedList<Alliance>();
+    private final List<Alliance> alliances = new LinkedList<>();
 
     public final List<Alliance> getAlliances() {
         return alliances;

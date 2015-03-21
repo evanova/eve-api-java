@@ -26,8 +26,8 @@ import java.util.List;
 
 public class EveCentralQuickLookResponse extends EveCentralResponse {
 
-    private final List<EveCentralOrder> buyOrders = new LinkedList<EveCentralOrder>();
-    private final List<EveCentralOrder> sellOrders = new LinkedList<EveCentralOrder>();
+    private final List<EveCentralOrder> buyOrders = new LinkedList<>();
+    private final List<EveCentralOrder> sellOrders = new LinkedList<>();
 
     private long typeID;
     private String typeName;

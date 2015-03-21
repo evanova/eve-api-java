@@ -49,12 +49,12 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         public RowSet() {
             super();
-            this.rows = new LinkedList<Map<String, String>>();
+            this.rows = new LinkedList<>();
         }
 
         public void addRow(Attributes attributes) {
             int l = attributes.getLength();
-            Map<String, String> attrs = new HashMap<String, String>();
+            Map<String, String> attrs = new HashMap<>();
             for (int i = 0; i < l; i++) {
                 //BUG
                 //There is a bug in Android 2.1 and Android 1.5 implementation of org.xml.sax.Attributes.getLocalName(int)

@@ -43,7 +43,7 @@ public final class CharacterSheet implements Serializable {
 
         private String name;
         private String location;//not in XML
-        private final List<Implant> implants = new ArrayList<Implant>(10);
+        private final List<Implant> implants = new ArrayList<>(10);
 
         public void addImplant(final Implant p) {
             this.implants.add(p);
@@ -174,13 +174,13 @@ public final class CharacterSheet implements Serializable {
 
     public CharacterSheet() {
         super();
-        this.skills = new LinkedList<CharacterSkill>();
-        this.skillsMap = new HashMap<Long, CharacterSkill>();
-        this.corporationRoles = new LinkedList<CorporationRole>();
-        this.corporationTitles = new LinkedList<CorporationTitle>();
-        this.certificates = new LinkedList<Long>();
-        this.jumpClones = new LinkedList<JumpClone>();
-        this.implants = new LinkedList<Implant>();
+        this.skills = new LinkedList<>();
+        this.skillsMap = new HashMap<>();
+        this.corporationRoles = new LinkedList<>();
+        this.corporationTitles = new LinkedList<>();
+        this.certificates = new LinkedList<>();
+        this.jumpClones = new LinkedList<>();
+        this.implants = new LinkedList<>();
     }
 
     public long getSkillPoints() {

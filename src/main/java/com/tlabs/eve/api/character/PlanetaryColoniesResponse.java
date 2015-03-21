@@ -12,7 +12,7 @@ public class PlanetaryColoniesResponse extends EveAPIResponse {
     private final List<PlanetaryColony> colonies;
 
     public PlanetaryColoniesResponse() {
-        this.colonies = new LinkedList<PlanetaryColony>();
+        this.colonies = new LinkedList<>();
     }
 
     public void addColony(final PlanetaryColony colony) {

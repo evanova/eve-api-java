@@ -14,7 +14,7 @@ public class EveMonSettingsResponse extends EveResponse {
 
     public EveMonSettingsResponse() {
         super();
-        this.accessInfo = new LinkedList<AccessInfo>();
+        this.accessInfo = new LinkedList<>();
     }
 
     public final List<AccessInfo> getApiKeys() {

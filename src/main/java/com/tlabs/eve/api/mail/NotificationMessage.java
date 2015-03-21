@@ -34,7 +34,7 @@ public class NotificationMessage extends Message {
     private long notificationID = -1;
     private int typeID = -1;
 
-    private final Map<String, String> bodyAttributes = new HashMap<String, String>();
+    private final Map<String, String> bodyAttributes = new HashMap<>();
 
     public final long getNotificationID() {
         return notificationID;

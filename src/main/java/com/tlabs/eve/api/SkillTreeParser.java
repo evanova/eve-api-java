@@ -37,7 +37,7 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse> {
 
     private static final Map<String, String> attributeMap;
     static {
-        attributeMap = new HashMap<String, String>();
+        attributeMap = new HashMap<>();
 
         attributeMap.put("typeName", "skillName");
         attributeMap.put("typeID", "skillID");

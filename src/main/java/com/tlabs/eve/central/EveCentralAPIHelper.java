@@ -33,8 +33,8 @@ final class EveCentralAPIHelper {
     private static final Map<Class<?>, SoftReference<EveCentralParser<? extends EveCentralResponse>>> parsers;
 
     static {
-        parserMap = new HashMap<Class<? extends EveCentralRequest<?>>, Class<? extends EveCentralParser<?>>>();
-        parsers = new HashMap<Class<?>, SoftReference<EveCentralParser<? extends EveCentralResponse>>>();
+        parserMap = new HashMap<>();
+        parsers = new HashMap<>();
 
         parserMap.put(EveCentralStatsRequest.class, EveCentralStatsParser.class);
         parserMap.put(EveCentralQuickLookRequest.class, EveCentralQuickLookParser.class);
@@ -71,10 +71,7 @@ final class EveCentralAPIHelper {
         try {
             return parserClass.newInstance();
         }
-        catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(e.getLocalizedMessage(), e);
-        }
-        catch (InstantiationException e) {
+        catch (IllegalAccessException | InstantiationException e) {
             throw new IllegalArgumentException(e.getLocalizedMessage(), e);
         }
     }

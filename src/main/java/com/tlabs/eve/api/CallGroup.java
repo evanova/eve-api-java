@@ -33,7 +33,7 @@ public class CallGroup implements Serializable {
     private String name;
     private String description;
 
-    private List<CallEntry> entries = new LinkedList<CallEntry>();
+    private List<CallEntry> entries = new LinkedList<>();
 
     public final int getGroupID() {
         return groupID;

@@ -31,7 +31,7 @@ public class AccountBalanceResponse extends EveAPIResponse {
     private List<AccountBalance> accountBalance;
 
     public AccountBalanceResponse() {
-        accountBalance = new LinkedList<AccountBalance>();
+        accountBalance = new LinkedList<>();
     }
 
     public List<AccountBalance> getAccountBalance() {

@@ -33,7 +33,7 @@ public final class WalletTransactionsParser extends EveAPIParser<WalletTransacti
 
     private static final Map<String, String> attributes;
     static {
-        attributes = new HashMap<String, String>();
+        attributes = new HashMap<>();
         attributes.put("transactionDateTime", "when");
         attributes.put("transactionID", "ID");
         attributes.put("quantity", "quantity");

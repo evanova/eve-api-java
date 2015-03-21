@@ -33,8 +33,8 @@ public class MarketOrderResponse extends EveAPIResponse {
 
     public MarketOrderResponse() {
         super();
-        this.buyOrders = new LinkedList<MarketOrder>();
-        this.sellOrders = new LinkedList<MarketOrder>();
+        this.buyOrders = new LinkedList<>();
+        this.sellOrders = new LinkedList<>();
     }
 
     public List<MarketOrder> getBuyOrders() {

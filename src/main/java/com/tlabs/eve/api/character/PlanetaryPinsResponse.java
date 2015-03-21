@@ -12,7 +12,7 @@ public class PlanetaryPinsResponse extends EveAPIResponse {
     private final List<PlanetaryPin> pins;
 
     public PlanetaryPinsResponse() {
-        this.pins = new LinkedList<PlanetaryPin>();
+        this.pins = new LinkedList<>();
     }
 
     public void addPin(final PlanetaryPin pin) {

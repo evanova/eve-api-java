@@ -38,14 +38,14 @@ public class CertificateTree implements Serializable {
     private final List<Long> groups;//act as a cache for getCertificateGroups()
 
     public CertificateTree() {
-        this.certificates = new HashMap<Long, List<Certificate>>();
-        this.groups = new LinkedList<Long>();
+        this.certificates = new HashMap<>();
+        this.groups = new LinkedList<>();
     }
 
     public final void add(final Certificate c) {
         List<Certificate> certs = this.certificates.get(c.getGroupID());
         if (null == certs) {
-            certs = new ArrayList<Certificate>(5);
+            certs = new ArrayList<>(5);
             this.certificates.put(c.getGroupID(), certs);
             this.groups.add(c.getGroupID());
         }

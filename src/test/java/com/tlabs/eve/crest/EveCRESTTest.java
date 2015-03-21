@@ -44,7 +44,7 @@ public abstract class EveCRESTTest extends HttpClientTest {
     }
 
     private <T extends CRESTResponse> T callCRESTAPI(final String url, final CRESTRequest<T> r) throws IOException {
-        final StringBuffer burl = new StringBuffer();
+        final StringBuilder burl = new StringBuilder();
         burl.append(url);
         burl.append(r.getPage());
 

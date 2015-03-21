@@ -34,9 +34,9 @@ public class StandingsResponse extends EveAPIResponse {
 
     public StandingsResponse() {
         super();
-        this.corporationStandings = new LinkedList<Standing>();
-        this.agentStandings = new LinkedList<Standing>();
-        this.factionStandings = new LinkedList<Standing>();
+        this.corporationStandings = new LinkedList<>();
+        this.agentStandings = new LinkedList<>();
+        this.factionStandings = new LinkedList<>();
     }
 
     public final List<Standing> getCorporationStandings() {

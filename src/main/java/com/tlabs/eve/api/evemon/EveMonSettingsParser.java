@@ -35,7 +35,7 @@ public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettings
 
     private static final Map<String, String> propertyMap;
     static {
-        propertyMap = new HashMap<String, String>();
+        propertyMap = new HashMap<>();
         propertyMap.put("id", "keyID");
         propertyMap.put("vCode", "key");
         propertyMap.put("accessMask", "accessMask");

@@ -103,9 +103,9 @@ final class EveAPIHelper {
     private static final HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>> parsers;
 
     static {
-        parsers = new HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>>();
+        parsers = new HashMap<>();
 
-        parserMap = new HashMap<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>>();
+        parserMap = new HashMap<>();
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
 
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
@@ -212,10 +212,7 @@ final class EveAPIHelper {
         try {
             return parserClass.newInstance();
         }
-        catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(e.getLocalizedMessage(), e);
-        }
-        catch (InstantiationException e) {
+        catch (IllegalAccessException | InstantiationException e) {
             throw new IllegalArgumentException(e.getLocalizedMessage(), e);
         }
     }

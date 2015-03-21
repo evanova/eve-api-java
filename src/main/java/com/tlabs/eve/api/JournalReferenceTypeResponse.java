@@ -32,7 +32,7 @@ public class JournalReferenceTypeResponse extends EveAPIResponse {
 
     public JournalReferenceTypeResponse() {
         super();
-        this.referenceTypes = new HashMap<Long, String>();
+        this.referenceTypes = new HashMap<>();
     }
 
     public Map<Long, String> getReferences() {

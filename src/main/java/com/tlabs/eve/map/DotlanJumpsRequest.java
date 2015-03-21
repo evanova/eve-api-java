@@ -26,7 +26,7 @@ public final class DotlanJumpsRequest extends EveRequest<DotlanRouteResponse> {
         private Builder(final String from, final String to) {
             this.from = from;
             this.to = to;
-            this.avoidSystems = new LinkedList<String>();
+            this.avoidSystems = new LinkedList<>();
 
             this.jumpDriveCalibration = 4;
             this.jumpFreighter = 4;

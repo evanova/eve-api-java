@@ -29,7 +29,7 @@ public class CallListResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = 6542500480340585087L;
 
-    private Map<Integer, CallGroup> callGroups = new HashMap<Integer, CallGroup>();
+    private Map<Integer, CallGroup> callGroups = new HashMap<>();
 
     public CallListResponse() {
         super();

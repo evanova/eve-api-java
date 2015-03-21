@@ -52,9 +52,6 @@ public abstract class CRESTParser<T extends CRESTResponse> implements EveParser<
             T response = mapper.readValue(in, this.responseClass);
             return response;
         }
-        catch (JsonMappingException e) {
-            throw new IOException(e);
-        }
         catch (JsonProcessingException e) {
             throw new IOException(e);
         }

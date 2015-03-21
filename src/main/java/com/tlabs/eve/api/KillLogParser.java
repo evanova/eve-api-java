@@ -39,7 +39,7 @@ public class KillLogParser extends EveAPIParser<KillLogResponse> {
 
     private static final Map<String, String> rowRuleMap;
     static {
-        rowRuleMap = new HashMap<String, String>();
+        rowRuleMap = new HashMap<>();
         rowRuleMap.put("typeID", "typeID");
         rowRuleMap.put("flag", "flag");
         rowRuleMap.put("singleton", "singleton");
@@ -93,16 +93,16 @@ public class KillLogParser extends EveAPIParser<KillLogResponse> {
 
             final String rowName = attributes.getValue("name");
             if ("items".equals(rowName)) {
-                this.items = new LinkedList<KillMail.Item>();
+                this.items = new LinkedList<>();
                 getDigester().push(this.items);
             }
             else
                 if ("attackers".equals(rowName)) {
-                    this.attackers = new LinkedList<KillMail.Attacker>();
+                    this.attackers = new LinkedList<>();
                     getDigester().push(this.attackers);
                 }
                 else {
-                    getDigester().push(new LinkedList<Object>());
+                    getDigester().push(new LinkedList<>());
                 }
         }
 

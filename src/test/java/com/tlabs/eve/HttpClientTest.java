@@ -187,7 +187,7 @@ public class HttpClientTest {
     }
 
     public static List<NameValuePair> toNameValuePair(Map<String, String> params) {
-        List<NameValuePair> pairs = new ArrayList<NameValuePair>(params.size());
+        List<NameValuePair> pairs = new ArrayList<>(params.size());
         for (String p : params.keySet()) {
             pairs.add(new BasicNameValuePair(p, params.get(p)));
         }

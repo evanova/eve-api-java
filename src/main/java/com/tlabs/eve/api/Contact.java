@@ -37,7 +37,7 @@ public class Contact implements Serializable {
 
         private String groupName;
 
-        private final List<Contact> contacts = new LinkedList<Contact>();
+        private final List<Contact> contacts = new LinkedList<>();
 
         public List<Contact> getContacts() {
             return contacts;

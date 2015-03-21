@@ -28,9 +28,9 @@ import java.util.Map;
 
 public class EveCentralStatsResponse extends EveCentralResponse {
 
-    private Map<Long, List<EveCentralPrice>> marketPrices = new HashMap<Long, List<EveCentralPrice>>();
-    private Map<Long, List<EveCentralPrice>> buyOrders = new HashMap<Long, List<EveCentralPrice>>();
-    private Map<Long, List<EveCentralPrice>> sellOrders = new HashMap<Long, List<EveCentralPrice>>();
+    private Map<Long, List<EveCentralPrice>> marketPrices = new HashMap<>();
+    private Map<Long, List<EveCentralPrice>> buyOrders = new HashMap<>();
+    private Map<Long, List<EveCentralPrice>> sellOrders = new HashMap<>();
 
     public final Map<Long, List<EveCentralPrice>> getMarketPrices() {
         return marketPrices;
@@ -61,10 +61,10 @@ public class EveCentralStatsResponse extends EveCentralResponse {
     }
 
     private static void add(Map<Long, List<EveCentralPrice>> prices, EveCentralPrice p) {
-        List<EveCentralPrice> l = prices.get(Long.valueOf(p.getID()));
+        List<EveCentralPrice> l = prices.get(p.getID());
         if (null == l) {
-            l = new LinkedList<EveCentralPrice>();
-            prices.put(Long.valueOf(p.getID()), l);
+            l = new LinkedList<>();
+            prices.put(p.getID(), l);
         }
         l.add(p);
     }

@@ -34,7 +34,7 @@ public class CharacterResearchResponse extends EveAPIResponse {
 
     public CharacterResearchResponse() {
         super();
-        this.jobs = new LinkedList<ResearchJob>();
+        this.jobs = new LinkedList<>();
     }
 
     public List<ResearchJob> getJobs() {

@@ -206,7 +206,7 @@ public class KillMail implements Serializable {
 
         private static final long serialVersionUID = -16761854905584607L;
 
-        private List<Item> items = new LinkedList<Item>();
+        private List<Item> items = new LinkedList<>();
 
         private long typeID;
         private String typeName; //not in XML
@@ -282,8 +282,8 @@ public class KillMail implements Serializable {
     private long killTime;
 
     private Victim victim = new Victim();
-    private List<Attacker> attackers = new LinkedList<Attacker>();
-    private List<Item> items = new LinkedList<Item>();
+    private List<Attacker> attackers = new LinkedList<>();
+    private List<Item> items = new LinkedList<>();
 
     public long getKillID() {
         return killID;

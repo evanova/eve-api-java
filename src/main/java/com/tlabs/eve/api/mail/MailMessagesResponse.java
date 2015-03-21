@@ -28,7 +28,7 @@ import java.util.List;
 
 public class MailMessagesResponse extends EveAPIResponse {
 
-    private List<MailMessage> messages = new LinkedList<MailMessage>();
+    private List<MailMessage> messages = new LinkedList<>();
 
     public final List<MailMessage> getMessages() {
         return messages;

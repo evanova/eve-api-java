@@ -45,7 +45,9 @@ public class AccessInfo implements Serializable {
     private long keyID = -1;
     private String key = "";
 
-    private List<CharacterSheet> characters = new LinkedList<CharacterSheet>();
+    private String name;//Not in XML
+
+    private List<CharacterSheet> characters = new LinkedList<>();
 
     public AccessInfo() {
         super();
@@ -114,5 +116,13 @@ public class AccessInfo implements Serializable {
 
     public List<CharacterSheet> getCharacters() {
         return this.characters;
+    }
+
+    public String getName() {
+        return (null == name) ? Long.toString(this.keyID) : this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

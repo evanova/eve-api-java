@@ -9,7 +9,7 @@ public class MarketHistoryResponse extends CRESTResponse {
 
     private static final long serialVersionUID = 1020799045456674278L;
 
-    private final List<MarketTransaction> history = new LinkedList<MarketTransaction>();
+    private final List<MarketTransaction> history = new LinkedList<>();
 
     public final List<MarketTransaction> getHistory() {
         return history;
