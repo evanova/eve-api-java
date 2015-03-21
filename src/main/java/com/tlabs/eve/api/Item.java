@@ -22,10 +22,20 @@ package com.tlabs.eve.api;
  */
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Item implements Serializable {
 
-    private static final long serialVersionUID = 1043774614858911095L;
+    public static boolean isShip(final Item item) {
+        return ((null != item) && (item.categoryID == 6));
+    }
+
+    public static boolean isBlueprint(final Item item) {
+        return ((null != item) && (item.categoryID == -1));//FIXME
+    }
+
+    private static final long serialVersionUID = 1043774614858911035L;
 
     private long itemID;//it is the typeID	
     private String itemName;//item name;//not in Eve XML
@@ -47,6 +57,8 @@ public class Item implements Serializable {
     private double basePrice;//not in Eve XML
     private long marketGroupID;//not in Eve XML
     private int published;//not in Eve XML
+
+    private final List<ItemTrait> traits = new LinkedList<>();//in YML only
 
     public Item() {
         super();
@@ -194,5 +206,18 @@ public class Item implements Serializable {
 
     public final void setPublished(int published) {
         this.published = published;
+    }
+
+    public List<ItemTrait> getTraits() {
+        return traits;
+    }
+
+    public void setTraits(List<ItemTrait> traits) {
+        this.traits.clear();
+        this.traits.addAll(traits);
+    }
+
+    public void addTrait(ItemTrait trait) {
+        this.traits.add(trait);
     }
 }
