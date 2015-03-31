@@ -21,10 +21,8 @@ package com.tlabs.eve.central;
  * #L%
  */
 
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class MarketStatsTest extends EveCentralTest {
 
@@ -33,8 +31,8 @@ public class MarketStatsTest extends EveCentralTest {
         //http://api.eve-central.com/api/marketstat?typeid=34&typeid=35&regionlimit=10000002
         final EveCentralStatsRequest q = new EveCentralStatsRequest(new long[] { 34, 35 }, 10000002);
         final EveCentralStatsResponse r = apiCall(q);
-        assertNotNull(r);
-        assertEquals("Market Prices size mismatch", 2, r.getMarketPrices().size());
+        Assert.assertNotNull(r);
+        Assert.assertEquals("Market Prices size mismatch", 2, r.getMarketPrices().size());
 
     }
 }

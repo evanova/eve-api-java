@@ -28,11 +28,10 @@ import com.tlabs.eve.api.AccountStatusResponse;
 import com.tlabs.eve.api.EveApiTest;
 import com.tlabs.eve.api.character.CharacterSheet;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 public class AccountAccessTest extends EveApiTest {
 
@@ -54,7 +53,7 @@ public class AccountAccessTest extends EveApiTest {
         AccessInfoResponse q = apiCall(r);
 
         int size = q.getCharacters().size();
-        assertTrue("Character count = " + size, size > 0);
+        Assert.assertTrue("Character count = " + size, size > 0);
         print(q.getCharacters());
     }
 
@@ -64,7 +63,7 @@ public class AccountAccessTest extends EveApiTest {
 
         AccessInfoResponse q = apiCall(r);
         int size = q.getCharacters().size();
-        assertTrue("Character count = " + size, size > 0);
+        Assert.assertTrue("Character count = " + size, size > 0);
         print(q.getCharacters());
     }
 
@@ -75,7 +74,7 @@ public class AccountAccessTest extends EveApiTest {
         AccessInfoResponse q = apiCall(r);
 
         int size = q.getCharacters().size();
-        assertTrue("Corporation count = " + size, size > 0);
+        Assert.assertTrue("Corporation count = " + size, size > 0);
         print(q.getCharacters());
     }
 

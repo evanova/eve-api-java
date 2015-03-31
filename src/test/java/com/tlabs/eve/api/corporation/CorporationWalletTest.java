@@ -28,11 +28,10 @@ import com.tlabs.eve.api.AccountBalanceResponse;
 import com.tlabs.eve.api.WalletJournalResponse;
 import com.tlabs.eve.api.WalletTransactionsResponse;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 public final class CorporationWalletTest extends CorporationApiTest {
 
@@ -41,7 +40,7 @@ public final class CorporationWalletTest extends CorporationApiTest {
         AccountBalanceResponse r = apiCall(new CorporationAccountBalanceRequest(corporationKey.id));
 
         List<AccountBalance> account = r.getAccountBalance();
-        assertTrue("Account size=0", account.size() > 0);
+        Assert.assertTrue("Account size=0", account.size() > 0);
     }
 
     @Test(timeout = 10000)
