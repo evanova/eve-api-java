@@ -147,6 +147,12 @@ public class Contract implements Serializable {
     private long endStationID = -1;
     private String endStationName = "";//not in XML
 
+    private long startSolarSystemID = -1;//not in XML
+    private String startSolarSystemName = "";//not in XML
+
+    private long endSolarSystemID = -1;
+    private String endSolarSystemName = "";//not in XML
+
     private long forCorpID = -1;
     private String forCorpName = "";//not in XML
 
@@ -427,4 +433,35 @@ public class Contract implements Serializable {
         this.bids = bids;
     }
 
+    public long getStartSolarSystemID() {
+        return startSolarSystemID;
+    }
+
+    public void setStartSolarSystemID(long startSolarSystemID) {
+        this.startSolarSystemID = startSolarSystemID;
+    }
+
+    public String getStartSolarSystemName() {
+        return startSolarSystemName;
+    }
+
+    public void setStartSolarSystemName(String startSolarSystemName) {
+        this.startSolarSystemName = startSolarSystemName;
+    }
+
+    public long getEndSolarSystemID() {
+        return endSolarSystemID;
+    }
+
+    public void setEndSolarSystemID(long endSolarSystemID) {
+        this.endSolarSystemID = endSolarSystemID;
+    }
+
+    public String getEndSolarSystemName() {
+        return endSolarSystemName;
+    }
+
+    public void setEndSolarSystemName(String endSolarSystemName) {
+        this.endSolarSystemName = endSolarSystemName;
+    }
 }
