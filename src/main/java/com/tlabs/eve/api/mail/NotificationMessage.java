@@ -57,12 +57,13 @@ public class NotificationMessage extends Message {
     }
 
     @Override
-    protected void onBodyChanged(String body) {
+    public void setBody(String body) {
+        super.setBody(body);
         this.bodyAttributes.clear();
-        if (StringUtils.isBlank(body)) {
+        if (StringUtils.isBlank(getBody())) {
             return;
         }
-        final String[] lines = StringUtils.split(body, "\n");
+        final String[] lines = StringUtils.split(getBody(), "\n");
         for (int i = 0; i < lines.length; i++) {
             String[] line = StringUtils.split(lines[i].trim(), ":");
             if (line.length == 2) {

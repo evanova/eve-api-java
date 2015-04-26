@@ -72,7 +72,7 @@ public class Message implements Serializable {
         return body;
     }
 
-    public final void setBody(String body) {
+    public void setBody(String body) {
         if (StringUtils.isBlank(body)) {
             this.body = "";
         }
@@ -82,10 +82,6 @@ public class Message implements Serializable {
             this.body = b;
         }
 
-        onBodyChanged(this.body);
-    }
-
-    protected void onBodyChanged(final String body) {
     }
 
     public final void setSentDate(long sentDate) {
