@@ -21,6 +21,7 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.api.SkillTree.SkillGroup;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
@@ -76,7 +77,7 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse> {
         digester.addObjectCreate("eveapi/result", SkillTree.class);
         digester.addRule("eveapi/result", new com.tlabs.eve.parser.SetNextRule("setSkillTree"));
 
-        digester.addObjectCreate("eveapi/result/rowset/row", SkillTree.SkillGroup.class);
+        digester.addObjectCreate("eveapi/result/rowset/row", SkillGroup.class);
         digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());
         digester.addRule("eveapi/result/rowset/row", new SetNextRule("addGroup"));
 

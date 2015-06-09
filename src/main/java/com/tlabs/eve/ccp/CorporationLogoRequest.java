@@ -38,20 +38,20 @@ public final class CorporationLogoRequest extends ImageRequest<CorporationLogoRe
 
     private static final String URL = "/Corporation/%1$s_%2$s.png";
 
-    private CorporationLogoRequest.Size size;
+    private Size size;
     private String corporationID;
 
     public CorporationLogoRequest(String corpID) {
         this(corpID, Size.S256);
     }
 
-    public CorporationLogoRequest(String corpID, CorporationLogoRequest.Size size) {
+    public CorporationLogoRequest(String corpID, Size size) {
         super(CorporationLogoResponse.class, String.format(URL, corpID, size.getSize()));
         this.corporationID = corpID;
         this.size = size;
     }
 
-    public CorporationLogoRequest.Size getSize() {
+    public Size getSize() {
         return size;
     }
 

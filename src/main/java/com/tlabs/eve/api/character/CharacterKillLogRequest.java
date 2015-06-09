@@ -23,7 +23,7 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-import com.tlabs.eve.api.KillLogResponse;
+import com.tlabs.eve.api.mail.KillLogResponse;
 
 public final class CharacterKillLogRequest extends CharacterRequest<KillLogResponse> {
     public static final int MASK = 256;

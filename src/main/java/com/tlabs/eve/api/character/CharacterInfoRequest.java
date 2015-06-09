@@ -24,7 +24,9 @@ package com.tlabs.eve.api.character;
  * #L%
  */
 
-public final class CharacterInfoRequest extends CharacterRequest<CharacterInfoResponse> implements com.tlabs.eve.api.EveAPIRequest.Public {
+import com.tlabs.eve.api.EveAPIRequest.Public;
+
+public final class CharacterInfoRequest extends CharacterRequest<CharacterInfoResponse> implements Public {
     public static final int MASK = 16777216;
 
     public CharacterInfoRequest(String charID) {

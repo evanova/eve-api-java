@@ -21,8 +21,10 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.api.EveAPIRequest.Authenticated;
+
 /** @since Eve API V2 (30 Aug 2011*/
-public final class AccessInfoRequest extends EveAPIRequest<AccessInfoResponse> implements EveAPIRequest.Authenticated {
+public final class AccessInfoRequest extends EveAPIRequest<AccessInfoResponse> implements Authenticated {
 
     private String keyID;
     private String key;

@@ -22,6 +22,8 @@ package com.tlabs.eve.api.character;
  */
 
 import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.api.character.CharacterSheet.Implant;
+import com.tlabs.eve.api.character.CharacterSheet.JumpClone;
 import com.tlabs.eve.api.corporation.CorporationRole;
 import com.tlabs.eve.api.corporation.CorporationTitle;
 import com.tlabs.eve.parser.BaseRule;
@@ -221,7 +223,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         private static void addJumpClones(CharacterSheet c, List<Map<String, String>> attrs) {
             for (Map<String, String> attr : attrs) {
-                CharacterSheet.JumpClone jumpClone = new CharacterSheet.JumpClone();
+                JumpClone jumpClone = new JumpClone();
                 jumpClone.setName(attr.get("cloneName"));
                 jumpClone.setCloneID(Long.parseLong(attr.get("jumpCloneID")));
                 jumpClone.setLocationID(Long.parseLong(attr.get("locationID")));
@@ -231,7 +233,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         private static void addImplants(CharacterSheet c, List<Map<String, String>> attrs) {
             for (Map<String, String> attr : attrs) {
-                CharacterSheet.Implant implant = new CharacterSheet.Implant();
+                Implant implant = new Implant();
                 implant.setTypeName(attr.get("typeName"));
                 implant.setTypeID(Long.parseLong(attr.get("typeID")));
                 c.addImplant(implant);
@@ -240,7 +242,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         private static void addJumpCloneImplants(CharacterSheet c, List<Map<String, String>> attrs) {
             for (Map<String, String> attr : attrs) {
-                CharacterSheet.Implant implant = new CharacterSheet.Implant();
+                Implant implant = new Implant();
                 implant.setTypeName(attr.get("typeName"));
                 implant.setTypeID(Long.parseLong(attr.get("typeID")));
                 c.addJumpCloneImplant(Long.parseLong(attr.get("jumpCloneID")), implant);

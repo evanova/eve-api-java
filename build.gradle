@@ -1,5 +1,10 @@
 apply plugin: 'java'
 
+configurations {
+    provided
+    compile.extendsFrom provided
+}
+
 repositories {
         mavenCentral()
         jcenter()
@@ -8,7 +13,11 @@ repositories {
 group = 'com.tlabs.eve'
 version = '4.0'
 
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
 dependencies {
+
     compile 'commons-logging:commons-logging:1.1.+'
     compile 'commons-lang:commons-lang:2.6'
     compile 'commons-io:commons-io:2.4'
@@ -26,6 +35,6 @@ dependencies {
 
     testCompile 'junit:junit:4.10'
     testCompile 'commons-collections:commons-collections:3.2.+'
-    testCompile 'org.apache.httpcomponents:httpclient:4.1.+'
+    testCompile 'org.apache.httpcomponents:httpclient:4.3.+'
 
 }

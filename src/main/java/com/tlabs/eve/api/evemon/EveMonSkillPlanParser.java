@@ -23,6 +23,7 @@ package com.tlabs.eve.api.evemon;
 
 import com.tlabs.eve.api.character.CharacterTrainingQueueResponse;
 import com.tlabs.eve.api.character.SkillInTraining;
+import com.tlabs.eve.api.character.SkillInTraining.Type;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetNextRule;
@@ -41,10 +42,10 @@ public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrai
             t.setSkillName(attributes.getValue("skill"));
             String type = attributes.getValue("type");
             if ("prerequisite".equalsIgnoreCase(type)) {
-                t.setType(SkillInTraining.Type.REQUIRED);
+                t.setType(Type.REQUIRED);
             }
             else {
-                t.setType(SkillInTraining.Type.PLAN);
+                t.setType(Type.PLAN);
             }
         }
     }

@@ -166,8 +166,8 @@ final class EveAPIHelper {
         parserMap.put(CorporationContactListRequest.class, CorporationContactListParser.class);
         parserMap.put(CharacterContactListRequest.class, CharacterContactListParser.class);
 
-        parserMap.put(CharacterKillLogRequest.class, KillLogParser.class);
-        parserMap.put(CorporationKillLogRequest.class, KillLogParser.class);
+        parserMap.put(CharacterKillLogRequest.class, com.tlabs.eve.api.mail.KillLogParser.class);
+        parserMap.put(CorporationKillLogRequest.class, com.tlabs.eve.api.mail.KillLogParser.class);
 
         parserMap.put(CharacterItemLocationRequest.class, ItemLocationParser.class);
         parserMap.put(CorporationItemLocationRequest.class, ItemLocationParser.class);

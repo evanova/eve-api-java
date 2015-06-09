@@ -1,5 +1,7 @@
 package com.tlabs.eve.api;
 
+import com.tlabs.eve.api.EveAPIRequest.Authenticated;
+
 /*
  * #%L
  * This source code is part of the Evanova Android application:
@@ -20,7 +22,7 @@ package com.tlabs.eve.api;
  * limitations under the License.
  * #L%
  */
-public final class AccountStatusRequest extends EveAPIRequest<AccountStatusResponse> implements EveAPIRequest.Authenticated {
+public final class AccountStatusRequest extends EveAPIRequest<AccountStatusResponse> implements Authenticated {
     public static final int MASK = 33554432;
 
     private String keyID;

@@ -23,6 +23,8 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.api.Contact.Group;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,13 +32,13 @@ public final class ContactListResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = 1803692879940276962L;
 
-    private final List<Contact.Group> contactGroups = new LinkedList<>();
+    private final List<Group> contactGroups = new LinkedList<>();
 
-    public final List<Contact.Group> getContactGroups() {
+    public final List<Group> getContactGroups() {
         return this.contactGroups;
     }
 
-    public final void addGroup(final Contact.Group group) {
+    public final void addGroup(final Group group) {
         this.contactGroups.add(group);
     }
 }

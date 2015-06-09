@@ -1,4 +1,6 @@
-package com.tlabs.eve.api;
+package com.tlabs.eve.api.mail;
+
+import com.tlabs.eve.api.EveAPIResponse;
 
 import java.util.LinkedList;
 import java.util.List;

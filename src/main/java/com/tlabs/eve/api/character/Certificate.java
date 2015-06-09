@@ -63,7 +63,7 @@ public class Certificate implements Serializable {
 
     private List<Long> recommendedForTypes;
     //Map<Skill ID, Map<Certificate.Type, level>>
-    private Map<Long, Map<Certificate.Level, Integer>> skillTypeLevels;
+    private Map<Long, Map<Level, Integer>> skillTypeLevels;
 
     public final long getCertificateID() {
         return certificateID;
@@ -105,11 +105,11 @@ public class Certificate implements Serializable {
         this.recommendedForTypes = recommendedForTypes;
     }
 
-    public final Map<Long, Map<Certificate.Level, Integer>> getRequiredSkills() {
+    public final Map<Long, Map<Level, Integer>> getRequiredSkills() {
         return skillTypeLevels;
     }
 
-    public final void setRequiredSkills(Map<Long, Map<Certificate.Level, Integer>> skillTypeLevels) {
+    public final void setRequiredSkills(Map<Long, Map<Level, Integer>> skillTypeLevels) {
         this.skillTypeLevels = skillTypeLevels;
     }
 

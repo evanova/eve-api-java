@@ -23,6 +23,7 @@ package com.tlabs.eve.api;
  * #L%
  */
 
+import com.tlabs.eve.api.Contact.Group;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 
@@ -35,7 +36,7 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
 
         @Override
         public void doBegin(String name, Attributes attributes) {
-            if (getDigester().peek() instanceof Contact.Group) {
+            if (getDigester().peek() instanceof Group) {
                 getDigester().push(new Contact());
                 super.doBegin(name, attributes);
             }
@@ -45,7 +46,7 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
         public void doEnd(String name) {
             if (getDigester().peek() instanceof Contact) {
                 final Contact contact = (Contact) getDigester().pop();
-                final Contact.Group group = (Contact.Group) getDigester().peek();
+                final Group group = (Group) getDigester().peek();
                 group.addContact(contact);
             }
         }
@@ -66,7 +67,7 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
             final String groupName = attributes.getValue("name");
 
             if (this.filterContactList.equals(groupName)) {
-                final Contact.Group group = new Contact.Group();
+                final Group group = new Group();
                 group.setName(groupName);
                 getDigester().push(group);
             }
@@ -74,8 +75,8 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
 
         @Override
         public void doEnd(String name) {
-            if (getDigester().peek() instanceof Contact.Group) {
-                final Contact.Group group = (Contact.Group) getDigester().pop();
+            if (getDigester().peek() instanceof Group) {
+                final Group group = (Group) getDigester().pop();
                 final ContactListResponse r = (ContactListResponse) getDigester().peek();
                 r.addGroup(group);
             }

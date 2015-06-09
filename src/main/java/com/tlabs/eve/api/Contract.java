@@ -159,8 +159,8 @@ public class Contract implements Serializable {
     private String title;
     private String availability;
 
-    private Contract.Type type;
-    private Contract.Status status;
+    private Type type;
+    private Status status;
 
     private long dateIssued;
     private long dateExpired;
@@ -249,28 +249,28 @@ public class Contract implements Serializable {
         this.title = title;
     }
 
-    public final Contract.Type getType() {
+    public final Type getType() {
         return type;
     }
 
     public final void setType(String type) {
-        this.type = Contract.Type.typeOf(type);
+        this.type = Type.typeOf(type);
     }
 
     public final void setType(int type) {
-        this.type = Contract.Type.typeOf(type);
+        this.type = Type.typeOf(type);
     }
 
-    public final Contract.Status getStatus() {
+    public final Status getStatus() {
         return status;
     }
 
     public final void setStatus(String status) {
-        this.status = Contract.Status.statusOf(status);
+        this.status = Status.statusOf(status);
     }
 
     public final void setStatus(int status) {
-        this.status = Contract.Status.statusOf(status);
+        this.status = Status.statusOf(status);
     }
 
     public final String getAvailability() {

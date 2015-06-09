@@ -23,7 +23,9 @@ package com.tlabs.eve.api;
  * #L%
  */
 
-public final class SovereigntyRequest extends EveAPIRequest<SovereigntyResponse> implements com.tlabs.eve.api.EveAPIRequest.Public {
+import com.tlabs.eve.api.EveAPIRequest.Public;
+
+public final class SovereigntyRequest extends EveAPIRequest<SovereigntyResponse> implements Public {
 
     public SovereigntyRequest() {
         super(SovereigntyResponse.class, "/map/Sovereignty.xml.aspx", 0);

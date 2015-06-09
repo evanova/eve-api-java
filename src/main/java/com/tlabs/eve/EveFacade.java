@@ -30,6 +30,8 @@ import com.tlabs.eve.central.EveCentral;
 import com.tlabs.eve.central.EveCentralRequest;
 import com.tlabs.eve.crest.CREST;
 import com.tlabs.eve.crest.CRESTRequest;
+import com.tlabs.eve.zkb.ZKillboard;
+import com.tlabs.eve.zkb.ZKillRequest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,6 +50,9 @@ public final class EveFacade {
         }
         if (request instanceof CRESTRequest) {
             return (T) CREST.parse((CRESTRequest) request, in);
+        }
+        if (request instanceof ZKillRequest) {
+            return (T) ZKillboard.parse((ZKillRequest)request, in);
         }
         return CCP.parse(request, in);
     }

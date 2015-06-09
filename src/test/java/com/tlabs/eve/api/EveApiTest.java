@@ -22,6 +22,7 @@ package com.tlabs.eve.api;
  */
 
 import com.tlabs.eve.HttpClientTest;
+import com.tlabs.eve.api.EveAPIRequest.Authenticated;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
@@ -153,8 +154,8 @@ public abstract class EveApiTest extends HttpClientTest {
     private <T extends EveAPIResponse> T callEveAPI(final String url, final EveAPIRequest<T> r) throws IOException {
         final List<NameValuePair> nvps = new ArrayList<>();
 
-        if (r instanceof EveAPIRequest.Authenticated) {
-            EveAPIRequest.Authenticated auth = (EveAPIRequest.Authenticated) r;
+        if (r instanceof Authenticated) {
+            Authenticated auth = (Authenticated) r;
             if (StringUtils.isBlank(auth.getKeyID())) {
                 nvps.add(new BasicNameValuePair("keyID", this.keyID));
             }
