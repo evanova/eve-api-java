@@ -1,27 +1,5 @@
 package com.tlabs.eve.api;
 
-/*
- * #%L
- * This source code is part of the Evanova Android application:
- * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
- * 
- * ------------------------------------------------------------------------
- * %%
- * Copyright (C) 2010 - 2012 Traquenard Labs
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -37,7 +15,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
 
-//Facade toward the ...ahem.. Eve API...
 public final class EveAPI {
 
     public static final int CHAR_FULL = /*65461771*/266854027;
@@ -46,18 +23,30 @@ public final class EveAPI {
     public static final int CORP_FULL = /*65461775*/29356539;
     public static final int CORP_MIN = /*65461775*/8;
 
-    public static final AccessGroup[] characterGroups = new AccessGroup[] { AccessGroup.Group1, AccessGroup.Group7, AccessGroup.Group3, AccessGroup.Group4, AccessGroup.Group2 };
+    public static final AccessGroup[] characterGroups = new AccessGroup[] {
+            AccessGroup.Group1,
+            AccessGroup.Group7,
+            AccessGroup.Group3,
+            AccessGroup.Group4,
+            AccessGroup.Group2 };
 
-    public static final AccessGroup[] corporationGroups = new AccessGroup[] { AccessGroup.Group1, AccessGroup.Group7, AccessGroup.Group5, AccessGroup.Group6, AccessGroup.Group3,
-            AccessGroup.Group4, AccessGroup.Group2 };
+    public static final AccessGroup[] corporationGroups = new AccessGroup[] {
+            AccessGroup.Group1,
+            AccessGroup.Group7,
+            AccessGroup.Group5,
+            AccessGroup.Group6,
+            AccessGroup.Group3,
+            AccessGroup.Group4,
+            AccessGroup.Group2 };
 
     public static enum AccessGroup {
-        Group1(1, "Account and Market", "Market Orders, account balance and journal history."), Group7(7, "Communications",
-                "Private communications such as contact lists, Eve Mail and Notifications."), Group5(5, "Corporation Members", "Member information for Corporations."), Group6(6,
-                "Outposts and Starbases", "Outpost and Starbase information for Corporations"), Group3(3, "Private Information",
-                "Personal information about the owner. Asset lists, skill training for characters, Private Calendar and more."), Group4(4, "Public Information",
-                "Achievements such as Medals, Kill Mails, Fational Warfare Statistics and NPC Standings."), Group2(2, "Science and Industry",
-                "Datacore production and job listing.");
+        Group1(1, "Account and Market", "Market Orders, account balance and journal history."),
+        Group7(7, "Communications", "Private communications such as contact lists, Eve Mail and Notifications."),
+        Group5(5, "Corporation Members", "Member information for Corporations."),
+        Group6(6, "Outposts and Starbases", "Outpost and Starbase information for Corporations"),
+        Group3(3, "Private Information", "Personal information about the owner. Asset lists, skill training for characters, Private Calendar and more."),
+        Group4(4, "Public Information", "Achievements such as Medals, Kill Mails, Fational Warfare Statistics and NPC Standings."),
+        Group2(2, "Science and Industry", "Datacore production and job listing.");
 
         private String description;
         private String name;

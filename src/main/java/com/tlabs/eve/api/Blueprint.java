@@ -14,22 +14,22 @@ public class Blueprint implements Serializable {
     private List<Map<Long, Integer>> manufacturingMaterials;
     private List<Map<Long, Integer>> manufacturingProducts;
     private List<Map<Long, Integer>> manufacturingSkills;
-    private int manufacturingTime;
+    private long manufacturingTime;
 
     private List<Map<Long, Integer>> inventionMaterials;
     private List<Map<Long, Integer>> inventionProducts;
     private List<Map<Long, Integer>> inventionSkills;
-    private int inventionTime;
+    private long inventionTime;
 
     private List<Map<Long, Integer>> copyingMaterials;
     private List<Map<Long, Integer>> copyingSkills;
-    private int copyingTime;
+    private long copyingTime;
 
     private List<Map<Long, Integer>> researchMaterialsMaterials;
     private List<Map<Long, Integer>> researchMaterialsSkills;
-    private int researchMaterialsTime;
+    private long researchMaterialsTime;
 
     private List<Map<Long, Integer>> researchTimeMaterials;
     private List<Map<Long, Integer>> researchTimeSkills;
-    private int researchTimeTime;
+    private long researchTimeTime;
 }

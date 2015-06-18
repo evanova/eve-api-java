@@ -1,33 +1,14 @@
-package com.tlabs.eve.api;
+package com.tlabs.eve.api.mail;
 
-/*
- * #%L
- * This source code is part of the Evanova Android application:
- * https://play.google.com/store/apps/details?id=com.tlabs.android.evanova
- * 
- * ------------------------------------------------------------------------
- * %%
- * Copyright (C) 2010 - 2012 Traquenard Labs
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
 
-import com.tlabs.eve.api.Contact.Group;
+
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.api.mail.Contact.Group;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 
 import org.apache.commons.digester.Digester;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.xml.sax.Attributes;
 
@@ -53,20 +34,14 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
 
     }
 
-    private static final class AddGroupRule extends BaseRule {
-        private final String filterContactList;
+    private final class AddGroupRule extends BaseRule {
 
-        public AddGroupRule(final String filterContactListName) {
-            super();
-            this.filterContactList = filterContactListName;
-            Validate.notNull(this.filterContactList);
-        }
 
         @Override
         public void doBegin(String name, Attributes attributes) {
             final String groupName = attributes.getValue("name");
 
-            if (this.filterContactList.equals(groupName)) {
+            if (filterContactListName.equals(groupName)) {
                 final Group group = new Group();
                 group.setName(groupName);
                 getDigester().push(group);
@@ -87,14 +62,13 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
 
     protected ContactListParser(final String filterContactListName) {
         super(ContactListResponse.class);
-        Validate.notNull(filterContactListName);
+        Validate.isTrue(StringUtils.isNotBlank(filterContactListName), "ContactListParser:filterContactListName");
         this.filterContactListName = filterContactListName;
-        Validate.notNull(this.filterContactListName);
     }
 
     @Override
     protected void onInit(Digester digester) {
-        digester.addRule("eveapi/result/rowset", new AddGroupRule(this.filterContactListName));
+        digester.addRule("eveapi/result/rowset", new AddGroupRule());
         digester.addRule("eveapi/result/rowset/row", new AddContactRule());
     }
 }
