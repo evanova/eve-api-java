@@ -3,6 +3,7 @@ package com.tlabs.eve.api;
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
 import com.tlabs.eve.api.character.CharacterAssetsRequest;
+import com.tlabs.eve.api.character.CharacterBookmarksRequest;
 import com.tlabs.eve.api.character.CharacterContactListParser;
 import com.tlabs.eve.api.character.CharacterContactListRequest;
 import com.tlabs.eve.api.character.CharacterContactNotificationsRequest;
@@ -36,6 +37,7 @@ import com.tlabs.eve.api.character.PlanetaryRoutesParser;
 import com.tlabs.eve.api.character.PlanetaryRoutesRequest;
 import com.tlabs.eve.api.corporation.CorporationAccountBalanceRequest;
 import com.tlabs.eve.api.corporation.CorporationAssetsRequest;
+import com.tlabs.eve.api.corporation.CorporationBookmarksRequest;
 import com.tlabs.eve.api.corporation.CorporationContactListParser;
 import com.tlabs.eve.api.corporation.CorporationContactListRequest;
 import com.tlabs.eve.api.corporation.CorporationContractBidsRequest;
@@ -154,6 +156,9 @@ final class EveAPIHelper {
 
         parserMap.put(CharacterStandingsRequest.class, StandingsParser.class);
         parserMap.put(CorporationStandingsRequest.class, StandingsParser.class);
+
+        parserMap.put(CharacterBookmarksRequest.class, BookmarksParser.class);
+        parserMap.put(CorporationBookmarksRequest.class, BookmarksParser.class);
 
         parserMap.put(PlanetaryColoniesRequest.class, PlanetaryColoniesParser.class);
         parserMap.put(PlanetaryLinksRequest.class, PlanetaryLinksParser.class);

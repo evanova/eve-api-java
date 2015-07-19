@@ -8,38 +8,34 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Asset implements Serializable {
+import lombok.Getter;
+import lombok.Setter;
+
+
+public class Asset extends Item implements Serializable {
 
     private static final long serialVersionUID = 3312515668424970872L;
 
-    private long itemID;//it is the typeID	
-
+    @Getter
+    @Setter
     private long locationID;
+
+    @Getter
+    @Setter
     private String locationName;//Not in XML
 
+    @Getter
+    @Setter
     private long quantity;
 
     private int inventoryFlag;
     private String inventoryFlagName;//not in XML
+
+    @Getter
+    @Setter
     private boolean packaged;
 
     private List<Asset> items = new LinkedList<>();
-
-    public Asset() {
-        super();
-    }
-
-    public long getItemID() {
-        return itemID;
-    }
-
-    public void setItemID(long itemID) {
-        this.itemID = itemID;
-    }
-
-    public long getLocationID() {
-        return locationID;
-    }
 
     public void setLocationID(long locationID) {
         this.locationID = locationID;
@@ -52,10 +48,6 @@ public class Asset implements Serializable {
         else {
             this.locationID = Long.parseLong(locationID);
         }
-    }
-
-    public long getQuantity() {
-        return quantity;
     }
 
     public void setQuantity(long quantity) {
@@ -80,10 +72,6 @@ public class Asset implements Serializable {
         this.inventoryFlagName = inventoryFlag;
     }
 
-    public boolean getPackaged() {
-        return packaged;
-    }
-
     public void setPackaged(boolean packaged) {
         this.packaged = packaged;
     }
@@ -100,14 +88,6 @@ public class Asset implements Serializable {
         this.inventoryFlagName = inventoryName;
     }
 
-    public final String getLocationName() {
-        return locationName;
-    }
-
-    public final void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }
-
     public void addAsset(Asset item) {
         this.items.add(item);
     }
@@ -120,11 +100,23 @@ public class Asset implements Serializable {
         this.items = items;
     }
 
-    public final List<Asset> getContainedItems() {
-        return this.items;
-    }
-
-    public final int getContainedCount() {
-        return this.items.size();
+    public void setItem(final Item item) {
+        setName(item.getName());
+        setRaceID(item.getRaceID());
+        setDescription(item.getDescription());
+        setCategoryID(item.getCategoryID());
+        setCategoryName(item.getCategoryName());
+        setGroupID(item.getGroupID());
+        setGroupName(item.getGroupName());
+        setMetaGroupID(item.getMetaGroupID());
+        setMetaGroupName(item.getMetaGroupName());
+        setMass(item.getMass());
+        setVolume(item.getVolume());
+        setCapacity(item.getCapacity());
+        setDuplicateChange(item.getDuplicateChange());
+        setPortion(item.getPortion());
+        setBasePrice(item.getBasePrice());
+        setMarketGroupID(item.getMarketGroupID());
+        setPublished(item.getPublished());
     }
 }
