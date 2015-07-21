@@ -12,9 +12,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-public class Asset extends Item implements Serializable {
+public class Asset implements Serializable {
 
     private static final long serialVersionUID = 3312515668424970872L;
+
+    @Getter
+    @Setter
+    private Item item;
+
+    @Getter
+    @Setter
+    private long itemID; //Not in XML
+
+    @Getter
+    @Setter
+    private long assetID; //Not in XML
+
+    @Getter
+    @Setter
+    private long parentID; //Not in XML
 
     @Getter
     @Setter
@@ -100,23 +116,4 @@ public class Asset extends Item implements Serializable {
         this.items = items;
     }
 
-    public void setItem(final Item item) {
-        setName(item.getName());
-        setRaceID(item.getRaceID());
-        setDescription(item.getDescription());
-        setCategoryID(item.getCategoryID());
-        setCategoryName(item.getCategoryName());
-        setGroupID(item.getGroupID());
-        setGroupName(item.getGroupName());
-        setMetaGroupID(item.getMetaGroupID());
-        setMetaGroupName(item.getMetaGroupName());
-        setMass(item.getMass());
-        setVolume(item.getVolume());
-        setCapacity(item.getCapacity());
-        setDuplicateChange(item.getDuplicateChange());
-        setPortion(item.getPortion());
-        setBasePrice(item.getBasePrice());
-        setMarketGroupID(item.getMarketGroupID());
-        setPublished(item.getPublished());
-    }
 }

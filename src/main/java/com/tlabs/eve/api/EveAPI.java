@@ -72,27 +72,35 @@ public final class EveAPI {
     }
 
     public static enum CharacterAccess {
-        Contracts(67108864, 3, "Contracts", "List of all Contracts the character is involved in."), AccountStatus(33554432, 3, "AccountStatus", "EVE player account status."), CharacterInfoMore(
-                16777216, 4, "CharacterInfo", "Sensitive Character Information, exposes account balance and last known location on top of the other Character Information call."), CharacterInfo(
-                8388608, 3, "CharacterInfo", "Character information, exposes skill points and current ship information on top of'Show Info'information."), Location(134217728, 3,
-                "ItemLocation", "Character location"),
-
-        WalletTransactions(4194304, 1, "WalletTransactions", "Market transaction journal of character."), WalletJournal(2097152, 1, "WalletJournal", "Wallet journal of character."), UpcomingCalendarEvents(
-                1048576, 3, "UpcomingCalendarEvents", "Upcoming events on characters calendar."), Standings(524288, 4, "Standings", "NPC Standings towards the character."), SkillQueue(
-                262144, 3, "SkillQueue", "Entire skill queue of character."), SkillInTraining(131072, 3, "SkillInTraining",
-                "Skill currently in training on the character. Subset of entire Skill Queue."), Research(65536, 2, "Research",
-                "List of all Research agents working for the character and the progress of the research."), NotificationTexts(32768, 7, "NotificationTexts",
-                "Actual body of notifications sent to the character. Requires Notification access to function."), Notifications(16384, 7, "Notifications",
-                "List of recent notifications sent to the character."), Medals(8192, 4, "Medals", "Medals awarded to the character."), MarketOrders(4096, 1, "MarketOrders",
-                "List of all Market Orders the character has made."), MailMessages(2048, 7, "MailMessages", "List of all messages in the characters EVE Mail Inbox."), MailingLists(
-                1024, 7, "MailingLists", "List of all Mailing Lists the character subscribes to."), MailBodies(512, 7, "MailBodies",
-                "EVE Mail bodies. Requires MailMessages as well to function."), KillLog(256, 4, "KillLog", "Characters kill log."), IndustryJobs(128, 2, "IndustryJobs",
-                "Character jobs, completed and active."), FacWarStats(64, 4, "FacWarStats", "Characters Factional Warfare Statistics."), ContactNotifications(32, 7,
-                "ContactNotifications", "Most recent contact notifications for the character."), ContactList(16, 7, "ContactList",
-                "List of character contacts and relationship levels."), CharacterSheet(8, 3, "CharacterSheet",
-                "Character Sheet information. Contains basic'Show Info'information along with clones, account balance, implants, attributes, skills, certificates and corporation roles."), CalendarEventAttendees(
-                4, 3, "CalendarEventAttendees", "Event attendee responses. Requires UpcomingCalendarEvents to function."), AssetList(2, 3, "AssetList",
-                "Entire asset list of character."), AccountBalance(1, 1, "AccountBalance", "Current balance of characters wallet.");
+        Contracts(67108864, 3, "Contracts", "List of all Contracts the character is involved in."),
+        AccountStatus(33554432, 3, "AccountStatus", "EVE player account status."),
+        CharacterInfoMore(16777216, 4, "CharacterInfo", "Sensitive Character Information, exposes account balance and last known location on top of the other Character Information call."),
+        CharacterInfo(8388608, 3, "CharacterInfo", "Character information, exposes skill points and current ship information on top of'Show Info'information."),
+        Location(134217728, 3, "ItemLocation", "Character location"),
+        WalletTransactions(4194304, 1, "WalletTransactions", "Market transaction journal of character."),
+        WalletJournal(2097152, 1, "WalletJournal", "Wallet journal of character."),
+        UpcomingCalendarEvents(1048576, 3, "UpcomingCalendarEvents", "Upcoming events on characters calendar."),
+        Standings(524288, 4, "Standings", "NPC Standings towards the character."),
+        SkillQueue(262144, 3, "SkillQueue", "Entire skill queue of character."),
+        SkillInTraining(131072, 3, "SkillInTraining", "Skill currently in training on the character. Subset of entire Skill Queue."),
+        Research(65536, 2, "Research", "List of all Research agents working for the character and the progress of the research."),
+        NotificationTexts(32768, 7, "NotificationTexts", "Actual body of notifications sent to the character. Requires Notification access to function."),
+        Notifications(16384, 7, "Notifications", "List of recent notifications sent to the character."),
+        Medals(8192, 4, "Medals", "Medals awarded to the character."),
+        MarketOrders(4096, 1, "MarketOrders", "List of all Market Orders the character has made."),
+        MailMessages(2048, 7, "MailMessages", "List of all messages in the characters EVE Mail Inbox."),
+        MailingLists(1024, 7, "MailingLists", "List of all Mailing Lists the character subscribes to."),
+        MailBodies(512, 7, "MailBodies", "EVE Mail bodies. Requires MailMessages as well to function."),
+        KillLog(256, 4, "KillLog", "Characters kill log."),
+        IndustryJobs(128, 2, "IndustryJobs", "Character jobs, completed and active."),
+        FacWarStats(64, 4, "FacWarStats", "Characters Factional Warfare Statistics."),
+        ContactNotifications(32, 7, "ContactNotifications", "Most recent contact notifications for the character."),
+        ContactList(16, 7, "ContactList", "List of character contacts and relationship levels."),
+        CharacterSheet(8, 3, "CharacterSheet", "Character Sheet information. Contains basic'Show Info'information along with clones, account balance, implants, attributes, skills, certificates and corporation roles."),
+        CalendarEventAttendees(4, 3, "CalendarEventAttendees", "Event attendee responses. Requires UpcomingCalendarEvents to function."),
+        AssetList(2, 3, "AssetList", "Entire asset list of character."),
+        AccountBalance(1, 1, "AccountBalance", "Current balance of characters wallet."),
+        Bookmarks(268435456, 3, "Bookmarks", "Character Bookmarks.");
 
         private String description;
         private String name;
@@ -143,24 +151,32 @@ public final class EveAPI {
 
     public static enum CorporationAccess {
 
-        Contracts(8388608, 3, "Contracts", "List of recent Contracts the corporation is involved in."), Titles(4194304, 5, "Titles",
-                "Titles of corporation and the roles they grant."), WalletTransactions(2097152, 1, "WalletTransactions", "Market transactions of all corporate accounts."), WalletJournal(
-                1048576, 1, "WalletJournal", "Wallet journal for all corporate accounts."), StarbaseList(524288, 6, "StarbaseList", "List of all corporate starbases."), Standings(
-                262144, 4, "Standings", "NPC Standings towards corporation."), StarbaseDetail(131072, 6, "StarbaseDetail", "List of all settings of corporate starbases."), Shareholders(
-                65536, 1, "Shareholders", "Shareholders of the corporation."), OutpostServiceDetail(32768, 6, "OutpostServiceDetail",
-                "List of all service settings of corporate outposts."), OutpostList(16384, 6, "OutpostList", "List of all outposts controlled by the corporation."), Medals(8192,
-                4, "Medals", "List of all medals created by the corporation."), MarketOrders(4096, 1, "MarketOrders", "List of all corporate market orders."),
-
-        MemberTrackingLimited(2048, 5, "MemberTrackingLimited", "Lmited Member information."), MemberTrackingExtended(33554432, 5, "MemberTrackingExtended",
-                "Extensive Member information."), MemberSecurityLog(1024, 5, "MemberSecurityLog", "Member role and title change log."), MemberSecurity(512, 5, "MemberSecurity",
-                "Member roles and titles."),
-
-        KillLog(256, 4, "KillLog", "Corporation kill log."), IndustryJobs(128, 2, "IndustryJobs", "Corporation jobs, completed and active."), FacWarStats(64, 4, "FacWarStats",
-                "Corporations Factional Warfare Statistics."), ContainerLog(32, 3, "ContainerLog", "Corporate secure container acess log."), ContactList(16, 7, "ContactList",
-                "Corporate contact list and relationships."), CorporationSheet(8, 3, "CorporationSheet",
-                "Exposes basic'Show Info'information as well as Member Limit and basic division and wallet info."), MemberMedals(4, 5, "MemberMedals",
-                "List of medals awarded to corporation members."), AssetList(2, 3, "AssetList", "List of all corporation assets."), AccountBalance(1, 1, "AccountBalance",
-                "Current balance of all corporation accounts.");
+        Contracts(8388608, 3, "Contracts", "List of recent Contracts the corporation is involved in."),
+        Titles(4194304, 5, "Titles", "Titles of corporation and the roles they grant."),
+        WalletTransactions(2097152, 1, "WalletTransactions", "Market transactions of all corporate accounts."),
+        WalletJournal(1048576, 1, "WalletJournal", "Wallet journal for all corporate accounts."),
+        StarbaseList(524288, 6, "StarbaseList", "List of all corporate starbases."),
+        Standings(262144, 4, "Standings", "NPC Standings towards corporation."),
+        StarbaseDetail(131072, 6, "StarbaseDetail", "List of all settings of corporate starbases."),
+        Shareholders(65536, 1, "Shareholders", "Shareholders of the corporation."),
+        OutpostServiceDetail(32768, 6, "OutpostServiceDetail", "List of all service settings of corporate outposts."),
+        OutpostList(16384, 6, "OutpostList", "List of all outposts controlled by the corporation."),
+        Medals(8192, 4, "Medals", "List of all medals created by the corporation."),
+        MarketOrders(4096, 1, "MarketOrders", "List of all corporate market orders."),
+        MemberTrackingLimited(2048, 5, "MemberTrackingLimited", "Lmited Member information."),
+        MemberTrackingExtended(33554432, 5, "MemberTrackingExtended", "Extensive Member information."),
+        MemberSecurityLog(1024, 5, "MemberSecurityLog", "Member role and title change log."),
+        MemberSecurity(512, 5, "MemberSecurity", "Member roles and titles."),
+        KillLog(256, 4, "KillLog", "Corporation kill log."),
+        IndustryJobs(128, 2, "IndustryJobs", "Corporation jobs, completed and active."),
+        FacWarStats(64, 4, "FacWarStats", "Corporations Factional Warfare Statistics."),
+        ContainerLog(32, 3, "ContainerLog", "Corporate secure container acess log."),
+        ContactList(16, 7, "ContactList", "Corporate contact list and relationships."),
+        CorporationSheet(8, 3, "CorporationSheet", "Exposes basic'Show Info'information as well as Member Limit and basic division and wallet info."),
+        MemberMedals(4, 5, "MemberMedals", "List of medals awarded to corporation members."),
+        AssetList(2, 3, "AssetList", "List of all corporation assets."),
+        AccountBalance(1, 1, "AccountBalance", "Current balance of all corporation accounts."),
+        Bookmarks(67108864, 3, "Bookmarks", "Corporation Bookmarks.");
 
         private String description;
         private String name;
