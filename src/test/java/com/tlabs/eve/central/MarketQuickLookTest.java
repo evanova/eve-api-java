@@ -14,7 +14,7 @@ public class MarketQuickLookTest extends EveCentralTest {
         final EveCentralQuickLookResponse r = apiCall(q);
         Assert.assertTrue(r.getTypeID() > 0);
         Assert.assertTrue(StringUtils.isNotBlank(r.getTypeName()));
-        Assert.assertTrue(r.getBuyOrders().size() > 0);
+        Assert.assertTrue(!r.getBuyOrders().isEmpty());
 
         marketOrderTest(r.getBuyOrders().get(0));
     }
@@ -25,7 +25,7 @@ public class MarketQuickLookTest extends EveCentralTest {
         final EveCentralQuickLookResponse r = apiCall(q);
         Assert.assertTrue(r.getTypeID() > 0);
         Assert.assertTrue(StringUtils.isNotBlank(r.getTypeName()));
-        Assert.assertTrue(r.getSellOrders().size() > 0);
+        Assert.assertTrue(!r.getSellOrders().isEmpty());
         marketOrderTest(r.getSellOrders().get(0));
     }
 

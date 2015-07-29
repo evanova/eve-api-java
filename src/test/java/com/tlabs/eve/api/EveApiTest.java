@@ -171,7 +171,7 @@ public abstract class EveApiTest extends HttpClientTest {
         String l = null;
         while ((l = r.readLine()) != null) {
             l = l.trim();
-            if (l.length() == 0) {
+            if (l.isEmpty()) {
                 continue;
             }
             if (l.startsWith("#")) {

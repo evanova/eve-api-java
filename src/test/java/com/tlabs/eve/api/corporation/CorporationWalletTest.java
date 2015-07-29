@@ -19,7 +19,7 @@ public final class CorporationWalletTest extends CorporationApiTest {
         AccountBalanceResponse r = apiCall(new CorporationAccountBalanceRequest(corporationKey.id));
 
         List<AccountBalance> account = r.getAccountBalance();
-        Assert.assertTrue("Account size=0", account.size() > 0);
+        Assert.assertTrue("Account size=0", !account.isEmpty());
     }
 
     @Test(timeout = 10000)

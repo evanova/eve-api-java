@@ -9,7 +9,7 @@ import java.util.Map;
 public final class ItemAttributeFormatter {
 
     private interface AttributeFormat {
-        public String format(final ItemAttribute attr);
+        String format(final ItemAttribute attr);
     }
 
     private static final class UnitFormat implements AttributeFormat {

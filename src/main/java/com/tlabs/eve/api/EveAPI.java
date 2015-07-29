@@ -267,7 +267,7 @@ public final class EveAPI {
         if ((null == againstAccess) || (againstAccess.length == 0)) {
             return true;
         }
-        if ((null == keyMasks) || (keyMasks.size() == 0)) {
+        if ((null == keyMasks) || (keyMasks.isEmpty())) {
             return false;
         }
         for (CharacterAccess a : againstAccess) {
@@ -296,7 +296,7 @@ public final class EveAPI {
         if ((null == againstAccess) || (againstAccess.length == 0)) {
             return true;
         }
-        if ((null == keyMasks) || (keyMasks.size() == 0)) {
+        if ((null == keyMasks) || (keyMasks.isEmpty())) {
             return false;
         }
         for (CorporationAccess a : againstAccess) {

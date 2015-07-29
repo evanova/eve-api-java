@@ -3,9 +3,6 @@ package com.tlabs.eve.api.mail;
 
 import java.io.Serializable;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class ContactNotification extends NotificationMessage implements Serializable {
 
     public ContactNotification() {

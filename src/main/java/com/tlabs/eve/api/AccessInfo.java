@@ -63,6 +63,10 @@ public class AccessInfo implements Serializable {
         this.type = UNKNOWN;
     }
 
+    public final void setType(int type) {
+        this.type = type;
+    }
+
     public final long getExpires() {
         return expires;
     }

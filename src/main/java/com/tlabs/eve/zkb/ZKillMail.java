@@ -5,7 +5,7 @@ import com.tlabs.eve.api.mail.KillMail;
 
 public class ZKillMail extends KillMail {
 
-    public static class Info extends Object {
+    public static class Info {
         private String hash;
         private double totalValue;
         private long points;

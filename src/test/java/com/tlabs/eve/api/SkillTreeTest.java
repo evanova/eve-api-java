@@ -20,7 +20,7 @@ public class SkillTreeTest extends EveApiTest {
         Assert.assertNotNull("Null Skill Tree", tree);
 
         List<SkillGroup> all = tree.getGroups();
-        Assert.assertTrue("No SkillTree.Certificate", all.size() > 0);
+        Assert.assertTrue("No SkillTree.Certificate", !all.isEmpty());
 
         /*for (SkillGroup g: all) {
         	System.out.println(

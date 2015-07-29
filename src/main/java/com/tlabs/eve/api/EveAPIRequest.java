@@ -8,9 +8,9 @@ public abstract class EveAPIRequest<T extends EveAPIResponse> extends EveRequest
 
     /**Since Key API V2.*/
     public interface Authenticated {
-        public String getKeyID();
+        String getKeyID();
 
-        public String getKey();
+        String getKey();
     }
 
     /** Tag interface*/

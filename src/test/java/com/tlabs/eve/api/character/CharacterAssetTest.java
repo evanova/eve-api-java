@@ -14,7 +14,7 @@ public final class CharacterAssetTest extends CharacterApiTest {
     public void testCharacterAssets() throws Exception {
         AssetListResponse assets = apiCall(new CharacterAssetsRequest(characterKey.id));
         Assert.assertNotNull("AssetListResponse returned null Assets", assets.getAssets());
-        Assert.assertTrue("AssetListResponse returned no Assets", assets.getAssets().size() > 0);
+        Assert.assertTrue("AssetListResponse returned no Assets", !assets.getAssets().isEmpty());
     }
 
 }

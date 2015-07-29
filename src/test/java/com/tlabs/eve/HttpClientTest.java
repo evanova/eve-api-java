@@ -120,7 +120,7 @@ public class HttpClientTest {
     }
 
     protected String get(String url, final List<NameValuePair> parameters) {
-        String printurl = (parameters.size() == 0) ? url : url + "?";
+        String printurl = (parameters.isEmpty()) ? url : url + "?";
         for (NameValuePair pair : parameters) {
             printurl = printurl + pair.getName() + "=" + pair.getValue() + "&";
         }
@@ -152,7 +152,7 @@ public class HttpClientTest {
         try {
             HttpPost post = new HttpPost(url);
 
-            if ((null != parameters) && (parameters.size() > 0)) {
+            if ((null != parameters) && (!parameters.isEmpty())) {
                 System.out.println("PARAMS ");
                 post.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
             }

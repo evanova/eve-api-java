@@ -3,7 +3,6 @@ package com.tlabs.eve.crest;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.tlabs.eve.api.Sovereignty;
 
 import java.io.Serializable;
 import java.util.Date;

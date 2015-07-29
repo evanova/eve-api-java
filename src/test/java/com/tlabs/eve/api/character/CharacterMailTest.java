@@ -22,7 +22,7 @@ public final class CharacterMailTest extends CharacterApiTest {
     @Test(timeout = 10000)
     public void testMailNotifications() throws Exception {
         List<NotificationMessage> messages = apiCall(new NotificationsRequest(characterKey.id)).getMessages();
-        if (messages.size() == 0) {
+        if (messages.isEmpty()) {
             return;
         }
 
@@ -42,7 +42,7 @@ public final class CharacterMailTest extends CharacterApiTest {
     @Test(timeout = 10000)
     public void testMailMessages() throws Exception {
         final List<MailMessage> messages = apiCall(new MailMessagesRequest(characterKey.id)).getMessages();
-        if (messages.size() == 0) {
+        if (messages.isEmpty()) {
             return;
         }
 

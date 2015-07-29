@@ -28,10 +28,10 @@ public class Route implements Serializable {
     }
 
     public final SolarSystem getFrom() {
-        return (this.jumps.size() == 0) ? null : this.jumps.get(0);
+        return (this.jumps.isEmpty()) ? null : this.jumps.get(0);
     }
 
     public final SolarSystem getTo() {
-        return (this.jumps.size() == 0) ? null : this.jumps.get(this.jumps.size() - 1);
+        return (this.jumps.isEmpty()) ? null : this.jumps.get(this.jumps.size() - 1);
     }
 }

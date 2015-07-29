@@ -1,6 +1,6 @@
 package com.tlabs.eve.api.mail;
 
-public class KillMailCharacter extends Object {
+public class KillMailCharacter {
 
     private long characterID;
     private String characterName;

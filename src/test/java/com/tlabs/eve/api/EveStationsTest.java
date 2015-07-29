@@ -11,6 +11,6 @@ public class EveStationsTest extends EveApiTest {
     public void testEveStationsParser() throws Exception {
         StationsResponse r = apiCall(new StationsRequest());
 
-        Assert.assertTrue("No station parsed (size=0)", r.getStations().size() > 0);
+        Assert.assertTrue("No station parsed (size=0)", !r.getStations().isEmpty());
     }
 }

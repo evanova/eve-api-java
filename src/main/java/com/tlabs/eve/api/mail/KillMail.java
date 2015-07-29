@@ -6,7 +6,7 @@ import com.tlabs.eve.parser.DateDeserializer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class KillMail extends Object {
+public class KillMail {
 
     private long killID;
 

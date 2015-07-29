@@ -81,7 +81,7 @@ public final class DotlanJumpsRequest extends EveRequest<DotlanRouteResponse> {
                 r = r + ",S";
             }
 
-            if (avoidSystems.size() > 0) {
+            if (!avoidSystems.isEmpty()) {
                 r = r + ",";
                 for (String s : avoidSystems) {
                     r = r + "-" + s + ":";

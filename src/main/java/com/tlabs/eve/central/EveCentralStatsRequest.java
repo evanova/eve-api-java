@@ -21,7 +21,7 @@ public class EveCentralStatsRequest extends EveCentralRequest<EveCentralStatsRes
 
         String p = "";
         for (long id : types) {
-            if (p.length() == 0) {
+            if (p.isEmpty()) {
                 p = "" + id;
             }
             else {
