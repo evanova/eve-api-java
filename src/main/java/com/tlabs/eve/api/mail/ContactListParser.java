@@ -62,7 +62,6 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
 
     protected ContactListParser(final String filterContactListName) {
         super(ContactListResponse.class);
-        Validate.isTrue(StringUtils.isNotBlank(filterContactListName), "ContactListParser:filterContactListName");
         this.filterContactListName = filterContactListName;
     }
 
