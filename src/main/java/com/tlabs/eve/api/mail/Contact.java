@@ -5,11 +5,6 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class Contact implements Serializable {
 
     public static final int CORPORATION = 2;//contactTypeID
@@ -21,11 +16,17 @@ public class Contact implements Serializable {
 
         private static final long serialVersionUID = -2407846777057225386L;
 
-        @Getter
-        @Setter
         private String name;
 
         private final List<Contact> contacts = new LinkedList<>();
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
 
         public List<Contact> getContacts() {
             return contacts;
@@ -51,4 +52,35 @@ public class Contact implements Serializable {
         this.inWatchlist = inWatchlist;
     }
 
+    public long getContactTypeID() {
+        return contactTypeID;
+    }
+
+    public void setContactTypeID(long contactTypeID) {
+        this.contactTypeID = contactTypeID;
+    }
+
+    public long getContactID() {
+        return contactID;
+    }
+
+    public void setContactID(long contactID) {
+        this.contactID = contactID;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public float getStanding() {
+        return standing;
+    }
+
+    public void setStanding(float standing) {
+        this.standing = standing;
+    }
 }

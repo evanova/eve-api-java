@@ -6,9 +6,6 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class Item implements Serializable {
 
     public static boolean isShip(final long categoryID) {
@@ -20,75 +17,40 @@ public class Item implements Serializable {
 
     private static final long serialVersionUID = 1043774614858911035L;
 
-    @Getter
-    @Setter
     private long itemID;//it is the typeID
-
 
     private String itemName;//item name;//not in Eve XML
 
-    @Getter
-    @Setter
     private int raceID;//not in Eve XML
 
-    @Getter
-    @Setter
     private String description;////not in Eve XML
 
-    @Getter
-    @Setter
     private long categoryID;//not in Eve XML
 
-    @Getter
-    @Setter
     private String categoryName;//not in Eve XML
 
-    @Getter
-    @Setter
     private long groupID;//not in Eve XML
 
-    @Getter
-    @Setter
     private String groupName;//not in Eve XML
 
-    @Getter
-    @Setter
     private long metaGroupID;//not in Eve XML
 
-    @Getter
-    @Setter
     private String metaGroupName;//not in Eve XML
 
-    @Getter
-    @Setter
     private double mass;//not in Eve XML
 
-    @Getter
-    @Setter
     private double volume;//not in Eve XML
 
-    @Getter
-    @Setter
     private double capacity;//not in Eve XML
 
-    @Getter
-    @Setter
     private float duplicateChange;//not in Eve XML
 
-    @Getter
-    @Setter
     private long portion;//not in Eve XML
 
-    @Getter
-    @Setter
     private double basePrice;//not in Eve XML
 
-    @Getter
-    @Setter
     private long marketGroupID;//not in Eve XML
 
-    @Getter
-    @Setter
     private int published;//not in Eve XML
 
     private final List<ItemTrait> traits = new LinkedList<>();//in YML only
@@ -112,5 +74,141 @@ public class Item implements Serializable {
 
     public void addTrait(ItemTrait trait) {
         this.traits.add(trait);
+    }
+
+    public long getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(long itemID) {
+        this.itemID = itemID;
+    }
+
+    public int getRaceID() {
+        return raceID;
+    }
+
+    public void setRaceID(int raceID) {
+        this.raceID = raceID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(long categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public long getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(long groupID) {
+        this.groupID = groupID;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public long getMetaGroupID() {
+        return metaGroupID;
+    }
+
+    public void setMetaGroupID(long metaGroupID) {
+        this.metaGroupID = metaGroupID;
+    }
+
+    public String getMetaGroupName() {
+        return metaGroupName;
+    }
+
+    public void setMetaGroupName(String metaGroupName) {
+        this.metaGroupName = metaGroupName;
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public double getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
+    }
+
+    public float getDuplicateChange() {
+        return duplicateChange;
+    }
+
+    public void setDuplicateChange(float duplicateChange) {
+        this.duplicateChange = duplicateChange;
+    }
+
+    public long getPortion() {
+        return portion;
+    }
+
+    public void setPortion(long portion) {
+        this.portion = portion;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public long getMarketGroupID() {
+        return marketGroupID;
+    }
+
+    public void setMarketGroupID(long marketGroupID) {
+        this.marketGroupID = marketGroupID;
+    }
+
+    public int getPublished() {
+        return published;
+    }
+
+    public void setPublished(int published) {
+        this.published = published;
     }
 }

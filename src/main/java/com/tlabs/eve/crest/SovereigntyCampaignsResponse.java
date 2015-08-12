@@ -4,11 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class SovereigntyCampaignsResponse extends CRESTResponse {
 
     private static final long serialVersionUID = -6276270403461126425L;
@@ -21,4 +16,28 @@ public class SovereigntyCampaignsResponse extends CRESTResponse {
 
     @JsonProperty("items")
     private List<SovereigntyCampaign> campaigns;
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public List<SovereigntyCampaign> getCampaigns() {
+        return campaigns;
+    }
+
+    public void setCampaigns(List<SovereigntyCampaign> campaigns) {
+        this.campaigns = campaigns;
+    }
 }

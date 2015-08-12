@@ -4,12 +4,15 @@ import com.tlabs.eve.api.EveAPIResponse;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class ChatChannelResponse extends EveAPIResponse {
 
-    @Getter
-    @Setter
     private List<ChatChannel> channels;
+
+    public List<ChatChannel> getChannels() {
+        return channels;
+    }
+
+    public void setChannels(List<ChatChannel> channels) {
+        this.channels = channels;
+    }
 }

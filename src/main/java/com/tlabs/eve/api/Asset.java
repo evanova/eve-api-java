@@ -8,47 +8,28 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class Asset implements Serializable {
 
     private static final long serialVersionUID = 3312515668424970872L;
 
-    @Getter
-    @Setter
     private Item item;
 
-    @Getter
-    @Setter
     private long itemID; //Not in XML
 
-    @Getter
-    @Setter
     private long assetID; //Not in XML
 
-    @Getter
-    @Setter
     private long parentID; //Not in XML
 
-    @Getter
-    @Setter
     private long locationID;
 
-    @Getter
-    @Setter
     private String locationName;//Not in XML
 
-    @Getter
-    @Setter
     private long quantity;
 
     private int inventoryFlag;
     private String inventoryFlagName;//not in XML
 
-    @Getter
-    @Setter
     private boolean packaged;
 
     private List<Asset> items = new LinkedList<>();
@@ -114,6 +95,66 @@ public class Asset implements Serializable {
 
     public final void setAssets(List<Asset> items) {
         this.items = items;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public long getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(long itemID) {
+        this.itemID = itemID;
+    }
+
+    public long getAssetID() {
+        return assetID;
+    }
+
+    public void setAssetID(long assetID) {
+        this.assetID = assetID;
+    }
+
+    public long getParentID() {
+        return parentID;
+    }
+
+    public void setParentID(long parentID) {
+        this.parentID = parentID;
+    }
+
+    public long getLocationID() {
+        return locationID;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public String getInventoryFlagName() {
+        return inventoryFlagName;
+    }
+
+    public void setInventoryFlagName(String inventoryFlagName) {
+        this.inventoryFlagName = inventoryFlagName;
+    }
+
+    public boolean isPackaged() {
+        return packaged;
     }
 
 }
