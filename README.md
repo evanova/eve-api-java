@@ -1,7 +1,5 @@
-Evanova 
+Java Objects for the Eve Online API 
 =======
-
-Eve Online Java API by Evanova
 
 This code is used in Evanova for Android:
 
