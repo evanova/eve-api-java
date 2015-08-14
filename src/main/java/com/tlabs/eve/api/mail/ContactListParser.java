@@ -8,8 +8,6 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 
 import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 import org.xml.sax.Attributes;
 
 public class ContactListParser extends EveAPIParser<ContactListResponse> {
