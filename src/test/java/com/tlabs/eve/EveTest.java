@@ -21,7 +21,7 @@ public class EveTest {
         }
     };
 
-    protected <T extends EveResponse> T execute(final EveRequest<T> request) {
-        return eve.execute(request).toBlocking().last();
+    protected final <T extends EveResponse> T execute(final EveRequest<T> request) {
+        return eve.execute(request);
     }
 }

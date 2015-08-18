@@ -11,10 +11,6 @@ import java.util.Map;
 
 public abstract class EveRequest<T extends EveResponse> {
 
-    /** Tag interface*/
-    public interface Public {
-    }
-
     private final Class<T> responseClass;
     private final String page;
 

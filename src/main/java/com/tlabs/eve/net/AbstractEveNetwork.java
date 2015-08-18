@@ -27,10 +27,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
-
 public abstract class AbstractEveNetwork implements EveNetwork {
     private static final Log LOG = LogFactory.getLog("Network");
 
@@ -71,14 +67,8 @@ public abstract class AbstractEveNetwork implements EveNetwork {
     public abstract String getUri(final EveRequest<?> request);
 
     @Override
-    public <T extends EveResponse> Observable<T> execute(final EveRequest<T> request) {
-        return Observable.create(new Observable.OnSubscribe<T>() {
-            @Override
-            public void call(Subscriber<? super T> subscriber) {
-                subscriber.onNext((T)get(getUri(request), request));
-                subscriber.onCompleted();
-            }
-        }).subscribeOn(Schedulers.io());
+    public <T extends EveResponse> T execute(final EveRequest<T> request) {
+        return (T)get(getUri(request), request);
     }
 
     protected void onPrepareConnection(final HttpURLConnection connection) {}

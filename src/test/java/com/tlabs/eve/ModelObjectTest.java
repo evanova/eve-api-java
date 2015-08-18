@@ -9,6 +9,9 @@ import com.openpojo.validation.rule.impl.NoPublicFieldsExceptStaticFinalRule;
 import com.openpojo.validation.rule.impl.NoStaticExceptFinalRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
+import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.central.EveCentralParser;
+import com.tlabs.eve.net.AbstractEveNetwork;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,7 +25,24 @@ import java.util.List;
 @RunWith(Parameterized.class)
 public class ModelObjectTest {
 
-    private static final PojoClassFilter filter = new FilterClassName("^((?!Test$).)*$");
+    private static final PojoClassFilter filter = new PojoClassFilter() {
+        private PojoClassFilter tests = new FilterClassName("^((?!Test$).)*$");
+        private PojoClassFilter parsers = new FilterClassName("^((?!Parser$).)*$");
+        @Override
+        public boolean include(PojoClass pojoClass) {
+            if (pojoClass.getClazz().equals(EveCentralParser.class)) {
+                return false;
+            }
+            if (pojoClass.getClazz().equals(AbstractEveNetwork.class)) {
+                return false;
+            }
+            if ((null != pojoClass.getClazz().getEnclosingClass()) && (EveParser.class.isAssignableFrom(pojoClass.getClazz().getEnclosingClass()))) {
+                return false;
+            }
+
+            return tests.include(pojoClass);
+        }
+    };
 
     private static Collection<PojoClass> pojoClasses() {
         final List<PojoClass> pojoClasses = new LinkedList<>();

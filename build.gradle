@@ -30,7 +30,6 @@ dependencies {
         exclude module: 'commons-beanutils'
     }
 
-    compile 'io.reactivex:rxjava:1.0.+'
     compile files('lib/jgrapht-core-0.9.0.jar')
 
     testCompile 'junit:junit:4.12'
