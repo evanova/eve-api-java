@@ -25,7 +25,7 @@ public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXML
             }
             catch (NumberFormatException e) {
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug("Invalid errorCode '" + errCode + "': " + e.getLocalizedMessage());
+                    LOG.debug("Invalid errorCode '" + errCode + "': " + e.getMessage());
                 }
                 r.setErrorCode(0);
             }
@@ -55,7 +55,7 @@ public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXML
                 }
                 catch (ParseException e) {
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("Unparsable date '" + text + "': " + e.getLocalizedMessage());
+                        LOG.debug("Unparsable date '" + text + "': " + e.getMessage());
                     }
                 }
             }

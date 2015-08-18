@@ -47,7 +47,7 @@ public final class StarbaseDetailsParser extends EveAPIParser<StarbaseDetailsRes
                     fuelMap.put(Long.parseLong(attributes.getValue("typeID")), Long.parseLong(attributes.getValue("quantity")));
                 }
                 catch (NumberFormatException e) {
-                    LOG.warn("StarbaseDetailsParser: invalid fuel row: " + e.getLocalizedMessage());
+                    LOG.warn("StarbaseDetailsParser: invalid fuel row: " + e.getMessage());
                 }
             }
         }

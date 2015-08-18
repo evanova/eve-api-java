@@ -70,7 +70,7 @@ public class DotlanRouteParser implements EveParser<DotlanRouteResponse> {
             return parseTable(rootNode);
         }
         catch (TransformerException e) {
-            throw new IOException(e.getLocalizedMessage(), e);
+            throw new IOException(e.getMessage(), e);
         }
     }
 
@@ -128,7 +128,7 @@ public class DotlanRouteParser implements EveParser<DotlanRouteResponse> {
             return (StringUtils.isBlank(text)) ? 0f : Float.parseFloat(text.trim());
         }
         catch (NumberFormatException e) {
-            System.err.println(e.getLocalizedMessage());
+            System.err.println(e.getMessage());
             return 0f;
         }
 
@@ -143,7 +143,7 @@ public class DotlanRouteParser implements EveParser<DotlanRouteResponse> {
             return (StringUtils.isBlank(text)) ? 0 : Integer.parseInt(text.trim());
         }
         catch (NumberFormatException e) {
-            System.err.println(e.getLocalizedMessage());
+            System.err.println(e.getMessage());
             return 0;
         }
     }

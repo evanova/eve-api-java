@@ -29,21 +29,21 @@ public class SetNextRule extends BaseRule {
         }
         catch (NoSuchMethodException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug(e.getLocalizedMessage(), e);
+                LOG.debug(e.getMessage(), e);
             }
-            LOG.warn(bean.getClass().getSimpleName() + " NoSuchMethodException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
+            LOG.warn(bean.getClass().getSimpleName() + " NoSuchMethodException:" + e.getMessage() + "(" + toSet.getClass() + ")");
         }
         catch (InvocationTargetException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug(e.getLocalizedMessage(), e);
+                LOG.debug(e.getMessage(), e);
             }
-            LOG.warn(bean.getClass().getSimpleName() + " InvocationTargetException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
+            LOG.warn(bean.getClass().getSimpleName() + " InvocationTargetException:" + e.getMessage() + "(" + toSet.getClass() + ")");
         }
         catch (IllegalAccessException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug(e.getLocalizedMessage(), e);
+                LOG.debug(e.getMessage(), e);
             }
-            LOG.warn(bean.getClass().getSimpleName() + " IllegalAccessException:" + e.getLocalizedMessage() + "(" + toSet.getClass() + ")");
+            LOG.warn(bean.getClass().getSimpleName() + " IllegalAccessException:" + e.getMessage() + "(" + toSet.getClass() + ")");
         }
     }
 

@@ -155,7 +155,7 @@ public abstract class EveRequest<T extends EveResponse> {
         }
         catch (UnsupportedEncodingException e) {
             //Not going to happen
-            throw new RuntimeException(e.getLocalizedMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 

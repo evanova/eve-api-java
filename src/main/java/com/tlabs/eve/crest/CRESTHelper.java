@@ -53,7 +53,7 @@ final class CRESTHelper {
             return parserClass.newInstance();
         }
         catch (IllegalAccessException | InstantiationException e) {
-            throw new IllegalArgumentException(e.getLocalizedMessage(), e);
+            throw new IllegalArgumentException(e.getMessage(), e);
         }
     }
 

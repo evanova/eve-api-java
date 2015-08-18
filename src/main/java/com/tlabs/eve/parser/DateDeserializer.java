@@ -21,7 +21,7 @@ public class DateDeserializer extends JsonDeserializer<Long> {
             return df.parse(jp.getText()).getTime();
         }
         catch (ParseException e) {
-            throw new IOException("Cannot evaluate boolean with value '" + jp.getText() + "': " + e.getLocalizedMessage());
+            throw new IOException("Cannot evaluate boolean with value '" + jp.getText() + "': " + e.getMessage());
         }
     }
 }

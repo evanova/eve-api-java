@@ -63,7 +63,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             sslSocketFactory = context.getSocketFactory();
         }
         catch (Exception e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.error(e.getMessage(), e);
             sslSocketFactory = null;
         }
     }
@@ -92,8 +92,8 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             return executeImpl(request, connection);
         }
         catch (IOException e) {
-            LOG.warn(e.getLocalizedMessage(), e);
-            return request.createError(500, "IOException: " + e.getLocalizedMessage());
+            LOG.warn(e.getMessage(), e);
+            return request.createError(500, "IOException: " + e.getMessage());
         }
         finally {
             if (null != connection) {
@@ -138,8 +138,8 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             }
         }
         catch (IOException e) {
-            LOG.warn(e.getLocalizedMessage(), e);
-            returned = request.createError(400, e.getLocalizedMessage());
+            LOG.warn(e.getMessage(), e);
+            returned = request.createError(400, e.getMessage());
         }
         finally {
             IOUtils.closeQuietly(in);

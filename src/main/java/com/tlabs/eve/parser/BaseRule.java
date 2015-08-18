@@ -48,13 +48,13 @@ public class BaseRule extends Rule {
         }
         catch (NumberFormatException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug(e.getLocalizedMessage(), e);
+                LOG.debug(e.getMessage(), e);
             }
             return setPropertyImpl(bean, property, "0");
         }
         catch (Exception e) {
             if (LOG.isWarnEnabled()) {
-                LOG.warn(e.getLocalizedMessage(), e);
+                LOG.warn(e.getMessage(), e);
             }
             return false;
         }
@@ -129,11 +129,11 @@ public class BaseRule extends Rule {
             return true;
         }
         catch (InvocationTargetException e) {
-            LOG.warn("InvocationTargetException: " + e.getLocalizedMessage(), e);
+            LOG.warn("InvocationTargetException: " + e.getMessage(), e);
             return false;
         }
         catch (IllegalAccessException e) {
-            LOG.warn("IllegalAccessException: " + e.getLocalizedMessage(), e);
+            LOG.warn("IllegalAccessException: " + e.getMessage(), e);
             return false;
         }
     }
@@ -147,7 +147,7 @@ public class BaseRule extends Rule {
         catch (NoSuchMethodException e) {
             //ignore
             if (LOG.isDebugEnabled()) {
-                LOG.debug("NoSuchMethodException: " + e.getLocalizedMessage());
+                LOG.debug("NoSuchMethodException: " + e.getMessage());
             }
             return null;
         }
@@ -163,7 +163,7 @@ public class BaseRule extends Rule {
         }
         catch (ParseException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug("parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());
+                LOG.debug("parseDateTime(" + dateTime + "): " + e.getMessage());
             }
             return 0l;
         }
@@ -179,7 +179,7 @@ public class BaseRule extends Rule {
         }
         catch (ParseException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug("parserRSSDateTime(" + dateTime + "): " + e.getLocalizedMessage());
+                LOG.debug("parserRSSDateTime(" + dateTime + "): " + e.getMessage());
             }
             return 0l;
         }

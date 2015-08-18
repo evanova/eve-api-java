@@ -231,7 +231,7 @@ public final class EveAPI {
             return dateFormat.parse(dateTime).getTime();
         }
         catch (ParseException e) {
-            System.err.println("EveAPI.parseDateTime(" + dateTime + "): " + e.getLocalizedMessage());
+            System.err.println("EveAPI.parseDateTime(" + dateTime + "): " + e.getMessage());
             return 0l;
         }
     }

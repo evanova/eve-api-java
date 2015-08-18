@@ -146,7 +146,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
                 catch (NumberFormatException e) {
                     //I've seen it happen with the typeID unfortunately
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("addSkills: NumberFormatException: " + e.getLocalizedMessage());
+                        LOG.debug("addSkills: NumberFormatException: " + e.getMessage());
                     }
                 }
             }
@@ -164,7 +164,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
                 catch (NumberFormatException e) {
                     //carefuller than sorry
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("addRoles: NumberFormatException: " + e.getLocalizedMessage());
+                        LOG.debug("addRoles: NumberFormatException: " + e.getMessage());
                     }
                 }
             }
@@ -182,7 +182,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
                 catch (NumberFormatException e) {
                     //carefuller than sorry
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("addTitles: NumberFormatException: " + e.getLocalizedMessage());
+                        LOG.debug("addTitles: NumberFormatException: " + e.getMessage());
                     }
                 }
             }
@@ -196,7 +196,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
                 catch (NumberFormatException e) {
                     //I've seen it happen with the typeID unfortunately
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("addCertificates: NumberFormatException: " + e.getLocalizedMessage());
+                        LOG.debug("addCertificates: NumberFormatException: " + e.getMessage());
                     }
                 }
             }
