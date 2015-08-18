@@ -33,3 +33,7 @@ Thumbs.db
 /build
 .idea/
 api.iml
+.gradle/
+eve-api.iml
+eve-api.ipr
+eve-api.iws

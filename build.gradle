@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'idea'
 
 configurations {
     provided
@@ -29,11 +30,12 @@ dependencies {
         exclude module: 'commons-beanutils'
     }
 
-
+    compile 'io.reactivex:rxjava:1.0.+'
     compile files('lib/jgrapht-core-0.9.0.jar')
 
-    testCompile 'junit:junit:4.10'
+    testCompile 'junit:junit:4.12'
     testCompile 'commons-collections:commons-collections:3.2.+'
     testCompile 'org.apache.httpcomponents:httpclient:4.3.+'
+    testCompile 'com.googlecode.openpojo:openpojo:0.6.2'
 
 }
