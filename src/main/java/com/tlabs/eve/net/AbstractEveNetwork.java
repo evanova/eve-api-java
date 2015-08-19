@@ -82,7 +82,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             return executeImpl(request, connection);
         }
         catch (IOException e) {
-            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage());
             return request.createError(500, "IOException: " + e.getMessage());
         }
         finally {
@@ -128,7 +128,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             }
         }
         catch (IOException e) {
-            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage());
             returned = request.createError(400, e.getMessage());
         }
         finally {

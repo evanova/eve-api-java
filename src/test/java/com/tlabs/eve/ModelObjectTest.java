@@ -26,8 +26,7 @@ import java.util.List;
 public class ModelObjectTest {
 
     private static final PojoClassFilter filter = new PojoClassFilter() {
-        private PojoClassFilter tests = new FilterClassName("^((?!Test$).)*$");
-        private PojoClassFilter parsers = new FilterClassName("^((?!Parser$).)*$");
+        private final PojoClassFilter tests = new FilterClassName("^((?!Test$).)*$");
         @Override
         public boolean include(PojoClass pojoClass) {
             if (pojoClass.getClazz().equals(EveCentralParser.class)) {
@@ -74,7 +73,6 @@ public class ModelObjectTest {
         pojoValidator = new PojoValidator();
         pojoValidator.addRule(new NoStaticExceptFinalRule());
 
-        //pojoValidator.addRule(new SerializableMustHaveSerialVersionUIDRule());
         pojoValidator.addRule(new NoPublicFieldsExceptStaticFinalRule());
         pojoValidator.addTester(new SetterTester());
         pojoValidator.addTester(new GetterTester());
