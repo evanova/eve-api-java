@@ -1,4 +1,4 @@
-Java Objects for the Eve Online API
+Java Objects for Eve Online
 =======
 Model objects and parsers for the [XML](http://wiki.eve-id.net/APIv2_Page_Index), [CREST](https://developers.eveonline.com/resource/crest), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
 
