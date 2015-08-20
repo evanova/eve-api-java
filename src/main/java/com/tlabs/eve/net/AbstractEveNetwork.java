@@ -6,8 +6,8 @@ import com.tlabs.eve.EveRequest;
 import com.tlabs.eve.EveResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -28,7 +28,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public abstract class AbstractEveNetwork implements EveNetwork {
-    private static final Log LOG = LogFactory.getLog("Network");
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractEveNetwork.class);
 
     private static final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
         @Override
@@ -82,7 +82,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             return executeImpl(request, connection);
         }
         catch (IOException e) {
-            LOG.warn(e.getMessage());
+            LOG.debug(e.getMessage());
             return request.createError(500, "IOException: " + e.getMessage());
         }
         finally {
@@ -128,7 +128,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
             }
         }
         catch (IOException e) {
-            LOG.warn(e.getMessage());
+            LOG.debug(e.getMessage());
             returned = request.createError(400, e.getMessage());
         }
         finally {

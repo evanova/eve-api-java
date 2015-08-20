@@ -7,6 +7,8 @@ import com.tlabs.eve.parser.BaseRule;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,7 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXMLParser<T> {
-
+    private static final Logger LOG = LoggerFactory.getLogger(EveAPIParser.class);
+    
     private static class ErrorRule extends BaseRule {
         public void doBegin(java.lang.String name, org.xml.sax.Attributes attributes) {
             String errCode = attributes.getValue("code");

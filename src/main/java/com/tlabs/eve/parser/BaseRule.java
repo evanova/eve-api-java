@@ -7,8 +7,8 @@ package com.tlabs.eve.parser;
 
 import org.apache.commons.digester.Rule;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class BaseRule extends Rule {
-    protected static final Log LOG = LogFactory.getLog("CREST");
+    private static final Logger LOG = LoggerFactory.getLogger(BaseRule.class);
 
     public void doBegin(final String name, final org.xml.sax.Attributes attributes) {
 

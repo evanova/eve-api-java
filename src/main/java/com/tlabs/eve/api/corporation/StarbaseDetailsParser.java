@@ -8,12 +8,15 @@ import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester.Digester;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public final class StarbaseDetailsParser extends EveAPIParser<StarbaseDetailsResponse> {
+    private static final Logger LOG = LoggerFactory.getLogger(StarbaseDetailsParser.class);
 
     private static final class FuelMapRule extends BaseRule {
         private boolean isFuelMap = false;

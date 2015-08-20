@@ -13,8 +13,8 @@ import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class CharacterSheetParser extends EveAPIParser<CharacterSheetResponse> {
-    private static final Log LOG = LogFactory.getLog("CREST");
+    private static final Logger LOG = LoggerFactory.getLogger(CharacterSheetParser.class);
 
     private static final class RowSet {
 
