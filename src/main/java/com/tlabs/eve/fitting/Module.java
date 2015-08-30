@@ -5,8 +5,6 @@ import com.tlabs.eve.api.ItemAttribute;
 import com.tlabs.eve.api.ItemEffect;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 
