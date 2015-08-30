@@ -1,27 +1,27 @@
 package com.tlabs.eve;
 
+import com.tlabs.eve.api.AccessInfo;
+
 import org.junit.ClassRule;
-import org.junit.rules.ExternalResource;
-import com.tlabs.eve.net.DefaultEveNetwork;
 
 public class EveTest {
 
-    private static EveNetwork eve;
-
     @ClassRule
-    public static ExternalResource resource= new ExternalResource() {
-        @Override
-        protected void before() throws Throwable {
-            eve = new DefaultEveNetwork();
-        }
+    public static EveResource resource = new EveResource("/apikeys.json");
 
-        @Override
-        protected void after() {
-            eve = null;
-        }
-    };
+    protected static final AccessInfo getAccount() {
+        return resource.getAccountInfo();
+    }
 
-    protected final <T extends EveResponse> T execute(final EveRequest<T> request) {
-        return eve.execute(request);
+    protected static final AccessInfo getCharacter() {
+        return resource.getCharacterInfo();
+    }
+
+    protected static final AccessInfo getCorporation() {
+        return resource.getCorporationInfo();
+    }
+
+    protected static final <T extends EveResponse> T execute(final EveRequest<T> request) {
+        return resource.execute(request);
     }
 }

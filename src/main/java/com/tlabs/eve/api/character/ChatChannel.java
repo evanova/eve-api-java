@@ -1,11 +1,14 @@
 package com.tlabs.eve.api.character;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class ChatChannel {
 
-    private static final String STATUS_ALLOWED = "allowed";
-    private static final String STATUS_MUTED = "muted";
-    private static final String STATUS_OPERATOR= "operator";
-    private static final String STATUS_BLOCKED = "blocked";
+    public static final String STATUS_ALLOWED = "allowed";
+    public static final String STATUS_MUTED = "muted";
+    public static final String STATUS_OPERATOR= "operator";
+    public static final String STATUS_BLOCKED = "blocked";
 
     public static class Accessor {
         private String status;
@@ -46,7 +49,8 @@ public class ChatChannel {
     private String comparisonKey;
     private boolean hasPassword;
     private String motd;
-    /*<rowset name="channels" key="channelID" columns="ownerID,ownerName,displayName,comparisonKey,hasPassword,motd">*/
+
+    private List<Accessor> accessors = new LinkedList<>();
 
     public long getChannelID() {
         return channelID;
@@ -102,5 +106,17 @@ public class ChatChannel {
 
     public void setMotd(String motd) {
         this.motd = motd;
+    }
+
+    public List<Accessor> getAccessors() {
+        return accessors;
+    }
+
+    public void setAccessors(List<Accessor> accessors) {
+        this.accessors = accessors;
+    }
+
+    void addAccessor(final Accessor a) {
+        this.accessors.add(a);
     }
 }

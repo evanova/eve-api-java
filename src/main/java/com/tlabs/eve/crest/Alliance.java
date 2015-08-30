@@ -17,4 +17,16 @@ public class Alliance implements Serializable {
 
     @JsonProperty("id")
     private long id;
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getId() {
+        return id;
+    }
 }

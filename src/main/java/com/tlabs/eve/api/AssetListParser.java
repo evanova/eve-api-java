@@ -15,6 +15,7 @@ public final class AssetListParser extends EveAPIParser<AssetListResponse> {
     static {
         properties = new HashMap<>();
         properties.put("locationID", "locationID");
+        properties.put("itemID", "assetID");
         properties.put("typeID", "itemID");//the itemID in the XML is a temporary ID
         properties.put("quantity", "quantity");
         properties.put("flag", "inventoryFlag");

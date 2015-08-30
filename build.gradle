@@ -34,6 +34,7 @@ dependencies {
     compile files('lib/jgrapht-core-0.9.0.jar')
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.slf4j:slf4j-log4j12:1.7.12'
     testCompile 'commons-collections:commons-collections:3.2.+'
     testCompile 'org.apache.httpcomponents:httpclient:4.3.+'
     testCompile 'com.googlecode.openpojo:openpojo:0.6.2'

@@ -33,6 +33,13 @@ public final class ItemAttributeFormatter {
         }
     };
 
+    private static final AttributeFormat integerFormat = new AttributeFormat() {
+        @Override
+        public String format(ItemAttribute attr) {
+            return Integer.toString(Math.round(attr.getValue()));
+        }
+    };
+
     private static final AttributeFormat rangeFormat = new AttributeFormat() {
         @Override
         public String format(ItemAttribute attr) {
@@ -58,6 +65,16 @@ public final class ItemAttributeFormatter {
 
     static {
         attributesFormat = new HashMap<>();
+        attributesFormat.put(ItemAttribute.FIT_HIGH_SLOTS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_MEDIUM_SLOTS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_LOW_SLOTS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_RIGS_SLOTS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_SUBSYSTEM_SLOTS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_UPGRADES, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_LAUNCHERS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_TURRETS, integerFormat);
+        attributesFormat.put(ItemAttribute.FIT_DRONES, integerFormat);
+
         attributesFormat.put(ItemAttribute.MASS, new UnitFormat("Kg"));
         attributesFormat.put(ItemAttribute.VOLUME, new UnitFormat("m3"));
 

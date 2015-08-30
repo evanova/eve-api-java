@@ -9,7 +9,6 @@ import com.openpojo.validation.rule.impl.NoPublicFieldsExceptStaticFinalRule;
 import com.openpojo.validation.rule.impl.NoStaticExceptFinalRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
-import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.central.EveCentralParser;
 import com.tlabs.eve.net.AbstractEveNetwork;
 

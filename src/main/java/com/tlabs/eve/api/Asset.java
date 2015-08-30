@@ -15,9 +15,11 @@ public class Asset implements Serializable {
 
     private Item item;
 
-    private long itemID; //Not in XML
+    private long itemID;//typeID
 
-    private long assetID; //Not in XML
+    private long categoryID; //Not in XML
+
+    private long assetID;
 
     private long parentID; //Not in XML
 
@@ -111,6 +113,14 @@ public class Asset implements Serializable {
 
     public void setItemID(long itemID) {
         this.itemID = itemID;
+    }
+
+    public long getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(long categoryID) {
+        this.categoryID = categoryID;
     }
 
     public long getAssetID() {

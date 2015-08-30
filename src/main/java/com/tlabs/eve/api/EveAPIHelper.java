@@ -27,6 +27,8 @@ import com.tlabs.eve.api.character.CharacterTrainingQueueRequest;
 import com.tlabs.eve.api.character.CharacterTrainingRequest;
 import com.tlabs.eve.api.character.CharacterWalletJournalRequest;
 import com.tlabs.eve.api.character.CharacterWalletTransactionsRequest;
+import com.tlabs.eve.api.character.ChatChannelParser;
+import com.tlabs.eve.api.character.ChatChannelRequest;
 import com.tlabs.eve.api.character.PlanetaryColoniesParser;
 import com.tlabs.eve.api.character.PlanetaryColoniesRequest;
 import com.tlabs.eve.api.character.PlanetaryLinksParser;
@@ -160,10 +162,13 @@ final class EveAPIHelper {
         parserMap.put(CharacterBookmarksRequest.class, BookmarksParser.class);
         parserMap.put(CorporationBookmarksRequest.class, BookmarksParser.class);
 
+        parserMap.put(ChatChannelRequest.class, ChatChannelParser.class);
+
         parserMap.put(PlanetaryColoniesRequest.class, PlanetaryColoniesParser.class);
         parserMap.put(PlanetaryLinksRequest.class, PlanetaryLinksParser.class);
         parserMap.put(PlanetaryPinsRequest.class, PlanetaryPinsParser.class);
         parserMap.put(PlanetaryRoutesRequest.class, PlanetaryRoutesParser.class);
+
     }
 
     private EveAPIHelper() {
@@ -197,7 +202,10 @@ final class EveAPIHelper {
         try {
             return parserClass.newInstance();
         }
-        catch (IllegalAccessException | InstantiationException e) {
+        catch (IllegalAccessException e) {
+            throw new IllegalArgumentException(e.getMessage(), e);
+        }
+        catch (InstantiationException e) {
             throw new IllegalArgumentException(e.getMessage(), e);
         }
     }
