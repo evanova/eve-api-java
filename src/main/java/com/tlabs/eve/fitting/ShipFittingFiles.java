@@ -2,14 +2,13 @@ package com.tlabs.eve.fitting;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.List;
+import java.util.Map;
 
 public class ShipFittingFiles {
 
@@ -34,13 +33,11 @@ public class ShipFittingFiles {
             writer.write(String.format("<fitting name=\"%s\">", f.getName()));
             writer.write(String.format("<description value=\"%s\"/>", f.getDescription()));
             writer.write(String.format("<shipType value=\"%s\"/>", f.getTypeName()));
-            for (int i = 0; i < f.getModules().size(); i++) {
-                final String m = f.getModules().get(i);
-                if (StringUtils.isNotBlank(m)) {
-                    //FIXME missing slot stuff
-                    //<hardware slot="med slot 1" type="Civilian EM Ward Field"/>
-                    writer.write(String.format("<hardware type=\"%s\"/>", m));
-                }
+
+            for (Map.Entry<String, String> m: f.getModules().entrySet()) {
+                //<hardware slot="med slot 1" type="Civilian EM Ward Field"/>
+                //What a terrible XML format...
+                writer.write(String.format("<hardware slot=\"%1$s\" type=\"%2$s\"/>", m.getKey(), m.getValue()));
             }
             writer.write("</fitting>");
             writer.flush();

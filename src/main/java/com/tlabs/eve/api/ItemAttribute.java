@@ -92,13 +92,15 @@ public final class ItemAttribute implements Serializable {
     public static final int FIT_LOW_SLOTS = 12;
     public static final int FIT_MEDIUM_SLOTS = 13;
     public static final int FIT_HIGH_SLOTS = 14;
-    public static final int FIT_SUBSYSTEM_SLOTS = 3772;
-    public static final int FIT_RIGS_SLOTS = 1137;
+    //public static final int FIT_SUBSYSTEM_SLOTS = 3772;
+    public static final int FIT_SUBSYSTEM_SLOTS = 1367;
+    //public static final int FIT_RIGS_SLOTS = 1137;
+    public static final int FIT_RIGS_SLOTS = 1154;
 
     public static final int FIT_LAUNCHERS = 101;
     public static final int FIT_TURRETS = 102;
     public static final int FIT_DRONES = 106;
-    public static final int FIT_UPGRADES = 1154;//rigs/hardware hardpoints
+   // public static final int FIT_UPGRADES = 1154;//rigs/hardware hardpoints
 
     //Character related
     public static final int BONUS_CHARISMA = 175;

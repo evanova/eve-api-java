@@ -70,7 +70,7 @@ public final class ItemAttributeFormatter {
         attributesFormat.put(ItemAttribute.FIT_LOW_SLOTS, integerFormat);
         attributesFormat.put(ItemAttribute.FIT_RIGS_SLOTS, integerFormat);
         attributesFormat.put(ItemAttribute.FIT_SUBSYSTEM_SLOTS, integerFormat);
-        attributesFormat.put(ItemAttribute.FIT_UPGRADES, integerFormat);
+        //attributesFormat.put(ItemAttribute.FIT_UPGRADES, integerFormat);
         attributesFormat.put(ItemAttribute.FIT_LAUNCHERS, integerFormat);
         attributesFormat.put(ItemAttribute.FIT_TURRETS, integerFormat);
         attributesFormat.put(ItemAttribute.FIT_DRONES, integerFormat);

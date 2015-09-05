@@ -19,7 +19,7 @@ final class ShipFittingParser extends AbstractXMLParser<ShipFittingResponse> {
         @Override
         public void doBegin(String name, Attributes attributes) {
             final Fitting fit = (Fitting)getDigester().peek();
-            fit.addModule(attributes.getValue("type"));
+            fit.addModule(attributes.getValue("slot"), attributes.getValue("type"));
         }        
     }
     @Override
