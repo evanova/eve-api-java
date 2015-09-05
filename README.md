@@ -39,8 +39,8 @@ For requests that implement `EveAPIRequest.Authenticated`, you will need to prov
 This is usually done like so:
 
 ```
-  request.putParam("keyID", apiKey.apiKey);
-  request.putParam("vCode", apiKey.vCode);
+  request.putParam("keyID", "APIKEY");
+  request.putParam("vCode", "VCODE");
 ```
 
 ## Design
