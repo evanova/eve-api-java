@@ -1,11 +1,10 @@
-Java Objects for Eve Online
-=======
+# Java Objects for Eve Online
+
 Model objects and parsers for the [XML](http://wiki.eve-id.net/APIv2_Page_Index), [CREST](https://developers.eveonline.com/resource/crest), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
 
 This code is used in [Evanova for Android](https://market.android.com/details?id=com.tlabs.android.evanova).
 
-Usage
-=======
+## Usage
 The simplest way of getting Eve data is by using the ```DefaultEveNetwork``` class.
 ```
 //Have a simple HTTP/HTTPS support
@@ -34,8 +33,18 @@ InputStream in = ...
 final ServerStatusResponse status = EveFacade.parse(request, in); 
 ```
 
-Design
-=======
+### API keys
+
+For requests that implement `EveAPIRequest.Authenticated`, you will need to provide API keys as parameters in the request.
+This is usually done like so:
+
+```
+  request.putParam("keyID", apiKey.apiKey);
+  request.putParam("vCode", apiKey.vCode);
+```
+
+## Design
+
 Each request to an endpoint is modeled as an ```EveRequest``` associated with an ```EveResponse```:
 
 ```
@@ -58,11 +67,11 @@ public interface EveNetwork {
 The ```DefaultEveNetwork``` class is a simple implementation using HttpUrlConnection, with support for HTTPS.
 
 
-Authors
-=======
+## Authors
+
 evanova.mobile@gmail.com (in-game: Evanova Android)
 
 
-Contributors
-============
+## Contributors
+
 You!
