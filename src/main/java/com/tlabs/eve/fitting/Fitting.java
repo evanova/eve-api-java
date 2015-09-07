@@ -1,5 +1,6 @@
 package com.tlabs.eve.fitting;
 
+import com.tlabs.eve.api.Item;
 import com.tlabs.eve.api.ItemAttribute;
 
 import java.io.Serializable;
@@ -23,6 +24,13 @@ public class Fitting implements Serializable {
 
     public Fitting() {
         this.modules = new HashMap<>();
+    }
+
+    public Fitting(final Item item) {
+        this();
+        this.shipTypeID = item.getItemID();
+        this.shipTypeName = item.getName();
+        this.name = item.getName();
     }
 
     public Fitting(final Ship from) {

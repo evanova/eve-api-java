@@ -46,14 +46,7 @@ public class FittingEngineImpl implements FittingEngine {
 
         @Override
         public ItemAttribute getAttribute(int attributeId) {
-            final ItemAttribute attribute = super.getAttribute(attributeId);
-         /*   if (null == attribute) {
-                Log.e(LOG, "attributeId[" + attributeId + "] = null");
-            }
-            else {
-                Log.e(LOG, "attributeId[" + attributeId + "] = " + ToStringBuilder.reflectionToString(attribute));
-            }*/
-            return attribute;
+            return this.fittedAttributes.get(attributeId);
         }
     }
 
