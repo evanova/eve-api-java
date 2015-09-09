@@ -14,8 +14,11 @@ import java.util.Map;
 
 public class Ship extends Module {
 
-    private final Map<Integer, List<Module>> modules;
-    private final List<Integer> slots;
+    private final Map<Integer, List<Module>> modules;//attr id -> list of modules
+    private final List<Integer> slots;//attr ids
+
+    private final Map<Item, Integer> cargo;
+    private final Map<Module, Integer> drones;
 
     private final String name;
     private final String description;
@@ -34,6 +37,12 @@ public class Ship extends Module {
 
         this.slots = new LinkedList<>();
         this.slots.addAll(ship.slots);
+
+        this.cargo = new HashMap<>();
+        this.cargo.putAll(ship.cargo);
+
+        this.drones = new HashMap<>();
+        this.drones.putAll(ship.drones);
     }
 
     public Ship(
@@ -48,6 +57,9 @@ public class Ship extends Module {
         this.description = description;
 
         this.modules = new HashMap<>();
+        this.cargo = new HashMap<>();
+        this.drones = new HashMap<>();
+
         this.slots = new LinkedList<>();
         if (null != item) {
             addEmptyModules(ItemAttribute.FIT_HIGH_SLOTS);
@@ -89,6 +101,14 @@ public class Ship extends Module {
     public Module getModuleAt(final int slotId, final int position) {
         final List<Module> modules = this.modules.get(slotId);
         return (null == modules) ? null : modules.get(position);
+    }
+
+    public Map<Module, Integer> getDrones() {
+        return drones;
+    }
+
+    public Map<Item, Integer> getCargo() {
+        return cargo;
     }
 
     public final String getName() {

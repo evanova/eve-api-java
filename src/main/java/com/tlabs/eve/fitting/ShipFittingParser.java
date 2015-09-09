@@ -29,22 +29,28 @@ public final class ShipFittingParser extends AbstractXMLParser<ShipFittingRespon
             if (slot.startsWith("hi slot")) {
                 slotId = ItemAttribute.FIT_HIGH_SLOTS;
             }
-            if (slot.startsWith("med slot")) {
+            else if (slot.startsWith("med slot")) {
                 slotId = ItemAttribute.FIT_MEDIUM_SLOTS;
             }
-            if (slot.startsWith("low slot")) {
+            else if (slot.startsWith("low slot")) {
                 slotId = ItemAttribute.FIT_LOW_SLOTS;
             }
-            if (slot.startsWith("righ slot")) {
+            else if (slot.startsWith("rig slot")) {
                 slotId = ItemAttribute.FIT_RIGS_SLOTS;
             }
-            if (slot.startsWith("subsystem slot")) {
+            else if (slot.startsWith("subsystem slot")) {
                 slotId = ItemAttribute.FIT_SUBSYSTEM_SLOTS;
             }
             if (slotId != -1) {
                 fit.addModule(slotId, attributes.getValue("type"));
             }
-        }        
+            else if (slot.startsWith("drone")) {
+                fit.addDrone(attributes.getValue("type"));
+            }
+            else if (slot.startsWith("cargo")) {
+                fit.addDrone(attributes.getValue("type"));
+            }
+        }
     }
     @Override
     protected void init(Digester digester) {

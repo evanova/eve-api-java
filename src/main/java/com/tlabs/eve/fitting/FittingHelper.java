@@ -3,7 +3,6 @@ package com.tlabs.eve.fitting;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tlabs.eve.api.ItemAttribute;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -77,6 +76,9 @@ public final class FittingHelper {
         b.append(toClipboard(f, ItemAttribute.FIT_HIGH_SLOTS));
         b.append(toClipboard(f, ItemAttribute.FIT_RIGS_SLOTS));
         b.append(toClipboard(f, ItemAttribute.FIT_SUBSYSTEM_SLOTS));
+
+        b.append(toClipboard(f.getDrones()));
+        b.append(toClipboard(f.getCargo()));
 
         return b.toString();
     }
@@ -153,13 +155,27 @@ public final class FittingHelper {
 
     private static String toClipboard(final Fitting f, final int slotAttributeId) {
         final List<String> modules = f.getModules(slotAttributeId);
-        if (CollectionUtils.isEmpty(modules)) {
+        if ((null == modules) || (modules.isEmpty())) {
             return "";
         }
         final StringBuilder b = new StringBuilder();
         for (String m: modules) {
             b.append(m);
             b.append("\n");
+        }
+        b.append("\n\n");
+        return b.toString();
+    }
+
+    private static String toClipboard(Map<String, Integer> items) {
+        if (items.isEmpty()) {
+            return "";
+        }
+        StringBuilder b = new StringBuilder();
+        for (Map.Entry<String, Integer> e: items.entrySet()) {
+            b.append(e.getKey());
+            b.append(" x");
+            b.append(e.getValue());
         }
         b.append("\n\n");
         return b.toString();
