@@ -1,14 +1,16 @@
 package com.tlabs.eve.fitting;
 
+import com.tlabs.eve.api.ItemAttribute;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester.Digester;
+import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
-final class ShipFittingParser extends AbstractXMLParser<ShipFittingResponse> {
+public final class ShipFittingParser extends AbstractXMLParser<ShipFittingResponse> {
 
     public ShipFittingParser() {
         super(ShipFittingResponse.class);
@@ -19,7 +21,29 @@ final class ShipFittingParser extends AbstractXMLParser<ShipFittingResponse> {
         @Override
         public void doBegin(String name, Attributes attributes) {
             final Fitting fit = (Fitting)getDigester().peek();
-            fit.addModule(attributes.getValue("slot"), attributes.getValue("type"));
+            final String slot = attributes.getValue("slot");
+            if (StringUtils.isBlank(slot)) {
+                return;
+            }
+            int slotId = -1;
+            if (slot.startsWith("hi slot")) {
+                slotId = ItemAttribute.FIT_HIGH_SLOTS;
+            }
+            if (slot.startsWith("med slot")) {
+                slotId = ItemAttribute.FIT_MEDIUM_SLOTS;
+            }
+            if (slot.startsWith("low slot")) {
+                slotId = ItemAttribute.FIT_LOW_SLOTS;
+            }
+            if (slot.startsWith("righ slot")) {
+                slotId = ItemAttribute.FIT_RIGS_SLOTS;
+            }
+            if (slot.startsWith("subsystem slot")) {
+                slotId = ItemAttribute.FIT_SUBSYSTEM_SLOTS;
+            }
+            if (slotId != -1) {
+                fit.addModule(slotId, attributes.getValue("type"));
+            }
         }        
     }
     @Override

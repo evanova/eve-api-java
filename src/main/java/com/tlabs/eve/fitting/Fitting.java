@@ -5,17 +5,16 @@ import com.tlabs.eve.api.ItemAttribute;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-//What the Eve Online export function provides...
 public class Fitting implements Serializable {
 
     private static final long serialVersionUID = 384757313634349249L;
 
-    private final Map<String, String> modules;
+    private final Map<Integer, List<String>> modules;
 
-    //This is NOT in saved XML; you have to find a way to populate it.
     private String name;
     private String description;
 
@@ -35,36 +34,17 @@ public class Fitting implements Serializable {
 
     public Fitting(final Ship from) {
         this();
+        setShipTypeID(from.getItemID());
         setTypeName(from.getItemName());
         setName(from.getName());
         setDescription(from.getDescription());
         for (int i = 0; i < from.getSlotCount(); i++) {
-            final Long slotId = from.getSlot(i);
-            String prefix = "";
-            switch (slotId.intValue()) {
-                case ItemAttribute.FIT_HIGH_SLOTS:
-                    prefix = "hi slot %s";
-                    break;
-                case ItemAttribute.FIT_MEDIUM_SLOTS:
-                    prefix = "med slot %s";
-                    break;
-                case ItemAttribute.FIT_LOW_SLOTS:
-                    prefix = "low slot %s";
-                    break;
-                case ItemAttribute.FIT_RIGS_SLOTS:
-                    prefix = "rig slot %s";
-                    break;
-                case ItemAttribute.FIT_SUBSYSTEM_SLOTS:
-                    prefix = "subsystem slot %s";
-                    break;
-                default:
-                    prefix = "cargo";
-                    break;
-            }
+            final int slotId = from.getSlot(i);
+
             final List<Module> modules = from.getModules(from.getSlot(i));
             for (int m = 0; m < modules.size(); m++) {
                 final Module module = modules.get(m);
-                addModule(String.format(prefix, Integer.toString(m)), module.getItemName());
+                addModule(slotId, module.getItemName());
             }
         }
     }
@@ -111,12 +91,32 @@ public class Fitting implements Serializable {
         this.shipTypeID = shipTypeID;
     }
 
-    public final void addModule(final String slot, final String module) {
-        this.modules.put(slot, module);
+    public final void addModule(final int slotId, final String module) {
+        List<String> modules = this.modules.get(slotId);
+        if (null == modules) {
+            modules = new LinkedList<>();
+            this.modules.put(slotId, modules);
+        }
+        modules.add(module);
     }
 
-    public Map<String, String> getModules() {
+    public Map<Integer, List<String>> getModules() {
         return this.modules;
     }
 
+    public List<String> getModules(int slotId) {
+        return getModules().get(slotId);
+    }
+
+    public String toClipboard() {
+        return FittingHelper.toClipboardContent(this);
+    }
+
+    public String toXContent() {
+        return FittingHelper.toXContent(this);
+    }
+
+    public String toJSON() {
+        return FittingHelper.toJSONContent(this);
+    }
 }

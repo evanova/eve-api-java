@@ -30,7 +30,7 @@ public class FittingEngineImpl implements FittingEngine {
         }
 
         @Override
-        public boolean removeModule(long slotId, int position) {
+        public boolean removeModule(int slotId, int position) {
             if (super.removeModule(slotId, position)) {
                 this.fittedAttributes.clear();
                 this.fittedAttributes.putAll(build(this.originalAttributes));

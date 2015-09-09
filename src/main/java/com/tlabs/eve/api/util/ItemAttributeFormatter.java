@@ -112,12 +112,18 @@ public final class ItemAttributeFormatter {
 
         attributesFormat.put(ItemAttribute.VELOCITY_MAX, new UnitFormat("m/s"));
         attributesFormat.put(ItemAttribute.VELOCITY_WARP, new UnitFormat("AU/s"));
+
+        attributesFormat.put(ItemAttribute.CPU_NEED, integerFormat);
+        attributesFormat.put(ItemAttribute.POWER_NEED, integerFormat);
     }
 
     private ItemAttributeFormatter() {
     }
 
     public static String format(final ItemAttribute attribute) {
+        if (null == attribute) {
+            return "0";
+        }
         final AttributeFormat format = attributesFormat.get(attribute.getID());
         return (null == format) ? defaultFormat.format(attribute) : format.format(attribute);
     }

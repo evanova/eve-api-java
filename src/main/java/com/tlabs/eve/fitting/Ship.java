@@ -4,6 +4,7 @@ import com.tlabs.eve.api.Item;
 import com.tlabs.eve.api.ItemAttribute;
 import com.tlabs.eve.api.ItemEffect;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -13,8 +14,8 @@ import java.util.Map;
 
 public class Ship extends Module {
 
-    private final Map<Long, List<Module>> modules;
-    private final List<Long> slots;
+    private final Map<Integer, List<Module>> modules;
+    private final List<Integer> slots;
 
     private final String name;
     private final String description;
@@ -61,23 +62,31 @@ public class Ship extends Module {
         return this.slots.size();
     }
 
-    public int getModuleCount(final long slotId) {
+    public int getModuleCount(final int slotId) {
         final List<Module> modules = this.modules.get(slotId);
         return (null == modules) ? 0 : modules.size();
     }
 
-    public long getSlot(final int index) {
+    public int getModuleCount() {
+        int count = 0;
+        for (List<Module> l: this.modules.values()) {
+            count = count + l.size();
+        }
+        return count;
+    }
+
+    public int getSlot(final int index) {
         if (index >= this.slots.size()) {
             return -1;
         }
         return this.slots.get(index);
     }
 
-    public List<Module> getModules(final long slotId) {
+    public List<Module> getModules(final int slotId) {
         return this.modules.get(slotId);
     }
 
-    public Module getModuleAt(final long slotId, final int position) {
+    public Module getModuleAt(final int slotId, final int position) {
         final List<Module> modules = this.modules.get(slotId);
         return (null == modules) ? null : modules.get(position);
     }
@@ -97,7 +106,11 @@ public class Ship extends Module {
         return false;
     }
 
-    public boolean removeModule(final long slotId, final int position) {
+    public boolean addModule(final Module module, final int slotId) {
+        return reallyAddModule(module, slotId);
+    }
+
+    public boolean removeModule(final int slotId, final int position) {
         final List<Module> modules = this.modules.get(slotId);
         if (null == modules) {
             return false;
@@ -122,7 +135,7 @@ public class Ship extends Module {
         return true;
     }
 
-    public boolean getFull(final long slotId) {
+    public boolean getFull(final int slotId) {
         final List<Module> slot = this.modules.get(slotId);
         if (null == slot) {
             return true;
@@ -136,31 +149,35 @@ public class Ship extends Module {
     }
 
     private boolean addModuleImpl(final Module module) {
-        if (addModule(module, ItemAttribute.FIT_HIGH_SLOTS, ItemEffect.USES_HIGH_SLOT)) {
+        if (addModuleImpl(module, ItemAttribute.FIT_HIGH_SLOTS, ItemEffect.USES_HIGH_SLOT)) {
             return true;
         }
-        if (addModule(module, ItemAttribute.FIT_MEDIUM_SLOTS, ItemEffect.USES_MEDIUM_SLOT)) {
+        if (addModuleImpl(module, ItemAttribute.FIT_MEDIUM_SLOTS, ItemEffect.USES_MEDIUM_SLOT)) {
             return true;
         }
-        if (addModule(module, ItemAttribute.FIT_LOW_SLOTS, ItemEffect.USES_LOW_SLOT)) {
+        if (addModuleImpl(module, ItemAttribute.FIT_LOW_SLOTS, ItemEffect.USES_LOW_SLOT)) {
             return true;
         }
-        if (addModule(module, ItemAttribute.FIT_RIGS_SLOTS, ItemEffect.USES_RIG_SLOT)) {
+        if (addModuleImpl(module, ItemAttribute.FIT_RIGS_SLOTS, ItemEffect.USES_RIG_SLOT)) {
             return true;
         }
-        if (addModule(module, ItemAttribute.FIT_SUBSYSTEM_SLOTS, ItemEffect.USES_SUBSYSTEM)) {
+        if (addModuleImpl(module, ItemAttribute.FIT_SUBSYSTEM_SLOTS, ItemEffect.USES_SUBSYSTEM)) {
             return true;
         }
+
         return false;
     }
 
-    private boolean addModule(final Module module, final int slotAttributeId, final int effectId) {
+    private boolean addModuleImpl(final Module module, final int slotAttributeId, final int effectId) {
         final ItemEffect effect = module.getEffect(effectId);
         if (null == effect) {
             return false;
         }
+        return reallyAddModule(module, slotAttributeId);
+    }
 
-        final List<Module> modules = this.modules.get(Long.valueOf(slotAttributeId));
+    private boolean reallyAddModule(final Module module, final int slotAttributeId) {
+        final List<Module> modules = this.modules.get(slotAttributeId);
         if (null == modules) {
             return false;
         }
@@ -193,8 +210,8 @@ public class Ship extends Module {
             modules.add(new Module());
         }
 
-        this.slots.add(Long.valueOf(attributeId));
-        this.modules.put(Long.valueOf(attributeId), modules);
+        this.slots.add(attributeId);
+        this.modules.put(attributeId, modules);
     }
 
 }
