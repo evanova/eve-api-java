@@ -12,7 +12,7 @@ public class Contract implements Serializable {
 
     private static final long serialVersionUID = -2606077397367047795L;
 
-    public static enum Status {
+    public enum Status {
         UNKNOWN("Unknown", 0),
         IN_PROGRESS("InProgress", 1),
         OUTSTANDING("Outstanding", 2),
@@ -28,7 +28,7 @@ public class Contract implements Serializable {
         private String name;
         private int value;
 
-        private Status(String name, int value) {
+        Status(String name, int value) {
             this.name = name;
             this.value = value;
         }
@@ -64,7 +64,7 @@ public class Contract implements Serializable {
         }
     }
 
-    public static enum Type {
+    public enum Type {
         UNKNOWN("Unknown", 0),
         AUCTION("Auction", 1),
         EXCHANGE("ItemExchange", 2),
@@ -73,7 +73,7 @@ public class Contract implements Serializable {
         private String name;
         private int value;
 
-        private Type(String name, int value) {
+        Type(String name, int value) {
             this.name = name;
             this.value = value;
         }

@@ -39,7 +39,7 @@ public final class EveAPI {
             AccessGroup.Group4,
             AccessGroup.Group2 };
 
-    public static enum AccessGroup {
+    public enum AccessGroup {
         Group1(1, "Account and Market", "Market Orders, account balance and journal history."),
         Group7(7, "Communications", "Private communications such as contact lists, Eve Mail and Notifications."),
         Group5(5, "Corporation Members", "Member information for Corporations."),
@@ -52,7 +52,7 @@ public final class EveAPI {
         private String name;
         private int groupId;
 
-        private AccessGroup(int id, String name, String description) {
+        AccessGroup(int id, String name, String description) {
             this.groupId = id;
             this.name = name;
             this.description = description;
@@ -71,7 +71,7 @@ public final class EveAPI {
         }
     }
 
-    public static enum CharacterAccess {
+    public enum CharacterAccess {
         Contracts(67108864, 3, "Contracts", "List of all Contracts the character is involved in."),
         AccountStatus(33554432, 3, "AccountStatus", "EVE player account status."),
         CharacterInfoMore(16777216, 4, "CharacterInfo", "Sensitive Character Information, exposes account balance and last known location on top of the other Character Information call."),
@@ -107,7 +107,7 @@ public final class EveAPI {
         private int groupId;
         private int accessMask;
 
-        private CharacterAccess(int accessMask, int id, String name, String description) {
+        CharacterAccess(int accessMask, int id, String name, String description) {
             this.accessMask = accessMask;
             this.groupId = id;
             this.name = name;
@@ -135,12 +135,12 @@ public final class EveAPI {
         }
     }
 
-    public static enum Wallet {
+    public enum Wallet {
         MASTER(1000l), SECOND(1001l), THIRD(1002l), FOURTH(1003l), FIFTH(1004l), SIXTH(1005l), SEVENTH(1006l), DUST(10001l);
 
         private final long walletID;
 
-        private Wallet(final long walletID) {
+        Wallet(final long walletID) {
             this.walletID = walletID;
         }
 
@@ -149,7 +149,7 @@ public final class EveAPI {
         }
     }
 
-    public static enum CorporationAccess {
+    public enum CorporationAccess {
 
         Contracts(8388608, 3, "Contracts", "List of recent Contracts the corporation is involved in."),
         Titles(4194304, 5, "Titles", "Titles of corporation and the roles they grant."),
@@ -183,7 +183,7 @@ public final class EveAPI {
         private int groupId;
         private int accessMask;
 
-        private CorporationAccess(int accessMask, int id, String name, String description) {
+        CorporationAccess(int accessMask, int id, String name, String description) {
             this.accessMask = accessMask;
             this.groupId = id;
             this.name = name;

@@ -22,7 +22,7 @@ public class IndustryJob implements Serializable {
         EPOCH.set(Calendar.MILLISECOND, 00);
     }
 
-    public static enum Status {
+    public enum Status {
         FAILED(0, "Failed"),
         DELIVERED(1, "Delivered"),
         ABORTED(2, "Aborted"),
@@ -39,7 +39,7 @@ public class IndustryJob implements Serializable {
         private final String text;
         private final int value;
 
-        private Status(final int value, final String text) {
+        Status(final int value, final String text) {
             this.value = value;
             this.text = text;
         }
@@ -62,7 +62,7 @@ public class IndustryJob implements Serializable {
         }
     }
     //select * from ramactivities
-    public static enum Type {
+    public enum Type {
         NONE(0, "None"),
         MANUFACTURING(1, "Manufacturing"),
         RESEARCH_TECH(2, "Researching Technology"),
@@ -76,7 +76,7 @@ public class IndustryJob implements Serializable {
         private final String text;
         private final int value;
 
-        private Type(final int value, final String text) {
+        Type(final int value, final String text) {
             this.value = value;
             this.text = text;
         }

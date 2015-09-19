@@ -13,7 +13,7 @@ public class Certificate implements Serializable {
 
         private final int level;
 
-        private Level(final int level) {
+        Level(final int level) {
             this.level = level;
         }
 

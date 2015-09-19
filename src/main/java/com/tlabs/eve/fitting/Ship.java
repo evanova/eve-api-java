@@ -120,10 +120,7 @@ public class Ship extends Module {
     }
 
     public boolean addModule(final Module module) {
-        if (addModuleImpl(module)) {
-            return true;
-        }
-        return false;
+        return addModuleImpl(module);
     }
 
     public boolean addModule(final Module module, final int slotId) {
@@ -181,11 +178,8 @@ public class Ship extends Module {
         if (addModuleImpl(module, ItemAttribute.FIT_RIGS_SLOTS, ItemEffect.USES_RIG_SLOT)) {
             return true;
         }
-        if (addModuleImpl(module, ItemAttribute.FIT_SUBSYSTEM_SLOTS, ItemEffect.USES_SUBSYSTEM)) {
-            return true;
-        }
+        return addModuleImpl(module, ItemAttribute.FIT_SUBSYSTEM_SLOTS, ItemEffect.USES_SUBSYSTEM);
 
-        return false;
     }
 
     private boolean addModuleImpl(final Module module, final int slotAttributeId, final int effectId) {

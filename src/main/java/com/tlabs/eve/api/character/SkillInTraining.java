@@ -12,7 +12,7 @@ public class SkillInTraining extends Skill implements Serializable {
 
     private static final long serialVersionUID = 1194595186724600630L;
 
-    public static enum Type {
+    public enum Type {
         REQUIRED, QUEUE, PLAN, COMPLETED
     }
 

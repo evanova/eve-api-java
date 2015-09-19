@@ -8,7 +8,7 @@ public final class PortraitRequest extends ImageRequest<PortraitResponse> {
 
         private String value;
 
-        private Size(String value) {
+        Size(String value) {
             this.value = value;
         }
 

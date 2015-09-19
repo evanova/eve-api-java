@@ -12,7 +12,7 @@ public class BooleanDeserializer extends JsonDeserializer<Boolean> {
     @Override
     public Boolean deserialize(
             JsonParser jp,
-            DeserializationContext context) throws IOException, JsonProcessingException {
+            DeserializationContext context) throws IOException {
 
         final String jpText = jp.getText().trim().toLowerCase();
         if ("0".equals(jpText)) {

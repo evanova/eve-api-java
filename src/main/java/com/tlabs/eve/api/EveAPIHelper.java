@@ -4,6 +4,10 @@ import com.tlabs.eve.EveParser;
 import com.tlabs.eve.api.character.CharacterAccountBalanceRequest;
 import com.tlabs.eve.api.character.CharacterAssetsRequest;
 import com.tlabs.eve.api.character.CharacterBookmarksRequest;
+import com.tlabs.eve.api.character.CharacterCalendarAttendeesParser;
+import com.tlabs.eve.api.character.CharacterCalendarAttendeesRequest;
+import com.tlabs.eve.api.character.CharacterCalendarParser;
+import com.tlabs.eve.api.character.CharacterCalendarRequest;
 import com.tlabs.eve.api.character.CharacterContactListParser;
 import com.tlabs.eve.api.character.CharacterContactListRequest;
 import com.tlabs.eve.api.character.CharacterContactNotificationsRequest;
@@ -161,6 +165,9 @@ final class EveAPIHelper {
 
         parserMap.put(CharacterBookmarksRequest.class, BookmarksParser.class);
         parserMap.put(CorporationBookmarksRequest.class, BookmarksParser.class);
+
+        parserMap.put(CharacterCalendarRequest.class, CharacterCalendarParser.class);
+        parserMap.put(CharacterCalendarAttendeesRequest.class, CharacterCalendarAttendeesParser.class);
 
         parserMap.put(ChatChannelRequest.class, ChatChannelParser.class);
 

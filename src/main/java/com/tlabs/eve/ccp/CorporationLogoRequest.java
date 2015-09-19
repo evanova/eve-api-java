@@ -8,7 +8,7 @@ public final class CorporationLogoRequest extends ImageRequest<CorporationLogoRe
 
         private String value;
 
-        private Size(String value) {
+        Size(String value) {
             this.value = value;
         }
 

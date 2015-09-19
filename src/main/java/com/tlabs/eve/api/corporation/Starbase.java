@@ -15,12 +15,12 @@ public class Starbase implements Serializable {
     2    Onlining   Will be online at time = onlineTimestamp.
     3    Reinforced Until time = stateTimestamp.
     4    Online Continuously since time = onlineTimestamp.*/
-    public static enum State {
+    public enum State {
         UNANCHORED(0), ANCHORED(1), ONLINING(2), REINFORCED(3), ONLINE(4);
 
         private final int value;
 
-        private State(final int value) {
+        State(final int value) {
             this.value = value;
         }
 
