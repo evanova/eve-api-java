@@ -15,6 +15,10 @@ public class PlanetaryColoniesResponse extends EveAPIResponse {
         this.colonies = new LinkedList<>();
     }
 
+    public List<PlanetaryColony> getColonies() {
+        return colonies;
+    }
+
     public void addColony(final PlanetaryColony colony) {
         this.colonies.add(colony);
     }

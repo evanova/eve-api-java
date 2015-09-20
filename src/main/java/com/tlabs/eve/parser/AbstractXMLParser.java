@@ -59,7 +59,10 @@ public abstract class AbstractXMLParser<T extends EveResponse> implements EvePar
             doAfterParse(t);
             return t;
         }
-        catch (IllegalAccessException | InstantiationException e) {
+        catch (IllegalAccessException e) {
+            throw new IOException(e.getMessage());
+        }
+        catch (InstantiationException e) {
             throw new IOException(e.getMessage());
         }
     }

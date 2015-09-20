@@ -1,13 +1,10 @@
 package com.tlabs.eve.api.character;
 
 import com.tlabs.eve.api.EveAPIParser;
-import com.tlabs.eve.api.mail.ContactListParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester.Digester;
-
-import java.util.Calendar;
 
 public final class CharacterCalendarParser extends EveAPIParser<CharacterCalendarResponse> {
 

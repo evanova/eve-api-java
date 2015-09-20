@@ -4,7 +4,6 @@ import com.tlabs.eve.api.Item;
 import com.tlabs.eve.api.ItemAttribute;
 import com.tlabs.eve.api.ItemEffect;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;

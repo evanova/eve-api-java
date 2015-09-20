@@ -1,7 +1,6 @@
 package com.tlabs.eve.fitting;
 
 import com.tlabs.eve.api.Item;
-import com.tlabs.eve.api.ItemAttribute;
 
 import java.io.Serializable;
 import java.util.HashMap;

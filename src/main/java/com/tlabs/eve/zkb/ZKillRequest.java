@@ -19,12 +19,12 @@ public class ZKillRequest<T extends ZKillResponse> extends EveRequest<T> {
         return buildUriZKill(root, this);
     }
 
-    public final <T extends ZKillRequest> T withItems(final boolean with) {
+    public final <R extends ZKillRequest> R withItems(final boolean with) {
         removeParam("no-items");
         if (!with) {
             putParam("no-items", "");
         }
-        return (T)this;
+        return (R)this;
     }
 
     public final <T extends ZKillRequest> T withAttackers(final boolean with) {
@@ -35,32 +35,32 @@ public class ZKillRequest<T extends ZKillResponse> extends EveRequest<T> {
         return (T)this;
     }
 
-    public final <T extends ZKillRequest> T page(final int pageNumber) {
+    public final <R extends ZKillRequest> R page(final int pageNumber) {
         putParam("page", (pageNumber < 0) ? "1" : "" + (pageNumber + 1));
         removeParam("limit");
-        return (T)this;
+        return (R)this;
     }
 
-    public final <T extends ZKillRequest> T limit(final int limit) {
+    public final <R extends ZKillRequest> R limit(final int limit) {
         if (limit > 0) {
             putParam("limit", "" + limit);
             removeParam("page");
         }
-        return (T)this;
+        return (R)this;
     }
 
-    public final <T extends ZKillRequest> T asc() {
+    public final <R extends ZKillRequest> R asc() {
         return direction("asc");
     }
 
-    public final <T extends ZKillRequest> T desc() {
+    public final <R extends ZKillRequest> R desc() {
         return direction("desc");
     }
 
-    private final <T extends ZKillRequest> T direction(final String dir) {
+    private final <R extends ZKillRequest> R direction(final String dir) {
         removeParam("orderDirection");
         putParam("orderDirection", dir);
-        return (T)this;
+        return (R)this;
     }
 
 

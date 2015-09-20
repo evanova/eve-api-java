@@ -15,6 +15,10 @@ public class PlanetaryRoutesResponse extends EveAPIResponse {
         this.routes = new LinkedList<>();
     }
 
+    public List<PlanetaryRoute> getRoutes() {
+        return routes;
+    }
+
     public void addRoute(final PlanetaryRoute route) {
         this.routes.add(route);
     }
