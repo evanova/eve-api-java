@@ -23,7 +23,7 @@ import javax.xml.transform.stream.StreamSource;
 public class DotlanRouteParser implements EveParser<DotlanRouteResponse> {
 
     private static final String XSLT = "/dotlan-route.xsl";
-    private static final long CACHED = 1l * 60l * 60l * 1000l; //1h (dotlan has data refreshed every 3h)
+    private static final long CACHED = 60l * 60l * 1000l; //1h (dotlan has data refreshed every 3h)
 
     private final TransformerFactory transformerFactory;
 

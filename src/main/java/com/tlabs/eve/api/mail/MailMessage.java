@@ -5,12 +5,6 @@ package com.tlabs.eve.api.mail;
 public class MailMessage extends Message {
 
     private static final long serialVersionUID = 3521271683902916731L;
-    /*
-     * <rowset 
-     * name="messages" 
-     * key="messageID" 
-     * columns="messageID,senderID,sentDate,title,toCorpOrAllianceID,toCharacterIDs,toListID">
-     */
 
     private long messageID = -1;
 

@@ -12,7 +12,7 @@ public class DefaultEveNetwork extends AbstractEveNetwork {
     @Override
     public String getUri(EveRequest<?> request) {
         if (request instanceof ImageRequest) {
-            return "https://imageserver.eveonline.com";
+            return "https://image.eveonline.com";
         }
         if (request instanceof EveRSSRequest) {
             return "http://newsfeed.eveonline.com";
