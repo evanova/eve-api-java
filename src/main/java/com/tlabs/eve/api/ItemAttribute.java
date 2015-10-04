@@ -132,6 +132,7 @@ public final class ItemAttribute implements Serializable {
     private int attributeID;
     private float attributeValue;
     private int categoryID;
+    private String categoryName;//not in XML
 
     private String attributeName;
 
@@ -149,6 +150,14 @@ public final class ItemAttribute implements Serializable {
 
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getName() {

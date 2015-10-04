@@ -25,6 +25,8 @@ public class CharacterCalendar implements Serializable {
         private boolean important = false;
         private String response; //"Undecided", "Accepted", "Declined" or "Tentative"
 
+        private List<Attendee> attendees = new LinkedList<>();
+
         public long getEventID() {
             return eventID;
         }
@@ -99,6 +101,14 @@ public class CharacterCalendar implements Serializable {
 
         public void setResponse(String response) {
             this.response = response;
+        }
+
+        public List<Attendee> getAttendees() {
+            return attendees;
+        }
+
+        public void setAttendees(List<Attendee> attendees) {
+            this.attendees = attendees;
         }
     }
 
