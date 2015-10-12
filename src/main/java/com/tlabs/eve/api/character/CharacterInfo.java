@@ -1,8 +1,51 @@
 package com.tlabs.eve.api.character;
 
 
+import java.util.LinkedList;
+import java.util.List;
 
 public class CharacterInfo {
+
+    public static class History {
+        private long recordID;
+
+        private long corporationID;
+        private String corporationName;
+        private long startDate;
+
+
+        public long getStartDate() {
+            return startDate;
+        }
+
+        public void setStartDate(long startDate) {
+            this.startDate = startDate;
+        }
+
+        public long getCorporationID() {
+            return corporationID;
+        }
+
+        public void setCorporationID(long corporationID) {
+            this.corporationID = corporationID;
+        }
+
+        public long getRecordID() {
+            return recordID;
+        }
+
+        public void setRecordID(long recordID) {
+            this.recordID = recordID;
+        }
+
+        public String getCorporationName() {
+            return corporationName;
+        }
+
+        public void setCorporationName(String corporationName) {
+            this.corporationName = corporationName;
+        }
+    }
 
     private long characterID;
     private String lastKnownLocation;
@@ -18,6 +61,8 @@ public class CharacterInfo {
     private long allianceID = 0;
     private String alliance;
     private long allianceDate;
+
+    private List<History> history = new LinkedList<>();
 
     public CharacterInfo() {
         super();
@@ -111,4 +156,15 @@ public class CharacterInfo {
         this.allianceDate = allianceDate;
     }
 
+    public List<History> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<History> history) {
+        this.history = history;
+    }
+
+    public void addHistory(final History h) {
+        this.history.add(h);
+    }
 }

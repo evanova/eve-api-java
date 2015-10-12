@@ -3,13 +3,59 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.EveAPI;
 
 import java.io.Serializable;
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class CharacterCalendar implements Serializable {
     private static final long serialVersionUID = -1558742167364668064L;
 
+    public enum OwnerType {
+        CHARACTER(0),
+        CCP(1),
+        CORPORATION(2),
+        ALLIANCE(16159);
+
+        private final int value;
+
+        OwnerType(final int value) {
+            this.value = value;
+        }
+
+        public static OwnerType from(int value) {
+            for (OwnerType t : EnumSet.allOf(OwnerType.class)) {
+                if (t.value == value) {
+                    return t;
+                }
+            }
+            return CHARACTER;
+        }
+    }
+
+    public enum ResponseType {
+        ACCEPTED("Accepted"),
+        DECLINED("Declined"),
+        UNDECIDED("Undecided"),
+        TENTATIVE("Tentative");
+
+        private final String value;
+
+        ResponseType(final String value) {
+            this.value = value;
+        }
+
+        public static ResponseType from(String value) {
+            for (ResponseType t : EnumSet.allOf(ResponseType.class)) {
+                if (t.value.equalsIgnoreCase(value)) {
+                    return t;
+                }
+            }
+            return UNDECIDED;
+        }
+    }
+
     public static final class Entry implements Serializable {
+
         private static final long serialVersionUID = -2568742167364516064L;
 
         private long eventID;
@@ -18,12 +64,13 @@ public class CharacterCalendar implements Serializable {
 
         private long ownerID;
         private String ownerName;
+        private int ownerTypeID;
 
         private long eventDate;
         private long duration;//in minutes so far - this should be fixed to ms
 
         private boolean important = false;
-        private String response; //"Undecided", "Accepted", "Declined" or "Tentative"
+        private String response;
 
         private List<Attendee> attendees = new LinkedList<>();
 
@@ -79,6 +126,11 @@ public class CharacterCalendar implements Serializable {
             this.eventDate = EveAPI.parseDateTime(eventDate);
         }
 
+        public long getDurationInMillis() {
+            return duration * 60000l;
+        }
+
+        //in minutes
         public long getDuration() {
             return duration;
         }
@@ -109,6 +161,22 @@ public class CharacterCalendar implements Serializable {
 
         public void setAttendees(List<Attendee> attendees) {
             this.attendees = attendees;
+        }
+
+        public int getOwnerTypeID() {
+            return ownerTypeID;
+        }
+
+        public void setOwnerTypeID(int ownerTypeID) {
+            this.ownerTypeID = ownerTypeID;
+        }
+
+        public OwnerType getOwnerType() {
+            return OwnerType.from(this.ownerTypeID);
+        }
+
+        public ResponseType getResponseType() {
+            return ResponseType.from(this.response);
         }
     }
 
@@ -141,6 +209,10 @@ public class CharacterCalendar implements Serializable {
 
         public void setResponse(String response) {
             this.response = response;
+        }
+
+        public ResponseType getResponseType() {
+            return ResponseType.from(this.response);
         }
     }
 

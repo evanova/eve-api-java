@@ -3,6 +3,7 @@ package com.tlabs.eve.api.character;
 
 
 import com.tlabs.eve.api.EveAPIParser;
+import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
@@ -29,8 +30,13 @@ public final class CharacterInfoParser extends EveAPIParser<CharacterInfoRespons
         digester.addRule("eveapi/result/corporationDate", setElementPropertyRule);
         digester.addRule("eveapi/result/allianceID", setElementPropertyRule);
         digester.addRule("eveapi/result/alliance", setElementPropertyRule);
-        digester.addRule("eveapi/result/alliancenDate", setElementPropertyRule);
+        digester.addRule("eveapi/result/allianceDate", setElementPropertyRule);
         digester.addRule("eveapi/result/lastKnownLocation", setElementPropertyRule);
         digester.addRule("eveapi/result/securityStatus", setElementPropertyRule);
+
+        digester.addObjectCreate("eveapi/result/rowset/row", CharacterInfo.History.class);
+        digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addHistory"));
+
     }
 }
