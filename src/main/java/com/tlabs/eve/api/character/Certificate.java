@@ -3,6 +3,9 @@ package com.tlabs.eve.api.character;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,9 +45,9 @@ public class Certificate implements Serializable {
     private String name;
     private String description;
 
-    private List<Long> recommendedForTypes;
-    //Map<Skill ID, Map<Certificate.Type, level>>
-    private Map<Long, Map<Level, Integer>> skillTypeLevels;
+    private List<Long> recommendedForTypes = new ArrayList<>(0);
+
+    private Map<Long, Map<Level, Integer>> skillTypeLevels = new HashMap<>(0);
 
     public final long getCertificateID() {
         return certificateID;

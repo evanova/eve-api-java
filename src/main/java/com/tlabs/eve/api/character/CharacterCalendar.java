@@ -16,13 +16,13 @@ public class CharacterCalendar implements Serializable {
         CORPORATION(2),
         ALLIANCE(16159);
 
-        private final int value;
+        private final long value;
 
-        OwnerType(final int value) {
+        OwnerType(final long value) {
             this.value = value;
         }
 
-        public static OwnerType from(int value) {
+        public static OwnerType from(long value) {
             for (OwnerType t : EnumSet.allOf(OwnerType.class)) {
                 if (t.value == value) {
                     return t;

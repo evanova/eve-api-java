@@ -47,12 +47,12 @@ public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
         return s;
     }
 
-    //FIXME return List<SolarSystem> and hide the Jump class
+    //TODO return List<SolarSystem> and hide the Jump class
     public final List<Jump> findShortestPath(final long from, final long to) {
         return findShortestPath(this, from, to);
     }
 
-    //FIXME return List<SolarSystem> and hide the Jump class
+    //TODO return List<SolarSystem> and hide the Jump class
     public static List<Jump> findShortestPath(final UniverseMap graph, final long from, final long to) {
         final SolarSystem fromSystem = graph.getVertex(from);
         final SolarSystem toSystem = graph.getVertex(to);

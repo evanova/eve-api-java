@@ -7,7 +7,7 @@ import org.xml.sax.Attributes;
 import java.util.HashMap;
 import java.util.Map;
 
-//FIXME: only because Android 1.5 and commons-beanutil fail...
+
 public class SetAttributePropertyRule extends BaseRule {
 
     private Map<String, String> propertyMap;

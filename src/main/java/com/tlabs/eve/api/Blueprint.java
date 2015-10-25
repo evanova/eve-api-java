@@ -32,4 +32,60 @@ public class Blueprint implements Serializable {
     private List<Map<Long, Integer>> researchTimeMaterials;
     private List<Map<Long, Integer>> researchTimeSkills;
     private long researchTimeTime;
+
+    public long getTypeID() {
+        return typeID;
+    }
+
+    public void setTypeID(long typeID) {
+        this.typeID = typeID;
+    }
+
+    public long getResearchMaterialsTime() {
+        return researchMaterialsTime;
+    }
+
+    public void setResearchMaterialsTime(long researchMaterialsTime) {
+        this.researchMaterialsTime = researchMaterialsTime;
+    }
+
+    public long getCopyingTime() {
+        return copyingTime;
+    }
+
+    public void setCopyingTime(long copyingTime) {
+        this.copyingTime = copyingTime;
+    }
+
+    public long getInventionTime() {
+        return inventionTime;
+    }
+
+    public void setInventionTime(long inventionTime) {
+        this.inventionTime = inventionTime;
+    }
+
+    public long getManufacturingTime() {
+        return manufacturingTime;
+    }
+
+    public void setManufacturingTime(long manufacturingTime) {
+        this.manufacturingTime = manufacturingTime;
+    }
+
+    public long getResearchTimeTime() {
+        return researchTimeTime;
+    }
+
+    public void setResearchTimeTime(long researchTimeTime) {
+        this.researchTimeTime = researchTimeTime;
+    }
+
+    public int getMaxProduction() {
+        return maxProduction;
+    }
+
+    public void setMaxProduction(int maxProduction) {
+        this.maxProduction = maxProduction;
+    }
 }
