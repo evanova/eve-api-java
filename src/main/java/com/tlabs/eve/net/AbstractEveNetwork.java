@@ -118,7 +118,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
                 final ByteArrayOutputStream out = new ByteArrayOutputStream();
                 IOUtils.copyLarge(in, out);
                 out.flush();
-
+                out.close();
                 final byte[] data = out.toByteArray();
                 returned = EveFacade.parse(request, new ByteArrayInputStream(data));
                 returned.setContent(data);

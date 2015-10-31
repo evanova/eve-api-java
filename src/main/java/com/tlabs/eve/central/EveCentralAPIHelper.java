@@ -8,11 +8,9 @@ import java.util.Map;
 final class EveCentralAPIHelper {
 
     private static final Map<Class<? extends EveCentralRequest<?>>, Class<? extends EveCentralParser<?>>> parserMap;
-    private static final Map<Class<?>, SoftReference<EveCentralParser<? extends EveCentralResponse>>> parsers;
 
     static {
         parserMap = new HashMap<>();
-        parsers = new HashMap<>();
 
         parserMap.put(EveCentralStatsRequest.class, EveCentralStatsParser.class);
         parserMap.put(EveCentralQuickLookRequest.class, EveCentralQuickLookParser.class);
@@ -26,18 +24,7 @@ final class EveCentralAPIHelper {
         if (null == request) {
             throw new IllegalArgumentException("Null EveAPIRequest parameter.");
         }
-
-        SoftReference<EveCentralParser<? extends EveCentralResponse>> ref = parsers.get(request.getClass().getName());
-
-        EveCentralParser<?> parser = null;
-        if (null != ref) {
-            parser = ref.get();
-        }
-        if (null == parser) {
-            parser = createParser(request);
-            ref = new SoftReference<EveCentralParser<?>>(parser);
-            parsers.put(request.getClass(), ref);
-        }
+        EveCentralParser<?> parser = createParser(request);
         return (EveCentralParser<T>) parser;
     }
 

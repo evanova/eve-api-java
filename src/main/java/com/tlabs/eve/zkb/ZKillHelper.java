@@ -7,11 +7,9 @@ import java.util.Map;
 final class ZKillHelper {
 
     private static final Map<Class<? extends ZKillRequest<?>>, Class<? extends ZKillResponse>> parserMap;
-    private static final Map<Class<?>, SoftReference<ZKillParser<? extends ZKillResponse>>> parsers;
 
     static {
         parserMap = new HashMap<>();
-        parsers = new HashMap<>();
 
         parserMap.put(ZKillInfoRequest.class, ZKillInfoResponse.class);
         parserMap.put(ZKillCharacterLogRequest.class, ZKillCharacterLogResponse.class);
@@ -24,18 +22,7 @@ final class ZKillHelper {
         if (null == request) {
             throw new IllegalArgumentException("Null ZKillRequest parameter.");
         }
-
-        SoftReference<ZKillParser<? extends ZKillResponse>> ref = parsers.get(request.getClass().getName());
-
-        ZKillParser<?> parser = null;
-        if (null != ref) {
-            parser = ref.get();
-        }
-        if (null == parser) {
-            parser = createParser(request);
-            ref = new SoftReference<ZKillParser<?>>(parser);
-            parsers.put(request.getClass(), ref);
-        }
+        ZKillParser<?> parser = createParser(request);
         return (ZKillParser<T>) parser;
     }
 

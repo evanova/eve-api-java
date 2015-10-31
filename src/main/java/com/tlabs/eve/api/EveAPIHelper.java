@@ -87,11 +87,8 @@ import java.util.Map;
 final class EveAPIHelper {
 
     private static final Map<Class<? extends EveAPIRequest<?>>, Class<? extends EveAPIParser<?>>> parserMap;
-    private static final HashMap<String, SoftReference<EveAPIParser<? extends EveAPIResponse>>> parsers;
 
     static {
-        parsers = new HashMap<>();
-
         parserMap = new HashMap<>();
         parserMap.put(AccessInfoRequest.class, AccessInfoParser.class);
 
@@ -186,18 +183,7 @@ final class EveAPIHelper {
         if (null == request) {
             throw new IllegalArgumentException("Null EveAPIRequest parameter.");
         }
-
-        SoftReference<EveAPIParser<?>> ref = parsers.get(request.getClass().getName());
-
-        EveParser<?> parser = null;
-        if (null != ref) {
-            parser = ref.get();
-        }
-        if (null == parser) {
-            parser = createParser(request);
-            ref = new SoftReference(parser);
-            parsers.put(request.getClass().getName(), ref);
-        }
+        EveParser<?> parser = createParser(request);
         return (EveAPIParser<T>) parser;
     }
 

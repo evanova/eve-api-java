@@ -8,12 +8,9 @@ import java.util.Map;
 final class CRESTHelper {
 
     private static final Map<Class<? extends CRESTRequest<?>>, Class<? extends CRESTParser<?>>> parserMap;
-    private static final Map<Class<?>, SoftReference<CRESTParser<? extends CRESTResponse>>> parsers;
 
     static {
         parserMap = new HashMap<>();
-        parsers = new HashMap<>();
-
         parserMap.put(IncursionRequest.class, IncursionParser.class);
         parserMap.put(AllianceRequest.class, AllianceParser.class);
         parserMap.put(MarketHistoryRequest.class, MarketHistoryParser.class);
@@ -30,17 +27,7 @@ final class CRESTHelper {
             throw new IllegalArgumentException("Null CRESTRequest parameter.");
         }
 
-        SoftReference<CRESTParser<? extends CRESTResponse>> ref = parsers.get(request.getClass().getName());
-
-        CRESTParser<?> parser = null;
-        if (null != ref) {
-            parser = ref.get();
-        }
-        if (null == parser) {
-            parser = createParser(request);
-            ref = new SoftReference<CRESTParser<?>>(parser);
-            parsers.put(request.getClass(), ref);
-        }
+        CRESTParser<?> parser = createParser(request);
         return (CRESTParser<T>) parser;
     }
 

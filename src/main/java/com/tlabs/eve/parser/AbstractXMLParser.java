@@ -51,7 +51,7 @@ public abstract class AbstractXMLParser<T extends EveResponse> implements EvePar
     protected void doAfterParse(T t) {
     }
 
-    public synchronized final T parse(InputStream in) throws IOException {
+    public final T parse(InputStream in) throws IOException {
         try {
             T t = responseClass.newInstance();
             doBeforeParse(t);

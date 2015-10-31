@@ -109,26 +109,6 @@ public final class ItemAttribute implements Serializable {
     public static final int BONUS_PERCEPTION = 178;
     public static final int BONUS_WILLPOWER = 179;
 
-    /*10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 974
-10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 975
-10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 977
-10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 976
-10-05 17:02:16.848    1034-1034/com.tlabs.android.evanova W/Evanova.Fragment﹕ Unknown Attribute ID: 1281*/
-    /*    attributeID attributeName          description                                                                           iconID defaultValue published displayName                 unitID stackable highIsGood categoryID 
-        ----------- ---------------------- ------------------------------------------------------------------------------------- ------ ------------ --------- --------------------------- ------ --------- ---------- ---------- 
-                 12 lowSlots               The number of low power slots on the ship.                                               295          0.0 true      Low Slots                      122 true      true                1
-                 13 medSlots               tbd                                                                                      294          0.0 true      Med Slots                      122 true      true                1
-                 14 hiSlots                tbd                                                                                      293          0.0 true      High Slots                     122 true      true                1
-                 //47 slots                  The number of slots this module requires.  Only used for launchers, bays and turrets.   NULL          1.0 false     NULL                          NULL true      true                9
-                101 launcherSlotsLeft      The number of remaining unused launcher slots.                                           168          0.0 true      Launcher hardpoints            141 true      true                1
-                102 turretSlotsLeft        Remaining number of unused turret slots on the ship.                                     387          0.0 true      Turret hardpoints              141 true      true                1
-                106 droneBaySlotsLeft      The remaining amount of unused drone bay slots on the ship.                              138          0.0 true      Dronebay hardpoints           NULL true      true               10
-                //623 cloakingSlotsLeftSuper hot-fix for not allowing warpable cloaking modules on anything but covert-ops frigs        0          0.0 false     NULL                          NULL true      true                9
-                //980 hasCloneJumpSlots      The number of clone jump slots that the ship offers.                                       0          0.0 false     NULL                          NULL true      true                9
-               1137 rigSlots               The number of rig slots on the ship.                                                    3266          0.0 true      Rig Slots                      122 true      true                1
-               1154 upgradeSlotsLeft       How many upgrades can by fitted to this ship.                                           3266          0.0 true      Upgrade Hardpoints             141 true      true                7     
-        */
-
     private int attributeID;
     private float attributeValue;
     private int categoryID;

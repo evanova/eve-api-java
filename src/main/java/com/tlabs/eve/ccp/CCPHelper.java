@@ -26,12 +26,9 @@ final class CCPHelper {
     }
 
     private static final Map<Class<? extends EveRequest<?>>, Class<? extends EveParser<?>>> parserMap;
-    private static final Map<Class<?>, SoftReference<EveParser<? extends EveResponse>>> parsers;
 
     static {
         parserMap = new HashMap<>();
-        parsers = new HashMap<>();
-
         parserMap.put(EveNewsRequest.class, EveRSSParser.class);
         parserMap.put(GameNewsRequest.class, EveRSSParser.class);
         parserMap.put(PressNewsRequest.class, EveRSSParser.class);
@@ -48,17 +45,7 @@ final class CCPHelper {
             throw new IllegalArgumentException("Null EveAPIRequest parameter.");
         }
 
-        SoftReference<EveParser<? extends EveResponse>> ref = parsers.get(request.getClass().getName());
-
-        EveParser<?> parser = null;
-        if (null != ref) {
-            parser = ref.get();
-        }
-        if (null == parser) {
-            parser = createParser(request);
-            ref = new SoftReference<EveParser<?>>(parser);
-            parsers.put(request.getClass(), ref);
-        }
+        final EveParser<?> parser = createParser(request);
         return (EveParser<T>) parser;
     }
 

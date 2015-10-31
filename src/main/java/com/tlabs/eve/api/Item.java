@@ -50,10 +50,11 @@ public class Item implements Serializable {
     private double basePrice;//not in Eve XML
 
     private long marketGroupID;//not in Eve XML
-
-    private int published;//not in Eve XML
+    private String marketGroupName;
+    private String marketGroupDesciption;
 
     private final List<ItemTrait> traits = new LinkedList<>();//in YML only
+    private final List<Skill> requirements = new LinkedList<>();
 
     public String getName() {
         return itemName;
@@ -204,12 +205,27 @@ public class Item implements Serializable {
         this.marketGroupID = marketGroupID;
     }
 
-    public int getPublished() {
-        return published;
+    public void addRequirement(final Skill skill) {
+        this.requirements.add(skill);
     }
 
-    public void setPublished(int published) {
-        this.published = published;
+    public List<Skill> getRequirements() {
+        return requirements;
     }
 
+    public String getMarketGroupName() {
+        return marketGroupName;
+    }
+
+    public void setMarketGroupName(String marketGroupName) {
+        this.marketGroupName = marketGroupName;
+    }
+
+    public String getMarketGroupDesciption() {
+        return marketGroupDesciption;
+    }
+
+    public void setMarketGroupDesciption(String marketGroupDesciption) {
+        this.marketGroupDesciption = marketGroupDesciption;
+    }
 }
