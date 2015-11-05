@@ -24,13 +24,15 @@ dependencies {
 
     compile 'commons-lang:commons-lang:2.6'
     compile 'commons-io:commons-io:2.4'
-    compile 'commons-collections:commons-collections:3.2.1'
 
-    compile 'com.fasterxml.jackson.core:jackson-core:2.5.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
 
     compile ('commons-digester:commons-digester:1.8') {
         exclude module: 'commons-logging'
+        exclude module: 'commons-lang'
+        exclude module: 'commons-io'
+        exclude module: 'commons-collections'
         exclude module: 'commons-beanutils'
     }
 
@@ -38,7 +40,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.slf4j:slf4j-log4j12:1.7.12'
-    testCompile 'commons-collections:commons-collections:3.2.1'
+    
     testCompile 'org.apache.httpcomponents:httpclient:4.3.6'
     testCompile 'com.googlecode.openpojo:openpojo:0.6.2'
 
