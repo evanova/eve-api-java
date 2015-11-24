@@ -26,9 +26,14 @@ public class PlanetaryPin implements Serializable {
     private long installTime;
     private long expiryTime;
 
-    private float quantityPerCycle;
+    private long quantityPerCycle;
 
-    //private float headRadius;
+    private long contentTypeID;
+    private String contentTypeName;
+    private long contentQuantity;
+
+    private float latitude;
+    private float longitude;
 
     public long getPinID() {
         return pinID;
@@ -138,12 +143,51 @@ public class PlanetaryPin implements Serializable {
         this.expiryTime = EveAPI.parseDateTime(expiryTime);
     }
 
-    public float getQuantityPerCycle() {
+    public long getQuantityPerCycle() {
         return quantityPerCycle;
     }
 
-    public void setQuantityPerCycle(float quantityPerCycle) {
+    public void setQuantityPerCycle(long quantityPerCycle) {
         this.quantityPerCycle = quantityPerCycle;
     }
 
+    public long getContentTypeID() {
+        return contentTypeID;
+    }
+
+    public void setContentTypeID(long contentTypeID) {
+        this.contentTypeID = contentTypeID;
+    }
+
+    public String getContentTypeName() {
+        return contentTypeName;
+    }
+
+    public void setContentTypeName(String contentTypeName) {
+        this.contentTypeName = contentTypeName;
+    }
+
+    public long getContentQuantity() {
+        return contentQuantity;
+    }
+
+    public void setContentQuantity(long contentQuantity) {
+        this.contentQuantity = contentQuantity;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
 }
