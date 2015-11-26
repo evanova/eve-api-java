@@ -1,7 +1,6 @@
 package com.tlabs.eve.crest;
 
 
-import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 

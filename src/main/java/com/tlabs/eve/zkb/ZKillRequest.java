@@ -27,12 +27,12 @@ public class ZKillRequest<T extends ZKillResponse> extends EveRequest<T> {
         return (R)this;
     }
 
-    public final <T extends ZKillRequest> T withAttackers(final boolean with) {
+    public final <R extends ZKillRequest> R withAttackers(final boolean with) {
         removeParam("no-attackers");
         if (!with) {
             putParam("no-attackers", "");
         }
-        return (T)this;
+        return (R)this;
     }
 
     public final <R extends ZKillRequest> R page(final int pageNumber) {
@@ -57,7 +57,7 @@ public class ZKillRequest<T extends ZKillResponse> extends EveRequest<T> {
         return direction("desc");
     }
 
-    private final <R extends ZKillRequest> R direction(final String dir) {
+    private <R extends ZKillRequest> R direction(final String dir) {
         removeParam("orderDirection");
         putParam("orderDirection", dir);
         return (R)this;

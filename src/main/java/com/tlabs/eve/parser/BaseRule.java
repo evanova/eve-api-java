@@ -79,7 +79,7 @@ public class BaseRule extends Rule {
             longMethod = getSetMethod(bean, property, Long.class);
         }
         if (null != longMethod) {
-            long longValue = 0l;
+            long longValue;
             try {
                 longValue = Long.parseLong(value);//is it really a long value?
             }

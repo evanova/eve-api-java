@@ -9,19 +9,19 @@ public class EveTest {
     @ClassRule
     public static EveResource resource = new EveResource("/apikeys.json");
 
-    protected static final AccessInfo getAccount() {
+    protected static AccessInfo getAccount() {
         return resource.getAccountInfo();
     }
 
-    protected static final AccessInfo getCharacter() {
+    protected static AccessInfo getCharacter() {
         return resource.getCharacterInfo();
     }
 
-    protected static final AccessInfo getCorporation() {
+    protected static AccessInfo getCorporation() {
         return resource.getCorporationInfo();
     }
 
-    protected static final <T extends EveResponse> T execute(final EveRequest<T> request) {
+    protected static <T extends EveResponse> T execute(final EveRequest<T> request) {
         return resource.execute(request);
     }
 }

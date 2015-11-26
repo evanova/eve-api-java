@@ -48,7 +48,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse> {
             }
 
             final Contract contract = (Contract) getDigester().pop();
-            boolean addContract = false;
+            boolean addContract;
             switch (contract.getStatus()) {
             case IN_PROGRESS:
             case OUTSTANDING:

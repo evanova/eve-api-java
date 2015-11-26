@@ -3,21 +3,47 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.EveAPI;
 
 import java.io.Serializable;
+import org.apache.commons.lang.StringUtils;
 
 public class PlanetaryPin implements Serializable {
+
+    public enum Type {
+        COMMAND,
+        EXTRACTOR,
+        LAUNCHPAD,
+        STORAGE,
+        INDUSTRY;
+
+        //TODO better
+        public static Type from(PlanetaryPin pin) {
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Command Center")) {
+                return COMMAND;
+            }
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Extractor")) {
+                return EXTRACTOR;
+            }
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Launchpad")) {
+                return LAUNCHPAD;
+            }
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Storage")) {
+                return STORAGE;
+            }
+            return INDUSTRY;
+        }
+    }
 
     private static final long serialVersionUID = -45893431241726263L;
 
     private long pinID;
 
     private long ownerID;
-    private String ownerName;
+    private String ownerName = "";
 
     private long planetID;
-    private String planetName;
+    private String planetName = "";
 
     private long typeID;
-    private String typeName;
+    private String typeName = "";
 
     private long schematicID;
 
@@ -29,7 +55,7 @@ public class PlanetaryPin implements Serializable {
     private long quantityPerCycle;
 
     private long contentTypeID;
-    private String contentTypeName;
+    private String contentTypeName = "";
     private long contentQuantity;
 
     private float latitude;

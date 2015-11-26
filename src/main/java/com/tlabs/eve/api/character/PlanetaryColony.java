@@ -1,28 +1,31 @@
 package com.tlabs.eve.api.character;
 
 import java.io.Serializable;
+import java.util.List;
 import com.tlabs.eve.api.EveAPI;
 
-public class PlanetaryColony extends Object implements Serializable {
+public class PlanetaryColony implements Serializable {
 
     private static final long serialVersionUID = 2574634590224975461L;
 
     private long planetID;
-    private String planetName;
+    private String planetName = "";
 
     private long solarSystemID;
-    private String solarSystemName;
+    private String solarSystemName = "";
 
     private long planetTypeID;
-    private String planetTypeName;
+    private String planetTypeName = "";
 
     private int numberOfPins;
 
     private long ownerID;
-    private String ownerName;
+    private String ownerName = "";
 
     private long lastUpdate;
     private int upgradeLevel;
+
+    private List<PlanetaryPin> pins;
 
     public long getPlanetID() {
         return planetID;
@@ -114,5 +117,13 @@ public class PlanetaryColony extends Object implements Serializable {
 
     public void setNumberOfPins(int numberOfPins) {
         this.numberOfPins = numberOfPins;
+    }
+
+    public List<PlanetaryPin> getPins() {
+        return pins;
+    }
+
+    public void setPins(List<PlanetaryPin> pins) {
+        this.pins = pins;
     }
 }

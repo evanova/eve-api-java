@@ -13,13 +13,13 @@ public class IndustryJob implements Serializable {
     //completedDate="0001-01-01 00:00:00"
     static {
         EPOCH = GregorianCalendar.getInstance();
-        EPOCH.set(Calendar.YEAR, 0001);
-        EPOCH.set(Calendar.MONTH, 01);
-        EPOCH.set(Calendar.DAY_OF_MONTH, 01);
-        EPOCH.set(Calendar.HOUR, 00);
-        EPOCH.set(Calendar.MINUTE, 00);
-        EPOCH.set(Calendar.SECOND, 00);
-        EPOCH.set(Calendar.MILLISECOND, 00);
+        EPOCH.set(Calendar.YEAR, 1);
+        EPOCH.set(Calendar.MONTH, 1);
+        EPOCH.set(Calendar.DAY_OF_MONTH, 1);
+        EPOCH.set(Calendar.HOUR, 0);
+        EPOCH.set(Calendar.MINUTE, 0);
+        EPOCH.set(Calendar.SECOND, 0);
+        EPOCH.set(Calendar.MILLISECOND, 0);
     }
 
     public enum Status {
