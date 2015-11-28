@@ -226,6 +226,9 @@ public final class EveAPI {
         if (StringUtils.isBlank(dateTime)) {
             return 0l;
         }
+        if ("0001-01-01 00:00:00".equals(dateTime)) {
+            return 0l;
+        }
         try {
             final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2010-05-23 16:43:51			
             return dateFormat.parse(dateTime).getTime();
