@@ -26,6 +26,9 @@ public class ModelObjectTest {
 
     private static final PojoClassFilter filter = new PojoClassFilter() {
         private final PojoClassFilter tests = new FilterClassName("^((?!Test$).)*$");
+        private final PojoClassFilter parsers = new FilterClassName("^((?!Parser$).)*$");
+        private final PojoClassFilter res = new FilterClassName("^((?!Resource).)*$");
+
         @Override
         public boolean include(PojoClass pojoClass) {
             if (pojoClass.getClazz().equals(EveCentralParser.class)) {
@@ -38,7 +41,7 @@ public class ModelObjectTest {
                 return false;
             }
 
-            return tests.include(pojoClass);
+            return tests.include(pojoClass) && parsers.include(pojoClass) && res.include(pojoClass);
         }
     };
 

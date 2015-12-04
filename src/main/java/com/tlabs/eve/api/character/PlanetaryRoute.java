@@ -6,25 +6,15 @@ public class PlanetaryRoute implements Serializable {
 
     private static final long serialVersionUID = -3629780760607505499L;
 
-    /*<rowset name="routes" key="routeID" 
-     * columns="
-     * routeID,
-     * sourcePinID,
-     * destinationPinID,
-     * contentTypeID,
-     * contentTypeName,
-     * quantity,
-     * waypoint1,
-     * waypoint2,
-     * waypoint3,
-     * waypoint4,
-     * waypoint5">
-     * 
-     */
-
     private long routeID;
     private long sourcePinID;
     private long destinationPinID;
+
+    private long waypoint1;
+    private long waypoint2;
+    private long waypoint3;
+    private long waypoint4;
+    private long waypoint5;
 
     private long contentTypeID;
     private String contentTypeName;
@@ -77,5 +67,45 @@ public class PlanetaryRoute implements Serializable {
 
     public void setQuantity(float quantity) {
         this.quantity = quantity;
+    }
+
+    public long getWaypoint1() {
+        return waypoint1;
+    }
+
+    public void setWaypoint1(long waypoint1) {
+        this.waypoint1 = waypoint1;
+    }
+
+    public long getWaypoint2() {
+        return waypoint2;
+    }
+
+    public void setWaypoint2(long waypoint2) {
+        this.waypoint2 = waypoint2;
+    }
+
+    public long getWaypoint3() {
+        return waypoint3;
+    }
+
+    public void setWaypoint3(long waypoint3) {
+        this.waypoint3 = waypoint3;
+    }
+
+    public long getWaypoint4() {
+        return waypoint4;
+    }
+
+    public void setWaypoint4(long waypoint4) {
+        this.waypoint4 = waypoint4;
+    }
+
+    public long getWaypoint5() {
+        return waypoint5;
+    }
+
+    public void setWaypoint5(long waypoint5) {
+        this.waypoint5 = waypoint5;
     }
 }

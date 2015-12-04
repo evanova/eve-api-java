@@ -18,4 +18,8 @@ public class PlanetaryLinksResponse extends EveAPIResponse {
     public void addLink(final PlanetaryLink link) {
         this.links.add(link);
     }
+
+    public List<PlanetaryLink> getLinks() {
+        return links;
+    }
 }

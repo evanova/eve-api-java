@@ -1,7 +1,5 @@
 package com.tlabs.eve.api;
 
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,10 +20,7 @@ public class CallListResponse extends EveAPIResponse {
 
     public void addEntry(CallEntry e) {
         CallGroup g = this.callGroups.get(e.getGroupID());
-        if (null == g) {
-            //
-        }
-        else {
+        if (null != g) {
             g.addEntry(e);
         }
     }

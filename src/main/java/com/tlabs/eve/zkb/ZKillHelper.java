@@ -1,6 +1,5 @@
 package com.tlabs.eve.zkb;
 
-import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -4,8 +4,12 @@ Model objects and parsers for the [XML](http://wiki.eve-id.net/APIv2_Page_Index)
 
 This code is used in [Evanova for Android](https://market.android.com/details?id=com.tlabs.android.evanova).
 
-## Usage
-The simplest way of getting Eve data is by using the ```DefaultEveNetwork``` class.
+## Quick Start
+* Run `gradlew build install -x test`
+* Insert as a dependency: `compile 'com.tlabs.eve:eve-api:+'`
+
+##Usage
+The simplest way of getting Eve data is by using the `DefaultEveNetwork` class.
 ```
 //Have a simple HTTP/HTTPS support
 final EveNetwork eve = new DefaultEveNetwork();  

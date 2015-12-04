@@ -20,13 +20,10 @@ public class CallListParser extends EveAPIParser<CallListResponse> {
                 CallGroup g = new CallGroup();
                 digester.push(g);
             }
-            else
-                if ("calls".equalsIgnoreCase(rowsetName)) {
-                    CallEntry e = new CallEntry();
-                    digester.push(e);
-                }
-                else {
-                }
+            else if ("calls".equalsIgnoreCase(rowsetName)) {
+                CallEntry e = new CallEntry();
+                digester.push(e);
+            }
         }
 
         @Override

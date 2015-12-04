@@ -3,21 +3,47 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.EveAPI;
 
 import java.io.Serializable;
+import org.apache.commons.lang.StringUtils;
 
 public class PlanetaryPin implements Serializable {
+
+    public enum Type {
+        COMMAND,
+        EXTRACTOR,
+        LAUNCHPAD,
+        STORAGE,
+        INDUSTRY;
+
+        //TODO better
+        public static Type from(PlanetaryPin pin) {
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Command Center")) {
+                return COMMAND;
+            }
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Extractor")) {
+                return EXTRACTOR;
+            }
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Launchpad")) {
+                return LAUNCHPAD;
+            }
+            if (StringUtils.containsIgnoreCase(pin.getTypeName(), "Storage")) {
+                return STORAGE;
+            }
+            return INDUSTRY;
+        }
+    }
 
     private static final long serialVersionUID = -45893431241726263L;
 
     private long pinID;
 
     private long ownerID;
-    private String ownerName;
+    private String ownerName = "";
 
     private long planetID;
-    private String planetName;
+    private String planetName = "";
 
     private long typeID;
-    private String typeName;
+    private String typeName = "";
 
     private long schematicID;
 
@@ -26,9 +52,14 @@ public class PlanetaryPin implements Serializable {
     private long installTime;
     private long expiryTime;
 
-    private float quantityPerCycle;
+    private long quantityPerCycle;
 
-    //private float headRadius;
+    private long contentTypeID;
+    private String contentTypeName = "";
+    private long contentQuantity;
+
+    private float latitude;
+    private float longitude;
 
     public long getPinID() {
         return pinID;
@@ -138,12 +169,51 @@ public class PlanetaryPin implements Serializable {
         this.expiryTime = EveAPI.parseDateTime(expiryTime);
     }
 
-    public float getQuantityPerCycle() {
+    public long getQuantityPerCycle() {
         return quantityPerCycle;
     }
 
-    public void setQuantityPerCycle(float quantityPerCycle) {
+    public void setQuantityPerCycle(long quantityPerCycle) {
         this.quantityPerCycle = quantityPerCycle;
     }
 
+    public long getContentTypeID() {
+        return contentTypeID;
+    }
+
+    public void setContentTypeID(long contentTypeID) {
+        this.contentTypeID = contentTypeID;
+    }
+
+    public String getContentTypeName() {
+        return contentTypeName;
+    }
+
+    public void setContentTypeName(String contentTypeName) {
+        this.contentTypeName = contentTypeName;
+    }
+
+    public long getContentQuantity() {
+        return contentQuantity;
+    }
+
+    public void setContentQuantity(long contentQuantity) {
+        this.contentQuantity = contentQuantity;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
 }
