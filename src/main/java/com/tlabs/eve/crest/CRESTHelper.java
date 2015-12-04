@@ -16,6 +16,7 @@ final class CRESTHelper {
         parserMap.put(MarketHistoryRequest.class, MarketHistoryParser.class);
         parserMap.put(SovereigntyStructuresRequest.class, SovereigntyStructuresParser.class);
         parserMap.put(SovereigntyCampaignsRequest.class, SovereigntyCampaignsParser.class);
+        parserMap.put(MarketPricesRequest.class, MarketPricesParser.class);
     }
 
     private CRESTHelper() {
