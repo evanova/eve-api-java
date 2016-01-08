@@ -33,6 +33,8 @@ public class Asset implements Serializable {
     private String inventoryFlagName;//not in XML
 
     private boolean packaged;
+    
+    private long rawQuantity;
 
     private List<Asset> items = new LinkedList<>();
 
@@ -166,5 +168,13 @@ public class Asset implements Serializable {
     public boolean isPackaged() {
         return packaged;
     }
+
+	public long getRawQuantity() {
+		return rawQuantity;
+	}
+
+	public void setRawQuantity(long rawQuantity) {
+		this.rawQuantity = rawQuantity;
+	}
 
 }

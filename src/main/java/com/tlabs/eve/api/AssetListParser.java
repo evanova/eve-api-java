@@ -20,6 +20,7 @@ public final class AssetListParser extends EveAPIParser<AssetListResponse> {
         properties.put("quantity", "quantity");
         properties.put("flag", "inventoryFlag");
         properties.put("singleton", "packaged");
+        properties.put("rawQuantity", "rawQuantity");
     }
 
     public AssetListParser() {
