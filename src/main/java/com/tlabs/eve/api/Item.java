@@ -54,6 +54,7 @@ public class Item implements Serializable {
     private String marketGroupDesciption;
 
     private final List<ItemTrait> traits = new LinkedList<>();//in YML only
+    private final List<ItemAttribute> attributes = new LinkedList<>();
     private final List<Skill> requirements = new LinkedList<>();
 
     public String getName() {
@@ -227,5 +228,18 @@ public class Item implements Serializable {
 
     public void setMarketGroupDesciption(String marketGroupDesciption) {
         this.marketGroupDesciption = marketGroupDesciption;
+    }
+
+    public void setAttributes(final List<ItemAttribute> attributes) {
+        this.attributes.clear();
+        this.attributes.addAll(attributes);
+    }
+
+    public void addAttributes(final ItemAttribute attribute) {
+        this.attributes.add(attribute);
+    }
+
+    public List<ItemAttribute> getAttributes() {
+        return attributes;
     }
 }
