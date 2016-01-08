@@ -18,7 +18,7 @@ public class ContactNotificationsParser extends EveAPIParser<ContactNotification
     @Override
     protected void onInit(Digester digester) {
         digester.addObjectCreate("eveapi/result/rowset/row", ContactNotification.class);
-        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addMessage"));
+        digester.addRule("eveapi/result/rowset/row", new SetNextRule("addNotification"));
         digester.addRule("eveapi/result/rowset/row", new SetAttributePropertyRule());
     }
 }
