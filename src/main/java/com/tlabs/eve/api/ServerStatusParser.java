@@ -17,7 +17,6 @@ public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse>
     @Override
     protected void doAfterParse(ServerStatusResponse t) {
         long now = System.currentTimeMillis();
-        now = now - TimeZone.getDefault().getOffset(now);
         t.setCachedUntil(now + 5l * 60l * 1000l);
     }
 
