@@ -12,6 +12,8 @@ public class Message implements Serializable {
 
     private static final long serialVersionUID = 4815557437352503649L;
 
+    private long messageID;
+
     private long senderID = -1;
     private String senderName = "";
 
@@ -23,6 +25,14 @@ public class Message implements Serializable {
 
     protected Message() {
 
+    }
+
+    public final long getMessageID() {
+        return messageID;
+    }
+
+    public final void setMessageID(long messageID) {
+        this.messageID = messageID;
     }
 
     public final String getTitle() {
@@ -75,5 +85,13 @@ public class Message implements Serializable {
 
     public final void setSentDate(String d) {
         sentDate = EveAPI.parseDateTime(d);
+    }
+
+    public boolean getRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
     }
 }

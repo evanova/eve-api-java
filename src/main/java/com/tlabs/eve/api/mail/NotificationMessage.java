@@ -12,17 +12,16 @@ public class NotificationMessage extends Message {
 
     private static final long serialVersionUID = 2130540734211587597L;
 
-    private long notificationID = -1;
     private int typeID = -1;
 
     private final Map<String, String> bodyAttributes = new HashMap<>();
 
     public final long getNotificationID() {
-        return notificationID;
+        return getMessageID();
     }
 
     public final void setNotificationID(long notificationID) {
-        this.notificationID = notificationID;
+       super.setMessageID(notificationID);
     }
 
     public final int getTypeID() {
