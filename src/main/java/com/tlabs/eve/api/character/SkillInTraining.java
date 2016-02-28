@@ -1,23 +1,22 @@
 package com.tlabs.eve.api.character;
 
 
-
-import com.tlabs.eve.api.EveAPI;
-import com.tlabs.eve.api.Skill;
-
 import java.io.Serializable;
 import java.util.Map;
+import com.tlabs.eve.api.EveAPI;
+import com.tlabs.eve.api.Skill;
 
 public class SkillInTraining extends Skill implements Serializable {
 
     private static final long serialVersionUID = 1194595186724600630L;
 
-    public enum Type {
-        REQUIRED, QUEUE, PLAN, COMPLETED
-    }
+    public static final int TYPE_REQUIRED = 0;
+    public static final int TYPE_QUEUE = 1;
+    public static final int TYPE_PLAN = 2;
+    public static final int TYPE_COMPLETED = 3;
 
     //NOT in XML but much too convenient for clients to pass up
-    private Type trainingType = Type.QUEUE;
+    private int trainingType = TYPE_QUEUE;
 
     private long trainingEndTime;
     private long trainingStartTime;
@@ -92,11 +91,11 @@ public class SkillInTraining extends Skill implements Serializable {
         this.trainingLevel = trainingLevel;
     }
 
-    public final Type getType() {
+    public int getTrainingType() {
         return trainingType;
     }
 
-    public final void setType(Type trainingType) {
+    public void setTrainingType(int trainingType) {
         this.trainingType = trainingType;
     }
 

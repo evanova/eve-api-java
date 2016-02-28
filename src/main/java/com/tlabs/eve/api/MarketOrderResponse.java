@@ -1,8 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MarketOrderResponse extends EveAPIResponse {
@@ -14,8 +13,8 @@ public class MarketOrderResponse extends EveAPIResponse {
 
     public MarketOrderResponse() {
         super();
-        this.buyOrders = new LinkedList<>();
-        this.sellOrders = new LinkedList<>();
+        this.buyOrders = new ArrayList<>();
+        this.sellOrders = new ArrayList<>();
     }
 
     public List<MarketOrder> getBuyOrders() {

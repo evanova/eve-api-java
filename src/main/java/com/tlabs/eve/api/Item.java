@@ -1,9 +1,8 @@
 package com.tlabs.eve.api;
 
 
-
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Item implements Serializable {
@@ -53,9 +52,9 @@ public class Item implements Serializable {
     private String marketGroupName;
     private String marketGroupDesciption;
 
-    private final List<ItemTrait> traits = new LinkedList<>();//in YML only
-    private final List<ItemAttribute> attributes = new LinkedList<>();
-    private final List<Skill> requirements = new LinkedList<>();
+    private final List<ItemTrait> traits = new ArrayList<>();//in YML only
+    private final List<ItemAttribute> attributes = new ArrayList<>();
+    private final List<Skill> requirements = new ArrayList<>();
 
     public String getName() {
         return itemName;

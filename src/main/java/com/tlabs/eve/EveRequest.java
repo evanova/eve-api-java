@@ -114,7 +114,7 @@ public abstract class EveRequest<T extends EveResponse> {
     protected static long[] filter(Long[] ids) {
         List<Long> l = new ArrayList<>(ids.length);
         for (Long id : ids) {
-            if (!l.contains(id)) {
+            if ((id > 0) && !l.contains(id)) {
                 l.add(id);
             }
         }

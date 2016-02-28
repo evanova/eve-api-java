@@ -1,8 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StandingsResponse extends EveAPIResponse {
@@ -15,9 +14,9 @@ public class StandingsResponse extends EveAPIResponse {
 
     public StandingsResponse() {
         super();
-        this.corporationStandings = new LinkedList<>();
-        this.agentStandings = new LinkedList<>();
-        this.factionStandings = new LinkedList<>();
+        this.corporationStandings = new ArrayList<>();
+        this.agentStandings = new ArrayList<>();
+        this.factionStandings = new ArrayList<>();
     }
 
     public final List<Standing> getCorporationStandings() {

@@ -1,9 +1,8 @@
 package com.tlabs.eve.api.character;
 
-import com.tlabs.eve.api.EveAPIResponse;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import com.tlabs.eve.api.EveAPIResponse;
 
 public class PlanetaryRoutesResponse extends EveAPIResponse {
 
@@ -12,7 +11,7 @@ public class PlanetaryRoutesResponse extends EveAPIResponse {
     private final List<PlanetaryRoute> routes;
 
     public PlanetaryRoutesResponse() {
-        this.routes = new LinkedList<>();
+        this.routes = new ArrayList<>();
     }
 
     public List<PlanetaryRoute> getRoutes() {

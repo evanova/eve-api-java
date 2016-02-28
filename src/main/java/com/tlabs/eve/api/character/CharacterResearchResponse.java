@@ -1,11 +1,9 @@
 package com.tlabs.eve.api.character;
 
 
-
-import com.tlabs.eve.api.EveAPIResponse;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import com.tlabs.eve.api.EveAPIResponse;
 
 public class CharacterResearchResponse extends EveAPIResponse {
 
@@ -15,7 +13,7 @@ public class CharacterResearchResponse extends EveAPIResponse {
 
     public CharacterResearchResponse() {
         super();
-        this.jobs = new LinkedList<>();
+        this.jobs = new ArrayList<>();
     }
 
     public List<ResearchJob> getJobs() {

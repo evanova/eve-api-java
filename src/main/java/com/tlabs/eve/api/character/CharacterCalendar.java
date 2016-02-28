@@ -1,11 +1,10 @@
 package com.tlabs.eve.api.character;
 
-import com.tlabs.eve.api.EveAPI;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.LinkedList;
 import java.util.List;
+import com.tlabs.eve.api.EveAPI;
 
 public class CharacterCalendar implements Serializable {
     private static final long serialVersionUID = -1558742167364668064L;
@@ -72,7 +71,7 @@ public class CharacterCalendar implements Serializable {
         private boolean important = false;
         private String response;
 
-        private List<Attendee> attendees = new LinkedList<>();
+        private List<Attendee> attendees = new ArrayList<>();
 
         public long getEventID() {
             return eventID;
@@ -216,7 +215,7 @@ public class CharacterCalendar implements Serializable {
         }
     }
 
-    private final List<CharacterCalendar.Entry> entries = new LinkedList<>();
+    private final List<CharacterCalendar.Entry> entries = new ArrayList<>();
 
     public List<CharacterCalendar.Entry> getEntries() {
         return this.entries;

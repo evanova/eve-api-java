@@ -4,7 +4,7 @@ import com.tlabs.eve.EveRequest;
 
 import org.apache.commons.lang.StringUtils;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class DotlanJumpsRequest extends EveRequest<DotlanRouteResponse> {
@@ -26,7 +26,7 @@ public final class DotlanJumpsRequest extends EveRequest<DotlanRouteResponse> {
         private Builder(final String from, final String to) {
             this.from = from;
             this.to = to;
-            this.avoidSystems = new LinkedList<>();
+            this.avoidSystems = new ArrayList<>();
 
             this.jumpDriveCalibration = 4;
             this.jumpFreighter = 4;

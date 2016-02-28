@@ -1,9 +1,8 @@
 package com.tlabs.eve.api.character;
 
-import com.tlabs.eve.api.EveAPIResponse;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import com.tlabs.eve.api.EveAPIResponse;
 
 public class PlanetaryPinsResponse extends EveAPIResponse {
 
@@ -12,7 +11,7 @@ public class PlanetaryPinsResponse extends EveAPIResponse {
     private final List<PlanetaryPin> pins;
 
     public PlanetaryPinsResponse() {
-        this.pins = new LinkedList<>();
+        this.pins = new ArrayList<>();
     }
 
     public List<PlanetaryPin> getPins() {

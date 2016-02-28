@@ -3,7 +3,7 @@ package com.tlabs.eve.central;
 
 
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +44,7 @@ public class EveCentralStatsResponse extends EveCentralResponse {
     private static void add(Map<Long, List<EveCentralPrice>> prices, EveCentralPrice p) {
         List<EveCentralPrice> l = prices.get(p.getID());
         if (null == l) {
-            l = new LinkedList<>();
+            l = new ArrayList<>();
             prices.put(p.getID(), l);
         }
         l.add(p);

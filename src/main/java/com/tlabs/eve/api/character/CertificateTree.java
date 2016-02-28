@@ -3,11 +3,10 @@ package com.tlabs.eve.api.character;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ public class CertificateTree implements Serializable {
 
     public CertificateTree() {
         this.certificates = new HashMap<>();
-        this.groups = new LinkedList<>();
+        this.groups = new ArrayList<>();
     }
 
     public final void add(final Certificate c) {

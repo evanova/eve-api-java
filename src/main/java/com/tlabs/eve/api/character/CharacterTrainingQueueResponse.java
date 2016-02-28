@@ -1,11 +1,9 @@
 package com.tlabs.eve.api.character;
 
 
-
-import com.tlabs.eve.api.EveAPIResponse;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import com.tlabs.eve.api.EveAPIResponse;
 
 public class CharacterTrainingQueueResponse extends EveAPIResponse {
 
@@ -15,7 +13,7 @@ public class CharacterTrainingQueueResponse extends EveAPIResponse {
 
     public CharacterTrainingQueueResponse() {
         super();
-        this.trainingQueue = new LinkedList<>();
+        this.trainingQueue = new ArrayList<>();
     }
 
     public void addTraining(SkillInTraining training) {

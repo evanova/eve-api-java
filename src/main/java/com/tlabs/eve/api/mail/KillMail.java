@@ -3,7 +3,7 @@ package com.tlabs.eve.api.mail;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.tlabs.eve.parser.DateDeserializer;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KillMail {
@@ -21,9 +21,9 @@ public class KillMail {
 
     private KillMailVictim victim;
 
-    private List<KillMailAttacker> attackers = new LinkedList<>();
+    private List<KillMailAttacker> attackers = new ArrayList<>();
 
-    private List<KillMailItem> items = new LinkedList<>();
+    private List<KillMailItem> items = new ArrayList<>();
 
     public final boolean getFinalBlow(final long attackerId) {
         for (KillMailAttacker a : this.attackers) {

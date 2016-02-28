@@ -7,9 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(Parameterized.class)
@@ -17,7 +16,7 @@ public class CharacterTest extends EveTest {
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> parameters() {
-        final List<Class<? extends CharacterRequest>> parameters = new LinkedList<>();
+        final List<Class<? extends CharacterRequest>> parameters = new ArrayList<>();
         /*parameters.add(CharacterAccountBalanceRequest.class);
         parameters.add(CharacterAssetsRequest.class);
         parameters.add(CharacterBookmarksRequest.class);

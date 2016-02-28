@@ -2,7 +2,7 @@ package com.tlabs.eve.api.mail;
 
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contact implements Serializable {
@@ -18,7 +18,7 @@ public class Contact implements Serializable {
 
         private String name;
 
-        private final List<Contact> contacts = new LinkedList<>();
+        private final List<Contact> contacts = new ArrayList<>();
 
         public String getName() {
             return name;

@@ -1,12 +1,10 @@
 package com.tlabs.eve.api;
 
 
-
-import com.tlabs.eve.api.character.CharacterSheet;
-
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import com.tlabs.eve.api.character.CharacterSheet;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfo implements Serializable {
@@ -28,7 +26,7 @@ public class AccessInfo implements Serializable {
 
     private String name;//Not in XML
 
-    private List<CharacterSheet> characters = new LinkedList<>();
+    private List<CharacterSheet> characters = new ArrayList<>();
 
     public AccessInfo() {
         super();

@@ -1,6 +1,6 @@
 package com.tlabs.eve.api.character;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatChannel {
@@ -50,7 +50,7 @@ public class ChatChannel {
     private boolean hasPassword;
     private String motd;
 
-    private List<Accessor> accessors = new LinkedList<>();
+    private List<Accessor> accessors = new ArrayList<>();
 
     public long getChannelID() {
         return channelID;

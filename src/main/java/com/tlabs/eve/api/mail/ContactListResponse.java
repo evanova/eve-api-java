@@ -4,14 +4,14 @@ package com.tlabs.eve.api.mail;
 import com.tlabs.eve.api.mail.Contact.Group;
 import com.tlabs.eve.api.EveAPIResponse;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class ContactListResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = 1803692879940276962L;
 
-    private final List<Group> contactGroups = new LinkedList<>();
+    private final List<Group> contactGroups = new ArrayList<>();
 
     public final List<Group> getContactGroups() {
         return this.contactGroups;

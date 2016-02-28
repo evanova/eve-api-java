@@ -1,8 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountBalanceResponse extends EveAPIResponse {
@@ -12,7 +11,7 @@ public class AccountBalanceResponse extends EveAPIResponse {
     private List<AccountBalance> accountBalance;
 
     public AccountBalanceResponse() {
-        accountBalance = new LinkedList<>();
+        accountBalance = new ArrayList<>();
     }
 
     public List<AccountBalance> getAccountBalance() {

@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,16 +75,16 @@ public class KillLogParser extends EveAPIParser<KillLogResponse> {
 
             final String rowName = attributes.getValue("name");
             if ("items".equals(rowName)) {
-                this.items = new LinkedList<>();
+                this.items = new ArrayList<>();
                 getDigester().push(this.items);
             }
             else
                 if ("attackers".equals(rowName)) {
-                    this.attackers = new LinkedList<>();
+                    this.attackers = new ArrayList<>();
                     getDigester().push(this.attackers);
                 }
                 else {
-                    getDigester().push(new LinkedList<>());
+                    getDigester().push(new ArrayList<>());
                 }
         }
 

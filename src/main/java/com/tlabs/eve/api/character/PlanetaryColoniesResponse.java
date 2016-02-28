@@ -1,9 +1,8 @@
 package com.tlabs.eve.api.character;
 
-import com.tlabs.eve.api.EveAPIResponse;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import com.tlabs.eve.api.EveAPIResponse;
 
 public class PlanetaryColoniesResponse extends EveAPIResponse {
 
@@ -12,7 +11,7 @@ public class PlanetaryColoniesResponse extends EveAPIResponse {
     private final List<PlanetaryColony> colonies;
 
     public PlanetaryColoniesResponse() {
-        this.colonies = new LinkedList<>();
+        this.colonies = new ArrayList<>();
     }
 
     public List<PlanetaryColony> getColonies() {

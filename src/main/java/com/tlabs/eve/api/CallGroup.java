@@ -1,9 +1,8 @@
 package com.tlabs.eve.api;
 
 
-
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CallGroup implements Serializable {
@@ -14,7 +13,7 @@ public class CallGroup implements Serializable {
     private String name;
     private String description;
 
-    private List<CallEntry> entries = new LinkedList<>();
+    private List<CallEntry> entries = new ArrayList<>();
 
     public final int getGroupID() {
         return groupID;

@@ -1,6 +1,6 @@
 package com.tlabs.eve.crest;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class MarketPricesResponse extends CRESTResponse {
 	private static final long serialVersionUID = -8712542790502978719L;
 
-	private List<MarketPrice> marketPrices = new LinkedList<>();
+	private List<MarketPrice> marketPrices = new ArrayList<>();
 	
 	@JsonProperty("items")
 	public void setMarketPrices ( List<MarketPrice> marketPrices ) {

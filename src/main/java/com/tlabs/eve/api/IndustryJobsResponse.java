@@ -1,8 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IndustryJobsResponse extends EveAPIResponse {
@@ -13,7 +12,7 @@ public class IndustryJobsResponse extends EveAPIResponse {
 
     public IndustryJobsResponse() {
         super();
-        this.jobs = new LinkedList<>();
+        this.jobs = new ArrayList<>();
     }
 
     public List<IndustryJob> getJobs() {

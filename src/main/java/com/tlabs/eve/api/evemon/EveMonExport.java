@@ -1,12 +1,11 @@
 package com.tlabs.eve.api.evemon;
 
-import com.tlabs.eve.api.character.SkillInTraining;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.List;
+import com.tlabs.eve.api.character.SkillInTraining;
 
 public final class EveMonExport {
     private static final String ENTRY = "\n\t<entry skillID=\"%d\" skill=\"%s\" level=\"%d\" priority=\"%d\" type=\"%s\"/>";
@@ -23,11 +22,11 @@ public final class EveMonExport {
         int priority = 0;
         for (SkillInTraining t : queue) {
             String type = null;
-            switch (t.getType()) {
-            case COMPLETED:
-            case QUEUE:
+            switch (t.getTrainingType()) {
+            case SkillInTraining.TYPE_COMPLETED:
+            case SkillInTraining.TYPE_QUEUE:
                 break;
-            case PLAN:
+            case SkillInTraining.TYPE_PLAN:
                 type = "Planned";
                 break;
             }//switch

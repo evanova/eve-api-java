@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(Parameterized.class)
@@ -46,7 +46,7 @@ public class ModelObjectTest {
     };
 
     private static Collection<PojoClass> pojoClasses() {
-        final List<PojoClass> pojoClasses = new LinkedList<>();
+        final List<PojoClass> pojoClasses = new ArrayList<>();
 
         pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve", filter));
 
@@ -57,7 +57,7 @@ public class ModelObjectTest {
 
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> parameters() {
-        final List<Object[]> parameters = new LinkedList<>();
+        final List<Object[]> parameters = new ArrayList<>();
         for (PojoClass c: pojoClasses()) {
             parameters.add(new Object[]{c.getName(), c});
         }

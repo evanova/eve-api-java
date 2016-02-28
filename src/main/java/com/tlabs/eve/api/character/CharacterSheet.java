@@ -7,9 +7,8 @@ import com.tlabs.eve.api.corporation.CorporationRole;
 import com.tlabs.eve.api.corporation.CorporationTitle;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -155,13 +154,13 @@ public final class CharacterSheet implements Serializable {
 
     public CharacterSheet() {
         super();
-        this.skills = new LinkedList<>();
+        this.skills = new ArrayList<>();
         this.skillsMap = new HashMap<>();
-        this.corporationRoles = new LinkedList<>();
-        this.corporationTitles = new LinkedList<>();
-        this.certificates = new LinkedList<>();
-        this.jumpClones = new LinkedList<>();
-        this.implants = new LinkedList<>();
+        this.corporationRoles = new ArrayList<>();
+        this.corporationTitles = new ArrayList<>();
+        this.certificates = new ArrayList<>();
+        this.jumpClones = new ArrayList<>();
+        this.implants = new ArrayList<>();
     }
 
     public long getSkillPoints() {

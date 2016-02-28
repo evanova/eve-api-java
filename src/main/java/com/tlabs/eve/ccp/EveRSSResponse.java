@@ -4,12 +4,12 @@ package com.tlabs.eve.ccp;
 
 import com.tlabs.eve.EveResponse;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class EveRSSResponse extends EveResponse {
 
-    private List<EveRSSEntry> rssEntries = new LinkedList<>();
+    private List<EveRSSEntry> rssEntries = new ArrayList<>();
     private String title;
     private String link;
 

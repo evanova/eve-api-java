@@ -2,13 +2,13 @@ package com.tlabs.eve.central;
 
 
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EveCentralQuickLookResponse extends EveCentralResponse {
 
-    private final List<EveCentralOrder> buyOrders = new LinkedList<>();
-    private final List<EveCentralOrder> sellOrders = new LinkedList<>();
+    private final List<EveCentralOrder> buyOrders = new ArrayList<>();
+    private final List<EveCentralOrder> sellOrders = new ArrayList<>();
 
     private long typeID;
     private String typeName;

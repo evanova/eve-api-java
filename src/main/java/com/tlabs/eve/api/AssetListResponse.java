@@ -1,8 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AssetListResponse extends EveAPIResponse {
@@ -12,7 +11,7 @@ public class AssetListResponse extends EveAPIResponse {
     private List<Asset> assets;
 
     public AssetListResponse() {
-        this.assets = new LinkedList<>();
+        this.assets = new ArrayList<>();
     }
 
     public void addAsset(Asset item) {

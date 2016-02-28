@@ -6,8 +6,6 @@ import com.tlabs.eve.parser.SetElementPropertyRule;
 
 import org.apache.commons.digester.Digester;
 
-import java.util.TimeZone;
-
 public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse> {
 
     public ServerStatusParser() {

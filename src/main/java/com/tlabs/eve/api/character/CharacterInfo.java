@@ -1,7 +1,7 @@
 package com.tlabs.eve.api.character;
 
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterInfo {
@@ -62,7 +62,7 @@ public class CharacterInfo {
     private String alliance;
     private long allianceDate;
 
-    private List<History> history = new LinkedList<>();
+    private List<History> history = new ArrayList<>();
 
     public CharacterInfo() {
         super();

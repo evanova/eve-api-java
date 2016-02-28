@@ -1,6 +1,8 @@
 package com.tlabs.eve;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public abstract class EveResponse implements Serializable {
 
@@ -12,10 +14,10 @@ public abstract class EveResponse implements Serializable {
     private long dateTime;
 
     private boolean cached = false;
-
     private long cachedUntil;
 
     private byte[] content = null;
+    private String contentHash = null;
 
     public EveResponse() {
         super();
@@ -58,6 +60,18 @@ public abstract class EveResponse implements Serializable {
 
     public final void setContent(byte[] content) {
         this.content = content;
+        try {
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(content);
+            this.contentHash = new String(digest.digest());
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getContentHash() {
+        return contentHash;
     }
 
     public String getErrorMessage() {

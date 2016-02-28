@@ -1,7 +1,15 @@
 package com.tlabs.eve.api.character;
 
 
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.digester.Digester;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.Attributes;
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.api.character.CharacterSheet.Implant;
 import com.tlabs.eve.api.character.CharacterSheet.JumpClone;
@@ -10,17 +18,6 @@ import com.tlabs.eve.api.corporation.CorporationTitle;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
-
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xml.sax.Attributes;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 public final class CharacterSheetParser extends EveAPIParser<CharacterSheetResponse> {
     private static final Logger LOG = LoggerFactory.getLogger(CharacterSheetParser.class);
@@ -32,7 +29,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         public RowSet() {
             super();
-            this.rows = new LinkedList<>();
+            this.rows = new ArrayList<>();
         }
 
         public void addRow(Attributes attributes) {

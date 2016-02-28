@@ -1,10 +1,9 @@
 package com.tlabs.eve.api.evemon;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.tlabs.eve.EveResponse;
 import com.tlabs.eve.api.AccessInfo;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class EveMonSettingsResponse extends EveResponse {
 
@@ -14,7 +13,7 @@ public class EveMonSettingsResponse extends EveResponse {
 
     public EveMonSettingsResponse() {
         super();
-        this.accessInfo = new LinkedList<>();
+        this.accessInfo = new ArrayList<>();
     }
 
     public final List<AccessInfo> getApiKeys() {

@@ -1,12 +1,10 @@
 package com.tlabs.eve.api;
 
 
-
-import org.apache.commons.lang.StringUtils;
-
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 
 
 public class Asset implements Serializable {
@@ -36,7 +34,7 @@ public class Asset implements Serializable {
     
     private long rawQuantity;
 
-    private List<Asset> items = new LinkedList<>();
+    private List<Asset> items = new ArrayList<>();
 
     public void setLocationID(long locationID) {
         this.locationID = locationID;

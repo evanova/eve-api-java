@@ -1,9 +1,8 @@
 package com.tlabs.eve.api;
 
 
-
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SkillTree implements Serializable {
@@ -14,7 +13,7 @@ public class SkillTree implements Serializable {
 
         private static final long serialVersionUID = -372508696105801667L;
 
-        private List<Skill> skills = new LinkedList<>();
+        private List<Skill> skills = new ArrayList<>();
 
         private String groupName;
         private long groupID;
@@ -46,7 +45,7 @@ public class SkillTree implements Serializable {
         }
     }
 
-    private List<SkillGroup> groups = new LinkedList<>();
+    private List<SkillGroup> groups = new ArrayList<>();
 
     public void addGroup(SkillGroup skillGroup) {
         this.groups.add(skillGroup);
