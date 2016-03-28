@@ -46,7 +46,8 @@ public class EveResource extends ExternalResource {
         public static Configuration from(final String json) {
             final InputStream in = Configuration.class.getResourceAsStream(json);
             if (null == in) {
-                throw new IllegalArgumentException(json + " not found");
+               // throw new IllegalArgumentException(json + " not found");
+                return null;
             }
             try {
                 return mapper.readValue(in, Configuration.class);

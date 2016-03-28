@@ -17,7 +17,6 @@ public final class EveRSSResponse extends EveResponse {
 
     public EveRSSResponse() {
         super();
-        //setCachedUntil(System.currentTimeMillis() + (3600l * 1000l));
     }
 
     public final List<EveRSSEntry> getEntries() {
@@ -25,7 +24,10 @@ public final class EveRSSResponse extends EveResponse {
     }
 
     public final void addEntry(final EveRSSEntry entry) {
-        this.rssEntries.add(entry);
+        //limit it
+        if (this.rssEntries.size() < 50) {
+            this.rssEntries.add(entry);
+        }
     }
 
     public long getDateUpdated() {

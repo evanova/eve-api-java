@@ -7,11 +7,9 @@ import com.tlabs.eve.EveRequest;
 import java.util.Locale;
 
 public class EveRSSRequest extends EveRequest<EveRSSResponse> {
-    protected EveRSSRequest(final String page, final Locale locale) {
-        super(EveRSSResponse.class, "/" + locale.getLanguage() + "-" + locale.getCountry() + page);
+    //https://forums.eveonline.com/default.aspx?g=rsstopic&pg=Topics&f=247
+    public EveRSSRequest() {
+        super(EveRSSResponse.class, "/default.aspx?g=rsstopic&pg=Topics&f=247");
     }
 
-    protected EveRSSRequest(final String page) {
-        super(EveRSSResponse.class, "/en-US" + page);
-    }
 }

@@ -10,10 +10,8 @@ public class SkillInTraining extends Skill implements Serializable {
 
     private static final long serialVersionUID = 1194595186724600630L;
 
-    public static final int TYPE_REQUIRED = 0;
     public static final int TYPE_QUEUE = 1;
     public static final int TYPE_PLAN = 2;
-    public static final int TYPE_COMPLETED = 3;
 
     //NOT in XML but much too convenient for clients to pass up
     private int trainingType = TYPE_QUEUE;
@@ -28,6 +26,15 @@ public class SkillInTraining extends Skill implements Serializable {
 
     public SkillInTraining() {
         super();
+    }
+
+    public SkillInTraining(final SkillInTraining t) {
+        this(t, t.trainingLevel);
+        this.trainingType = t.trainingType;
+        this.trainingStartTime = t.trainingStartTime;
+        this.trainingEndTime = t.trainingEndTime;
+        this.startSkillPoints = t.startSkillPoints;
+        this.endSkillPoints = t.endSkillPoints;
     }
 
     public SkillInTraining(final Skill s, final int level) {
@@ -57,14 +64,6 @@ public class SkillInTraining extends Skill implements Serializable {
 
     public void setStartTime(long trainingStartTime) {
         this.trainingStartTime = trainingStartTime;
-    }
-
-    public final long getDuration() {
-        final long now = System.currentTimeMillis();
-        if (this.trainingStartTime < now) {
-            return Math.max(0, this.trainingEndTime - now);
-        }
-        return this.trainingEndTime - this.trainingStartTime;
     }
 
     public long getStartSkillPoints() {
@@ -107,7 +106,7 @@ public class SkillInTraining extends Skill implements Serializable {
         final Map<Long, Integer> req = this.getRequiredSkills();
         for (long id : req.keySet()) {
             if (id == t.getSkillID()) {
-                if (req.get(id) >= t.getSkillLevel()) {
+                if (req.get(id) >= t.getRank()) {
                     return true;
                 }
             }

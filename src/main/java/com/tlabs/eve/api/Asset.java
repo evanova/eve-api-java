@@ -19,8 +19,6 @@ public class Asset implements Serializable {
 
     private long assetID;
 
-    private long parentID; //Not in XML
-
     private long locationID;
 
     private String locationName;//Not in XML
@@ -129,14 +127,6 @@ public class Asset implements Serializable {
 
     public void setAssetID(long assetID) {
         this.assetID = assetID;
-    }
-
-    public long getParentID() {
-        return parentID;
-    }
-
-    public void setParentID(long parentID) {
-        this.parentID = parentID;
     }
 
     public long getLocationID() {

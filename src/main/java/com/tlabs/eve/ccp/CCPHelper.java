@@ -1,12 +1,11 @@
 package com.tlabs.eve.ccp;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveRequest;
 import com.tlabs.eve.EveResponse;
-
-import java.util.HashMap;
-import java.util.Map;
 
 final class CCPHelper {
 
@@ -28,9 +27,7 @@ final class CCPHelper {
 
     static {
         parserMap = new HashMap<>();
-        parserMap.put(EveNewsRequest.class, EveRSSParser.class);
-        parserMap.put(GameNewsRequest.class, EveRSSParser.class);
-        parserMap.put(PressNewsRequest.class, EveRSSParser.class);
+        parserMap.put(EveRSSRequest.class, EveRSSParser.class);
         parserMap.put(CorporationLogoRequest.class, LogoParser.class);
         parserMap.put(PortraitRequest.class, PortraitParser.class);
     }

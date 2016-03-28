@@ -15,7 +15,7 @@ public class DefaultEveNetwork extends AbstractEveNetwork {
             return "https://image.eveonline.com";
         }
         if (request instanceof EveRSSRequest) {
-            return "http://newsfeed.eveonline.com";
+            return "https://forums.eveonline.com";
         }
         if (request instanceof EveCentralRequest) {
             return "http://api.eve-central.com";

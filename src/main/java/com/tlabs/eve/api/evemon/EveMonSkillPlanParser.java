@@ -1,15 +1,13 @@
 package com.tlabs.eve.api.evemon;
 
 
-
+import org.apache.commons.digester.Digester;
+import org.xml.sax.Attributes;
 import com.tlabs.eve.api.character.CharacterTrainingQueueResponse;
 import com.tlabs.eve.api.character.SkillInTraining;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetNextRule;
-
-import org.apache.commons.digester.Digester;
-import org.xml.sax.Attributes;
 
 public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrainingQueueResponse> {
 
@@ -20,13 +18,8 @@ public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrai
             t.setSkillID(Long.parseLong(attributes.getValue("skillID")));
             t.setSkillLevel(Integer.parseInt(attributes.getValue("level")));
             t.setSkillName(attributes.getValue("skill"));
-            String type = attributes.getValue("type");
-            if ("prerequisite".equalsIgnoreCase(type)) {
-                t.setTrainingType(SkillInTraining.TYPE_REQUIRED);
-            }
-            else {
-                t.setTrainingType(SkillInTraining.TYPE_PLAN);
-            }
+            //String type = attributes.getValue("type");
+            t.setTrainingType(SkillInTraining.TYPE_PLAN);
         }
     }
 

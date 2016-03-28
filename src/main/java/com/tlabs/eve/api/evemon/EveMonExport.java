@@ -23,7 +23,6 @@ public final class EveMonExport {
         for (SkillInTraining t : queue) {
             String type = null;
             switch (t.getTrainingType()) {
-            case SkillInTraining.TYPE_COMPLETED:
             case SkillInTraining.TYPE_QUEUE:
                 break;
             case SkillInTraining.TYPE_PLAN:

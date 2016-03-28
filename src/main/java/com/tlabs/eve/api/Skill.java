@@ -128,6 +128,22 @@ public class Skill implements Serializable {
         return this.requiredSkills;
     }
 
+    public final boolean requires(final Skill t) {
+        if (t.getSkillID() == this.getSkillID()) {
+            return this.getRank() > t.getRank();
+        }
+
+        final Map<Long, Integer> req = this.getRequiredSkills();
+        for (long id : req.keySet()) {
+            if (id == t.getSkillID()) {
+                if (req.get(id) >= t.getRank()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public String toString() {
         return "Skill [id=" + this.getSkillID() + "; name=" + this.getSkillName() + "; groupID=" + this.groupID + "; rank=" + this.getRank() + "]";
     }
