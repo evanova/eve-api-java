@@ -6,8 +6,8 @@ import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 
 public class NotificationTextParser extends EveAPIParser<NotificationTextResponse> {
 
@@ -24,7 +24,7 @@ public class NotificationTextParser extends EveAPIParser<NotificationTextRespons
             @Override
             public void doBody(String name, String text) {
                 super.doBody(name, text);
-                NotificationMessage m = (NotificationMessage) digester.peek();
+                NotificationMessage m = getDigester().peek();
                 m.setBody(StringUtils.isBlank(text) ? "" : text);
             }
         });

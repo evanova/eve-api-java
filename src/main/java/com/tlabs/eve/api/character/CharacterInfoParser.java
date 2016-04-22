@@ -2,12 +2,11 @@ package com.tlabs.eve.api.character;
 
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
-
-import org.apache.commons.digester.Digester;
 
 public final class CharacterInfoParser extends EveAPIParser<CharacterInfoResponse> {
 

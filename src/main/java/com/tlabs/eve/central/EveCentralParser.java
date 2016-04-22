@@ -4,8 +4,8 @@ package com.tlabs.eve.central;
 
 import com.tlabs.eve.parser.AbstractXMLParser;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.digester.Rule;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.digester3.Rule;
 import org.xml.sax.Attributes;
 
 public abstract class EveCentralParser<T extends EveCentralResponse> extends AbstractXMLParser<T> {
@@ -14,7 +14,7 @@ public abstract class EveCentralParser<T extends EveCentralResponse> extends Abs
         @Override
         public void begin(String namespace, String name, Attributes attributes) throws Exception {
             long now = System.currentTimeMillis();
-            T t = (T) getDigester().peek();
+            T t = getDigester().peek();
             t.setDateTime(now);
             t.setCachedUntil(now + 60l * 60l * 1000l);
         }

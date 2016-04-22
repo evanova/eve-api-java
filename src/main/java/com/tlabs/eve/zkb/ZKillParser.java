@@ -27,10 +27,10 @@ public class ZKillParser<T extends ZKillResponse> implements EveParser<T> {
     @Override
     public T parse(InputStream in) throws IOException {
         try {
-            final StringBuilder b = new StringBuilder();
-            b.append("{\"kills\":");
-            b.append(IOUtils.toString(in));
-            b.append("}");
+            final StringBuilder b = new StringBuilder()
+            .append("{\"kills\":")
+            .append(IOUtils.toString(in))
+            .append("}");
 
             return mapper.readValue(b.toString(), this.responseClass);
         }

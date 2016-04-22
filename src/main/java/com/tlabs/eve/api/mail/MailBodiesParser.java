@@ -6,8 +6,9 @@ import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 
 public class MailBodiesParser extends EveAPIParser<MailBodiesResponse> {
 
@@ -24,7 +25,7 @@ public class MailBodiesParser extends EveAPIParser<MailBodiesResponse> {
             @Override
             public void doBody(String name, String text) {
                 super.doBody(name, text);
-                MailMessage m = (MailMessage) digester.peek();
+                MailMessage m = getDigester().peek();
                 m.setBody(clean(text));
             }
         });

@@ -2,9 +2,9 @@ package com.tlabs.eve.api;
 
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 
-import org.apache.commons.digester.Digester;
 
 public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse> {
 

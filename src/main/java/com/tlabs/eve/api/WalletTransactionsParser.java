@@ -5,10 +5,9 @@ package com.tlabs.eve.api;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.digester3.Digester;
 
 public final class WalletTransactionsParser extends EveAPIParser<WalletTransactionsResponse> {
 

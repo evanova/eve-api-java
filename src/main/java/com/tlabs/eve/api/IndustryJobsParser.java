@@ -2,10 +2,10 @@ package com.tlabs.eve.api;
 
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
 
 public class IndustryJobsParser extends EveAPIParser<IndustryJobsResponse> {
 

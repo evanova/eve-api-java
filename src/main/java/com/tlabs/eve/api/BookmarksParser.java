@@ -1,9 +1,8 @@
 package com.tlabs.eve.api;
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
-
-import org.apache.commons.digester.Digester;
 
 //https://developers.eveonline.com/blog/article/adding-bookmarks-to-the-api
 public class BookmarksParser extends EveAPIParser<BookmarksResponse> {

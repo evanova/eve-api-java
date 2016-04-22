@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -94,9 +95,9 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         @Override
         public void doEnd(String name) {
-            final RowSet rs = (RowSet) getDigester().pop();
+            final RowSet rs = getDigester().pop();
             final String rowName = rs.getRowName().trim();
-            CharacterSheet character = (CharacterSheet) getDigester().peek();
+            CharacterSheet character = getDigester().peek();
 
             if ("skills".equalsIgnoreCase(rowName)) {
                 addSkills(character, rs.getRows());
@@ -236,7 +237,7 @@ public final class CharacterSheetParser extends EveAPIParser<CharacterSheetRespo
 
         @Override
         public void doBegin(String name, Attributes attributes) {
-            RowSet rs = (RowSet) getDigester().peek();
+            RowSet rs = getDigester().peek();
             rs.addRow(attributes);
         }
     }

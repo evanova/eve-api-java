@@ -7,7 +7,8 @@ import com.tlabs.eve.api.mail.Contact.Group;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 
-import org.apache.commons.digester.Digester;
+
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 public class ContactListParser extends EveAPIParser<ContactListResponse> {
@@ -24,8 +25,8 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
         @Override
         public void doEnd(String name) {
             if (getDigester().peek() instanceof Contact) {
-                final Contact contact = (Contact) getDigester().pop();
-                final Group group = (Group) getDigester().peek();
+                final Contact contact = getDigester().pop();
+                final Group group = getDigester().peek();
                 group.addContact(contact);
             }
         }
@@ -49,8 +50,8 @@ public class ContactListParser extends EveAPIParser<ContactListResponse> {
         @Override
         public void doEnd(String name) {
             if (getDigester().peek() instanceof Group) {
-                final Group group = (Group) getDigester().pop();
-                final ContactListResponse r = (ContactListResponse) getDigester().peek();
+                final Group group = getDigester().pop();
+                final ContactListResponse r = getDigester().peek();
                 r.addGroup(group);
             }
         }

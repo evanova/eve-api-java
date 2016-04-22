@@ -4,8 +4,8 @@ package com.tlabs.eve.api;
 
 import com.tlabs.eve.parser.BaseRule;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 
 public class NamesParser extends EveAPIParser<NamesResponse> {
@@ -13,7 +13,7 @@ public class NamesParser extends EveAPIParser<NamesResponse> {
     private static final class SetKeyRule extends BaseRule {
         @Override
         public void doBegin(String name, Attributes attributes) {
-            NamesResponse r = (NamesResponse) getDigester().peek();
+            NamesResponse r = getDigester().peek();
             r.setKey(attributes.getValue("key"));
         }
     }
@@ -22,7 +22,7 @@ public class NamesParser extends EveAPIParser<NamesResponse> {
 
         @Override
         public void doBegin(String name, Attributes attributes) {
-            NamesResponse r = (NamesResponse) getDigester().peek();
+            NamesResponse r = getDigester().peek();
             String key = r.getKey();
             if (StringUtils.isBlank(key)) {
                 return;

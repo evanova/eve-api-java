@@ -2,11 +2,11 @@ package com.tlabs.eve.api.mail;
 
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
 
 public class NotificationsParser extends EveAPIParser<NotificationsResponse> {
 

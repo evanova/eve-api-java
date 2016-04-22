@@ -5,8 +5,9 @@ package com.tlabs.eve.parser;
 
 
 
-import org.apache.commons.digester.Rule;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.digester3.Rule;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

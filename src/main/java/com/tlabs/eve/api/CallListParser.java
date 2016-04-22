@@ -4,8 +4,7 @@ package com.tlabs.eve.api;
 
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
-
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 /**@since Eve API V3 (30 Aug 2011*/
@@ -18,18 +17,18 @@ public class CallListParser extends EveAPIParser<CallListResponse> {
             String rowsetName = attributes.getValue("name");
             if ("callGroups".equalsIgnoreCase(rowsetName)) {
                 CallGroup g = new CallGroup();
-                digester.push(g);
+                getDigester().push(g);
             }
             else if ("calls".equalsIgnoreCase(rowsetName)) {
                 CallEntry e = new CallEntry();
-                digester.push(e);
+                getDigester().push(e);
             }
         }
 
         @Override
         public void doEnd(String name) {
-            Object o = digester.pop();
-            CallListResponse r = (CallListResponse) digester.peek();
+            Object o = getDigester().pop();
+            CallListResponse r = getDigester().peek();
             if (o instanceof CallGroup) {
                 r.addGroup((CallGroup) o);
             }

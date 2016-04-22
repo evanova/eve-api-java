@@ -8,8 +8,8 @@ import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse> {
 
         @Override
         public void doBegin(String name, Attributes attributes) {
-            Skill skill = (Skill) getDigester().peek();
+            Skill skill = getDigester().peek();
 
             String typeID = attributes.getValue("typeID");
             if (StringUtils.isNotBlank(typeID)) {

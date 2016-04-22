@@ -4,7 +4,7 @@ package com.tlabs.eve.api;
 
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 import java.util.TimeZone;
@@ -47,7 +47,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse> {
                 return;
             }
 
-            final Contract contract = (Contract) getDigester().pop();
+            final Contract contract = getDigester().pop();
             boolean addContract;
             switch (contract.getStatus()) {
             case IN_PROGRESS:
@@ -76,7 +76,7 @@ public class ContractListParser extends EveAPIParser<ContractListResponse> {
                 break;
             }
             if (addContract) {
-                final ContractListResponse r = (ContractListResponse) getDigester().peek();
+                final ContractListResponse r = getDigester().peek();
                 r.addContract(contract);
                 this.countContracts = this.countContracts + 1;
             }

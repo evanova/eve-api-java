@@ -7,8 +7,8 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
@@ -56,8 +56,8 @@ public class KillLogParser extends EveAPIParser<KillLogResponse> {
         @Override
         public void doEnd(String name) {
             super.doEnd(name);
-            final Object popped = digester.pop();
-            final List list = (List) digester.peek();
+            final Object popped = getDigester().pop();
+            final List list = getDigester().peek();
             list.add(popped);
         }
     }
@@ -90,8 +90,8 @@ public class KillLogParser extends EveAPIParser<KillLogResponse> {
 
         @Override
         public void doEnd(String name) {
-            digester.pop();
-            final com.tlabs.eve.api.mail.KillMail km = (com.tlabs.eve.api.mail.KillMail) digester.peek();
+            getDigester().pop();
+            final com.tlabs.eve.api.mail.KillMail km = getDigester().peek();
             if (this.attackers != null) {
                 km.setAttackers(this.attackers);
             }

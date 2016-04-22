@@ -1,7 +1,8 @@
 package com.tlabs.eve.api.evemon;
 
 
-import org.apache.commons.digester.Digester;
+
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 import com.tlabs.eve.api.character.CharacterTrainingQueueResponse;
 import com.tlabs.eve.api.character.SkillInTraining;
@@ -14,7 +15,7 @@ public final class EveMonSkillPlanParser extends AbstractXMLParser<CharacterTrai
     private static final class PropertyRules extends BaseRule {
         @Override
         public void doBegin(String name, Attributes attributes) {
-            SkillInTraining t = (SkillInTraining) getDigester().peek();
+            SkillInTraining t = getDigester().peek();
             t.setSkillID(Long.parseLong(attributes.getValue("skillID")));
             t.setSkillLevel(Integer.parseInt(attributes.getValue("level")));
             t.setSkillName(attributes.getValue("skill"));

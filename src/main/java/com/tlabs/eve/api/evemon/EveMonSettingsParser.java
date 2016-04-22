@@ -7,10 +7,9 @@ import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.digester3.Digester;
 
 public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettingsResponse> {
 

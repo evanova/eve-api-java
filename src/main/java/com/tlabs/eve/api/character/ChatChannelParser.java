@@ -5,7 +5,7 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 public class ChatChannelParser extends EveAPIParser<ChatChannelResponse> {

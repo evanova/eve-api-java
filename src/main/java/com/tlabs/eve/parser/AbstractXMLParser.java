@@ -5,7 +5,7 @@ package com.tlabs.eve.parser;
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveResponse;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;

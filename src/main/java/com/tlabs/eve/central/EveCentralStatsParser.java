@@ -5,7 +5,7 @@ package com.tlabs.eve.central;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 public final class EveCentralStatsParser extends EveCentralParser<EveCentralStatsResponse> {
@@ -18,7 +18,7 @@ public final class EveCentralStatsParser extends EveCentralParser<EveCentralStat
 
         @Override
         public void doEnd(String name) {
-            digester.pop();
+            getDigester().pop();
         }
     }
 
@@ -40,8 +40,8 @@ public final class EveCentralStatsParser extends EveCentralParser<EveCentralStat
 
         @Override
         public void doEnd(String name) {
-            EveCentralPrice p = (EveCentralPrice) digester.pop();
-            EveCentralStatsResponse r = (EveCentralStatsResponse) digester.peek(1);
+            EveCentralPrice p = getDigester().pop();
+            EveCentralStatsResponse r = getDigester().peek(1);
             r.add(p);
         }
     }

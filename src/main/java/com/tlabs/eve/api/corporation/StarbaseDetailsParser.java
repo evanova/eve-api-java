@@ -7,7 +7,7 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -32,8 +32,8 @@ public final class StarbaseDetailsParser extends EveAPIParser<StarbaseDetailsRes
         @Override
         public void doEnd(String name) {
             if (this.isFuelMap) {
-                final Map<Long, Long> fuelMap = (Map<Long, Long>) getDigester().pop();
-                final Starbase starbase = (Starbase) digester.peek();
+                final Map<Long, Long> fuelMap = getDigester().pop();
+                final Starbase starbase = getDigester().peek();
                 starbase.setFuelMap(fuelMap);
                 this.isFuelMap = false;
             }
@@ -45,7 +45,7 @@ public final class StarbaseDetailsParser extends EveAPIParser<StarbaseDetailsRes
         @Override
         public void doBegin(String name, Attributes attributes) {
             if (getDigester().peek() instanceof Map) {
-                Map<Long, Long> fuelMap = (Map<Long, Long>) getDigester().peek();
+                Map<Long, Long> fuelMap = getDigester().peek();
                 try {
                     fuelMap.put(Long.parseLong(attributes.getValue("typeID")), Long.parseLong(attributes.getValue("quantity")));
                 }

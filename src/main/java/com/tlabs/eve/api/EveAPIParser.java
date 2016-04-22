@@ -5,8 +5,9 @@ package com.tlabs.eve.api;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.BaseRule;
 
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.digester3.Digester;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,7 @@ public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXML
         public void doBegin(java.lang.String name, org.xml.sax.Attributes attributes) {
             String errCode = attributes.getValue("code");
 
-            EveAPIResponse r = (EveAPIResponse) getDigester().peek();
+            EveAPIResponse r = getDigester().peek();
             try {
                 r.setErrorCode(Integer.parseInt(errCode));
             }
@@ -35,7 +36,7 @@ public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXML
         }
 
         public void doBody(java.lang.String name, java.lang.String text) {
-            EveAPIResponse r = (EveAPIResponse) getDigester().peek();
+            EveAPIResponse r = getDigester().peek();
 
             if (!StringUtils.isBlank(text)) {
                 r.setErrorMessage(text);
@@ -47,7 +48,7 @@ public abstract class EveAPIParser<T extends EveAPIResponse> extends AbstractXML
 
         public void doBody(java.lang.String name, java.lang.String text) {
             final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2010-05-23 16:43:51
-            EveAPIResponse r = (EveAPIResponse) getDigester().peek();
+            EveAPIResponse r = getDigester().peek();
 
             if (StringUtils.isBlank(text)) {
                 setDate(r, new Date());

@@ -2,11 +2,11 @@ package com.tlabs.eve.api.mail;
 
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.api.EveAPIParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
 
 /**@since Eve API V3 (30 Aug 2011*/
 public class ContactNotificationsParser extends EveAPIParser<ContactNotificationsResponse> {

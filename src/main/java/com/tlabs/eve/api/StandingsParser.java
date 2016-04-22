@@ -5,7 +5,7 @@ package com.tlabs.eve.api;
 import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 public class StandingsParser extends EveAPIParser<StandingsResponse> {
@@ -33,10 +33,10 @@ public class StandingsParser extends EveAPIParser<StandingsResponse> {
 
         @Override
         public void doEnd(String name) {
-            final Standing standing = (Standing) getDigester().pop();
+            final Standing standing = getDigester().pop();
 
-            final String standingName = (String) getDigester().peek("standingName");
-            final StandingsResponse response = (StandingsResponse) getDigester().peek();
+            final String standingName = getDigester().peek("standingName");
+            final StandingsResponse response = getDigester().peek();
             if ("agents".equalsIgnoreCase(standingName)) {
                 response.addAgentStanding(standing);
             }

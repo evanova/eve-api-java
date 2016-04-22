@@ -4,7 +4,7 @@ package com.tlabs.eve.api;
 
 import com.tlabs.eve.parser.BaseRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 public class JournalReferenceTypeParser extends EveAPIParser<JournalReferenceTypeResponse> {
@@ -13,7 +13,7 @@ public class JournalReferenceTypeParser extends EveAPIParser<JournalReferenceTyp
 
         @Override
         public void doBegin(String name, Attributes attributes) {
-            JournalReferenceTypeResponse r = (JournalReferenceTypeResponse) this.digester.peek();
+            JournalReferenceTypeResponse r = getDigester().peek();
             r.addReference(Long.parseLong(attributes.getValue("refTypeID")), attributes.getValue("refTypeName"));
         }
     }

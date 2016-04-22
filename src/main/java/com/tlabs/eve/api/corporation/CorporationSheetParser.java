@@ -7,7 +7,7 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 //@see http://wiki.eve-id.net/APIv2_Corp_CorporationSheet_XML
@@ -34,15 +34,15 @@ public class CorporationSheetParser extends EveAPIParser<CorporationSheetRespons
         @Override
         public void doBegin(String name, Attributes attr) {
             super.doBegin(name, attr);
-            String type = (String) getDigester().peek();
+            String type = getDigester().peek();
             if ("walletDivisions".equalsIgnoreCase(type)) {
-                CorporationSheet s = (CorporationSheet) getDigester().peek(1);
+                CorporationSheet s = getDigester().peek(1);
                 s.addWalletDivision(Integer.parseInt(attr.getValue("accountKey")), attr.getValue("description"));
 
             }
             else
                 if ("divisions".equalsIgnoreCase(type)) {
-                    CorporationSheet s = (CorporationSheet) getDigester().peek(1);
+                    CorporationSheet s = getDigester().peek(1);
                     s.addHangarDivision(Integer.parseInt(attr.getValue("accountKey")), attr.getValue("description"));
                 }
 

@@ -6,7 +6,7 @@ import com.tlabs.eve.parser.BaseRule;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.Attributes;
 
 import java.text.ParseException;
@@ -21,7 +21,7 @@ public final class EveCentralQuickLookParser extends EveCentralParser<EveCentral
         public void doBody(String name, String text) {
             //<expires>2013-10-05</expires>
             final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-            final EveCentralOrder order = (EveCentralOrder) getDigester().peek();
+            final EveCentralOrder order = getDigester().peek();
             try {
                 order.setTimeExpired(format.parse(text + " 00:00:00 GMT").getTime());
             }
@@ -40,7 +40,7 @@ public final class EveCentralQuickLookParser extends EveCentralParser<EveCentral
 
             //<reported_time>06-23 10:48:24</reported_time>
             final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
-            final EveCentralOrder order = (EveCentralOrder) getDigester().peek();
+            final EveCentralOrder order = getDigester().peek();
             try {
                 order.setTimeReported(format.parse(now.get(Calendar.YEAR) + "-" + text + " GMT").getTime());
             }
@@ -67,8 +67,8 @@ public final class EveCentralQuickLookParser extends EveCentralParser<EveCentral
 
         @Override
         public void doEnd(String name) {
-            EveCentralOrder p = (EveCentralOrder) digester.pop();
-            EveCentralQuickLookResponse r = (EveCentralQuickLookResponse) digester.peek(0);
+            EveCentralOrder p = getDigester().pop();
+            EveCentralQuickLookResponse r = getDigester().peek(0);
             r.add(p);
         }
     }

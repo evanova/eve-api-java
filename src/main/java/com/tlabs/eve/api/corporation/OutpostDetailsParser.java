@@ -2,9 +2,8 @@ package com.tlabs.eve.api.corporation;
 
 
 
+import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.api.EveAPIParser;
-
-import org.apache.commons.digester.Digester;
 
 public final class OutpostDetailsParser extends EveAPIParser<OutpostDetailsResponse> {
 
