@@ -3,7 +3,8 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.EveAPI;
 
 import java.io.Serializable;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 
 public class PlanetaryPin implements Serializable {
 

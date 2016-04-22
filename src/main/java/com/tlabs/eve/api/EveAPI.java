@@ -1,9 +1,5 @@
 package com.tlabs.eve.api;
 
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -14,6 +10,8 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 public final class EveAPI {
 

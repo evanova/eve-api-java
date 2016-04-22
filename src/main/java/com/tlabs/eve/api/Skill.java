@@ -1,12 +1,9 @@
 package com.tlabs.eve.api;
 
-
-
-import org.apache.commons.lang.Validate;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang3.Validate;
 
 public class Skill implements Serializable {
 

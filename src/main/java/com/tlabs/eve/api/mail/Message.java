@@ -4,9 +4,10 @@ package com.tlabs.eve.api.mail;
 
 import com.tlabs.eve.api.EveAPI;
 
-import org.apache.commons.lang.StringUtils;
+
 
 import java.io.Serializable;
+import org.apache.commons.lang3.StringUtils;
 
 public class Message implements Serializable {
 

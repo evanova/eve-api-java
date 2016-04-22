@@ -1,8 +1,8 @@
 package com.tlabs.eve.map;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Jump implements Serializable {
 

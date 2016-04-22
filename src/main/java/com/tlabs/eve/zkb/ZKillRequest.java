@@ -1,10 +1,8 @@
 package com.tlabs.eve.zkb;
 
-import com.tlabs.eve.EveRequest;
-
-import org.apache.commons.lang.StringUtils;
-
 import java.util.Map.Entry;
+import org.apache.commons.lang3.StringUtils;
+import com.tlabs.eve.EveRequest;
 
 //https://github.com/zKillboard/zKillboard/blob/master/api.wiki
 public class ZKillRequest<T extends ZKillResponse> extends EveRequest<T> {

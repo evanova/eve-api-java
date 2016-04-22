@@ -1,11 +1,10 @@
 package com.tlabs.eve.api.mail;
 
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
+import org.apache.commons.lang3.StringUtils;
 
 
 public class NotificationMessage extends Message {
