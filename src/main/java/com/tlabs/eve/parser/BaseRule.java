@@ -146,10 +146,6 @@ public class BaseRule extends Rule {
             return bean.getClass().getMethod(methodName, targetClass);
         }
         catch (NoSuchMethodException e) {
-            //ignore
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("NoSuchMethodException: " + e.getMessage());
-            }
             return null;
         }
     }

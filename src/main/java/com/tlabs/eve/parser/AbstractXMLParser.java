@@ -29,16 +29,6 @@ public abstract class AbstractXMLParser<T extends EveResponse> implements EvePar
         this.digester.setNamespaceAware(false);
         this.digester.setValidating(false);
 
-        //BUG Fixes an Android 1.5 (and apparently in 2.1-update1 too) SAX parser bug: cannot have both at the same time,
-        //but the Android impl checks those feature against each other incorrectly.
-        //This is probably causing or related to the bug described in CharacterSheetParser
-        try {
-            //this.digester.setFeature("http://xml.org/sax/features/namespaces", false);
-            this.digester.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
-        }
-        catch (SAXNotSupportedException | ParserConfigurationException | SAXNotRecognizedException e) {
-            throw new IllegalStateException(e.getMessage());
-        }
         init(this.digester);
     }
 
