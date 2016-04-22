@@ -6,6 +6,7 @@ import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveResponse;
 
 import org.apache.commons.digester3.Digester;
+import org.apache.commons.digester3.ExtendedBaseRules;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
@@ -14,8 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
 
 public abstract class AbstractXMLParser<T extends EveResponse> implements EveParser<T> {
+    private static final SAXParserFactory SAX = SAXParserFactory.newInstance();
 
     private final Digester digester;
     private final Class<T> responseClass;
@@ -24,8 +27,13 @@ public abstract class AbstractXMLParser<T extends EveResponse> implements EvePar
         super();
         this.responseClass = responseClass;
 
-        this.digester = new Digester();
-        //this.digester.setRules(new ExtendedBaseRules());
+        this.digester = new Digester() {
+            @Override
+            public SAXParserFactory getFactory() {
+                return SAX;
+            }
+        };
+        this.digester.setRules(new ExtendedBaseRules());
         this.digester.setNamespaceAware(false);
         this.digester.setValidating(false);
 
