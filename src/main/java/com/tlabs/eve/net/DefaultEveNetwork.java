@@ -4,7 +4,6 @@ import com.tlabs.eve.EveRequest;
 import com.tlabs.eve.ccp.EveRSSRequest;
 import com.tlabs.eve.ccp.ImageRequest;
 import com.tlabs.eve.central.EveCentralRequest;
-import com.tlabs.eve.crest.CRESTRequest;
 import com.tlabs.eve.zkb.ZKillRequest;
 
 public class DefaultEveNetwork extends AbstractEveNetwork {
@@ -19,9 +18,6 @@ public class DefaultEveNetwork extends AbstractEveNetwork {
         }
         if (request instanceof EveCentralRequest) {
             return "http://api.eve-central.com";
-        }
-        if (request instanceof CRESTRequest) {
-            return "https://public-crest.eveonline.com";
         }
         if (request instanceof ZKillRequest) {
             return "https://zkillboard.com";

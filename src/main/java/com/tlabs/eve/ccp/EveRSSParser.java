@@ -3,7 +3,6 @@ package com.tlabs.eve.ccp;
 
 
 import com.tlabs.eve.parser.AbstractXMLParser;
-import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 

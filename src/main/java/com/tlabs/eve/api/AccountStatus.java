@@ -1,7 +1,5 @@
 package com.tlabs.eve.api;
 
-
-
 import java.io.Serializable;
 
 public class AccountStatus implements Serializable {

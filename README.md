@@ -1,6 +1,10 @@
 # Java Objects for Eve Online
 
-Model objects and parsers for the [XML](http://wiki.eve-id.net/APIv2_Page_Index), [CREST](https://developers.eveonline.com/resource/crest), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
+Model objects and parsers for the [XML](http://ned.karbowiak.dk/API), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
+
+For a [CREST](https://developers.eveonline.com/resource/crest) implementation, see [eve-crest-java on GitHub](https://github.com/evanova/eve-crest-java)
+
+For DOTLAN support, see [eve-dotlan-java on GitHub](https://github.com/evanova/eve-dotlan-java)
 
 This code is used in [Evanova for Android](https://market.android.com/details?id=com.tlabs.android.evanova).
 

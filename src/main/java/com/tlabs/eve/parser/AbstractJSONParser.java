@@ -3,17 +3,12 @@ package com.tlabs.eve.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PipedInputStream;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import org.apache.commons.digester.Digester;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.xml.sax.SAXException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.javaws.jnl.XMLFormat;
 import com.tlabs.eve.EveParser;
 import com.tlabs.eve.EveResponse;
 
@@ -32,7 +27,7 @@ public abstract class AbstractJSONParser<T extends EveResponse> implements EvePa
 
     public final T parse(InputStream in) throws IOException {
         try {
-            final StreamSource xslt = new StreamSource(XMLFormat.class.getResourceAsStream(XSLT));
+            final StreamSource xslt = new StreamSource(AbstractJSONParser.class.getResourceAsStream(XSLT));
             final javax.xml.transform.Transformer transformer = transformerFactory.newTransformer(xslt);
 
             final ByteArrayOutputStream bos = new ByteArrayOutputStream();
