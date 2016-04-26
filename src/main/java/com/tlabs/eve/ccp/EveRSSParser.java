@@ -31,6 +31,8 @@ public final class EveRSSParser extends AbstractXMLParser<EveRSSResponse> {
         digester.addRule("rss/channel/item/link", new SetElementPropertyRule());
         digester.addRule("rss/channel/item/author", new SetElementPropertyRule());
         digester.addRule("rss/channel/item/a10:updated", new SetElementPropertyRule("dateUpdated"));
+        digester.addRule("rss/channel/item/updated", new SetElementPropertyRule("dateUpdated"));
+        digester.addRule("rss/channel/item/dateUpdated", new SetElementPropertyRule("dateUpdated"));
         digester.addRule("rss/channel/item/description", new SetElementPropertyRule("htmlContent"));
     }
 

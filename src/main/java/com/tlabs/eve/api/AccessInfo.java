@@ -21,8 +21,10 @@ public class AccessInfo implements Serializable {
     private int type = UNKNOWN;
 
     private long expires = 0;
+
     private long keyID = -1;
     private String key = "";
+    private String token = "";//since Citadel
 
     private String name;//Not in XML
 
@@ -91,6 +93,14 @@ public class AccessInfo implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void addCharacter(CharacterSheet c) {

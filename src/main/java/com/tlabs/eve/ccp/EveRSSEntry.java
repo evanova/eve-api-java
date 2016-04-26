@@ -16,7 +16,7 @@ public class EveRSSEntry implements Serializable {
     private String author;
     private String link;
 
-    private long updated;
+    private long dateUpdated;
 
     private String htmlContent;
 
@@ -37,20 +37,20 @@ public class EveRSSEntry implements Serializable {
     }
 
     public long getDateUpdated() {
-        return updated;
+        return dateUpdated;
     }
 
     public void setDateUpdated(long dateUpdated) {
-        this.updated = dateUpdated;
+        this.dateUpdated = dateUpdated;
     }
 
     public void setDateUpdated(String dateUpdated) {
         try {
             final SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
-            this.updated = format.parse(dateUpdated).getTime();
+            this.dateUpdated = format.parse(dateUpdated).getTime();
         }
         catch (ParseException e) {
-            this.updated = System.currentTimeMillis();
+            this.dateUpdated = System.currentTimeMillis();
         }
     }
 

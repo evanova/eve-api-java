@@ -4,6 +4,8 @@ package com.tlabs.eve.ccp;
 
 import com.tlabs.eve.EveResponse;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +40,15 @@ public final class EveRSSResponse extends EveResponse {
         this.dateUpdated = dateUpdated;
     }
 
+    public void setDateUpdated(String dateUpdated) {
+        try {
+            final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+            this.dateUpdated = format.parse(dateUpdated).getTime();
+        }
+        catch (ParseException e) {
+            this.dateUpdated = System.currentTimeMillis();
+        }
+    }
     public String getTitle() {
         return title;
     }
