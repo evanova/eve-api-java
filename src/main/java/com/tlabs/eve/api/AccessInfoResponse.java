@@ -1,6 +1,11 @@
 package com.tlabs.eve.api;
 
 
+
+import com.tlabs.eve.api.character.CharacterSheet;
+
+import java.util.List;
+
 /**@since Eve API V3 (30 Aug 2011*/
 public class AccessInfoResponse extends EveAPIResponse {
 
@@ -17,4 +22,47 @@ public class AccessInfoResponse extends EveAPIResponse {
         return accessInfo;
     }
 
+    public final int getAccessMask() {
+        return this.accessInfo.getAccessMask();
+    }
+
+    public final void setAccessMask(int accessMask) {
+        this.accessInfo.setAccessMask(accessMask);
+    }
+
+    public final int getType() {
+        return this.accessInfo.getType();
+    }
+
+    public final void setType(String type) {
+        this.accessInfo.setType(type);
+    }
+
+    public final long getExpires() {
+        return this.accessInfo.getExpires();
+    }
+
+    public final void setExpires(long expires) {
+        this.accessInfo.setExpires(expires);
+    }
+
+    public final void setExpires(String expires) {
+        this.accessInfo.setExpires(expires);
+    }
+
+    public final long getKeyID() {
+        return this.accessInfo.getKeyID();
+    }
+
+    public final void setKeyID(long keyID) {
+        this.accessInfo.setKeyID(keyID);
+    }
+
+    public void addCharacter(CharacterSheet c) {
+        this.accessInfo.addCharacter(c);
+    }
+
+    public List<CharacterSheet> getCharacters() {
+        return this.accessInfo.getCharacters();
+    }
 }
