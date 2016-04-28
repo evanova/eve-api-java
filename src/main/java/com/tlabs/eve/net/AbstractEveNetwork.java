@@ -30,6 +30,8 @@ import javax.net.ssl.X509TrustManager;
 public abstract class AbstractEveNetwork implements EveNetwork {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractEveNetwork.class);
 
+    protected static String userAgent = "Evanova API; https://bitbucket.org/evanova/eve-api";
+
     private static final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
         @Override
         public boolean verify(String hostname, SSLSession session) {
@@ -100,7 +102,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
         connection.setRequestMethod(methodName);
         connection.setRequestProperty(
                 "User-Agent",
-                "Evanova API; https://bitbucket.org/evanova/eve-api");
+                userAgent);
 
         if (connection instanceof HttpsURLConnection) {
             setupHttps((HttpsURLConnection)connection);
