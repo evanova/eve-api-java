@@ -41,7 +41,7 @@ InputStream in = ...
 final ServerStatusResponse status = EveFacade.parse(request, in); 
 ```
 
-### API keys
+### AUthentication using API keys or CREST refresh token
 
 For requests that implement `EveAPIRequest.Authenticated`, you will need to provide API keys as parameters in the request.
 This is usually done like so:
@@ -49,6 +49,13 @@ This is usually done like so:
 ```
   request.putParam("keyID", "APIKEY");
   request.putParam("vCode", "VCODE");
+```
+
+As of Citadel, you can also use a CREST token that you have previously obtained through CREST SSO:
+
+```
+  request.putParam("accessToken", "CREST TOKEN");
+  request.putParam("accessType", "character"); //'corporation' or 'character'
 ```
 
 ## Design
