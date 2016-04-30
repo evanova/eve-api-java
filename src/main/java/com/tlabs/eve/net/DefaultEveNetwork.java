@@ -24,9 +24,4 @@ public class DefaultEveNetwork extends AbstractEveNetwork {
         }
         return "https://api.eveonline.com";
     }
-
-    public void setUserAgentString(String userAgentString)
-    {
-        userAgent = userAgentString + " via Evanova API; https://bitbucket.org/evanova/eve-api";
-    }
 }
