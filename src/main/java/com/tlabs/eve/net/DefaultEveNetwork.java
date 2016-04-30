@@ -24,5 +24,4 @@ public class DefaultEveNetwork extends AbstractEveNetwork {
         }
         return "https://api.eveonline.com";
     }
-
 }

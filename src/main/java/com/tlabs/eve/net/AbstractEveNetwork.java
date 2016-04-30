@@ -30,6 +30,8 @@ import javax.net.ssl.X509TrustManager;
 public abstract class AbstractEveNetwork implements EveNetwork {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractEveNetwork.class);
 
+    private String userAgent = "Evanova API; https://bitbucket.org/evanova/eve-api";
+
     private static final HostnameVerifier hostnameVerifier = new HostnameVerifier() {
         @Override
         public boolean verify(String hostname, SSLSession session) {
@@ -76,7 +78,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
     private EveResponse get(final String rootUri, final EveRequest<?> request) {
         HttpURLConnection connection = null;
         try {
-            connection = prepare(rootUri, request, "GET");
+            connection = prepare(rootUri, request, "GET", userAgent);
             onPrepareConnection(connection);
             connection.setDoOutput(false);
             return executeImpl(request, connection);
@@ -92,7 +94,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
         }
     }
 
-    private static HttpURLConnection prepare(final String rootUri, final EveRequest<?> request, final String methodName) throws IOException {
+    private static HttpURLConnection prepare(final String rootUri, final EveRequest<?> request, final String methodName, String userAgent) throws IOException {
         if (LOG.isDebugEnabled()) {
             LOG.debug(request.toURI(rootUri));
         }
@@ -100,7 +102,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
         connection.setRequestMethod(methodName);
         connection.setRequestProperty(
                 "User-Agent",
-                "Evanova API; https://bitbucket.org/evanova/eve-api");
+                userAgent);
 
         if (connection instanceof HttpsURLConnection) {
             setupHttps((HttpsURLConnection)connection);
@@ -151,5 +153,10 @@ public abstract class AbstractEveNetwork implements EveNetwork {
         }
         c.setHostnameVerifier(hostnameVerifier);
         c.setSSLSocketFactory(sslSocketFactory);
+    }
+
+    public void setUserAgentString(String userAgentString)
+    {
+        userAgent = userAgentString;
     }
 }
