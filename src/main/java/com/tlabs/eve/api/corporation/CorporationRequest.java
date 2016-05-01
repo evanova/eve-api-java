@@ -15,7 +15,7 @@ public abstract class CorporationRequest<T extends EveAPIResponse> extends EveAP
 
     private String corporationID;
 
-    public CorporationRequest(Class<T> tea, String page, int mask, String corporationID) {
+    public CorporationRequest(Class<T> tea, String page, long mask, String corporationID) {
         super(tea, page, mask);
 
         Validate.isTrue(StringUtils.isNotBlank(corporationID), "corporationID");

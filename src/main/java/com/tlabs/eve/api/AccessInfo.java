@@ -16,7 +16,7 @@ public class AccessInfo implements Serializable {
     public static final int CORPORATION = 1;
     public static final int ACCOUNT = 2;
 
-    private int accessMask = 0;
+    private long accessMask = 0;
 
     private int type = UNKNOWN;
 
@@ -34,11 +34,11 @@ public class AccessInfo implements Serializable {
         super();
     }
 
-    public final int getAccessMask() {
+    public final long getAccessMask() {
         return accessMask;
     }
 
-    public final void setAccessMask(int accessMask) {
+    public final void setAccessMask(long accessMask) {
         this.accessMask = accessMask;
     }
 

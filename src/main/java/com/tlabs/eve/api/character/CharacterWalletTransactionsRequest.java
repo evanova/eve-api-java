@@ -5,7 +5,7 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.WalletTransactionsResponse;
 
 public final class CharacterWalletTransactionsRequest extends CharacterRequest<WalletTransactionsResponse> {
-    public static final int MASK = 4194304;
+    public static final long MASK = 4194304;
 
     public CharacterWalletTransactionsRequest(String characterID) {
         this(characterID, 50, -1);

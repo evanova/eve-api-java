@@ -7,7 +7,7 @@ import com.tlabs.eve.api.ItemLocationResponse;
 
 public final class CorporationItemLocationRequest extends CorporationRequest<ItemLocationResponse> {
 
-    public static final int MASK = EveAPI.CORP_FULL; //FIXME CAK not known yet
+    public static final long MASK = EveAPI.CORP_FULL; //FIXME CAK not known yet
 
     public CorporationItemLocationRequest(String corpID, long[] ids) {
         super(ItemLocationResponse.class, "/corp/Locations.xml.aspx", MASK, corpID);

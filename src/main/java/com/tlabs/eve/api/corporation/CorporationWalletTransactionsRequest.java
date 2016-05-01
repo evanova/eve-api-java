@@ -5,7 +5,7 @@ package com.tlabs.eve.api.corporation;
 import com.tlabs.eve.api.WalletTransactionsResponse;
 
 public final class CorporationWalletTransactionsRequest extends CorporationRequest<WalletTransactionsResponse> {
-    public static final int MASK = 2097152;
+    public static final long MASK = 2097152;
 
     public CorporationWalletTransactionsRequest(String corporationID, int walletID) {
         this(corporationID, walletID, 50, -1);

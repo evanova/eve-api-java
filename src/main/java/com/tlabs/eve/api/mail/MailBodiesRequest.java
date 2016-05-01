@@ -6,7 +6,7 @@ import com.tlabs.eve.api.character.CharacterRequest;
 
 //char/MailBodies.xml.aspx
 public final class MailBodiesRequest extends CharacterRequest<MailBodiesResponse> {
-    public static final int MASK = 512;
+    public static final long MASK = 512;
     private long[] messageIds;
 
     public MailBodiesRequest(String characterID, long[] messageIds) {

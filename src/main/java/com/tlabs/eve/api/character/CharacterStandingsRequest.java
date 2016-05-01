@@ -5,7 +5,7 @@ import com.tlabs.eve.api.StandingsResponse;
 
 
 public class CharacterStandingsRequest extends CharacterRequest<StandingsResponse> {
-    public static final int MASK = 524288;
+    public static final long MASK = 524288;
 
     public CharacterStandingsRequest(String charID) {
         super(StandingsResponse.class, "/char/Standings.xml.aspx", MASK, charID);

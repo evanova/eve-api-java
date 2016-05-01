@@ -4,7 +4,7 @@ import com.tlabs.eve.api.EveAPIRequest.Authenticated;
 
 
 public final class AccountStatusRequest extends EveAPIRequest<AccountStatusResponse> implements Authenticated {
-    public static final int MASK = 33554432;
+    public static final long MASK = 33554432;
 
     private String keyID;
     private String key;

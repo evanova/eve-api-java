@@ -15,11 +15,11 @@ import org.apache.commons.lang3.Validate;
 
 public final class EveAPI {
 
-    public static final int CHAR_FULL = /*65461771*/266854027;
-    public static final int CHAR_MIN = /*65461771*/25165832;
+    public static final long CHAR_FULL = 4294967295l;
+    public static final long CHAR_MIN = 25165832l;
 
-    public static final int CORP_FULL = /*65461775*/29356539;
-    public static final int CORP_MIN = /*65461775*/8;
+    public static final long CORP_FULL = 134217727l;
+    public static final long CORP_MIN = 8l;
 
     public static final AccessGroup[] characterGroups = new AccessGroup[] {
             AccessGroup.Group1,
@@ -95,6 +95,8 @@ public final class EveAPI {
         ContactNotifications(32, 7, "ContactNotifications", "Most recent contact notifications for the character."),
         ContactList(16, 7, "ContactList", "List of character contacts and relationship levels."),
         CharacterSheet(8, 3, "CharacterSheet", "Character Sheet information. Contains basic'Show Info'information along with clones, account balance, implants, attributes, skills, certificates and corporation roles."),
+        CharacterClones(2147483648l, 3, "CharacterClones", "Character clones."),
+        CharacterSkills(1073741824l, 3, "CharacterSkills", "Character Skills"),
         CalendarEventAttendees(4, 3, "CalendarEventAttendees", "Event attendee responses. Requires UpcomingCalendarEvents to function."),
         AssetList(2, 3, "AssetList", "Entire asset list of character."),
         AccountBalance(1, 1, "AccountBalance", "Current balance of characters wallet."),
@@ -103,9 +105,9 @@ public final class EveAPI {
         private String description;
         private String name;
         private int groupId;
-        private int accessMask;
+        private long accessMask;
 
-        CharacterAccess(int accessMask, int id, String name, String description) {
+        CharacterAccess(long accessMask, int id, String name, String description) {
             this.accessMask = accessMask;
             this.groupId = id;
             this.name = name;
@@ -124,17 +126,24 @@ public final class EveAPI {
             return this.description;
         }
 
-        public final int getAccessMask() {
+        public final long getAccessMask() {
             return this.accessMask;
         }
 
-        public final boolean hasAccess(int other) {
+        public final boolean hasAccess(long other) {
             return (other & this.accessMask) == this.accessMask;
         }
     }
 
     public enum Wallet {
-        MASTER(1000l), SECOND(1001l), THIRD(1002l), FOURTH(1003l), FIFTH(1004l), SIXTH(1005l), SEVENTH(1006l), DUST(10001l);
+        MASTER(1000l),
+        SECOND(1001l),
+        THIRD(1002l),
+        FOURTH(1003l),
+        FIFTH(1004l),
+        SIXTH(1005l),
+        SEVENTH(1006l),
+        DUST(10001l);
 
         private final long walletID;
 
@@ -179,9 +188,9 @@ public final class EveAPI {
         private String description;
         private String name;
         private int groupId;
-        private int accessMask;
+        private long accessMask;
 
-        CorporationAccess(int accessMask, int id, String name, String description) {
+        CorporationAccess(long accessMask, int id, String name, String description) {
             this.accessMask = accessMask;
             this.groupId = id;
             this.name = name;
@@ -200,11 +209,11 @@ public final class EveAPI {
             return this.description;
         }
 
-        public final int getAccessMask() {
+        public final long getAccessMask() {
             return this.accessMask;
         }
 
-        public final boolean hasAccess(int other) {
+        public final boolean hasAccess(long other) {
             return (other & this.accessMask) == other;
         }
     }
@@ -255,15 +264,15 @@ public final class EveAPI {
         return rank * SKILL_LEVELS[level];
     }
 
-    public static boolean checkAccess(boolean anyAccess, int keyMask, CharacterAccess... againstAccess) {
+    public static boolean checkAccess(boolean anyAccess, long keyMask, CharacterAccess... againstAccess) {
         return checkAccess(anyAccess, Collections.singletonList(keyMask), againstAccess);
     }
 
-    public static boolean checkAccess(boolean anyAccess, int keyMask, CorporationAccess... againstAccess) {
+    public static boolean checkAccess(boolean anyAccess, long keyMask, CorporationAccess... againstAccess) {
         return checkAccess(anyAccess, Collections.singletonList(keyMask), againstAccess);
     }
 
-    public static boolean checkAccess(boolean anyAccess, List<Integer> keyMasks, CharacterAccess... againstAccess) {
+    public static boolean checkAccess(boolean anyAccess, List<Long> keyMasks, CharacterAccess... againstAccess) {
 
         if ((null == againstAccess) || (againstAccess.length == 0)) {
             return true;
@@ -274,7 +283,7 @@ public final class EveAPI {
         for (CharacterAccess a : againstAccess) {
             boolean hasAccess = false;
 
-            for (int m : keyMasks) {
+            for (long m : keyMasks) {
                 if (a.hasAccess(m)) {
                     hasAccess = true;
                     break;
@@ -292,7 +301,7 @@ public final class EveAPI {
         return true;
     }
 
-    public static boolean checkAccess(boolean anyAccess, List<Integer> keyMasks, CorporationAccess... againstAccess) {
+    public static boolean checkAccess(boolean anyAccess, List<Long> keyMasks, CorporationAccess... againstAccess) {
 
         if ((null == againstAccess) || (againstAccess.length == 0)) {
             return true;
@@ -303,7 +312,7 @@ public final class EveAPI {
         for (CorporationAccess a : againstAccess) {
             boolean hasAccess = false;
 
-            for (int m : keyMasks) {
+            for (long m : keyMasks) {
                 if (a.hasAccess(m)) {
                     hasAccess = true;
                     break;

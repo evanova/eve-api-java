@@ -8,7 +8,7 @@ public class CallEntry implements Serializable {
     private static final long serialVersionUID = 5890972341885783648L;
 
     private int groupID;
-    private int accessMask;
+    private long accessMask;
 
     private String type;
     private String name;
@@ -22,11 +22,11 @@ public class CallEntry implements Serializable {
         this.groupID = groupID;
     }
 
-    public final int getAccessMask() {
+    public final long getAccessMask() {
         return accessMask;
     }
 
-    public final void setAccessMask(int accessMask) {
+    public final void setAccessMask(long accessMask) {
         this.accessMask = accessMask;
     }
 

@@ -15,7 +15,7 @@ public abstract class CharacterRequest<T extends EveAPIResponse> extends EveAPIR
 
     private String characterID;
 
-    public CharacterRequest(Class<T> tea, String page, int mask, String characterID) {
+    public CharacterRequest(Class<T> tea, String page, long mask, String characterID) {
         super(tea, page, mask);
         Validate.isTrue(StringUtils.isNotBlank(characterID), "characterID");
 

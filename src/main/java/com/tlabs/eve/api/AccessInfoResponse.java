@@ -22,11 +22,11 @@ public class AccessInfoResponse extends EveAPIResponse {
         return accessInfo;
     }
 
-    public final int getAccessMask() {
+    public final long getAccessMask() {
         return this.accessInfo.getAccessMask();
     }
 
-    public final void setAccessMask(int accessMask) {
+    public final void setAccessMask(long accessMask) {
         this.accessInfo.setAccessMask(accessMask);
     }
 

@@ -3,7 +3,7 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.api.ContractItemsResponse;
 
 public final class CharacterContractItemsRequest extends CharacterRequest<ContractItemsResponse> {
-    public static final int MASK = 67108864;
+    public static final long MASK = 67108864;
 
     private final long contractID;
 

@@ -6,7 +6,7 @@ import com.tlabs.eve.api.WalletJournalResponse;
 
 public final class CorporationWalletJournalRequest extends CorporationRequest<WalletJournalResponse> {
 
-    public static final int MASK = 1048576;
+    public static final long MASK = 1048576;
 
     public CorporationWalletJournalRequest(String corporationID, int walletID) {
         this(corporationID, walletID, 50, -1);

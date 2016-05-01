@@ -17,14 +17,14 @@ public abstract class EveAPIRequest<T extends EveAPIResponse> extends EveRequest
     public interface Public {
     }
 
-    private final int mask;
+    private final long mask;
 
-    protected EveAPIRequest(Class<T> responseClass, String page, int mask) {
+    protected EveAPIRequest(Class<T> responseClass, String page, long mask) {
         super(responseClass, page);
         this.mask = mask;
     }
 
-    public final int getMask() {
+    public final long getMask() {
         return mask;
     }
 
