@@ -22,12 +22,6 @@ public class AccessInfo implements Serializable {
 
     private long expires = 0;
 
-    private long keyID = -1;
-    private String key = "";
-    private String token = "";//since Citadel
-
-    private String name;//Not in XML
-
     private List<CharacterSheet> characters = new ArrayList<>();
 
     public AccessInfo() {
@@ -79,30 +73,6 @@ public class AccessInfo implements Serializable {
         this.expires = EveAPI.parseDateTime(expires);
     }
 
-    public final long getKeyID() {
-        return keyID;
-    }
-
-    public final void setKeyID(long keyID) {
-        this.keyID = keyID;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public void addCharacter(CharacterSheet c) {
         this.characters.add(c);
     }
@@ -111,11 +81,4 @@ public class AccessInfo implements Serializable {
         return this.characters;
     }
 
-    public String getName() {
-        return (null == name) ? Long.toString(this.keyID) : this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

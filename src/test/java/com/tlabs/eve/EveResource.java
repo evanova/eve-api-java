@@ -65,7 +65,7 @@ public class EveResource extends ExternalResource {
     private final Configuration configuration;
 
     public EveResource(final String apiJSON) {
-        configuration = Configuration.from("/apikeys.json");
+        configuration = Configuration.from(apiJSON);
     }
 
     @Override
@@ -123,7 +123,10 @@ public class EveResource extends ExternalResource {
 
     private void setAccessInfo(final ApiKey apiKey) {
         if (null == apiKey.accessInfo) {
-            final AccessInfoResponse info = execute(new AccessInfoRequest(apiKey.apiKey, apiKey.vCode));
+            final AccessInfoRequest request = new AccessInfoRequest();
+            request.putParam("keyID", apiKey.apiKey);
+            request.putParam("vCode", apiKey.vCode);
+            final AccessInfoResponse info = execute(new AccessInfoRequest());
             apiKey.accessInfo = info.getAccessInfo();
         }
     }
