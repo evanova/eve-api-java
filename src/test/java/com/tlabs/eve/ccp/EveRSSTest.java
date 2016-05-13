@@ -1,6 +1,6 @@
 package com.tlabs.eve.ccp;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import com.tlabs.eve.EveTest;
 

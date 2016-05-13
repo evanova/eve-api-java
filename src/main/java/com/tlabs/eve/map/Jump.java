@@ -2,7 +2,6 @@ package com.tlabs.eve.map;
 
 
 import java.io.Serializable;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class Jump implements Serializable {
 
@@ -24,17 +23,4 @@ public class Jump implements Serializable {
         return to;
     }
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Jump)) {
-            return false;
-        }
-        final Jump j = (Jump) obj;
-        return (this.from.getSolarSystemID() == j.from.getSolarSystemID()) && (this.to.getSolarSystemID() == j.to.getSolarSystemID());
-    }
 }
