@@ -1,7 +1,7 @@
 package com.tlabs.eve.zkb;
 
 import java.util.Map.Entry;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import com.tlabs.eve.EveRequest;
 
 //https://github.com/zKillboard/zKillboard/blob/master/api.wiki

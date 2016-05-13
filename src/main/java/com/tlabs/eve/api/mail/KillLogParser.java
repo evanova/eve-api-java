@@ -8,7 +8,7 @@ import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;
 
 import org.apache.commons.digester3.Digester;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
