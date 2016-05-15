@@ -17,7 +17,7 @@ public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettings
     static {
         propertyMap = new HashMap<>();
         propertyMap.put("id", "keyID");
-        propertyMap.put("vCode", "key");
+        propertyMap.put("vCode", "keyValue");
         propertyMap.put("accessMask", "accessMask");
         propertyMap.put("type", "type");
         //propertyMap.put("expires", "expires");//Dont use it; it's illformed and wrong.
@@ -30,7 +30,7 @@ public final class EveMonSettingsParser extends AbstractXMLParser<EveMonSettings
     }
 
     protected void init(final Digester digester) {
-        digester.addObjectCreate("Settings/apiKeys/apikey", AccessInfo.class);
+        digester.addObjectCreate("Settings/apiKeys/apikey", EveMonAccount.class);
         digester.addRule("Settings/apiKeys/apikey", new SetAttributePropertyRule(propertyMap));
         digester.addRule("Settings/apiKeys/apikey", new SetNextRule("addApiKey"));
     }

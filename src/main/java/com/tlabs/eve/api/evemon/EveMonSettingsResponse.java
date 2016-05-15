@@ -9,18 +9,18 @@ public class EveMonSettingsResponse extends EveResponse {
 
     private static final long serialVersionUID = -3321752925913502110L;
 
-    private final List<AccessInfo> accessInfo;
+    private final List<EveMonAccount> accessInfo;
 
     public EveMonSettingsResponse() {
         super();
         this.accessInfo = new ArrayList<>();
     }
 
-    public final List<AccessInfo> getApiKeys() {
+    public final List<EveMonAccount> getApiKeys() {
         return this.accessInfo;
     }
 
-    public final void addApiKey(final AccessInfo accessInfo) {
+    public final void addApiKey(final EveMonAccount accessInfo) {
         this.accessInfo.add(accessInfo);
     }
 }
