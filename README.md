@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/evanova/eve-api-java.svg?branch=master)](https://travis-ci.org/evanova/eve-api-java)
+
 # Eve Online API implementation in Java
 
 Model objects and parsers for the [XML](http://ned.karbowiak.dk/API), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
