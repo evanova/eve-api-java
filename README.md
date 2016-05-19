@@ -1,10 +1,12 @@
+[![Build Status](https://travis-ci.org/evanova/eve-api-java.svg?branch=master)](https://travis-ci.org/evanova/eve-api-java)
+
 # Eve Online API implementation in Java
 
 Model objects and parsers for the [XML](http://ned.karbowiak.dk/API), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
 
-For a [CREST](https://developers.eveonline.com/resource/crest) implementation, see [eve-crest-java on GitHub](https://github.com/evanova/eve-crest-java)
+For a [CREST](https://developers.eveonline.com/resource/crest) implementation, see [evanova/eve-crest-java](https://github.com/evanova/eve-crest-java)
 
-For DOTLAN support, see [eve-dotlan-java on GitHub](https://github.com/evanova/eve-dotlan-java)
+For [DOTLAN](http://evemaps.dotlan.net/) support, see [evanova/eve-dotlan-java](https://github.com/evanova/eve-dotlan-java)
 
 This code is used in [Evanova for Android](https://market.android.com/details?id=com.tlabs.android.evanova).
 
@@ -41,7 +43,7 @@ InputStream in = ...
 final ServerStatusResponse status = EveFacade.parse(request, in); 
 ```
 
-### AUthentication using API keys or CREST refresh token
+### Authentication using API keys or CREST refresh token
 
 For requests that implement `EveAPIRequest.Authenticated`, you will need to provide API keys as parameters in the request.
 This is usually done like so:
