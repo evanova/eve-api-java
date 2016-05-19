@@ -7,7 +7,7 @@ import org.junit.ClassRule;
 public class EveTest {
 
     @ClassRule
-    public static EveResource resource = new EveResource("/apikeys.json");
+    public static EveResource resource = new EveResource("/api-keys.json");
 
     protected static AccessInfo getAccount() {
         return resource.getAccountInfo();

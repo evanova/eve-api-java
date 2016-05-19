@@ -3,6 +3,7 @@ package com.tlabs.eve.api.character;
 import com.tlabs.eve.EveResponse;
 import com.tlabs.eve.EveTest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,7 +18,7 @@ public class CharacterTest extends EveTest {
     @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> parameters() {
         final List<Class<? extends CharacterRequest>> parameters = new ArrayList<>();
-        /*parameters.add(CharacterAccountBalanceRequest.class);
+        parameters.add(CharacterAccountBalanceRequest.class);
         parameters.add(CharacterAssetsRequest.class);
         parameters.add(CharacterBookmarksRequest.class);
         parameters.add(CharacterContactListRequest.class);
@@ -26,7 +27,7 @@ public class CharacterTest extends EveTest {
         parameters.add(CharacterContractsRequest.class);
         parameters.add(CharacterIndustryJobsRequest.class);
         parameters.add(CharacterInfoRequest.class);
-        parameters.add(CharacterWalletJournalRequest.class);*/
+        parameters.add(CharacterWalletJournalRequest.class);
         parameters.add(CharacterWalletTransactionsRequest.class);
         final List<Object[]> returned = new ArrayList<>(parameters.size());
         for (Object p: parameters) {
@@ -42,6 +43,7 @@ public class CharacterTest extends EveTest {
     }
 
     @Test
+    @Ignore(value = "you need API keys to run this test")
     public void testCharacterRequest() throws Exception {
         final long characterID = getCharacter().getCharacters().get(0).getCharacterID();
         final CharacterRequest request = tClass.getDeclaredConstructor(String.class).newInstance(Long.toString(characterID));

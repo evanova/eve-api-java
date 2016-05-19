@@ -32,7 +32,7 @@ public class EveResource extends ExternalResource {
         private AccessInfo accessInfo;
     }
 
-    private static class Configuration {
+    static class Configuration {
         private static final ObjectMapper mapper = new ObjectMapper();
 
         @JsonProperty
@@ -47,8 +47,8 @@ public class EveResource extends ExternalResource {
         public static Configuration from(final String json) {
             final InputStream in = Configuration.class.getResourceAsStream(json);
             if (null == in) {
-               // throw new IllegalArgumentException(json + " not found");
-                return null;
+                throw new IllegalArgumentException(json + " not found");
+
             }
             try {
                 return mapper.readValue(in, Configuration.class);
