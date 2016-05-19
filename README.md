@@ -1,4 +1,4 @@
-# Java Objects for Eve Online
+# Eve Online API implementation in Java
 
 Model objects and parsers for the [XML](http://ned.karbowiak.dk/API), [Eve Central](https://eve-central.com/home/develop.html) and [ZKillboard](https://github.com/EVE-KILL/zKillboard) endpoints.
 
