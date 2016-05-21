@@ -2,7 +2,6 @@ package com.tlabs.eve.api.evemon;
 
 
 
-import com.tlabs.eve.api.AccessInfo;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.SetAttributePropertyRule;
 import com.tlabs.eve.parser.SetNextRule;

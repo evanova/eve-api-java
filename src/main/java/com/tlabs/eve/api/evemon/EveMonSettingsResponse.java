@@ -3,7 +3,6 @@ package com.tlabs.eve.api.evemon;
 import java.util.ArrayList;
 import java.util.List;
 import com.tlabs.eve.EveResponse;
-import com.tlabs.eve.api.AccessInfo;
 
 public class EveMonSettingsResponse extends EveResponse {
 
