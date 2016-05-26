@@ -12,7 +12,7 @@ This code is used in [Evanova for Android](https://market.android.com/details?id
 
 ## Quick Start
 * Run `gradlew build install -x test`
-* Insert as a dependency: `compile 'com.tlabs.eve:eve-api:+'`
+* Insert as a dependency: `compile 'com.tlabs.eve:eve-api-java:+'`
 
 ##Usage
 The simplest way of getting Eve data is by using the `DefaultEveNetwork` class.
