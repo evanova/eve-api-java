@@ -50,6 +50,14 @@ public class AccessInfoResponse extends EveAPIResponse {
         this.accessInfo.setExpires(expires);
     }
 
+    public final long getKeyID() {
+        return this.accessInfo.getKeyID();
+    }
+
+    public final void setKeyID(long keyID) {
+        this.accessInfo.setKeyID(keyID);
+    }
+
     public void addCharacter(CharacterSheet c) {
         this.accessInfo.addCharacter(c);
     }
