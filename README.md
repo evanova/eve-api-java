@@ -11,8 +11,19 @@ For [DOTLAN](http://evemaps.dotlan.net/) support, see [evanova/eve-dotlan-java](
 This code is used in [Evanova for Android](https://market.android.com/details?id=com.tlabs.android.evanova).
 
 ## Quick Start
-* Run `gradlew build install -x test`
-* Insert as a dependency: `compile 'com.tlabs.eve:eve-api-java:+'`
+
+* Insert Jitpack Dependency in Gradle
+```
+repositories {
+    maven { url "https://jitpack.io" }
+}
+```
+
+* Add project to dependencies
+```
+compile 'com.github.evanova:eve-api-java:master-SNAPSHOT'
+```
+* If you don't want the latest version of master, Replace `master-SNAPSHOT` with a release version
 
 ##Usage
 The simplest way of getting Eve data is by using the `DefaultEveNetwork` class.
