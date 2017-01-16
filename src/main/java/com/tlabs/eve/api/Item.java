@@ -1,9 +1,14 @@
 package com.tlabs.eve.api;
 
 
+import javafx.scene.effect.Effect;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Item implements Serializable {
 
@@ -54,7 +59,8 @@ public class Item implements Serializable {
 
     private final List<ItemTrait> traits = new ArrayList<>();//in YML only
     private final List<ItemAttribute> attributes = new ArrayList<>();
-    private final List<Skill> requirements = new ArrayList<>();
+    private final List<ItemEffect> effects = new ArrayList<>();
+    private final Map<Skill, Integer> requirements = new LinkedHashMap<>();
 
     public String getName() {
         return itemName;
@@ -205,11 +211,20 @@ public class Item implements Serializable {
         this.marketGroupID = marketGroupID;
     }
 
-    public void addRequirement(final Skill skill) {
-        this.requirements.add(skill);
+    public void addRequirement(final Skill skill, int level) {
+        for (Map.Entry<Skill, Integer> e: this.requirements.entrySet()) {
+            if (e.getKey().getSkillID() == skill.getSkillID()) {
+                if (level > e.getValue()) {
+                    this.requirements.put(skill, level);
+                }
+                return;
+            }
+        }
+
+        this.requirements.put(skill, level);
     }
 
-    public List<Skill> getRequirements() {
+    public Map<Skill, Integer> getRequirements() {
         return requirements;
     }
 
@@ -221,12 +236,68 @@ public class Item implements Serializable {
         this.marketGroupName = marketGroupName;
     }
 
-    public String getMarketGroupDesciption() {
+    public String getMarketGroupDescription() {
         return marketGroupDesciption;
     }
 
-    public void setMarketGroupDesciption(String marketGroupDesciption) {
+    public void setMarketGroupDescription(String marketGroupDesciption) {
         this.marketGroupDesciption = marketGroupDesciption;
+    }
+
+    public void setEffects(final List<ItemEffect> effects) {
+        this.effects.clear();
+        this.effects.addAll(effects);
+    }
+
+    public void addEffect(final ItemEffect effect) {
+        this.effects.add(effect);
+    }
+
+    public List<ItemEffect> getEffects() {
+        return effects;
+    }
+
+    public ItemEffect findEffect(final String name) {
+        for (ItemEffect attr: this.effects) {
+            if (StringUtils.equals(attr.getName(), name)) {
+                return attr;
+            }
+        }
+        return null;
+    }
+
+    public ItemEffect findEffect(final long id) {
+        for (ItemEffect attr: this.effects) {
+            if (attr.getID() == id) {
+                return attr;
+            }
+        }
+        return null;
+    }
+
+    public boolean usesSlowSlot() {
+        return hasEffect(ItemEffect.USES_LOW_SLOT);
+    }
+
+    public boolean usesMediumSlot() {
+        return hasEffect(ItemEffect.USES_MEDIUM_SLOT);
+    }
+
+    public boolean usesHighSlot() {
+        return hasEffect(ItemEffect.USES_HIGH_SLOT);
+    }
+
+    public boolean usesSubsystemSlot() {
+        return hasEffect(ItemEffect.USES_SUBSYSTEM);
+    }
+
+    public boolean usesRigSlot() {
+        return hasEffect(ItemEffect.USES_RIG_SLOT);
+    }
+
+    private boolean hasEffect(final long effect) {
+        final ItemEffect e = findEffect(effect);
+        return (null != e);
     }
 
     public void setAttributes(final List<ItemAttribute> attributes) {
@@ -240,5 +311,23 @@ public class Item implements Serializable {
 
     public List<ItemAttribute> getAttributes() {
         return attributes;
+    }
+
+    public ItemAttribute findAttribute(final String name) {
+        for (ItemAttribute attr: this.attributes) {
+            if (StringUtils.equals(attr.getName(), name)) {
+                return attr;
+            }
+        }
+        return null;
+    }
+
+    public ItemAttribute findAttribute(final long id) {
+        for (ItemAttribute attr: this.attributes) {
+            if (attr.getID() == id) {
+                return attr;
+            }
+        }
+        return null;
     }
 }

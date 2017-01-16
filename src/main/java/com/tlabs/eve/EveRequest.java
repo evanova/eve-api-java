@@ -37,12 +37,17 @@ public abstract class EveRequest<T extends EveResponse> {
     }
 
     public final void putParam(String p, String v) {
-        this.params.put(p, (null == v) ? null : v);
+        if (null == v) {
+            this.params.remove(p);
+        }
+        else {
+            this.params.put(p, v);
+        }
     }
 
     protected final void putParam(String p, String[] values) {
         if (null == values) {
-            this.params.put(p, null);
+            this.params.remove(p);
             return;
         }
 
@@ -55,7 +60,7 @@ public abstract class EveRequest<T extends EveResponse> {
 
     protected final void putParam(String p, long[] values) {
         if (null == values) {
-            this.params.put(p, null);
+            this.params.remove(p);
             return;
         }
 
@@ -132,28 +137,20 @@ public abstract class EveRequest<T extends EveResponse> {
                 new StringBuilder().
                         append(rootUri).
                         append(request.getPage());
-        try {
-            final Map<String, String> parameters = request.getParameters();
-            boolean first = true;
-            for (String p: parameters.keySet()) {
-                if (first) {
-                    sb.append("?");
-                    first = false;
-                }
-                else {
-                    sb.append("&");
-                }
-                sb.
-                        append(p).
-                        append("=").
-                        append(URLEncoder.encode(parameters.get(p), "UTF-8"));
+        final Map<String, String> parameters = request.getParameters();
+        boolean first = true;
+        for (Map.Entry<String, String> e: parameters.entrySet()) {
+            if (first) {
+                sb.append("?");
+                first = false;
             }
-            return sb.toString();
+            else {
+                sb.append("&");
+            }
+            sb.append(e.getKey());
+            sb.append("=");
+            sb.append(e.getValue());
         }
-        catch (UnsupportedEncodingException e) {
-            //Not going to happen
-            throw new RuntimeException(e.getMessage());
-        }
+        return sb.toString();
     }
-
 }

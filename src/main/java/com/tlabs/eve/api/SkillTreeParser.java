@@ -35,7 +35,7 @@ public class SkillTreeParser extends EveAPIParser<SkillTreeResponse> {
             String typeID = attributes.getValue("typeID");
             if (StringUtils.isNotBlank(typeID)) {
                 //that's a required skill ID and its level
-                skill.addRequiredSkill(Integer.parseInt(typeID), Integer.parseInt(attributes.getValue("skillLevel")));
+                skill.addRequirement(Long.parseLong(typeID), Integer.parseInt(attributes.getValue("skillLevel")));
                 return;
             }
 

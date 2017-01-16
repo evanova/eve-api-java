@@ -24,6 +24,16 @@ public final class NamesResponse extends EveAPIResponse {
         return this.names.get(id);
     }
 
+    public Long getId(String name) {
+        for (Map.Entry<Long, String> e: this.names.entrySet()) {
+            if (e.getValue().equals(name)) {
+                return e.getKey();
+            }
+        }
+        return null;
+    }
+
+
     public final String getKey() {
         return key;
     }
@@ -31,5 +41,6 @@ public final class NamesResponse extends EveAPIResponse {
     public final void setKey(String key) {
         this.key = key;
     }
+
 
 }
