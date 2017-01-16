@@ -34,11 +34,11 @@ public class Message implements Serializable {
         this.messageID = messageID;
     }
 
-    public final String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public final void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

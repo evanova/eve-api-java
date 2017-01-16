@@ -26,6 +26,7 @@ public class NotificationTextParser extends EveAPIParser<NotificationTextRespons
                 super.doBody(name, text);
                 NotificationMessage m = getDigester().peek();
                 m.setBody(StringUtils.isBlank(text) ? "" : text);
+                m.setAttributes(text);
             }
         });
     }

@@ -98,19 +98,4 @@ public class SkillInTraining extends Skill implements Serializable {
         this.trainingType = trainingType;
     }
 
-    public final boolean requires(final SkillInTraining t) {
-        if (t.getSkillID() == this.getSkillID()) {
-            return this.getSkillLevel() > t.getSkillLevel();
-        }
-
-        final Map<Long, Integer> req = this.getRequiredSkills();
-        for (long id : req.keySet()) {
-            if (id == t.getSkillID()) {
-                if (req.get(id) >= t.getRank()) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }

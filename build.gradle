@@ -16,7 +16,7 @@ repositories {
 }
 
 group = 'com.tlabs.eve'
-version = '4.5' //5.0 is without api keys
+version = '4.6' //5.0 is without api keys
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.+'
@@ -26,9 +26,12 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'commons-io:commons-io:2.5'
 
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-jackson:2.0.+'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+
     compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
-
 
     compile files('lib/jgrapht-core-0.9.0.jar')
 

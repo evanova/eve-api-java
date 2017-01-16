@@ -17,7 +17,7 @@ public final class EveRSSParser extends AbstractXMLParser<EveRSSResponse> {
     @Override
     protected void doAfterParse(EveRSSResponse t) {
         final long now = System.currentTimeMillis();
-        t.setCachedUntil(now + 15l * 60l * 1000l);
+        t.setCachedUntil(now + 24l * 3600l * 1000l);
     }
 
     @Override

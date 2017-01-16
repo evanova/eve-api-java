@@ -1,9 +1,11 @@
 package com.tlabs.eve.api;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang3.Validate;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Skill implements Serializable {
 
@@ -20,7 +22,10 @@ public class Skill implements Serializable {
     private String description;
     private int rank;
 
+    /*@Deprecated
     private Map<Long, Integer> requiredSkills;
+    private List<Skill> requirements;*/
+    private Map<Skill, Integer> requirements;
 
     private String primaryAttribute;
     private String secondaryAttribute;
@@ -30,7 +35,6 @@ public class Skill implements Serializable {
         Validate.notNull(s, "Skill");
         this.primaryAttribute = s.primaryAttribute;
         this.secondaryAttribute = s.secondaryAttribute;
-        this.requiredSkills.putAll(s.getRequiredSkills());
         this.rank = s.rank;
         this.description = s.description;
         this.groupID = s.groupID;
@@ -38,11 +42,12 @@ public class Skill implements Serializable {
         this.skillID = s.skillID;
         this.skillName = s.skillName;
         this.published = s.published;
+        this.requirements = s.requirements;
     }
 
     public Skill() {
         super();
-        this.requiredSkills = new HashMap<>();
+        this.requirements = new LinkedHashMap<>();
     }
 
     public boolean getPublished() {
@@ -117,28 +122,31 @@ public class Skill implements Serializable {
         this.secondaryAttribute = secondaryAttribute;
     }
 
-    public void addRequiredSkill(long skillID, int skillLevel) {
-        requiredSkills.put(skillID, skillLevel);
+    void addRequirement(final long skillID, final int level) {
+        Skill skill = new Skill();
+        skill.setSkillID(skillID);
+        addRequirement(skill, level);
     }
 
-    public Map<Long, Integer> getRequiredSkills() {
-        return this.requiredSkills;
-    }
-
-    public final boolean requires(final Skill t) {
-        if (t.getSkillID() == this.getSkillID()) {
-            return this.getRank() > t.getRank();
-        }
-
-        final Map<Long, Integer> req = this.getRequiredSkills();
-        for (long id : req.keySet()) {
-            if (id == t.getSkillID()) {
-                if (req.get(id) >= t.getRank()) {
-                    return true;
+    public void addRequirement(final Skill skill, final int level) {
+        for (Map.Entry<Skill, Integer> e: this.requirements.entrySet()) {
+            if (e.getKey().getSkillID() == skill.getSkillID()) {
+                if (level > e.getValue()) {
+                    this.requirements.put(skill, level);
                 }
+                return;
             }
         }
-        return false;
+
+        this.requirements.put(skill, level);
+    }
+
+    public Map<Skill, Integer> getRequirements() {
+        return Collections.unmodifiableMap(this.requirements);
+    }
+
+    public Map<Skill, Integer> getAllRequirements() {
+        return SkillRequirements.mapAll(this);
     }
 
     public String toString() {

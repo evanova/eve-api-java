@@ -16,7 +16,7 @@ public final class ItemEffect implements Serializable {
 
     private static final long serialVersionUID = -6457985690836261476L;
 
-    private int id;
+    private long id;
     private String name;
     private String displayName;
     private String description;
@@ -50,11 +50,11 @@ public final class ItemEffect implements Serializable {
     //npcActivationChanceAttributeID
     //fittingUsageChanceAttributeID
 
-    public int getID() {
+    public long getID() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setID(long id) {
         this.id = id;
     }
 

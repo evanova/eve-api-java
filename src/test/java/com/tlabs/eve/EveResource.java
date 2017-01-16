@@ -124,10 +124,10 @@ public class EveResource extends ExternalResource {
 
     private void setAccessInfo(final ApiKey apiKey) {
         if (null == apiKey.accessInfo) {
-            final AccessInfoRequest request = new AccessInfoRequest();
+            final AccessInfoRequest request = new AccessInfoRequest(apiKey.apiKey, apiKey.vCode);
             request.putParam("keyID", apiKey.apiKey);
             request.putParam("vCode", apiKey.vCode);
-            final AccessInfoResponse info = execute(new AccessInfoRequest());
+            final AccessInfoResponse info = execute(new AccessInfoRequest(apiKey.apiKey, apiKey.vCode));
             apiKey.accessInfo = info.getAccessInfo();
         }
     }
