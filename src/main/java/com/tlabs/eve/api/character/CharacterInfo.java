@@ -48,6 +48,7 @@ public class CharacterInfo {
     }
 
     private long characterID;
+    private String characterName;
     private String lastKnownLocation;
     private float securityStatus;
 
@@ -56,6 +57,9 @@ public class CharacterInfo {
     private String shipName;
     private long shipTypeID;
     private String shipTypeName;
+
+    private long corporationID;
+    private String corporationName;
 
     private long corporationDate;
     private long allianceID = 0;
@@ -74,6 +78,30 @@ public class CharacterInfo {
 
     public void setCharacterID(long characterID) {
         this.characterID = characterID;
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
+    }
+
+    public long getCorporationID() {
+        return corporationID;
+    }
+
+    public void setCorporationID(long corporationID) {
+        this.corporationID = corporationID;
+    }
+
+    public String getCorporationName() {
+        return corporationName;
+    }
+
+    public void setCorporationName(String corporationName) {
+        this.corporationName = corporationName;
     }
 
     public String getLastKnownLocation() {

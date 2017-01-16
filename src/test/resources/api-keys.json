@@ -1,14 +1,14 @@
 {
   "account": {
-    "apiKey": "you key",
-    "vCode": "your key code"
+    "apiKey": null,
+    "vCode": null
   },
   "character": {
-    "apiKey": "you key",
-    "vCode": "your key code"
+    "apiKey": null,
+    "vCode": null
   },
   "corporation": {
-    "apiKey": "you key",
-    "vCode": "your key code"
+    "apiKey": null,
+    "vCode": null
   }
 }

@@ -1,7 +1,6 @@
 package com.tlabs.eve.api;
 
 
-import javafx.scene.effect.Effect;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;

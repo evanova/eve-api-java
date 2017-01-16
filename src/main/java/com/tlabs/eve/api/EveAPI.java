@@ -17,10 +17,7 @@ import org.apache.commons.lang3.Validate;
 public final class EveAPI {
 
     public static final long CHAR_FULL = 4294967295l;
-    public static final long CHAR_MIN = 25165832l;
-
     public static final long CORP_FULL = 134217727l;
-    public static final long CORP_MIN = 8l;
 
     public static final AccessGroup[] characterGroups = new AccessGroup[] {
             AccessGroup.Group1,

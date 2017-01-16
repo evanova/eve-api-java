@@ -22,6 +22,9 @@ public final class CharacterInfoParser extends EveAPIParser<CharacterInfoRespons
         //(quite unusual for the digester, but in this particular case it's ok)
         SetElementPropertyRule setElementPropertyRule = new SetElementPropertyRule();
         digester.addRule("eveapi/result/characterID", setElementPropertyRule);
+        digester.addRule("eveapi/result/characterName", setElementPropertyRule);
+        digester.addRule("eveapi/result/corporationID", setElementPropertyRule);
+        digester.addRule("eveapi/result/corporation", new SetElementPropertyRule("corporationName"));
         digester.addRule("eveapi/result/skillPoints", setElementPropertyRule);
         digester.addRule("eveapi/result/shipName", setElementPropertyRule);
         digester.addRule("eveapi/result/shipTypeID", setElementPropertyRule);

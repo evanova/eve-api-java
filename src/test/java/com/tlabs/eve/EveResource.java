@@ -109,12 +109,17 @@ public class EveResource extends ExternalResource {
 
     protected final <T extends EveResponse> T execute(final EveRequest<T> request, final ApiKey apiKey) {
         if (request instanceof EveAPIRequest.Authenticated) {
-            Assert.assertTrue(
-                    "API key not set.",
-                    (null != apiKey) && StringUtils.isNotBlank(apiKey.vCode) && StringUtils.isNotBlank(apiKey.apiKey));
+            if (nullApiKey(apiKey)) {
+                Assert.assertTrue(request instanceof EveAPIRequest.Public);
+            }
+            else {
+                Assert.assertTrue(
+                        "API key not set.",
+                        (null != apiKey) && StringUtils.isNotBlank(apiKey.vCode) && StringUtils.isNotBlank(apiKey.apiKey));
 
-            request.putParam("keyID", apiKey.apiKey);
-            request.putParam("vCode", apiKey.vCode);
+                request.putParam("keyID", apiKey.apiKey);
+                request.putParam("vCode", apiKey.vCode);
+            }
         }
 
         final T response = eve.execute(request);
@@ -130,5 +135,9 @@ public class EveResource extends ExternalResource {
             final AccessInfoResponse info = execute(new AccessInfoRequest(apiKey.apiKey, apiKey.vCode));
             apiKey.accessInfo = info.getAccessInfo();
         }
+    }
+
+    private boolean nullApiKey(final ApiKey key) {
+        return (null == key) || (null == key.apiKey) || (null == key.vCode);
     }
 }

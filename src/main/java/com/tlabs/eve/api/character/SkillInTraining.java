@@ -2,7 +2,7 @@ package com.tlabs.eve.api.character;
 
 
 import java.io.Serializable;
-import java.util.Map;
+
 import com.tlabs.eve.api.EveAPI;
 import com.tlabs.eve.api.Skill;
 
