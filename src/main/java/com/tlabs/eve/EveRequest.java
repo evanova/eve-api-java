@@ -93,8 +93,9 @@ public abstract class EveRequest<T extends EveResponse> {
     protected static String[] filter(String[] names) {
         List<String> l = new ArrayList<>(names.length);
         for (String s : names) {
-            if (!l.contains(s)) {
-                l.add(s);
+            String replaced = StringUtils.replace(s, " ", "%20");
+            if (!l.contains(replaced)) {
+                l.add(replaced);
             }
         }
         return l.toArray(new String[l.size()]);
