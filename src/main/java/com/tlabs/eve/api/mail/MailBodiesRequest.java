@@ -9,7 +9,7 @@ public final class MailBodiesRequest extends CharacterRequest<MailBodiesResponse
     public static final long MASK = 512;
     private long[] messageIds;
 
-    public MailBodiesRequest(String characterID, long[] messageIds) {
+    public MailBodiesRequest(long characterID, long[] messageIds) {
         super(MailBodiesResponse.class, "/char/MailBodies.xml.aspx", MASK, characterID);
         //Validate.isTrue(ArrayUtils.isNotEmpty(messageIds), "messages");
 

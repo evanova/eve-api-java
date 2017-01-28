@@ -20,14 +20,14 @@ public final class CorporationLogoRequest extends ImageRequest<CorporationLogoRe
     private static final String URL = "/Corporation/%1$s_%2$s.png";
 
     private Size size;
-    private String corporationID;
+    private long corporationID;
 
-    public CorporationLogoRequest(String corpID) {
+    public CorporationLogoRequest(long corpID) {
         this(corpID, Size.S256);
     }
 
-    public CorporationLogoRequest(String corpID, Size size) {
-        super(CorporationLogoResponse.class, String.format(URL, corpID, size.getSize()));
+    public CorporationLogoRequest(long corpID, Size size) {
+        super(CorporationLogoResponse.class, String.format(URL, Long.toString(corpID), size.getSize()));
         this.corporationID = corpID;
         this.size = size;
     }
@@ -36,7 +36,7 @@ public final class CorporationLogoRequest extends ImageRequest<CorporationLogoRe
         return size;
     }
 
-    public final String getCorporationID() {
+    public final long getCorporationID() {
         return corporationID;
     }
 

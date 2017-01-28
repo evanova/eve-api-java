@@ -8,7 +8,7 @@ package com.tlabs.eve.api.character;
 public final class CharacterSheetRequest extends CharacterRequest<CharacterSheetResponse> {
     public static final long MASK = 8;
 
-    public CharacterSheetRequest(String charID) {
+    public CharacterSheetRequest(long charID) {
         super(CharacterSheetResponse.class, "/char/CharacterSheet.xml.aspx", MASK, charID);
     }
 

@@ -9,7 +9,7 @@ public final class CorporationItemLocationRequest extends CorporationRequest<Ite
 
     public static final long MASK = EveAPI.CORP_FULL; //FIXME CAK not known yet
 
-    public CorporationItemLocationRequest(String corpID, long[] ids) {
+    public CorporationItemLocationRequest(long corpID, long[] ids) {
         super(ItemLocationResponse.class, "/corp/Locations.xml.aspx", MASK, corpID);
         putParam("ids", filter(ids));//API rejects duplicates
     }

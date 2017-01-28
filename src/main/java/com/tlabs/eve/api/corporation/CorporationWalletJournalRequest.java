@@ -8,11 +8,11 @@ public final class CorporationWalletJournalRequest extends CorporationRequest<Wa
 
     public static final long MASK = 1048576;
 
-    public CorporationWalletJournalRequest(String corporationID, int walletID) {
+    public CorporationWalletJournalRequest(long corporationID, int walletID) {
         this(corporationID, walletID, 50, -1);
     }
 
-    public CorporationWalletJournalRequest(String corporationID, int walletID, int rowCount, long fromID) {
+    public CorporationWalletJournalRequest(long corporationID, int walletID, int rowCount, long fromID) {
         super(WalletJournalResponse.class, "/corp/WalletJournal.xml.aspx", MASK, corporationID);
         putParam("accountKey", Integer.toString(walletID));
         putParam("rowCount", Integer.toString(rowCount));
@@ -21,4 +21,7 @@ public final class CorporationWalletJournalRequest extends CorporationRequest<Wa
         }
     }
 
+    public Long getFromID() {
+        return getLong("fromID");
+    }
 }

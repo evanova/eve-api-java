@@ -9,7 +9,7 @@ public final class CorporationContractItemsRequest extends CorporationRequest<Co
 
     private final long contractID;
 
-    public CorporationContractItemsRequest(final String corpID, final long contractID) {
+    public CorporationContractItemsRequest(final long corpID, final long contractID) {
         super(ContractItemsResponse.class, "/corp/ContractItems.xml.aspx", MASK, corpID);
         this.contractID = contractID;
         putParam("contractID", new long[] { contractID });

@@ -5,7 +5,7 @@ import com.tlabs.eve.api.ContractBidsResponse;
 public final class CorporationContractBidsRequest extends CorporationRequest<ContractBidsResponse> {
     public static final long MASK = 8388608;
 
-    public CorporationContractBidsRequest(final String corpID) {
+    public CorporationContractBidsRequest(final long corpID) {
         super(ContractBidsResponse.class, "/corp/ContractBids.xml.aspx", MASK, corpID);
     }
 }

@@ -7,7 +7,7 @@ import com.tlabs.eve.api.IndustryJobsResponse;
 public final class CharacterIndustryJobsRequest extends CharacterRequest<IndustryJobsResponse> {
     public static final long MASK = 128;
 
-    public CharacterIndustryJobsRequest(String charID) {
+    public CharacterIndustryJobsRequest(long charID) {
         super(IndustryJobsResponse.class, "/char/IndustryJobs.xml.aspx", MASK, charID);
     }
 }

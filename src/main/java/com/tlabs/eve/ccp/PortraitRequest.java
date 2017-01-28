@@ -20,14 +20,14 @@ public final class PortraitRequest extends ImageRequest<PortraitResponse> {
     private static final String URL = "/Character/%1$s_%2$s.jpg";
 
     private Size size;
-    private String characterID;
+    private long characterID;
 
-    public PortraitRequest(String characterID) {
+    public PortraitRequest(long characterID) {
         this(characterID, Size.S512);
     }
 
-    public PortraitRequest(String characterID, Size size) {
-        super(PortraitResponse.class, String.format(URL, characterID, size.getSize()));
+    public PortraitRequest(long characterID, Size size) {
+        super(PortraitResponse.class, String.format(URL, Long.toString(characterID), size.getSize()));
         this.size = size;
         this.characterID = characterID;
     }
@@ -36,7 +36,7 @@ public final class PortraitRequest extends ImageRequest<PortraitResponse> {
         return size;
     }
 
-    public final String getCharacterID() {
+    public final long getCharacterID() {
         return characterID;
     }
 

@@ -9,7 +9,7 @@ package com.tlabs.eve.api.character;
 public final class PlanetaryPinsRequest extends CharacterRequest<PlanetaryPinsResponse> {
     public static final long MASK = 2;
 
-    public PlanetaryPinsRequest(final String charID, final String planetID) {
+    public PlanetaryPinsRequest(final long charID, final long planetID) {
         super(PlanetaryPinsResponse.class, "/char/PlanetaryPins.xml.aspx", MASK, charID);
         putParam("planetID", planetID);
     }

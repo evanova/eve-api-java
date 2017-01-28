@@ -10,7 +10,7 @@ public class CharacterInfoTest extends EveTest {
 
     @Test
     public void testCharacterInfo() {
-        final CharacterInfo info = execute(new CharacterInfoRequest("90808929")).getCharacterInfo();
+        final CharacterInfo info = execute(new CharacterInfoRequest(90808929L)).getCharacterInfo();
         Assert.assertNotNull(info);
         Assert.assertEquals("Evanova Android", info.getCharacterName());
         Assert.assertEquals("Traquenard Labs", info.getCorporationName());

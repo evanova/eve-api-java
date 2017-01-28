@@ -8,7 +8,7 @@ import com.tlabs.eve.api.character.CharacterRequest;
 public final class MailMessagesRequest extends CharacterRequest<MailMessagesResponse> {
     public static final long MASK = 2048;
 
-    public MailMessagesRequest(String characterID) {
+    public MailMessagesRequest(long characterID) {
         super(MailMessagesResponse.class, "/char/MailMessages.xml.aspx", MASK, characterID);
     }
 

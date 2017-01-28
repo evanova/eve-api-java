@@ -5,7 +5,7 @@ import com.tlabs.eve.api.mail.KillLogResponse;
 public final class CharacterKillLogRequest extends CharacterRequest<KillLogResponse> {
     public static final long MASK = 256;
 
-    public CharacterKillLogRequest(final String charID) {
+    public CharacterKillLogRequest(final long charID) {
         super(KillLogResponse.class, "/char/KillLog.xml.aspx", MASK, charID);
     }
 }

@@ -5,7 +5,7 @@ public final class CharacterCalendarAttendeesRequest extends CharacterRequest<Ch
 
     public static final long MASK = 4;
 
-    public CharacterCalendarAttendeesRequest(String characterID, long... eventIds) {
+    public CharacterCalendarAttendeesRequest(long characterID, long... eventIds) {
         super(CharacterCalendarAttendeesResponse.class, "/char/CalendarEventAttendees.xml.aspx", MASK, characterID);
         putParam("eventIDs", eventIds);
     }

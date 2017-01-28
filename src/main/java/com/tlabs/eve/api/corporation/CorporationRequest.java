@@ -1,7 +1,5 @@
 package com.tlabs.eve.api.corporation;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 import com.tlabs.eve.api.EveAPIRequest;
 import com.tlabs.eve.api.EveAPIRequest.Authenticated;
 import com.tlabs.eve.api.EveAPIResponse;
@@ -11,18 +9,15 @@ public abstract class CorporationRequest<T extends EveAPIResponse> extends EveAP
     private String keyID = null;
     private String key = null;
 
-    private String corporationID;
+    private long corporationID;
 
-    public CorporationRequest(Class<T> tea, String page, long mask, String corporationID) {
+    public CorporationRequest(Class<T> tea, String page, long mask, long corporationID) {
         super(tea, page, mask);
-
-        Validate.isTrue(StringUtils.isNotBlank(corporationID), "corporationID");
-
         putParam("corporationID", corporationID);
         this.corporationID = corporationID;
     }
 
-    public final String getCorporationID() {
+    public final long getCorporationID() {
         return corporationID;
     }
 

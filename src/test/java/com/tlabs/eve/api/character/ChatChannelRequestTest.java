@@ -11,7 +11,7 @@ public class ChatChannelRequestTest extends EveTest {
     @Ignore(value = "you need API keys to run this test")
     public void testChatChannel() {
         final long characterID = getCharacter().getCharacters().get(0).getCharacterID();
-        final ChatChannelResponse response = execute(new ChatChannelRequest(Long.toString(characterID)));
+        final ChatChannelResponse response = execute(new ChatChannelRequest(characterID));
         System.out.println(response);
     }
 }

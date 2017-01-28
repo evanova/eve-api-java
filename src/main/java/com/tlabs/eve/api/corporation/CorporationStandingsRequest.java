@@ -7,7 +7,7 @@ import com.tlabs.eve.api.StandingsResponse;
 public class CorporationStandingsRequest extends CorporationRequest<StandingsResponse> {
     public static final long MASK = 262144;
 
-    public CorporationStandingsRequest(String corpID) {
+    public CorporationStandingsRequest(long corpID) {
         super(StandingsResponse.class, "/corp/Standings.xml.aspx", MASK, corpID);
     }
 }

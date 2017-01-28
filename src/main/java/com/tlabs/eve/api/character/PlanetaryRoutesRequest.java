@@ -9,7 +9,7 @@ package com.tlabs.eve.api.character;
 public final class PlanetaryRoutesRequest extends CharacterRequest<PlanetaryRoutesResponse> {
     public static final long MASK = 2;
 
-    public PlanetaryRoutesRequest(final String charID, final String planetID) {
+    public PlanetaryRoutesRequest(final long charID, final long planetID) {
         super(PlanetaryRoutesResponse.class, "/char/PlanetaryRoutes.xml.aspx", MASK, charID);
         putParam("planetID", planetID);
     }

@@ -2,6 +2,7 @@ package com.tlabs.eve;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,11 @@ public abstract class EveRequest<T extends EveResponse> {
     }
 
     public final Map<String, String> getParameters() {
-        return this.params;
+        return Collections.unmodifiableMap(this.params);
+    }
+
+    public final String getParam(final String p) {
+        return this.params.get(p);
     }
 
     public final void putParam(String p, String v) {
@@ -43,7 +48,35 @@ public abstract class EveRequest<T extends EveResponse> {
         }
     }
 
-    protected final void putParam(String p, String[] values) {
+    public final Integer getInt(final String p) {
+        try {
+            final String v = getParam(p);
+            return (null == v) ? null : Integer.parseInt(v);
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public final void putParam(String p, int a) {
+        this.params.put(p, Integer.toString(a));
+    }
+
+    public final Long getLong(final String p) {
+        try {
+            final String v = getParam(p);
+            return (null == v) ? null : Long.parseLong(v);
+        }
+        catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public final void putParam(String p, long a) {
+        this.params.put(p, Long.toString(a));
+    }
+
+    public final void putParam(String p, String[] values) {
         if (null == values) {
             this.params.remove(p);
             return;
@@ -56,7 +89,7 @@ public abstract class EveRequest<T extends EveResponse> {
         this.params.put(p, StringUtils.removeEnd(s, ","));
     }
 
-    protected final void putParam(String p, long[] values) {
+    public final void putParam(String p, long[] values) {
         if (null == values) {
             this.params.remove(p);
             return;
@@ -69,7 +102,7 @@ public abstract class EveRequest<T extends EveResponse> {
         this.params.put(p, StringUtils.removeEnd(s, ","));
     }
 
-    protected final String removeParam(final String p) {
+    public final String removeParam(final String p) {
         return this.params.remove(p);
     }
 

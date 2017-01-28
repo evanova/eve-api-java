@@ -9,7 +9,7 @@ package com.tlabs.eve.api.character;
 public final class PlanetaryColoniesRequest extends CharacterRequest<PlanetaryColoniesResponse> {
     public static final long MASK = 2;
 
-    public PlanetaryColoniesRequest(String charID) {
+    public PlanetaryColoniesRequest(long charID) {
         super(PlanetaryColoniesResponse.class, "/char/PlanetaryColonies.xml.aspx", MASK, charID);
     }
 

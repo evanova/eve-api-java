@@ -150,6 +150,7 @@ public class NotificationMessage extends Message {
         DESCRIPTIONS.put(147, "Entosis Link started");
         DESCRIPTIONS.put(148, "Entosis Link enabled a module");
         DESCRIPTIONS.put(149, "Entosis Link disabled a module");
+        DESCRIPTIONS.put(160, "Reinforced mode entered");
     }
 
     private static final long serialVersionUID = 2130540734211587597L;

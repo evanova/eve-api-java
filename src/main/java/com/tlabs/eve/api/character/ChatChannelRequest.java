@@ -3,7 +3,7 @@ package com.tlabs.eve.api.character;
 public class ChatChannelRequest extends CharacterRequest<ChatChannelResponse> {
     public static final long MASK = 536870912;
 
-    public ChatChannelRequest(String charID) {
+    public ChatChannelRequest(long charID) {
         super(ChatChannelResponse.class, "/char/ChatChannels.xml.aspx", MASK, charID);
     }
 }

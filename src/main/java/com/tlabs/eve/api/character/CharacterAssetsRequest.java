@@ -8,7 +8,7 @@ public final class CharacterAssetsRequest extends CharacterRequest<AssetListResp
 
     public static final long MASK = 2;
 
-    public CharacterAssetsRequest(String characterID) {
+    public CharacterAssetsRequest(long characterID) {
         super(AssetListResponse.class, "/char/AssetList.xml.aspx", MASK, characterID);
     }
 

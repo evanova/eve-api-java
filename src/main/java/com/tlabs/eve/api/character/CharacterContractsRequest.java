@@ -7,7 +7,7 @@ import com.tlabs.eve.api.ContractListResponse;
 public class CharacterContractsRequest extends CharacterRequest<ContractListResponse> {
     public static final long MASK = 67108864;
 
-    public CharacterContractsRequest(final String charID) {
+    public CharacterContractsRequest(final long charID) {
         super(ContractListResponse.class, "/char/Contracts.xml.aspx", MASK, charID);
     }
 }

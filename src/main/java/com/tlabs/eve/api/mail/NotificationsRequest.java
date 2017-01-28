@@ -8,7 +8,7 @@ import com.tlabs.eve.api.character.CharacterRequest;
 public final class NotificationsRequest extends CharacterRequest<NotificationsResponse> {
     public static final long MASK = 16384;
 
-    public NotificationsRequest(String characterID) {
+    public NotificationsRequest(long characterID) {
         super(NotificationsResponse.class, "/char/Notifications.xml.aspx", MASK, characterID);
     }
 

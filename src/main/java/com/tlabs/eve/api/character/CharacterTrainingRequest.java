@@ -8,7 +8,7 @@ package com.tlabs.eve.api.character;
 public final class CharacterTrainingRequest extends CharacterRequest<CharacterTrainingResponse> {
     public static final long MASK = 131072;
 
-    public CharacterTrainingRequest(String charID) {
+    public CharacterTrainingRequest(long charID) {
         super(CharacterTrainingResponse.class, "/char/SkillInTraining.xml.aspx", MASK, charID);
     }
 
