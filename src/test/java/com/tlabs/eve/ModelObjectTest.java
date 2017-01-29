@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class ModelObjectTest {
+public abstract class ModelObjectTest {
 
     private static final PojoClassFilter filter = new PojoClassFilter() {
         private final PojoClassFilter tests = new FilterClassName("^((?!Test$).)*$");
@@ -45,30 +45,31 @@ public class ModelObjectTest {
         }
     };
 
-    private static Collection<PojoClass> pojoClasses() {
+    protected static List<Object[]> parameters(final String... packageName) {
         final List<PojoClass> pojoClasses = new ArrayList<>();
-
-        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.api", filter));
-        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.ccp", filter));
-        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.central", filter));
-        //pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.esi.model", filter));
-        //pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.crest.model", filter));
-        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.parser", filter));
-        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.zkb", filter));
-        return pojoClasses;
+        for (String p: packageName) {
+            pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively(p, filter));
+        }
+        return parameters(pojoClasses);
     }
 
-    private static PojoValidator pojoValidator;
+    protected static List<Object[]> parameters(final Class... classes) {
+        final List<PojoClass> pojoClasses = new ArrayList<>();
+        for (Class c: classes) {
+            pojoClasses.add(PojoClassFactory.getPojoClass(c));
+        }
+        return parameters(pojoClasses);
+    }
 
-    @Parameterized.Parameters(name = "{0}")
-    public static Collection<Object[]> parameters() {
+    protected static List<Object[]> parameters(final List<PojoClass> pojoClasses) {
         final List<Object[]> parameters = new ArrayList<>();
-        for (PojoClass c: pojoClasses()) {
+        for (PojoClass c: pojoClasses) {
             parameters.add(new Object[]{c.getName(), c});
         }
         return parameters;
     }
 
+    private static PojoValidator pojoValidator;
     private final PojoClass pojoClass;
 
     public ModelObjectTest(final String name, final PojoClass pojoClass) {
