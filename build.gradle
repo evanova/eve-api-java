@@ -1,5 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'maven'
+plugins {
+    id 'java'
+    id 'maven'
+    id 'org.hidetake.swagger.generator' version '2.1.2'
+    id "de.undercouch.download" version '3.1.2'
+}
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -18,27 +22,87 @@ repositories {
 group = 'com.tlabs.eve'
 version = '5.0'
 
+import org.hidetake.gradle.swagger.generator.GenerateSwaggerCode
+import de.undercouch.gradle.tasks.download.Download
+
+def swaggerGenerated = "$buildDir/swagger/"
+def generated = "$projectDir/generated/"
+
+sourceSets {
+    main {
+        java {
+            srcDirs += "$generated/src/main/java"
+        }
+    }
+    test {
+        java {
+            srcDirs += "$generated/src/test/java"
+        }
+    }
+}
+
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.+'
 
+    compile "io.swagger:swagger-annotations:1.5.8"
 
     compile 'org.apache.commons:commons-digester3:3.2'
     compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.apache.commons:commons-collections4:4.1'
+    
     compile 'commons-io:commons-io:2.5'
 
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile "com.squareup.retrofit2:retrofit:2.0.2"
+    compile "com.squareup.retrofit2:converter-scalars:2.0.2"
+    compile "com.squareup.retrofit2:converter-gson:2.0.2"
     compile 'com.squareup.retrofit2:converter-jackson:2.0.+'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
 
     compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
 
+    compile "org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:1.0.1"
+    compile "joda-time:joda-time:2.9.3"
+
+    compile 'com.github.scribejava:scribejava-core:3.3.0'
+
     compile files('lib/jgrapht-core-0.9.0.jar')
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.slf4j:slf4j-log4j12:1.7.12'
+    testRuntime 'org.slf4j:slf4j-log4j12:1.7.12'
     
     testCompile 'org.apache.httpcomponents:httpclient:4.3.6'
     testCompile 'com.googlecode.openpojo:openpojo:0.6.2'
 
 }
+
+task swaggerDownload(type: Download) {
+    src 'https://esi.tech.ccp.is/latest/swagger.json'
+    dest buildDir
+}
+
+task swaggerBuild(type: GenerateSwaggerCode, dependsOn: 'swaggerDownload') {
+    language = 'java'
+    inputFile = file(new File(buildDir, 'swagger.json'))
+    outputDir = file(swaggerGenerated)
+    configFile = file('config.json')
+}
+
+task swaggerCopy(type: Copy) {
+    from new File(swaggerGenerated, 'src')
+    into new File(generated, 'src')
+}
+
+task swaggerDelete(type: Delete) {
+
+    delete "$swaggerGenerated", "$generated/src/main/AndroidManifest.xml"
+}
+
+task swaggerGenerate(dependsOn: ['swaggerBuild', 'swaggerCopy', 'swaggerDelete']) {
+}
+
+clean.doFirst {
+    delete "$generated"
+}
+
+compileJava.dependsOn swaggerGenerate

@@ -48,8 +48,13 @@ public class ModelObjectTest {
     private static Collection<PojoClass> pojoClasses() {
         final List<PojoClass> pojoClasses = new ArrayList<>();
 
-        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve", filter));
-
+        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.api", filter));
+        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.ccp", filter));
+        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.central", filter));
+        //pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.esi.model", filter));
+        //pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.crest.model", filter));
+        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.parser", filter));
+        pojoClasses.addAll(PojoClassFactory.getPojoClassesRecursively("com.tlabs.eve.zkb", filter));
         return pojoClasses;
     }
 

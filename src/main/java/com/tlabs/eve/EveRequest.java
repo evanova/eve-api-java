@@ -58,8 +58,13 @@ public abstract class EveRequest<T extends EveResponse> {
         }
     }
 
-    public final void putParam(String p, int a) {
-        this.params.put(p, Integer.toString(a));
+    public final void putParam(String p, Integer a) {
+        if (null == a) {
+            this.params.remove(a);
+        }
+        else {
+            this.params.put(p, Integer.toString(a));
+        }
     }
 
     public final Long getLong(final String p) {
@@ -72,8 +77,13 @@ public abstract class EveRequest<T extends EveResponse> {
         }
     }
 
-    public final void putParam(String p, long a) {
-        this.params.put(p, Long.toString(a));
+    public final void putParam(String p, Long a) {
+        if (null == a) {
+            this.params.remove(p);
+        }
+        else {
+            this.params.put(p, Long.toString(a));
+        }
     }
 
     public final void putParam(String p, String[] values) {

@@ -1,0 +1,9 @@
+{
+  "apiPackage" : "org.devfleet.esi.api",
+  "modelPackage" :  "org.devfleet.esi.model",
+  "invokerPackage" :  "org.devfleet.esi.client",
+  "groupId" : "org.devfleet.esi",
+  "artifactId" : "esi",
+  "artifactVersion" : "1.0",
+  "library" : "retrofit2"
+}

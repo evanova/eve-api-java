@@ -27,7 +27,7 @@ Thumbs.db
 .classpath
 .project
 .settings
-/src/main/test/resources/apikeys.properties
+
 /target
 /bin
 /build
@@ -39,3 +39,7 @@ api.iml
 *.iws
 local.properties
 
+generated/
+src/test/resources/crest.properties
+src/test/resources/apikeys.properties
+src/test/resources/apikeys.json

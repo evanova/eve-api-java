@@ -7,21 +7,27 @@ import com.tlabs.eve.api.WalletJournalResponse;
 public final class CharacterWalletJournalRequest extends CharacterRequest<WalletJournalResponse> {
     public static final long MASK = 2097152;
 
+    private final Long fromID;
+
     public CharacterWalletJournalRequest(long characterID) {
         this(characterID, 50, -1);
+    }
+    public CharacterWalletJournalRequest(long characterID, int rowCount) {
+        this(characterID, rowCount, -1);
     }
 
     public CharacterWalletJournalRequest(long characterID, int rowCount, long fromID) {
         super(WalletJournalResponse.class, "/char/WalletJournal.xml.aspx", MASK, characterID);
 
-        putParam("accountKey", Integer.toString(1000));
-        putParam("rowCount", Integer.toString(rowCount));
-        if (-1 != fromID) {
-            putParam("fromID", Long.toString(fromID));
-        }
+        putParam("accountKey", 1000);
+        putParam("rowCount", rowCount);
+
+        this.fromID = (-1L == fromID) ? null : fromID;
+        putParam("fromID", this.fromID);
     }
 
+
     public Long getFromID() {
-        return getLong("fromID");
+        return this.fromID;
     }
 }
