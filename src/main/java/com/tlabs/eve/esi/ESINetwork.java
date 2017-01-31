@@ -130,7 +130,7 @@ public class ESINetwork implements EveNetwork, Closeable {
     }
 
     @Override
-    public <R extends EveResponse, Q extends EveRequest<R>> R execute(Q request) {
+    public <Q extends EveRequest<R>, R extends EveResponse> R execute(Q request) {
         if (!(request instanceof ESIRequest)) {
             return null;
         }

@@ -2,5 +2,5 @@ package com.tlabs.eve;
 
 public interface EveNetwork {
 
-    <R extends EveResponse, Q extends EveRequest<R>> R execute(final Q request);
+    <Q extends EveRequest<R>, R extends EveResponse> R execute(final Q request);
 }
