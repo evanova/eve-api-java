@@ -4,6 +4,7 @@ package com.tlabs.eve.esi.impl;
 import com.tlabs.eve.esi.model.ESICalendar;
 import com.tlabs.eve.esi.model.ESICharacter;
 import com.tlabs.eve.esi.model.ESILocation;
+import com.tlabs.eve.esi.model.ESIShip;
 import org.devfleet.esi.api.CalendarApi;
 import org.devfleet.esi.api.CharacterApi;
 import org.devfleet.esi.api.LocationApi;
@@ -13,6 +14,7 @@ import org.devfleet.esi.model.GetCharactersCharacterIdCorporationhistory200Ok;
 import org.devfleet.esi.model.GetCharactersCharacterIdLocationOk;
 import org.devfleet.esi.model.GetCharactersCharacterIdOk;
 import org.devfleet.esi.model.GetCharactersCharacterIdPortraitOk;
+import org.devfleet.esi.model.GetCharactersCharacterIdShipOk;
 import org.devfleet.esi.model.PutCharactersCharacterIdCalendarEventIdResponse;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -53,6 +55,17 @@ final class CharacterRetrofit {
         final Response<GetCharactersCharacterIdLocationOk> r =
                 this.locationApi
                         .getCharactersCharacterIdLocation(charID.intValue(), this.datasource)
+                        .execute();
+        if (!r.isSuccessful()) {
+            return null;
+        }
+        return CharacterTransformer.transform(r.body());
+    }
+
+    public ESIShip getCharacterShip(final Long charID) throws IOException {
+        final Response<GetCharactersCharacterIdShipOk> r =
+                this.locationApi
+                        .getCharactersCharacterIdShip(charID.intValue(), this.datasource)
                         .execute();
         if (!r.isSuccessful()) {
             return null;

@@ -67,7 +67,7 @@ public abstract class AbstractEveNetwork implements EveNetwork {
     public abstract String getUri(final EveRequest<?> request);
 
     @Override
-    public <T extends EveResponse> T execute(final EveRequest<T> request) {
+    public <T extends EveResponse, R extends EveRequest<T>> T execute(final R request) {
         return (T)get(getUri(request), request);
     }
 

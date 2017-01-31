@@ -7,6 +7,7 @@ import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
 import com.tlabs.eve.esi.model.ESIMailbox;
+import com.tlabs.eve.esi.model.ESIShip;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface ESIService {
     ESICharacter getCharacter(final Long charID);
 
     ESILocation getCharacterLocation(final Long charID);
+
+    ESIShip getCharacterShip(final Long charID);
 
     ESICalendar getCalendar(final Long charID, final Long afterEventID);
 

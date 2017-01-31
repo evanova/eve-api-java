@@ -117,10 +117,15 @@ public abstract class EveRequest<T extends EveResponse> {
     }
 
     public final T createError(final int err, final String msg) {
+        T t = create();
+        t.setErrorCode(err);
+        t.setErrorMessage((null == msg) ? "Error code " + err : msg);
+        return t;
+    }
+
+    public final T create() {
         try {
             T t = responseClass.newInstance();
-            t.setErrorCode(err);
-            t.setErrorMessage((null == msg) ? "Error code " + err : msg);
             t.setCached(false);
             return t;
         }

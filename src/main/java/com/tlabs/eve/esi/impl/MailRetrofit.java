@@ -55,7 +55,7 @@ final class MailRetrofit {
                 this.mailApi.getCharactersCharacterIdMail(
                         charID.intValue(),
                         params,
-                        afterMailID.intValue(),
+                        (null == afterMailID) ? null : afterMailID.intValue(),
                         this.datasource)
                         .execute();
         if (!r.isSuccessful()) {

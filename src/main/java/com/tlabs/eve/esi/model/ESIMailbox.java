@@ -2,20 +2,12 @@ package com.tlabs.eve.esi.model;
 
 public class ESIMailbox {
 
-    private Long id = null;
+
     private Long labelId;
     private String label;
 
     private Integer color;
     private Integer unread;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getLabelId() {
         return labelId;

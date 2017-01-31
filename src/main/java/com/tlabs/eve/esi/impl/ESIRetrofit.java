@@ -10,6 +10,7 @@ import com.tlabs.eve.esi.model.ESICorporation;
 import com.tlabs.eve.esi.model.ESIMailbox;
 import com.tlabs.eve.esi.ESIService;
 import com.tlabs.eve.esi.ESIStore;
+import com.tlabs.eve.esi.model.ESIShip;
 import com.tlabs.eve.esi.model.ESIToken;
 import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
@@ -78,6 +79,7 @@ public class ESIRetrofit implements ESIService {
             return r;
         }
     }
+
     private static final class UserAgentInterceptor implements  Interceptor {
         private final String host;
         private final String agent;
@@ -102,6 +104,7 @@ public class ESIRetrofit implements ESIService {
     private final CharacterRetrofit characterApi;
     private final CorporationRetrofit corporationApi;
     private final MailRetrofit mailAPIApi;
+    private final ContactRetrofit contactApi;
 
     private final String host;
 
@@ -154,6 +157,7 @@ public class ESIRetrofit implements ESIService {
         this.characterApi = new CharacterRetrofit(rf, "tranquility");
         this.corporationApi = new CorporationRetrofit(rf, "tranquility");
         this.mailAPIApi = new MailRetrofit(rf, "tranquility");
+        this.contactApi = new ContactRetrofit(rf, "tranquility");
     }
 
     @Override
@@ -173,6 +177,18 @@ public class ESIRetrofit implements ESIService {
         try {
             verify();
             return this.characterApi.getCharacterLocation(charID);
+        }
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public ESIShip getCharacterShip(Long charID) {
+        try {
+            verify();
+            return this.characterApi.getCharacterShip(charID);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);

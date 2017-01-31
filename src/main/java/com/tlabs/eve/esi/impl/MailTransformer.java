@@ -89,7 +89,7 @@ final class MailTransformer {
 
     public static ESIMailbox transform(GetCharactersCharacterIdMailLabelsOkLabels object) {
         final ESIMailbox m = new ESIMailbox();
-        m.setId(object.getLabelId().longValue());
+        m.setLabelId(object.getLabelId().longValue());
         //m.setColor(object.getColor().val);
         m.setLabel(object.getName());
         m.setUnread(object.getUnreadCount());

@@ -2,11 +2,13 @@ package com.tlabs.eve.esi.impl;
 import com.tlabs.eve.esi.model.ESICharacter;
 import com.tlabs.eve.esi.model.ESICalendar;
 import com.tlabs.eve.esi.model.ESILocation;
+import com.tlabs.eve.esi.model.ESIShip;
 import org.devfleet.esi.model.GetCharactersCharacterIdCalendar200Ok;
 import org.devfleet.esi.model.GetCharactersCharacterIdCalendarEventIdOk;
 import org.devfleet.esi.model.GetCharactersCharacterIdCorporationhistory200Ok;
 import org.devfleet.esi.model.GetCharactersCharacterIdLocationOk;
 import org.devfleet.esi.model.GetCharactersCharacterIdOk;
+import org.devfleet.esi.model.GetCharactersCharacterIdShipOk;
 
 final class CharacterTransformer {
 
@@ -16,6 +18,14 @@ final class CharacterTransformer {
         final ESICharacter character = new ESICharacter(charID);
 
         return character;
+    }
+
+    public static ESIShip transform(final GetCharactersCharacterIdShipOk s) {
+        final ESIShip ship = new ESIShip();
+        ship.setShipItemId(s.getShipItemId());
+        ship.setShipTypeId(s.getShipTypeId());
+        ship.setShipName(s.getShipName());
+        return ship;
     }
 
     public static ESICharacter.History transform(GetCharactersCharacterIdCorporationhistory200Ok h) {
