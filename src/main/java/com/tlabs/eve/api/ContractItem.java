@@ -15,7 +15,7 @@ public class ContractItem implements Serializable {
     // This attribute will only show up if the quantity is a negative number in the DB.
     // Negative quantities are in fact codes, -1 indicates that the item is a singleton (non-stackable).
     // If the item happens to be a Blueprint, -1 is an Original and -2 is a Blueprint Copy.
-    private int rawQuantity = 0;
+    private long rawQuantity = 0;
 
     private boolean singleton;
 
@@ -55,11 +55,11 @@ public class ContractItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public int getRawQuantity() {
+    public long getRawQuantity() {
         return rawQuantity;
     }
 
-    public void setRawQuantity(int rawQuantity) {
+    public void setRawQuantity(long rawQuantity) {
         this.rawQuantity = rawQuantity;
     }
 

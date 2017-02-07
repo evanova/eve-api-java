@@ -26,6 +26,7 @@ public final class WalletTransactionsParser extends EveAPIParser<WalletTransacti
         attributes.put("stationName", "stationName");
         attributes.put("transactionType", "type");
         attributes.put("transactionFor", "target");
+        attributes.put("journalTransactionID", "journalID");
     }
 
     public WalletTransactionsParser() {

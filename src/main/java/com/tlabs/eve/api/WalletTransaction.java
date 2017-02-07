@@ -11,6 +11,8 @@ public class WalletTransaction implements Serializable {
     private long when;
     private long id;
 
+    private long journalID;
+
     private String typeName;
     private long typeID;
 
@@ -113,4 +115,11 @@ public class WalletTransaction implements Serializable {
         this.type = type;
     }
 
+    public long getJournalID() {
+        return journalID;
+    }
+
+    public void setJournalID(long journalId) {
+        this.journalID = journalId;
+    }
 }

@@ -5,7 +5,9 @@ import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleDirectedGraph;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +29,11 @@ public final class UniverseMap extends SimpleDirectedGraph<SolarSystem, Jump> {
 
     public UniverseMap() {
         super(new UniverseEdgeFactory());
-        this.solarSystems = new HashMap<>();
+        this.solarSystems = new LinkedHashMap<>();
+    }
+
+    public Map<Long, SolarSystem> getSolarSystems() {
+        return Collections.unmodifiableMap(solarSystems);
     }
 
     @Override
