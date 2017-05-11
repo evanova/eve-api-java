@@ -7,7 +7,7 @@ import com.tlabs.eve.parser.BaseRule;
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
-
+@Deprecated //since ESI
 public class NamesParser extends EveAPIParser<NamesResponse> {
 
     private static final class SetKeyRule extends BaseRule {

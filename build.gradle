@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'maven'
-    id 'org.hidetake.swagger.generator' version '2.1.2'
-    id "de.undercouch.download" version '3.1.2'
+    id 'org.hidetake.swagger.generator' version '2.4.2'
+    id "de.undercouch.download" version '3.2.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_7
@@ -42,6 +42,8 @@ sourceSets {
 }
 
 dependencies {
+    swaggerCodegen 'io.swagger:swagger-codegen-cli:2.2.1'
+
     compile 'org.slf4j:slf4j-api:1.7.+'
 
     compile "io.swagger:swagger-annotations:1.5.8"

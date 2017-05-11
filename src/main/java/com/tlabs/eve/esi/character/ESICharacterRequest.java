@@ -2,10 +2,14 @@ package com.tlabs.eve.esi.character;
 
 import com.tlabs.eve.esi.ESIRequest;
 
-abstract class ESICharacterRequest<T extends ESICharacterResponse> extends ESIRequest<T> {
+public abstract class ESICharacterRequest<T extends ESICharacterResponse> extends ESIRequest<T> implements ESIRequest.Authenticated {
 
-    public ESICharacterRequest(final Class<T> tClass, final long charID, final String path) {
-        super(tClass, "/characters/{charID}" + path);
+    public ESICharacterRequest(
+            final Class<T> tClass,
+            final long charID,
+            final String path,
+            final String scope) {
+        super(tClass, "/characters/{charID}" + path, scope);
         putParam("charID", charID);
     }
 

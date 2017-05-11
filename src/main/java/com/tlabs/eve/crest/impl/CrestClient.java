@@ -7,7 +7,8 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.tlabs.eve.crest.CrestAccess;
 import com.tlabs.eve.crest.CrestService;
-import com.tlabs.eve.crest.model.CrestToken;
+import com.tlabs.eve.net.EveStore;
+import com.tlabs.eve.net.EveToken;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,30 +17,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public final class CrestClient {
-
-    private static final CrestStore STORE = new CrestStore() {
-        private Map<String, CrestToken> map = new HashMap<>();
-
-        @Override
-        public void save(CrestToken token) {
-            this.map.put(token.getRefreshToken(), token);
-        }
-
-        @Override
-        public void delete(String refresh) {
-            this.map.remove(refresh);
-        }
-
-        @Override
-        public CrestToken get(String refresh) {
-            return this.map.get(refresh);
-        }
-    };
 
     private static final Logger LOG = LoggerFactory.getLogger(CrestClient.class);
 
@@ -72,7 +52,7 @@ public final class CrestClient {
     public static final class Builder {
 
         private final List<String> scopes;
-        private CrestStore store = STORE;
+        private EveStore store = EveStore.DEFAULT;
 
         private String loginHost = TQ_LOGIN;
         private String crestHost = SISI_LOGIN;
@@ -90,7 +70,7 @@ public final class CrestClient {
             this.scopes.addAll(Arrays.asList(CrestAccess.PUBLIC_SCOPES));
         }
 
-        public CrestClient.Builder store(final CrestStore store) {
+        public CrestClient.Builder store(final EveStore store) {
             this.store = store;
             return this;
         }
@@ -159,7 +139,7 @@ public final class CrestClient {
 
     private final String userAgent;
 
-    private final CrestStore store;
+    private final EveStore store;
     private final long timeout;
     private CrestClient(
             final String loginHost,
@@ -168,7 +148,7 @@ public final class CrestClient {
             final String clientKey,
             final String callback,
             final String userAgent,
-            final CrestStore store,
+            final EveStore store,
             final long timeout,
             final String... scopes) {
 
@@ -223,7 +203,7 @@ public final class CrestClient {
         return this.oAuth.getAuthorizationUrl();
     }
 
-    public CrestToken fromAuthCode(final String authCode) {
+    public EveToken fromAuthCode(final String authCode) {
         try {
             final OAuth2AccessToken token = this.oAuth.getAccessToken(authCode);
             return save(token);
@@ -234,9 +214,9 @@ public final class CrestClient {
         }
     }
 
-    public CrestToken fromRefresh(final String refresh) {
+    public EveToken fromRefresh(final String refresh) {
         try {
-            CrestToken existing = this.store.get(refresh);
+            EveToken existing = this.store.get(refresh);
             if ((null == existing) || (existing.getExpiresOn() < (System.currentTimeMillis() - 5 * 1000))) {
                 final OAuth2AccessToken token = this.oAuth.refreshAccessToken(refresh);
                 return save(token);
@@ -257,9 +237,9 @@ public final class CrestClient {
         return new CrestRetrofit(this.crestHost, this.loginHost, this.oAuth, this.store, this.userAgent, this.timeout, refresh);
     }
 
-    private CrestToken save(final OAuth2AccessToken token) {
-        CrestToken returned =
-                new CrestToken()
+    private EveToken save(final OAuth2AccessToken token) {
+        EveToken returned =
+                new EveToken()
                         .setAccessToken(token.getAccessToken())
                         .setRefreshToken(token.getRefreshToken())
                         .setTokenType(token.getTokenType())

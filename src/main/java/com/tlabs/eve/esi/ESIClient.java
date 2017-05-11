@@ -5,7 +5,8 @@ import com.github.scribejava.core.exceptions.OAuthException;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.tlabs.eve.esi.impl.ESIRetrofit;
-import com.tlabs.eve.esi.model.ESIToken;
+import com.tlabs.eve.net.EveStore;
+import com.tlabs.eve.net.EveToken;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -13,9 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ESIClient {
 
@@ -25,26 +24,6 @@ public class ESIClient {
     private static final String ESI = "esi.tech.ccp.is/latest";
 
     private static final String AGENT = "eve-esi-java (https://github.com/evanova/eve-esi-java)";
-
-    private static final ESIStore STORE = new ESIStore() {
-        private Map<String, ESIToken> map = new HashMap<>();
-
-        @Override
-        public void save(ESIToken token) {
-            this.map.put(token.getRefreshToken(), token);
-        }
-
-        @Override
-        public void delete(String refresh) {
-            this.map.remove(refresh);
-        }
-
-        @Override
-        public ESIToken get(String refresh) {
-            return this.map.get(refresh);
-        }
-    };
-
 
     private static final class ESIOAuth extends com.github.scribejava.core.builder.api.DefaultApi20 {
         private final String loginHost;
@@ -67,7 +46,7 @@ public class ESIClient {
     public static final class Builder {
 
         private final List<String> scopes;
-        private ESIStore store = STORE;
+        private EveStore store = EveStore.DEFAULT;
 
         private String loginHost = LOGIN;
         private String esiHost = ESI;
@@ -83,7 +62,7 @@ public class ESIClient {
             this.scopes = new ArrayList<>();
         }
 
-        public ESIClient.Builder store(final ESIStore store) {
+        public ESIClient.Builder store(final EveStore store) {
             this.store = store;
             return this;
         }
@@ -153,7 +132,7 @@ public class ESIClient {
 
     private final String userAgent;
 
-    private final ESIStore store;
+    private final EveStore store;
     private final long timeout;
 
     private ESIClient(
@@ -163,7 +142,7 @@ public class ESIClient {
             final String clientKey,
             final String callback,
             final String userAgent,
-            final ESIStore store,
+            final EveStore store,
             final long timeout,
             final String... scopes) {
 
@@ -206,7 +185,7 @@ public class ESIClient {
         return this.oAuth.getAuthorizationUrl();
     }
 
-    public ESIToken fromAuthCode(final String authCode) {
+    public EveToken fromAuthCode(final String authCode) {
         try {
             final OAuth2AccessToken token = this.oAuth.getAccessToken(authCode);
             return save(token);
@@ -217,9 +196,9 @@ public class ESIClient {
         }
     }
 
-    public ESIToken fromRefresh(final String refresh) {
+    public EveToken fromRefresh(final String refresh) {
         try {
-            ESIToken existing = this.store.get(refresh);
+            EveToken existing = this.store.get(refresh);
             if ((null == existing) || (existing.getExpiresOn() < (System.currentTimeMillis() - 5 * 1000))) {
                 final OAuth2AccessToken token = this.oAuth.refreshAccessToken(refresh);
                 return save(token);
@@ -240,9 +219,9 @@ public class ESIClient {
         return new ESIRetrofit(this.esiHost, this.loginHost, this.oAuth, this.store, this.userAgent, this.timeout, refresh);
     }
 
-    private ESIToken save(final OAuth2AccessToken token) {
-        ESIToken returned =
-                new ESIToken()
+    private EveToken save(final OAuth2AccessToken token) {
+        EveToken returned =
+                new EveToken()
                         .setAccessToken(token.getAccessToken())
                         .setRefreshToken(token.getRefreshToken())
                         .setTokenType(token.getTokenType())

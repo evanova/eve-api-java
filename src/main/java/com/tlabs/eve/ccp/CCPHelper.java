@@ -28,6 +28,7 @@ final class CCPHelper {
     static {
         parserMap = new HashMap<>();
         parserMap.put(EveRSSRequest.class, EveRSSParser.class);
+        parserMap.put(CharacterStatisticsRequest.class, CharacterStatisticsParser.class);
         parserMap.put(CorporationLogoRequest.class, LogoParser.class);
         parserMap.put(PortraitRequest.class, PortraitParser.class);
     }

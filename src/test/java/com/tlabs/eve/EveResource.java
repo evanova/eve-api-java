@@ -110,7 +110,7 @@ public class EveResource extends ExternalResource {
     protected final <T extends EveResponse> T execute(final EveRequest<T> request, final ApiKey apiKey) {
         if (request instanceof EveAPIRequest.Authenticated) {
             if (nullApiKey(apiKey)) {
-                Assert.assertTrue(request instanceof EveAPIRequest.Public);
+                Assert.assertTrue(!(request instanceof EveAPIRequest.Authenticated));
             }
             else {
                 Assert.assertTrue(

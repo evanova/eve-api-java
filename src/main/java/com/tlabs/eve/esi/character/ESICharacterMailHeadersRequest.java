@@ -7,7 +7,11 @@ public final class ESICharacterMailHeadersRequest extends ESICharacterRequest<ES
     }
 
     public ESICharacterMailHeadersRequest(final long charID, final long lastMailID) {
-        super(ESICharacterMailHeadersResponse.class, charID, "/mail/");
+        super(
+                ESICharacterMailHeadersResponse.class,
+                charID,
+                "/mail/",
+                "esi-mail.read_mail.v1");
         if (lastMailID > 0) {
             putParam("last_mail_id", lastMailID);
         }

@@ -1,170 +1,93 @@
 package com.tlabs.eve.esi.impl;
 
-import com.github.scribejava.core.exceptions.OAuthException;
-import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.google.gson.Gson;
+import com.tlabs.eve.esi.model.ESIName;
+import com.tlabs.eve.esi.model.ESIServerStatus;
+import com.tlabs.eve.esi.ESIService;
 import com.tlabs.eve.esi.model.ESICalendar;
 import com.tlabs.eve.esi.model.ESICharacter;
-import com.tlabs.eve.esi.model.ESICorporation;
-import com.tlabs.eve.esi.model.ESIMailbox;
-import com.tlabs.eve.esi.ESIService;
-import com.tlabs.eve.esi.ESIStore;
-import com.tlabs.eve.esi.model.ESIShip;
-import com.tlabs.eve.esi.model.ESIToken;
+import com.tlabs.eve.esi.model.ESICharacterStatus;
+import com.tlabs.eve.esi.model.ESIFitting;
 import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
-import okhttp3.Interceptor;
+import com.tlabs.eve.esi.model.ESIMailbox;
+import com.tlabs.eve.esi.model.ESIShip;
+import com.tlabs.eve.net.EveRetrofit;
+import com.tlabs.eve.net.EveStore;
+import com.tlabs.eve.net.EveToken;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import retrofit2.Converter;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class ESIRetrofit implements ESIService {
+public class ESIRetrofit extends EveRetrofit implements ESIService {
 
+
+    private interface VerifyService {
+        @GET("/oauth/verify")
+        Call<ESICharacterStatus> getVerification(@Header("Authorization") String token);
+    }
+
+    private static final String SOURCE = "tranquility";
     private static final Logger LOG = LoggerFactory.getLogger(ESIRetrofit.class);
 
-    private static final class ClientInterceptor implements Interceptor {
-        private final ESIRetrofit cr;
+    private final PublicRetrofit rPublic;
+    private final CharacterRetrofit rCharacter;
+    private final CorporationRetrofit rCorporation;
+    private final MailRetrofit rMail;
+    private final FittingRetrofit rFitting;
+    private final ContactRetrofit rContact;
 
-        public ClientInterceptor(ESIRetrofit cr) {
-            this.cr = cr;
-        }
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request.Builder builder =
-                    chain
-                        .request()
-                        .newBuilder();
-            final ESIToken token = cr.store.get(cr.refresh);
-            if (null != token) {
-                builder.addHeader("Authorization", "Bearer " + token.getAccessToken());
-            }
-            return chain.proceed(builder.build());
-        }
-    }
-
-    private static final class RetryInterceptor implements Interceptor {
-        private final ESIRetrofit cr;
-
-        public RetryInterceptor(ESIRetrofit cr) {
-            this.cr = cr;
-        }
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Response r = chain.proceed(chain.request());
-            if (r.isSuccessful()) {
-                return r;
-            }
-            if (r.body().string().contains("invalid_token")) {
-                cr.refreshToken();
-                r = chain.proceed(chain.request());
-            }
-            return r;
-        }
-    }
-
-    private static final class UserAgentInterceptor implements  Interceptor {
-        private final String host;
-        private final String agent;
-
-        public UserAgentInterceptor(String host, String agent) {
-            this.host = host;
-            this.agent = agent;
-        }
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request.Builder builder =
-                    chain
-                            .request()
-                            .newBuilder()
-                            .addHeader("Host", host)
-                            .addHeader("User-Agent", agent);
-            return chain.proceed(builder.build());
-        }
-    }
-
-    private final CharacterRetrofit characterApi;
-    private final CorporationRetrofit corporationApi;
-    private final MailRetrofit mailAPIApi;
-    private final ContactRetrofit contactApi;
-
-    private final String host;
-
-    private final OAuth20Service oAuth;
-    private final ESIStore store;
-    private final String refresh;
+    private final VerifyService verify;
 
     public ESIRetrofit(
             final String host,
             final String login,
             final OAuth20Service oAuth,
-            final ESIStore store,
+            final EveStore store,
             final String agent,
             final long timeout,
             final String refresh) {
 
-        Validate.isTrue(StringUtils.isNotBlank(host), "host parameter cannot be empty.");
-        Validate.isTrue(StringUtils.isNotBlank(login), "login parameter cannot be empty.");
-        Validate.isTrue(StringUtils.isNotBlank(agent), "agent parameter cannot be empty.");
+        super(host, login, oAuth, store, agent, timeout, refresh, ESIConverters.gson());
 
-        Validate.notNull(oAuth, "oAuth parameter cannot be null.");
-        Validate.notNull(store, "store parameter cannot be null.");
+        this.rPublic = new PublicRetrofit(getRetrofit(), SOURCE);
+        this.rCharacter = new CharacterRetrofit(getRetrofit(), SOURCE);
+        this.rCorporation = new CorporationRetrofit(getRetrofit(), SOURCE);
+        this.rMail = new MailRetrofit(getRetrofit(), SOURCE);
+        this.rContact = new ContactRetrofit(getRetrofit(), SOURCE);
+        this.rFitting = new FittingRetrofit(getRetrofit(), SOURCE);
 
-        this.host = host;
-        this.store = store;
-        this.refresh = refresh;
-        this.oAuth = oAuth;
-
-        OkHttpClient.Builder retrofitClient =
+        OkHttpClient.Builder verifyClient =
                 new OkHttpClient.Builder()
-                        .readTimeout(timeout, TimeUnit.MILLISECONDS)
-                        .addInterceptor(new UserAgentInterceptor(host, agent))
-                        .addInterceptor(new ClientInterceptor(this))
-                        .addInterceptor(new RetryInterceptor(this));
+                        .addInterceptor(new UserAgentInterceptor(login, agent));
         if (LOG.isDebugEnabled()) {
-            retrofitClient = retrofitClient
-                    .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+            verifyClient = verifyClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         }
 
-        final Gson gson = new Gson();
-        final Converter.Factory mapper = GsonConverterFactory.create(gson);
-
-        Retrofit rf =
-                new Retrofit.Builder()
-                        .baseUrl("https://" + host + "/")
-                        .addConverterFactory(mapper)
-                        .client(retrofitClient.build())
-                        .build();
-
-        this.characterApi = new CharacterRetrofit(rf, "tranquility");
-        this.corporationApi = new CorporationRetrofit(rf, "tranquility");
-        this.mailAPIApi = new MailRetrofit(rf, "tranquility");
-        this.contactApi = new ContactRetrofit(rf, "tranquility");
+        this.verify =
+            new Retrofit.Builder()
+                    .baseUrl("https://" + login + "/")
+                    .addConverterFactory(ESIConverters.jackson())
+                    .client(verifyClient.build())
+                    .build()
+                    .create(VerifyService.class);
     }
 
     @Override
-    public ESICharacter getCharacter(Long charID) {
+    public ESIServerStatus getServerStatus() {
         try {
-            verify();
-            return this.characterApi.getCharacter(charID);
+            return this.rPublic.getServerStatus();
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -173,10 +96,9 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public ESILocation getCharacterLocation(Long charID) {
+    public List<ESIName> getNames(List<Long> ids) {
         try {
-            verify();
-            return this.characterApi.getCharacterLocation(charID);
+            return this.rPublic.getNames(ids);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -185,10 +107,9 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public ESIShip getCharacterShip(Long charID) {
+    public ESICharacterStatus getCharacterStatus() {
         try {
-            verify();
-            return this.characterApi.getCharacterShip(charID);
+            return verifyCharacterStatus();
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -197,10 +118,46 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public ESICalendar getCalendar(Long charID, Long afterEventID) {
+    public ESICharacter getCharacter() {
         try {
-            verify();
-            return this.characterApi.getCalendar(charID, afterEventID);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rCharacter.getCharacter(status.getCharacterID());
+        }
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public ESILocation getCharacterLocation() {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rCharacter.getCharacterLocation(status.getCharacterID());
+        }
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public ESIShip getCharacterShip() {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rCharacter.getCharacterShip(status.getCharacterID());
+        }
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public ESICalendar getCalendar(Long afterEventID) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rCharacter.getCalendar(status.getCharacterID(), afterEventID);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -210,10 +167,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public boolean postCalendarEvent(Long charID, Long eventID, ESICalendar.Event.Response response) {
+    public boolean postCalendarEvent(Long eventID, ESICalendar.Event.Response response) {
         try {
-            verify();
-            return this.characterApi.postCalendarEvent(charID, eventID, response);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rCharacter.postCalendarEvent(status.getCharacterID(), eventID, response);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -222,22 +179,23 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public ESICorporation getCorporation(Long corpID) {
+    public boolean deleteMail(Long mailID) {
         try {
-            verify();
-            return this.corporationApi.getCorporation(corpID);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.deleteMail(status.getCharacterID(), mailID);
+
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
-            return null;
+            return false;
         }
     }
 
     @Override
-    public List<ESICorporation.Member> getMembers(Long corpID) {
+    public List<ESIMail> getMails(Long afterMailID, String... labels) {
         try {
-            verify();
-            return this.corporationApi.getMembers(corpID);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.getMails(status.getCharacterID(), afterMailID, labels);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -246,23 +204,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public boolean deleteMail(Long charID, Long mailID) {
+    public List<ESIMailbox> getMailboxes() {
         try {
-            verify();
-            return this.mailAPIApi.deleteMail(charID, mailID);
-
-        }
-        catch (IOException e) {
-            LOG.error(e.getLocalizedMessage(), e);
-            return false;
-        }
-    }
-
-    @Override
-    public List<ESIMail> getMails(Long charID, Long afterMailID, String... labels) {
-        try {
-            verify();
-            return this.mailAPIApi.getMails(charID, afterMailID, labels);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.getMailboxes(status.getCharacterID());
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage(), e);
@@ -271,22 +216,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public List<ESIMailbox> getMailboxes(Long charID) {
+    public ESIMail getMailContent(Long mailID) {
         try {
-            verify();
-            return this.mailAPIApi.getMailboxes(charID);
-        }
-        catch (IOException e) {
-            LOG.error(e.getLocalizedMessage(), e);
-            return Collections.emptyList();
-        }
-    }
-
-    @Override
-    public ESIMail getMailContent(Long charID, Long mailID) {
-        try {
-            verify();
-            return this.mailAPIApi.getMailContent(charID, mailID);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.getMailContent(status.getCharacterID(), mailID);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -295,10 +228,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public Integer postMail(Long charID, ESIMail mail) {
+    public Integer postMail(ESIMail mail) {
         try {
-            verify();
-            return this.mailAPIApi.postMail(charID, mail);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.postMail(status.getCharacterID(), mail);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -307,10 +240,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public boolean updateMail(Long charID, ESIMail mail) {
+    public boolean updateMail(ESIMail mail) {
         try {
-            verify();
-            return this.mailAPIApi.updateMail(charID, mail);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.updateMail(status.getCharacterID(), mail);
 
         }
         catch (IOException e) {
@@ -320,10 +253,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public boolean createMailbox(Long charID, ESIMailbox mailbox) {
+    public boolean createMailbox(ESIMailbox mailbox) {
         try {
-            verify();
-            return this.mailAPIApi.createMailbox(charID, mailbox);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.createMailbox(status.getCharacterID(), mailbox);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -332,10 +265,10 @@ public class ESIRetrofit implements ESIService {
     }
 
     @Override
-    public List<ESIKillMail> getKillMails(Long charID, Integer maxCount, Long maxKillID, boolean withContent) {
+    public List<ESIKillMail> getKillMails(Integer maxCount, Long maxKillID, boolean withContent) {
         try {
-            verify();
-            return this.mailAPIApi.getKillMails(charID, maxCount, maxKillID, withContent);
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rMail.getKillMails(status.getCharacterID(), maxCount, maxKillID, withContent);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -346,8 +279,7 @@ public class ESIRetrofit implements ESIService {
     @Override
     public ESIKillMail getKillMail(ESIKillMail killMail) {
         try {
-            verify();
-            return this.mailAPIApi.getKillMail(killMail);
+            return this.rMail.getKillMail(killMail);
         }
         catch (IOException e) {
             LOG.error(e.getLocalizedMessage());
@@ -355,43 +287,48 @@ public class ESIRetrofit implements ESIService {
         }
     }
 
-    private void verify() throws IOException {
+    @Override
+    public List<ESIFitting> getFittings() {
         try {
-            verifyImpl();
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rFitting.getFittings(status.getCharacterID());
         }
-        catch (OAuthException e) {
-            throw new IOException(e);
-        }
-    }
-
-    private void verifyImpl() throws IOException, OAuthException {
-        if (StringUtils.isBlank(this.refresh)) {
-            throw new IOException("No refresh token available");
-        }
-
-        ESIToken stored = this.store.get(this.refresh);
-        if (null == stored) {
-            stored = new ESIToken().setRefreshToken(this.refresh);
-            this.store.save(stored);
-        }
-
-        if (StringUtils.isBlank(stored.getAccessToken())) {
-            updateToken(stored, this.oAuth.refreshAccessToken(this.refresh));
-            this.store.save(stored);
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage());
+            return null;
         }
     }
 
-    private void refreshToken() throws IOException {
-        ESIToken stored = this.store.get(this.refresh);
-        updateToken(stored, this.oAuth.refreshAccessToken(stored.getRefreshToken()));
-        this.store.save(stored);
+    @Override
+    public Long postFitting(final ESIFitting fitting) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rFitting.postFitting(status.getCharacterID(), fitting);
+        }
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
     }
 
-    private static void updateToken(final ESIToken token, OAuth2AccessToken with) {
-        LOG.debug("updateToken {} -> {} ", token.getAccessToken(), with.getAccessToken());
-        token.setAccessToken(with.getAccessToken());
-        token.setExpiresIn(with.getExpiresIn());
-        token.setScope(with.getScope());
-        token.setTokenType(with.getTokenType());
+    @Override
+    public boolean deleteFitting(final Long fittingID) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return this.rFitting.deleteFitting(status.getCharacterID(), fittingID);
+        }
+        catch (IOException e) {
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    private ESICharacterStatus verifyCharacterStatus() throws IOException {
+        final EveToken stored = verify();
+        Response<ESICharacterStatus> r = this.verify.getVerification("Bearer " + stored.getAccessToken()).execute();
+        if (r.isSuccessful()) {
+            return r.body();
+        }
+        throw new IOException(r.message());
     }
 }

@@ -1,7 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
+@Deprecated //use ESI
 public final class ServerStatusResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = -8218485055974441769L;

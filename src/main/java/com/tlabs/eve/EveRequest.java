@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public abstract class EveRequest<T extends EveResponse> {
 
+    public interface Authenticated {}
+
     private final Class<T> responseClass;
     private final String page;
 

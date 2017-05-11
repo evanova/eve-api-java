@@ -1,7 +1,7 @@
 package com.tlabs.eve.api;
 
 
-
+@Deprecated //use ESI
 public final class ServerStatusRequest extends EveAPIRequest<ServerStatusResponse> {
 
     public ServerStatusRequest() {

@@ -11,8 +11,10 @@ final class ZKillHelper {
         parserMap = new HashMap<>();
 
         parserMap.put(ZKillInfoRequest.class, ZKillInfoResponse.class);
-        parserMap.put(ZKillCharacterLogRequest.class, ZKillCharacterLogResponse.class);
-        parserMap.put(ZKillCorporationLogRequest.class, ZKillCorporationLogResponse.class);
+        parserMap.put(ZKillCharacterRequest.class, ZKillResponse.class);
+        parserMap.put(ZKillCorporationRequest.class, ZKillResponse.class);
+        parserMap.put(ZKillRegionRequest.class, ZKillResponse.class);
+        parserMap.put(ZKillSolarSystemRequest.class, ZKillResponse.class);
     }
 
     private ZKillHelper() {}

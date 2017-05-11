@@ -2,8 +2,6 @@ package com.tlabs.eve.crest.impl;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.scribejava.core.exceptions.OAuthException;
-import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.tlabs.eve.crest.CrestService;
 import com.tlabs.eve.crest.model.CrestCharacter;
@@ -20,20 +18,17 @@ import com.tlabs.eve.crest.model.CrestMarketOrder;
 import com.tlabs.eve.crest.model.CrestMarketPrice;
 import com.tlabs.eve.crest.model.CrestServerStatus;
 import com.tlabs.eve.crest.model.CrestSolarSystem;
-import com.tlabs.eve.crest.model.CrestToken;
 import com.tlabs.eve.crest.model.CrestType;
 import com.tlabs.eve.crest.model.CrestWaypoint;
-import okhttp3.Interceptor;
+import com.tlabs.eve.net.EveStore;
+import com.tlabs.eve.net.EveToken;
+import com.tlabs.eve.net.EveRetrofit;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Call;
-import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -44,9 +39,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-final class CrestRetrofit implements CrestService {
+final class CrestRetrofit extends EveRetrofit implements CrestService {
+
+    private static final ObjectMapper JACKSON;
+    static {
+        JACKSON = new ObjectMapper();
+        JACKSON.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
 
     interface VerifyService {
         @GET("/oauth/verify")
@@ -55,98 +55,20 @@ final class CrestRetrofit implements CrestService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CrestRetrofit.class);
 
-    private static final class ClientInterceptor implements Interceptor {
-        private final CrestRetrofit cr;
-
-        public ClientInterceptor(CrestRetrofit cr) {
-            this.cr = cr;
-        }
-
-        @Override
-        public okhttp3.Response intercept(Chain chain) throws IOException {
-            Request.Builder builder =
-                    chain
-                    .request()
-                    .newBuilder();
-            final CrestToken token = cr.store.get(cr.refresh);
-            if (null != token) {
-                builder.addHeader("Authorization", "Bearer " + token.getAccessToken());
-            }
-            return chain.proceed(builder.build());
-        }
-    }
-
-    private static final class UserAgentInterceptor implements  Interceptor {
-        private final String host;
-        private final String agent;
-
-        public UserAgentInterceptor(String host, String agent) {
-            this.host = host;
-            this.agent = agent;
-        }
-
-        @Override
-        public okhttp3.Response intercept(Chain chain) throws IOException {
-            Request.Builder builder =
-                    chain
-                        .request()
-                        .newBuilder()
-                        .addHeader("Host", host)
-                        .addHeader("User-Agent", agent);
-            return chain.proceed(builder.build());
-        }
-    }
-
     private final CrestRetrofitService retrofit;
     private final VerifyService verify;
-
-    private final String host;
-
-    private final OAuth20Service oAuth;
-    private final CrestStore store;
-    private final String refresh;
 
     protected CrestRetrofit(
             final String host,
             final String login,
             final OAuth20Service oAuth,
-            final CrestStore store,
+            final EveStore store,
             final String agent,
-            final long timeoutInMillis,
+            final long timeout,
             final String refresh) {
+        super(host, login, oAuth, store, agent, timeout, refresh, JacksonConverterFactory.create(JACKSON));
 
-        Validate.isTrue(StringUtils.isNotBlank(host), "host parameter cannot be empty.");
-        Validate.isTrue(StringUtils.isNotBlank(login), "login parameter cannot be empty.");
-        Validate.isTrue(StringUtils.isNotBlank(agent), "agent parameter cannot be empty.");
-
-        Validate.notNull(oAuth, "oAuth parameter cannot be null.");
-        Validate.notNull(store, "store parameter cannot be null.");
-
-        this.host = host;
-        this.store = store;
-        this.refresh = refresh;
-        this.oAuth = oAuth;
-
-        OkHttpClient.Builder retrofitClient =
-                new OkHttpClient.Builder()
-                        .readTimeout(timeoutInMillis, TimeUnit.MILLISECONDS)
-                        .addInterceptor(new UserAgentInterceptor(host, agent))
-                        .addInterceptor(new ClientInterceptor(this));
-        if (LOG.isDebugEnabled()) {
-            retrofitClient = retrofitClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-        }
-
-        final ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        final Converter.Factory jackson = JacksonConverterFactory.create(mapper);
-
-        this.retrofit =
-                new Retrofit.Builder()
-                .baseUrl("https://" + host + "/")
-                .addConverterFactory(jackson)
-                .client(retrofitClient.build())
-                .build()
-                .create(CrestRetrofitService.class);
+        this.retrofit = getRetrofit().create(CrestRetrofitService.class);
 
         OkHttpClient.Builder verifyClient =
                 new OkHttpClient.Builder()
@@ -157,7 +79,7 @@ final class CrestRetrofit implements CrestService {
         this.verify =
                 new Retrofit.Builder()
                 .baseUrl("https://" + login + "/")
-                .addConverterFactory(jackson)
+                .addConverterFactory(JacksonConverterFactory.create(JACKSON))
                 .client(verifyClient.build())
                 .build()
                 .create(VerifyService.class);
@@ -544,7 +466,7 @@ final class CrestRetrofit implements CrestService {
     private String href(String path) {
         return new StringBuilder()
                 .append("https://")
-                .append(this.host)
+                .append(getHost())
                 .append("/")
                 .append(path)
                 .append("/")
@@ -552,49 +474,12 @@ final class CrestRetrofit implements CrestService {
     }
 
     private CrestCharacterStatus verifyCharacterStatus() throws IOException {
-        try {
-            return verifyCharacterStatus(true);
-        }
-        catch (OAuthException e) {
-            throw new IOException(e);
-        }
-    }
-
-    private CrestCharacterStatus verifyCharacterStatus(boolean retry) throws IOException, OAuthException {
-        if (StringUtils.isBlank(this.refresh)) {
-            throw new IOException("No refresh token available");
-        }
-
-        CrestToken stored = this.store.get(this.refresh);
-        if (null == stored) {
-            stored = new CrestToken().setRefreshToken(this.refresh);
-            this.store.save(stored);
-        }
-
-        if (StringUtils.isBlank(stored.getAccessToken())) {
-            updateToken(stored, this.oAuth.refreshAccessToken(this.refresh));
-            this.store.save(stored);
-        }
-
+        final EveToken stored = verify();
         Response<CrestCharacterStatus> r = this.verify.getVerification("Bearer " + stored.getAccessToken()).execute();
         if (r.isSuccessful()) {
             return r.body();
         }
-        if (r.errorBody().string().contains("invalid_token")) {
-            updateToken(stored, this.oAuth.refreshAccessToken(stored.getRefreshToken()));
-            this.store.save(stored);
-            if (retry) {
-                return verifyCharacterStatus(false);
-            }
-        }
         throw new IOException(r.message());
     }
 
-    private static void updateToken(final CrestToken token, OAuth2AccessToken with) {
-        LOG.debug("updateToken {} -> {} ", token.getAccessToken(), with.getAccessToken());
-        token.setAccessToken(with.getAccessToken());
-        token.setExpiresIn(with.getExpiresIn());
-        token.setScope(with.getScope());
-        token.setTokenType(with.getTokenType());
-    }
 }

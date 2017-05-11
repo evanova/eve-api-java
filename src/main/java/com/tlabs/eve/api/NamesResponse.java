@@ -4,7 +4,7 @@ package com.tlabs.eve.api;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@Deprecated //since ESI
 public final class NamesResponse extends EveAPIResponse {
 
     private static final long serialVersionUID = -8548006791679363095L;

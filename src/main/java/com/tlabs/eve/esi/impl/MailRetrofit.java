@@ -39,7 +39,8 @@ final class MailRetrofit {
             .deleteCharactersCharacterIdMailMailId(
                 charID.intValue(),
                 mailID.intValue(),
-                this.datasource)
+                this.datasource,
+                null, null, null)
             .execute()
             .isSuccessful();
     }
@@ -54,9 +55,10 @@ final class MailRetrofit {
         final Response<List<GetCharactersCharacterIdMail200Ok>> r =
                 this.mailApi.getCharactersCharacterIdMail(
                         charID.intValue(),
+                        this.datasource,
                         params,
                         (null == afterMailID) ? null : afterMailID.intValue(),
-                        this.datasource)
+                        null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -71,7 +73,10 @@ final class MailRetrofit {
 
     public List<ESIMailbox> getMailboxes(Long charID) throws IOException {
         final Response<GetCharactersCharacterIdMailLabelsOk> r =
-                mailApi.getCharactersCharacterIdMailLabels(charID.intValue(), this.datasource)
+                mailApi.getCharactersCharacterIdMailLabels(
+                        charID.intValue(),
+                        this.datasource,
+                        null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -95,7 +100,8 @@ final class MailRetrofit {
                 mailApi.getCharactersCharacterIdMailMailId(
                         charID.intValue(),
                         mailID.intValue(),
-                        this.datasource)
+                        this.datasource,
+                        null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -108,7 +114,8 @@ final class MailRetrofit {
                 mailApi.postCharactersCharacterIdMail(
                         charID.intValue(),
                         MailTransformer.transform(mail),
-                        this.datasource)
+                        this.datasource,
+                        null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -119,9 +126,10 @@ final class MailRetrofit {
     public boolean updateMail(Long charID, ESIMail mail) throws IOException {
         return mailApi.putCharactersCharacterIdMailMailId(
                 charID.intValue(),
-                mail.getId().intValue(),
                 MailTransformer.transform2(mail),
-                this.datasource)
+                mail.getId().intValue(),
+                this.datasource,
+                null, null, null)
                 .execute()
                 .isSuccessful();
     }
@@ -139,7 +147,12 @@ final class MailRetrofit {
     public List<ESIKillMail> getKillMails(Long charID, Integer maxCount, Long maxKillID, boolean withContent) throws IOException {
         final Response<List<GetCharactersCharacterIdKillmailsRecent200Ok>> r =
                 killMailApi
-                    .getCharactersCharacterIdKillmailsRecent(charID.intValue(), maxCount, maxKillID.intValue(), this.datasource)
+                    .getCharactersCharacterIdKillmailsRecent(
+                            charID.intValue(),
+                            this.datasource,
+                            maxCount,
+                            maxKillID.intValue(),
+                            null, null, null)
                     .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -159,7 +172,11 @@ final class MailRetrofit {
     public ESIKillMail getKillMail(ESIKillMail killMail) throws IOException {
         final Response<GetKillmailsKillmailIdKillmailHashOk> r =
                 killMailApi
-                .getKillmailsKillmailIdKillmailHash(killMail.getId().intValue(), killMail.getHash(), this.datasource)
+                .getKillmailsKillmailIdKillmailHash(
+                        killMail.getHash(),
+                        killMail.getId().intValue(),
+                        this.datasource,
+                        null, null)
                 .execute();
         if (!r.isSuccessful()) {
             return null;

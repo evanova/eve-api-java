@@ -1,8 +1,13 @@
-package com.tlabs.eve.esi.model;
+package com.tlabs.eve.net;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public final class ESIToken {
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public final class EveToken {
 
     @JsonProperty("access_token")
     private String accessToken;
@@ -25,7 +30,7 @@ public final class ESIToken {
         return accessToken;
     }
 
-	public ESIToken setAccessToken(final String token) {
+	public EveToken setAccessToken(final String token) {
 		this.accessToken = token;
         return this;
 	}
@@ -34,7 +39,7 @@ public final class ESIToken {
         return tokenType;
     }
 
-	public ESIToken setTokenType(String tokenType) {
+	public EveToken setTokenType(String tokenType) {
 		this.tokenType = tokenType;
         return this;
 	}
@@ -43,7 +48,7 @@ public final class ESIToken {
         return scope;
     }
 
-    public ESIToken setScope(String scope) {
+    public EveToken setScope(String scope) {
         this.scope = scope;
         return this;
     }
@@ -60,12 +65,12 @@ public final class ESIToken {
         return refreshToken;
     }
 
-    public ESIToken setRefreshToken(final String token) {
+    public EveToken setRefreshToken(final String token) {
 		this.refreshToken = token;
         return this;
 	}
 
-    public ESIToken setExpiresIn(long expiresIn) {
+    public EveToken setExpiresIn(long expiresIn) {
         this.expiresIn = expiresIn;
         return this;
     }

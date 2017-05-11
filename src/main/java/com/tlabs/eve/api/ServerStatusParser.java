@@ -5,7 +5,7 @@ package com.tlabs.eve.api;
 import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.parser.SetElementPropertyRule;
 
-
+@Deprecated //since ESI
 public final class ServerStatusParser extends EveAPIParser<ServerStatusResponse> {
 
     public ServerStatusParser() {

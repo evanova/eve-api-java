@@ -1,8 +1,11 @@
 package com.tlabs.eve.esi;
 
+import com.tlabs.eve.esi.model.ESIName;
+import com.tlabs.eve.esi.model.ESIServerStatus;
 import com.tlabs.eve.esi.model.ESICalendar;
 import com.tlabs.eve.esi.model.ESICharacter;
-import com.tlabs.eve.esi.model.ESICorporation;
+import com.tlabs.eve.esi.model.ESICharacterStatus;
+import com.tlabs.eve.esi.model.ESIFitting;
 import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
@@ -14,39 +17,43 @@ import java.util.List;
 /** Facade toward all ESI APIs.*/
 public interface ESIService {
 
-    ESICharacter getCharacter(final Long charID);
+    ESIServerStatus getServerStatus();
 
-    ESILocation getCharacterLocation(final Long charID);
+    List<ESIName> getNames(final List<Long> ids);
 
-    ESIShip getCharacterShip(final Long charID);
+    ESICharacterStatus getCharacterStatus();
 
-    ESICalendar getCalendar(final Long charID, final Long afterEventID);
+    ESICharacter getCharacter();
 
-    boolean postCalendarEvent(Long charID, Long eventID, ESICalendar.Event.Response response);
+    ESILocation getCharacterLocation();
 
-    ESICorporation getCorporation(final Long corpID);
+    ESIShip getCharacterShip();
 
-    List<ESICorporation.Member> getMembers(final Long corpID);
+    ESICalendar getCalendar(final Long afterEventID);
 
-    // Corporation getCorporation(final long corpID);
+    boolean postCalendarEvent(Long eventID, ESICalendar.Event.Response response);
 
-    //BookmarkFolder getBookmarks();
+    boolean deleteMail(final Long mailID);
 
-    boolean deleteMail(final Long charID, final Long mailID);
+    List<ESIMail> getMails(final Long afterMailID, final String... labels);
 
-    List<ESIMail> getMails(final Long charID, final Long afterMailID, final String... labels);
+    List<ESIMailbox> getMailboxes();
 
-    List<ESIMailbox> getMailboxes(final Long charID);
+    ESIMail getMailContent(final Long mailID);
 
-    ESIMail getMailContent(final Long charID, final Long mailID);
+    Integer postMail(final ESIMail mail);
 
-    Integer postMail(final Long charID, final ESIMail mail);
+    boolean updateMail(final ESIMail mail);
 
-    boolean updateMail(final Long charID, final ESIMail mail);
+    boolean createMailbox(final ESIMailbox mailbox);
 
-    boolean createMailbox(final Long charID, final ESIMailbox mailbox);
-
-    List<ESIKillMail> getKillMails(Long charID, Integer maxCount, Long maxKillID, boolean withContent);
+    List<ESIKillMail> getKillMails(Integer maxCount, Long maxKillID, boolean withContent);
 
     ESIKillMail getKillMail(final ESIKillMail killMail);
+
+    List<ESIFitting> getFittings();
+
+    Long postFitting(final ESIFitting fitting);
+
+    boolean deleteFitting(final Long fittingID);
 }

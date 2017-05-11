@@ -27,7 +27,10 @@ final class CorporationRetrofit {
     public ESICorporation getCorporation(Long corpID) throws IOException {
         final Response<GetCorporationsCorporationIdOk> r =
                 this.corporationApi
-                        .getCorporationsCorporationId(corpID.intValue(), this.datasource)
+                        .getCorporationsCorporationId(
+                                corpID.intValue(),
+                                this.datasource,
+                                null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -41,7 +44,10 @@ final class CorporationRetrofit {
 
     public List<ESICorporation.Member> getMembers(Long corpID) throws IOException {
         final Response<List<GetCorporationsCorporationIdMembers200Ok>> r =
-                this.corporationApi.getCorporationsCorporationIdMembers(corpID.intValue(), this.datasource)
+                this.corporationApi.getCorporationsCorporationIdMembers(
+                        corpID.intValue(),
+                        this.datasource,
+                        null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -58,7 +64,10 @@ final class CorporationRetrofit {
     private void addPortraits(final ESICorporation to) throws IOException {
         final Response<GetCorporationsCorporationIdIconsOk> r =
                 this.corporationApi
-                        .getCorporationsCorporationIdIcons(to.getId().intValue(), this.datasource)
+                        .getCorporationsCorporationIdIcons(
+                                to.getId().intValue(),
+                                this.datasource,
+                                null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return;
@@ -73,7 +82,10 @@ final class CorporationRetrofit {
     private void addHistory(final ESICorporation to) throws IOException {
         final Response<List<GetCorporationsCorporationIdAlliancehistory200Ok>> r =
                 this.corporationApi
-                        .getCorporationsCorporationIdAlliancehistory(to.getId().intValue(), this.datasource)
+                        .getCorporationsCorporationIdAlliancehistory(
+                                to.getId().intValue(),
+                                this.datasource,
+                                null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return;

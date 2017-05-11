@@ -1,11 +1,8 @@
 package com.tlabs.eve.api.corporation;
 
 
-
-import com.tlabs.eve.api.EveAPIRequest.Public;
-
 //No or limited key
-public final class CorporationSheetRequest extends CorporationRequest<CorporationSheetResponse> implements Public {
+public final class CorporationSheetRequest extends CorporationRequest<CorporationSheetResponse> {
     public static final long MASK = 8;
 
     public CorporationSheetRequest(long corporationID) {

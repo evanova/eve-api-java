@@ -39,7 +39,7 @@ final class CharacterRetrofit {
 
     public ESICharacter getCharacter(Long charID) throws IOException {
         final Response<GetCharactersCharacterIdOk> r = this.characterApi
-                .getCharactersCharacterId(charID.intValue(), this.datasource)
+                .getCharactersCharacterId(charID.intValue(), this.datasource, null, null)
                 .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -54,7 +54,7 @@ final class CharacterRetrofit {
     public ESILocation getCharacterLocation(final Long charID) throws IOException {
         final Response<GetCharactersCharacterIdLocationOk> r =
                 this.locationApi
-                        .getCharactersCharacterIdLocation(charID.intValue(), this.datasource)
+                        .getCharactersCharacterIdLocation(charID.intValue(), this.datasource, null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -65,7 +65,7 @@ final class CharacterRetrofit {
     public ESIShip getCharacterShip(final Long charID) throws IOException {
         final Response<GetCharactersCharacterIdShipOk> r =
                 this.locationApi
-                        .getCharactersCharacterIdShip(charID.intValue(), this.datasource)
+                        .getCharactersCharacterIdShip(charID.intValue(), this.datasource, null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -76,7 +76,11 @@ final class CharacterRetrofit {
     public ESICalendar getCalendar(Long charID, Long afterEventID)  throws IOException {
         final Response<List<GetCharactersCharacterIdCalendar200Ok>> r =
                 this.calendarApi
-                        .getCharactersCharacterIdCalendar(charID.intValue(), (null == afterEventID) ? null : afterEventID.intValue(), this.datasource)
+                        .getCharactersCharacterIdCalendar(
+                                charID.intValue(),
+                                this.datasource,
+                                (null == afterEventID) ? null : afterEventID.intValue(),
+                                null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return null;
@@ -92,7 +96,10 @@ final class CharacterRetrofit {
     private void addEvent(final Long charID, final GetCharactersCharacterIdCalendar200Ok object, final ESICalendar to) throws IOException {
         Response<GetCharactersCharacterIdCalendarEventIdOk> r =
                 this.calendarApi
-                        .getCharactersCharacterIdCalendarEventId(charID.intValue(), object.getEventId(), this.datasource)
+                        .getCharactersCharacterIdCalendarEventId(
+                                charID.intValue(),
+                                object.getEventId(),
+                                this.datasource, null, null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return;
@@ -124,7 +131,11 @@ final class CharacterRetrofit {
         PutCharactersCharacterIdCalendarEventIdResponse r =
                 new PutCharactersCharacterIdCalendarEventIdResponse().response(re);
         this.calendarApi
-                .putCharactersCharacterIdCalendarEventId(charID.intValue(), eventID.intValue(), r, this.datasource)
+                .putCharactersCharacterIdCalendarEventId(
+                        charID.intValue(),
+                        eventID.intValue(), r,
+                        this.datasource,
+                        null,null,null)
                 .execute();
         return true;
     }
@@ -132,7 +143,10 @@ final class CharacterRetrofit {
     private void addPortraits(final ESICharacter to)  throws IOException{
         final Response<GetCharactersCharacterIdPortraitOk> r =
                 this.characterApi
-                        .getCharactersCharacterIdPortrait(to.getId().intValue(), this.datasource)
+                        .getCharactersCharacterIdPortrait(
+                                to.getId().intValue(),
+                                this.datasource,
+                                null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return;
@@ -148,7 +162,10 @@ final class CharacterRetrofit {
     private void addHistory(final ESICharacter to)  throws IOException{
         final Response<List<GetCharactersCharacterIdCorporationhistory200Ok>> r =
                 this.characterApi
-                        .getCharactersCharacterIdCorporationhistory(to.getId().intValue(), this.datasource)
+                        .getCharactersCharacterIdCorporationhistory(
+                                to.getId().intValue(),
+                                this.datasource,
+                                null, null)
                         .execute();
         if (!r.isSuccessful()) {
             return;
