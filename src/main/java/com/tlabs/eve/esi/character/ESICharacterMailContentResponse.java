@@ -1,5 +1,6 @@
 package com.tlabs.eve.esi.character;
 
+import com.tlabs.eve.EveTime;
 import com.tlabs.eve.esi.model.ESIMail;
 
 public final class ESICharacterMailContentResponse extends ESICharacterResponse {
@@ -7,7 +8,7 @@ public final class ESICharacterMailContentResponse extends ESICharacterResponse 
     private ESIMail mail;
 
     public ESICharacterMailContentResponse() {
-        setCachedUntil(System.currentTimeMillis() + 30L * 1000L);
+        setCachedUntil(EveTime.now() + 30L * 1000L);
     }
 
     public ESIMail getMail() {

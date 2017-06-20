@@ -1,5 +1,6 @@
 package com.tlabs.eve.dotlan.model;
 
+@Deprecated //use ESI
 public class DotlanJumpOptions extends DotlanOptions {
 
     private int jumpDriveCalibration = 5;

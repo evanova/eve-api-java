@@ -6,7 +6,6 @@ public final class ESICharacterMailLabelsRequest extends ESICharacterRequest<ESI
         super(
                 ESICharacterMailLabelsResponse.class,
                 charID,
-                "/mail/labels/",
                 "esi-mail.read_mail.v1");
     }
 }

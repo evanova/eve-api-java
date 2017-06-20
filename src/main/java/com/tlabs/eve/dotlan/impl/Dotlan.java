@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 import java.util.List;
-
+@Deprecated //use ESI
 interface Dotlan {
     @GET("/route/{dotlanQuery}")
     Call<List<DotlanSolarSystem>> getRoute(

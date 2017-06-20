@@ -6,7 +6,6 @@ public final class ESICharacterMailDeleteRequest extends ESICharacterRequest<ESI
         super(
                 ESICharacterMailDeleteResponse.class,
                 charID,
-                "/mail/{mailID}/",
                 "esi-mail.organize_mail.v1");
         putParam("mailID", mailID);
     }

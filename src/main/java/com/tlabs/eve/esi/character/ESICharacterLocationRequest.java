@@ -6,7 +6,6 @@ public final class ESICharacterLocationRequest extends ESICharacterRequest<ESICh
         super(
                 ESICharacterLocationResponse.class,
                 charID,
-                "/location/",
                 "esi-location.read_location.v1");
     }
 }

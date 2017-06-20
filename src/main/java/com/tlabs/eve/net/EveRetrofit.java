@@ -3,7 +3,7 @@ package com.tlabs.eve.net;
 import com.github.scribejava.core.exceptions.OAuthException;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.tlabs.eve.esi.impl.ESIRetrofit;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 public class EveRetrofit {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ESIRetrofit.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EveRetrofit.class);
 
     protected static final class ClientInterceptor implements Interceptor {
         private final EveRetrofit cr;
@@ -80,7 +80,7 @@ public class EveRetrofit {
                     chain
                             .request()
                             .newBuilder()
-                            .addHeader("Host", host)
+                            //.addHeader("Host", host)
                             .addHeader("User-Agent", agent);
             return chain.proceed(builder.build());
         }

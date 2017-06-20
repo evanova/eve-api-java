@@ -38,18 +38,6 @@ public class AccessInfoResponse extends EveAPIResponse {
         this.accessInfo.setType(type);
     }
 
-    public final long getExpires() {
-        return this.accessInfo.getExpires();
-    }
-
-    public final void setExpires(long expires) {
-        this.accessInfo.setExpires(expires);
-    }
-
-    public final void setExpires(String expires) {
-        this.accessInfo.setExpires(expires);
-    }
-
     public final long getKeyID() {
         return this.accessInfo.getKeyID();
     }

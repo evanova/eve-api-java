@@ -1,5 +1,6 @@
 package com.tlabs.eve.esi.character;
 
+import com.tlabs.eve.EveTime;
 import com.tlabs.eve.esi.model.ESILocation;
 
 public final class ESICharacterLocationResponse extends ESICharacterResponse {
@@ -7,7 +8,7 @@ public final class ESICharacterLocationResponse extends ESICharacterResponse {
     private ESILocation location;
 
     public ESICharacterLocationResponse() {
-        setCachedUntil(System.currentTimeMillis() + 5L * 1000L);
+        setCachedUntil(EveTime.now() + 5L * 1000L);
     }
 
     public ESILocation getLocation() {

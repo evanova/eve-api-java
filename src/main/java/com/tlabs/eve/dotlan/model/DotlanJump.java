@@ -2,6 +2,7 @@ package com.tlabs.eve.dotlan.model;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Deprecated //use ESI
 public class DotlanJump {
 
     private final DotlanSolarSystem from;

@@ -5,6 +5,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated //use ESI
 public class DotlanOptions {
 
     private final List<String> waypoints = new ArrayList<>();

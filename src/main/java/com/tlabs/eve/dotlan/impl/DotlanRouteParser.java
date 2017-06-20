@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+@Deprecated //use ESI
 final class DotlanRouteParser {
     private final TransformerFactory transformerFactory;
 

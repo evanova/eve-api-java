@@ -4,7 +4,7 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.exceptions.OAuthException;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.tlabs.eve.esi.impl.ESIRetrofit;
+import com.tlabs.eve.esi.impl.ESIServiceImpl;
 import com.tlabs.eve.net.EveStore;
 import com.tlabs.eve.net.EveToken;
 import org.apache.commons.lang3.ArrayUtils;
@@ -211,12 +211,8 @@ public class ESIClient {
         }
     }
 
-    public ESIService newESIService() {
-        return new ESIRetrofit(this.esiHost, this.loginHost, this.oAuth, this.store, this.userAgent, this.timeout, null);
-    }
-
-    public ESIService newESIService(final String refresh) {
-        return new ESIRetrofit(this.esiHost, this.loginHost, this.oAuth, this.store, this.userAgent, this.timeout, refresh);
+    public ESIService obtain(final String refresh) {
+        return new ESIServiceImpl(this.esiHost, this.loginHost, this.oAuth, this.store, this.userAgent, this.timeout, refresh);
     }
 
     private EveToken save(final OAuth2AccessToken token) {

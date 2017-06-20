@@ -1,7 +1,6 @@
 package com.tlabs.eve.net;
 
 import com.tlabs.eve.EveRequest;
-import com.tlabs.eve.ccp.CharacterStatisticsRequest;
 import com.tlabs.eve.ccp.EveRSSRequest;
 import com.tlabs.eve.ccp.ImageRequest;
 import com.tlabs.eve.central.EveCentralRequest;
@@ -17,9 +16,6 @@ public class DefaultEveNetwork extends AbstractEveNetwork {
         }
         if (request instanceof EveRSSRequest) {
             return "https://forums.eveonline.com";
-        }
-        if (request instanceof CharacterStatisticsRequest) {
-            return "https://characterstats.tech.ccp.is/v1";
         }
         if (request instanceof EveCentralRequest) {
             return "http://api.eve-central.com";

@@ -4,7 +4,6 @@ public final class ESIAccess {
 
     public static final String[] CHARACTER_SCOPES = {
             "esi-assets.read_assets.v1",
-            "esi-assets.read_assets.v1",
             "esi-bookmarks.read_character_bookmarks.v1",
             "esi-calendar.read_calendar_events.v1",
             "esi-calendar.respond_calendar_events.v1",

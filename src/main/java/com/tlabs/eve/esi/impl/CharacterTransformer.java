@@ -1,6 +1,7 @@
 package com.tlabs.eve.esi.impl;
-import com.tlabs.eve.esi.model.ESICharacter;
+
 import com.tlabs.eve.esi.model.ESICalendar;
+import com.tlabs.eve.esi.model.ESICharacter;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIShip;
 import org.devfleet.esi.model.GetCharactersCharacterIdCalendar200Ok;
@@ -16,6 +17,7 @@ final class CharacterTransformer {
 
     public static ESICharacter transform(final long charID, final GetCharactersCharacterIdOk c) {
         final ESICharacter character = new ESICharacter(charID);
+        character.setName(c.getName());
 
         return character;
     }
@@ -42,11 +44,23 @@ final class CharacterTransformer {
     }
 
     public static ESILocation transform(GetCharactersCharacterIdLocationOk object) {
-        ESILocation location = new ESILocation();
-        location.setSolarSystemId((null == object.getSolarSystemId()) ? null : object.getSolarSystemId().longValue());
-        location.setStationId((null == object.getStationId()) ? null : object.getStationId().longValue());
-        location.setStructureId(object.getStructureId());
-        return location;
+        if (null == object.getSolarSystemId()) {
+            return ESILocation.UNKNOWN;
+        }
+
+        if (null != object.getStationId()) {
+            return new ESILocation.Station()
+                    .setSolarSystemId(object.getSolarSystemId())
+                    .setId(object.getStationId().longValue());
+        }
+
+        if (null != object.getStructureId()) {
+            return new ESILocation.Structure()
+                    .setSolarSystemId(object.getSolarSystemId())
+                    .setId(object.getSolarSystemId());
+        }
+        return new ESILocation.SolarSystem()
+                .setId(object.getSolarSystemId());
     }
 
 }

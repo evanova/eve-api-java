@@ -6,7 +6,6 @@ public final class ESICharacterMailContentRequest extends ESICharacterRequest<ES
         super(
                 ESICharacterMailContentResponse.class,
                 charID,
-                "/mail/{mailID}/",
                 "esi-mail.read_mail.v1");
         putParam("mailID", mailID);
     }

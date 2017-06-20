@@ -1,4 +1,4 @@
-package com.tlabs.eve.api.evemon;
+package com.tlabs.eve.evemon;
 
 public class EveMonAccount {
 

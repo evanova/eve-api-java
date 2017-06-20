@@ -17,7 +17,7 @@ public class Asset implements Serializable {
 
     private long categoryID; //Not in XML
 
-    private long assetID;
+    private long marketGroupID; //Not in XML
 
     private long locationID;
 
@@ -121,12 +121,13 @@ public class Asset implements Serializable {
         this.categoryID = categoryID;
     }
 
-    public long getAssetID() {
-        return assetID;
+    public long getMarketGroupID() {
+        return marketGroupID;
     }
 
-    public void setAssetID(long assetID) {
-        this.assetID = assetID;
+    public Asset setMarketGroupID(long marketGroupID) {
+        this.marketGroupID = marketGroupID;
+        return this;
     }
 
     public long getLocationID() {

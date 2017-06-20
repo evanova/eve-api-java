@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
-
+@Deprecated //use ESI
 public class DotlanServiceImpl implements DotlanService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DotlanServiceImpl.class.getName());

@@ -11,6 +11,7 @@ public class ESICharacter {
 
     private final List<History> history = new ArrayList<>();
     private final Long id;
+    private String name;
 
     private String portrait64;
     private String portrait128;
@@ -27,6 +28,15 @@ public class ESICharacter {
 
     public List<History> getHistory() {
         return history;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ESICharacter setName(String name) {
+        this.name = name;
+        return this;
     }
 
     public ESICharacter add(final History h) {

@@ -10,8 +10,8 @@ public abstract class ESIRequest<T extends ESIResponse> extends EveRequest<T> {
 
     private final String scope;
 
-    public ESIRequest(Class<T> responseClass, String page, String scope) {
-        super(responseClass, page);
+    public ESIRequest(Class<T> responseClass, String scope) {
+        super(responseClass, responseClass.getSimpleName());
         this.scope = scope;
     }
 

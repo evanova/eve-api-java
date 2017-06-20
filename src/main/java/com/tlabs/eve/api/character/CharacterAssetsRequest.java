@@ -12,4 +12,10 @@ public final class CharacterAssetsRequest extends CharacterRequest<AssetListResp
         super(AssetListResponse.class, "/char/AssetList.xml.aspx", MASK, characterID);
     }
 
+    //undocumented feature - also returns corp assets according to CCP Zoetrope
+    public CharacterAssetsRequest(long characterID, long corporationID) {
+        this(characterID);
+        putParam("corporationID", corporationID);
+    }
+
 }

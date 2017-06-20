@@ -1,4 +1,4 @@
-package com.tlabs.eve.api.evemon;
+package com.tlabs.eve.evemon;
 
 import java.util.ArrayList;
 import java.util.List;

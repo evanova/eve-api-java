@@ -1,19 +1,29 @@
-package com.tlabs.eve.api.evemon;
+package com.tlabs.eve.evemon;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.List;
+
 import com.tlabs.eve.api.character.SkillInTraining;
 
-public final class EveMonExport {
+public final class EveMonFormat {
     private static final String ENTRY = "\n\t<entry skillID=\"%d\" skill=\"%s\" level=\"%d\" priority=\"%d\" type=\"%s\"/>";
 
-    private EveMonExport() {
+    private EveMonFormat() {
     }
 
-    public static int export(final String title, final List<SkillInTraining> queue, final OutputStream out) throws IOException {
+    public static List<SkillInTraining> importTraining(final InputStream in) throws IOException {
+        EveMonSkillPlanParser parser = new EveMonSkillPlanParser();
+        return parser.parse(in).getTrainingQueue();
+    }
+
+    public static int exportTraining(
+            final String title,
+            final List<SkillInTraining> queue,
+            final OutputStream out) throws IOException {
 
         BufferedWriter w = new BufferedWriter(new OutputStreamWriter(out));
         w.write("<?xml version=\"1.0\"?>\n");

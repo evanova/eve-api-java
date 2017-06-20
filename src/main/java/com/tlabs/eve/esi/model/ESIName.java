@@ -6,27 +6,30 @@ public class ESIName {
 
     private long id;
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final <T extends ESIName> T setName(String name) {
         this.name = name;
+        return (T)this;
     }
 
-    public String getGroup() {
+    public final String getGroup() {
         return group;
     }
 
-    public void setGroup(String group) {
+    public final <T extends ESIName> T setGroup(String group) {
         this.group = group;
+        return (T)this;
     }
 
-    public long getId() {
+    public final long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public final <T extends ESIName> T setId(long id) {
         this.id = id;
+        return (T)this;
     }
 }

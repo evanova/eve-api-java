@@ -20,8 +20,6 @@ public class AccessInfo implements Serializable {
 
     private int type = UNKNOWN;
 
-    private long expires = 0;
-
     private long keyID = -1;
     private String key = "";
     private String token = "";//since Citadel
@@ -65,18 +63,6 @@ public class AccessInfo implements Serializable {
 
     public final void setType(int type) {
         this.type = type;
-    }
-
-    public final long getExpires() {
-        return expires;
-    }
-
-    public final void setExpires(long expires) {
-        this.expires = expires;
-    }
-
-    public final void setExpires(String expires) {
-        this.expires = EveAPI.parseDateTime(expires);
     }
 
     public final long getKeyID() {

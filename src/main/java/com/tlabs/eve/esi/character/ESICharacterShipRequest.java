@@ -6,7 +6,6 @@ public final class ESICharacterShipRequest extends ESICharacterRequest<ESICharac
         super(
                 ESICharacterShipResponse.class,
                 charID,
-                "/ship/",
                 "esi-location.read_ship_type.v1");
         putParam("charID", charID);
     }

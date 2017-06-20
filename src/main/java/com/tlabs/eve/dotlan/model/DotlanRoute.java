@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Deprecated //use ESI
 public class DotlanRoute {
 
     private final List<DotlanJump> jumps;
