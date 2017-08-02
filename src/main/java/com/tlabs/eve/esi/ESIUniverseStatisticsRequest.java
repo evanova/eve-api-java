@@ -1,7 +1,7 @@
 package com.tlabs.eve.esi;
 
-public final class ESIUniverseStatisticsRequest extends ESIPublicRequest<ESIUniverseStatisticsResponse> {
+public final class ESIUniverseStatisticsRequest extends ESIRequest<ESIUniverseStatisticsResponse> implements ESIRequest.Public {
     public ESIUniverseStatisticsRequest() {
-        super(ESIUniverseStatisticsResponse.class);
+        super(ESIUniverseStatisticsResponse.class, "publicData");
     }
 }

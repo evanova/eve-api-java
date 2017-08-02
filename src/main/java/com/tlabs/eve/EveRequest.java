@@ -13,6 +13,8 @@ public abstract class EveRequest<T extends EveResponse> {
 
     public interface Authenticated {}
 
+    public interface Public {}
+
     private final Class<T> responseClass;
     private final String page;
 

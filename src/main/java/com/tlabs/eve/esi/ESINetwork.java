@@ -21,17 +21,16 @@ import com.tlabs.eve.esi.character.ESICharacterMailPostRequest;
 import com.tlabs.eve.esi.character.ESICharacterMailPostResponse;
 import com.tlabs.eve.esi.character.ESICharacterMailUpdateRequest;
 import com.tlabs.eve.esi.character.ESICharacterMailUpdateResponse;
-import com.tlabs.eve.esi.character.ESICharacterRequest;
-import com.tlabs.eve.esi.character.ESICharacterResponse;
 import com.tlabs.eve.esi.character.ESICharacterShipRequest;
 import com.tlabs.eve.esi.character.ESICharacterShipResponse;
 import com.tlabs.eve.esi.character.ESICharacterStatusRequest;
 import com.tlabs.eve.esi.character.ESICharacterStatusResponse;
+import com.tlabs.eve.esi.character.ESICharacterStructureRequest;
+import com.tlabs.eve.esi.character.ESICharacterStructureResponse;
 import com.tlabs.eve.esi.model.ESIAsset;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
 import com.tlabs.eve.esi.model.ESIName;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -157,6 +156,17 @@ public class ESINetwork implements EveNetwork, Closeable {
                 }
 
                 response.setStructures(map);
+                return true;
+            }
+        });
+        HANDLERS.put(ESICharacterStructureRequest.class, new ESIHandler<ESICharacterStructureRequest, ESICharacterStructureResponse>() {
+            @Override
+            public boolean handle(ESICharacterStructureRequest request, ESICharacterStructureResponse response, ESIService service) {
+                final ESILocation.Structure structure = service.getStructure(request.getStructureId());
+                if (null == structure) {
+                    return false;
+                }
+                response.setStructure(structure);
                 return true;
             }
         });

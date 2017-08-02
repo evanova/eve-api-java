@@ -32,7 +32,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -122,27 +121,9 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
     }
 
     @Override
-    public List<ESIName> getNames(final List<Long> ids) {
+    public List<ESIName> getNames(final List<Integer> ids) {
         try {
-            final List<Integer> ints = new ArrayList<>();
-            final List<Long> lints = new ArrayList<>();
-            for (Long id: ids) {
-                if (id <= Integer.MAX_VALUE) {
-                    ints.add(id.intValue());
-                }
-                else {
-                    lints.add(id);
-                }
-            }
-
-            final List<ESIName> names = this.rPublic.getNames(ints);
-            for (Long s: lints) {
-                ESILocation.Structure structure = getStructure(s);
-                if (null != structure) {
-                    names.add(structure);
-                }
-            }
-            return names;
+            return this.rPublic.getNames(ids);
         }
         catch (IOException | IllegalStateException e) {
             LOG.error(e.getLocalizedMessage(), e);

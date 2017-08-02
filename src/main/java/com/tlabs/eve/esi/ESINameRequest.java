@@ -2,16 +2,18 @@ package com.tlabs.eve.esi;
 
 import java.util.List;
 
-public final class ESINameRequest extends ESIPublicRequest<ESINameResponse> {
+public final class ESINameRequest extends ESIRequest<ESINameResponse> implements ESIRequest.Public {
 
-    private final List<Long> ids;
+    private final List<Integer> ids;
 
-    public ESINameRequest(final List<Long> ids) {
-        super(ESINameResponse.class);
+
+    public ESINameRequest(final List<Integer> ids) {
+        super(ESINameResponse.class, "publicData");
         this.ids = ids;
     }
 
-    public List<Long> getIds() {
+    public List<Integer> getIds() {
         return ids;
     }
+
 }

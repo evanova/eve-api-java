@@ -1,8 +1,8 @@
 package com.tlabs.eve.esi;
 
-public class ESIStatusRequest extends ESIPublicRequest<ESIStatusResponse> {
+public class ESIStatusRequest extends ESIRequest<ESIStatusResponse> implements ESIRequest.Public {
 
     public ESIStatusRequest() {
-        super(ESIStatusResponse.class);
+        super(ESIStatusResponse.class, "publicData");
     }
 }
