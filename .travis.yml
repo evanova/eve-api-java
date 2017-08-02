@@ -2,6 +2,9 @@ language: java
 
 sudo: required
 
+script:
+  - ./gradlew build install -x test
+  
 before_install:
  - chmod +x gradlew
 

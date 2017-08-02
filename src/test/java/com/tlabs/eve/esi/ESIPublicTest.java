@@ -55,12 +55,10 @@ public class ESIPublicTest {
     @Test
     public void testGetNames() {
 
-        long a = Integer.MAX_VALUE - 1023217532861L;
         List<ESIName> names = ESI.getNames(Arrays.asList(
-                60002251L,
-                60012949L,
-                60014071L,
-                1023217532861L));
+                60002251,
+                60012949,
+                60014071));
     }
    /* @Test
     public void testAllGetMarketOrders() {
