@@ -54,7 +54,7 @@ public class Item implements Serializable {
 
     private long marketGroupID;//not in Eve XML
     private String marketGroupName;
-    private String marketGroupDesciption;
+    private String marketGroupDescription;
 
     private final List<ItemTrait> traits = new ArrayList<>();//in YML only
     private final List<ItemAttribute> attributes = new ArrayList<>();
@@ -236,11 +236,11 @@ public class Item implements Serializable {
     }
 
     public String getMarketGroupDescription() {
-        return marketGroupDesciption;
+        return marketGroupDescription;
     }
 
     public void setMarketGroupDescription(String marketGroupDesciption) {
-        this.marketGroupDesciption = marketGroupDesciption;
+        this.marketGroupDescription = marketGroupDesciption;
     }
 
     public void setEffects(final List<ItemEffect> effects) {
