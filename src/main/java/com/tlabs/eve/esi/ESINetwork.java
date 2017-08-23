@@ -33,6 +33,7 @@ import com.tlabs.eve.esi.model.ESIMail;
 import com.tlabs.eve.esi.model.ESIName;
 
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +60,7 @@ public class ESINetwork implements EveNetwork, Closeable {
         private String userAgent = "eve-api-java (https://github.com/evanova/eve-api-java)";
         private long timeout = 30L * 1000L;
 
+        private File cache = null;
         public Builder() {
             this.scopes = new ArrayList<>();
         }
@@ -92,6 +94,11 @@ public class ESINetwork implements EveNetwork, Closeable {
             return this;
         }
 
+        public Builder cache(File cache) {
+            this.cache = cache;
+            return this;
+        }
+
         public ESINetwork.Builder agent(final String userAgent) {
             this.userAgent = userAgent;
             return this;
@@ -104,6 +111,7 @@ public class ESINetwork implements EveNetwork, Closeable {
                     this.clientRedirect,
                     this.userAgent,
                     this.timeout,
+                    this.cache,
                     this.scopes.toArray(new String[this.scopes.size()]));
         }
     }
@@ -127,6 +135,14 @@ public class ESINetwork implements EveNetwork, Closeable {
                 }
                 response.setNames(names);
                 return true;
+            }
+        });
+        HANDLERS.put(ESIMarketStatisticsRequest.class, new ESIHandler<ESIMarketStatisticsRequest, ESIMarketStatisticsResponse>() {
+            @Override
+            public boolean handle(ESIMarketStatisticsRequest request, ESIMarketStatisticsResponse response, ESIService service) {
+                response.setOrders(service.getMarketOrders(request.getRegionID(), request.getTypeID()));
+                response.setHistory(service.getMarketHistory(request.getRegionID(), request.getTypeID()));
+                return (null != response.getHistory() && null != response.getOrders());
             }
         });
         HANDLERS.put(ESIUniverseStatisticsRequest.class, new ESIHandler<ESIUniverseStatisticsRequest, ESIUniverseStatisticsResponse>() {
@@ -156,6 +172,28 @@ public class ESINetwork implements EveNetwork, Closeable {
                 }
 
                 response.setStructures(map);
+                return true;
+            }
+        });
+        HANDLERS.put(ESILocationRequest.StationRequest.class, new ESIHandler<ESILocationRequest.StationRequest, ESILocationResponse>() {
+            @Override
+            public boolean handle(ESILocationRequest.StationRequest request, ESILocationResponse response, ESIService service) {
+                final ESILocation.Station station = service.getStation(request.getLocationID());
+                if (null == station) {
+                    return false;
+                }
+                response.setLocation(station);
+                return true;
+            }
+        });
+        HANDLERS.put(ESILocationRequest.SolarSystemRequest.class, new ESIHandler<ESILocationRequest.SolarSystemRequest, ESILocationResponse>() {
+            @Override
+            public boolean handle(ESILocationRequest.SolarSystemRequest request, ESILocationResponse response, ESIService service) {
+                final ESILocation.SolarSystem system = service.getSolarSystem(request.getLocationID());
+                if (null == system) {
+                    return false;
+                }
+                response.setLocation(system);
                 return true;
             }
         });
@@ -266,6 +304,7 @@ public class ESINetwork implements EveNetwork, Closeable {
             final String redirect,
             final String agent,
             final long timeout,
+            final File cache,
             final String[] scopes) {
 
         this.esi =
@@ -275,6 +314,7 @@ public class ESINetwork implements EveNetwork, Closeable {
                 .key(appKey)
                 .redirect(redirect)
                 .timeout(timeout)
+                .cache(cache)
                 .build();
 
         this.services = new WeakHashMap<>();

@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class ESIClient {
     private static final Logger LOG = LoggerFactory.getLogger(ESIClient.class);
 
     private static final String LOGIN = "login.eveonline.com";
-    private static final String ESI = "esi.tech.ccp.is/latest";
+    private static final String ESI = "esi.tech.ccp.is";
 
     private static final String AGENT = "eve-esi-java (https://github.com/evanova/eve-esi-java)";
 
@@ -57,6 +58,8 @@ public class ESIClient {
 
         private String userAgent = AGENT;
         private long timeout = 30L * 1000L;
+
+        private File cache;
 
         public Builder() {
             this.scopes = new ArrayList<>();
@@ -112,6 +115,11 @@ public class ESIClient {
             return this;
         }
 
+        public Builder cache(File cache) {
+            this.cache = cache;
+            return this;
+        }
+
         public final ESIClient build() {
             return new ESIClient(
                     this.loginHost,
@@ -121,6 +129,7 @@ public class ESIClient {
                     this.clientRedirect,
                     this.userAgent,
                     this.store,
+                    this.cache,
                     this.timeout,
                     this.scopes.toArray(new String[this.scopes.size()]));
         }
@@ -135,6 +144,8 @@ public class ESIClient {
     private final EveStore store;
     private final long timeout;
 
+    private File cache = null;
+
     private ESIClient(
             final String loginHost,
             final String esiHost,
@@ -143,6 +154,7 @@ public class ESIClient {
             final String callback,
             final String userAgent,
             final EveStore store,
+            final File cache,
             final long timeout,
             final String... scopes) {
 
@@ -151,7 +163,7 @@ public class ESIClient {
         this.userAgent = userAgent;
         this.timeout = timeout;
         this.store = store;
-
+        this.cache = cache;
         StringBuilder scope = new StringBuilder();
         if (!ArrayUtils.isEmpty(scopes)) {
             for (String s : scopes) {
@@ -212,7 +224,16 @@ public class ESIClient {
     }
 
     public ESIService obtain(final String refresh) {
-        return new ESIServiceImpl(this.esiHost, this.loginHost, this.oAuth, this.store, this.userAgent, this.timeout, refresh);
+        return new ESIServiceImpl(
+                this.esiHost,
+                this.loginHost,
+                this.oAuth,
+                this.store,
+                this.userAgent,
+                this.timeout,
+                this.cache,
+                1 * 1024 * 1024,
+                refresh);
     }
 
     private EveToken save(final OAuth2AccessToken token) {

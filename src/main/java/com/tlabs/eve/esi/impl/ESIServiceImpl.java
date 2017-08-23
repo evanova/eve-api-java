@@ -12,6 +12,7 @@ import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
 import com.tlabs.eve.esi.model.ESIMailbox;
+import com.tlabs.eve.esi.model.ESIMarketHistory;
 import com.tlabs.eve.esi.model.ESIMarketItem;
 import com.tlabs.eve.esi.model.ESIMarketOrder;
 import com.tlabs.eve.esi.model.ESIName;
@@ -20,6 +21,7 @@ import com.tlabs.eve.esi.model.ESIShip;
 import com.tlabs.eve.net.EveRetrofit;
 import com.tlabs.eve.net.EveStore;
 import com.tlabs.eve.net.EveToken;
+import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.commons.collections4.CollectionUtils;
@@ -31,6 +33,7 @@ import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -61,18 +64,25 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             final EveStore store,
             final String agent,
             final long timeout,
+            final File cache,
+            final long cacheSize,
             final String refresh) {
 
-        super(host, login, oAuth, store, agent, timeout, refresh, ESIConverters.gson());
+        super(host, login, oAuth, store, agent, timeout, refresh, cache, cacheSize, ESIConverters.gson());
 
         this.rPublic = new PublicRetrofit(getRetrofit(), SOURCE);
         this.rCharacter = new CharacterRetrofit(getRetrofit(), SOURCE);
         this.rMail = new MailRetrofit(getRetrofit(), SOURCE);
         this.rFitting = new FittingRetrofit(getRetrofit(), SOURCE);
 
-
         OkHttpClient.Builder verifyClient =
                 new OkHttpClient.Builder()
+                        .certificatePinner(
+                                new CertificatePinner.Builder()
+                                .add(login, "sha256/5UeWOuDyX7IUmcKnsVdx+vLMkxEGAtzfaOUQT/caUBE=")
+                                .add(login, "sha256/980Ionqp3wkYtN9SZVgMzuWQzJta1nfxNPwTem1X0uc=")
+                                .add(login, "sha256/du6FkDdMcVQ3u8prumAo6t3i3G27uMP2EOhR8R0at/U=")
+                                .build())
                         .addInterceptor(new UserAgentInterceptor(login, agent));
         if (LOG.isDebugEnabled()) {
             verifyClient = verifyClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
@@ -93,7 +103,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rPublic.getServerStatus();
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -104,7 +115,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rPublic.getMarketItems();
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -115,7 +127,20 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rPublic.getMarketOrders(regionID, itemID);
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<ESIMarketHistory> getMarketHistory(Long regionID, Long itemID) {
+        try {
+            return this.rPublic.getMarketHistory(regionID, itemID);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -126,7 +151,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rPublic.getNames(ids);
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -137,7 +163,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rPublic.getRegions();
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -148,7 +175,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return rPublic.getRegion(id, EveLocale.DEFAULT.value());
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -159,7 +187,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return rPublic.getConstellation(id, EveLocale.DEFAULT.value());
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -167,10 +196,23 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
     @Override
     public ESILocation.SolarSystem getSolarSystem(Long id) {
         try {
-            return rPublic.getSolarSystem(id, EveLocale.DEFAULT.value());
+            return rPublic.getSolarSystem(id);
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public ESILocation.Station getStation(Long id) {
+        try {
+            return rPublic.getStation(id);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -181,7 +223,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return rPublic.listStructures();
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -192,7 +235,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return rCharacter.getStructure(id);
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -203,7 +247,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return rPublic.getSolarSystemStatistics();
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -214,6 +259,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.getKillMail(killMail);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return null;
         }
@@ -225,7 +271,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return verifyCharacterStatus();
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -237,7 +284,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rCharacter.getCharacter(status.getCharacterID());
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -258,7 +306,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return location;
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -270,7 +319,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rCharacter.getCharacterShip(status.getCharacterID());
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -282,7 +332,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rCharacter.getCalendar(status.getCharacterID(), afterEventID);
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
 
@@ -308,7 +359,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rCharacter.getAssets(status.getCharacterID());
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return null;
         }
     }
@@ -321,7 +373,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
 
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return false;
         }
     }
@@ -333,7 +386,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.getMails(status.getCharacterID(), afterMailID, labels);
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return Collections.emptyList();
         }
     }
@@ -345,7 +399,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.getMailboxes(status.getCharacterID());
         }
         catch (IOException | IllegalStateException e) {
-            LOG.error(e.getLocalizedMessage(), e);
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
             return Collections.emptyList();
         }
     }
@@ -357,6 +412,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.getMailContent(status.getCharacterID(), mailID);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return null;
         }
@@ -369,6 +425,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.postMail(status.getCharacterID(), mail);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return null;
         }
@@ -382,6 +439,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
 
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return false;
         }
@@ -394,6 +452,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.createMailbox(status.getCharacterID(), mailbox);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return false;
         }
@@ -406,6 +465,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rMail.getKillMails(status.getCharacterID(), maxCount, maxKillID, withContent);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return Collections.emptyList();
         }
@@ -418,6 +478,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rFitting.getFittings(status.getCharacterID());
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return null;
         }
@@ -430,6 +491,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rFitting.postFitting(status.getCharacterID(), fitting);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return null;
         }
@@ -442,6 +504,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
             return this.rFitting.deleteFitting(status.getCharacterID(), fittingID);
         }
         catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
             return false;
         }

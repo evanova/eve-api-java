@@ -4,6 +4,8 @@ import com.github.scribejava.core.exceptions.OAuthException;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
+import okhttp3.Cache;
+import okhttp3.CertificatePinner;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -86,8 +89,6 @@ public class EveRetrofit {
         }
     }
 
-    private final String host;
-
     private final Retrofit retrofit;
     private final OkHttpClient httpClient;
 
@@ -103,6 +104,8 @@ public class EveRetrofit {
             final String agent,
             final long timeout,
             final String refresh,
+            final File cache,
+            final long cacheSize,
             final Converter.Factory converter) {
 
         Validate.isTrue(StringUtils.isNotBlank(host), "host parameter cannot be empty.");
@@ -112,7 +115,6 @@ public class EveRetrofit {
         Validate.notNull(oAuth, "oAuth parameter cannot be null.");
         Validate.notNull(store, "store parameter cannot be null.");
 
-        this.host = host;
         this.store = store;
         this.refresh = refresh;
         this.oAuth = oAuth;
@@ -128,10 +130,21 @@ public class EveRetrofit {
                     .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         }
 
-        this.httpClient = retrofitClient.build();
+        if (null != cache) {
+            retrofitClient.cache(new Cache(cache, cacheSize));
+        }
+
+        this.httpClient = retrofitClient
+                .certificatePinner(
+                    new CertificatePinner.Builder()
+                            .add(login, "sha256/075pvb1KMqiPud6f347Lhzb0ALOY+dX5G7u+Yx+b8U4=")
+                            .add(login, "sha256/YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=")
+                            .add(login, "sha256/Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys=")
+                            .build())
+                .build();
         this.retrofit =
                 new Retrofit.Builder()
-                        .baseUrl("https://" + host + "/")
+                        .baseUrl("https://" + host + "/latest/")
                         .addConverterFactory(converter)
                         .client(this.httpClient)
                         .build();
@@ -152,10 +165,6 @@ public class EveRetrofit {
         catch (OAuthException e) {
             throw new IOException(e);
         }
-    }
-
-    protected final String getHost() {
-        return host;
     }
 
     private EveToken verifyImpl() throws IOException, OAuthException {
