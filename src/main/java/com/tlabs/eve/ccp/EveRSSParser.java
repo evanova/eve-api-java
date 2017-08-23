@@ -2,6 +2,7 @@ package com.tlabs.eve.ccp;
 
 
 
+import com.tlabs.eve.parser.SetAttributePropertyRule;
 import org.apache.commons.digester3.Digester;
 import com.tlabs.eve.parser.AbstractXMLParser;
 import com.tlabs.eve.parser.SetElementPropertyRule;
@@ -22,18 +23,20 @@ public final class EveRSSParser extends AbstractXMLParser<EveRSSResponse> {
 
     @Override
     protected void init(Digester digester) {
-        digester.addRule("rss/channel/title", new SetElementPropertyRule("title"));
-        digester.addObjectCreate("rss/channel/item", EveRSSEntry.class);
-        digester.addRule("rss/channel/item", new SetNextRule("addEntry"));
+        digester.addRule("feed/title", new SetElementPropertyRule("title"));
+        digester.addRule("feed/link", new SetAttributePropertyRule("href", "link"));
+        digester.addRule("feed/updated", new SetElementPropertyRule("dateUpdated"));
 
-        digester.addRule("rss/channel/item/guid", new SetElementPropertyRule("id"));
-        digester.addRule("rss/channel/item/title", new SetElementPropertyRule());
-        digester.addRule("rss/channel/item/link", new SetElementPropertyRule());
-        digester.addRule("rss/channel/item/author", new SetElementPropertyRule());
-        digester.addRule("rss/channel/item/a10:updated", new SetElementPropertyRule("dateUpdated"));
-        digester.addRule("rss/channel/item/updated", new SetElementPropertyRule("dateUpdated"));
-        digester.addRule("rss/channel/item/dateUpdated", new SetElementPropertyRule("dateUpdated"));
-        digester.addRule("rss/channel/item/description", new SetElementPropertyRule("htmlContent"));
+        digester.addObjectCreate("feed/entry", EveRSSEntry.class);
+        digester.addRule("feed/entry", new SetNextRule("addEntry"));
+
+        digester.addRule("feed/entry/id", new SetElementPropertyRule("id"));
+        digester.addRule("feed/entry/title", new SetElementPropertyRule("title"));
+        digester.addRule("feed/entry/link", new SetAttributePropertyRule("href", "link"));
+        digester.addRule("feed/entry/author/name", new SetElementPropertyRule("author"));
+        digester.addRule("feed/entry/updated", new SetElementPropertyRule("dateUpdated"));
+        digester.addRule("feed/entry/published", new SetElementPropertyRule("datePublished"));
+        //digester.addRule("feed/entry/content", new SetElementPropertyRule("htmlContent"));
     }
 
 }

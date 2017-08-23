@@ -121,6 +121,7 @@ public class ESILocation extends ESIName {
 
     public static class Station extends ESILocation {
         private long solarSystemId;
+        private long typeID;
 
         public Station() {
             setGroup("station");
@@ -132,6 +133,15 @@ public class ESILocation extends ESIName {
 
         public ESILocation.Station setSolarSystemId(long solarSystemId) {
             this.solarSystemId = solarSystemId;
+            return this;
+        }
+
+        public long getTypeID() {
+            return typeID;
+        }
+
+        public ESILocation.Station setTypeID(long typeID) {
+            this.typeID = typeID;
             return this;
         }
     }

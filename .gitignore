@@ -43,3 +43,4 @@ generated/
 src/test/resources/crest.properties
 src/test/resources/apikeys.properties
 src/test/resources/apikeys.json
+out/

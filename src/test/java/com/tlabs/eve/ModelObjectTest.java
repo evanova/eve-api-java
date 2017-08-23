@@ -9,7 +9,6 @@ import com.openpojo.validation.rule.impl.NoPublicFieldsExceptStaticFinalRule;
 import com.openpojo.validation.rule.impl.NoStaticExceptFinalRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
-import com.tlabs.eve.central.EveCentralParser;
 import com.tlabs.eve.net.AbstractEveNetwork;
 
 import org.junit.BeforeClass;
@@ -30,9 +29,6 @@ public abstract class ModelObjectTest {
 
         @Override
         public boolean include(PojoClass pojoClass) {
-            if (pojoClass.getClazz().equals(EveCentralParser.class)) {
-                return false;
-            }
             if (pojoClass.getClazz().equals(AbstractEveNetwork.class)) {
                 return false;
             }

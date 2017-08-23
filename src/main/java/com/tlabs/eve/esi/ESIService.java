@@ -9,12 +9,14 @@ import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
 import com.tlabs.eve.esi.model.ESIMailbox;
+import com.tlabs.eve.esi.model.ESIMarketHistory;
 import com.tlabs.eve.esi.model.ESIMarketItem;
 import com.tlabs.eve.esi.model.ESIMarketOrder;
 import com.tlabs.eve.esi.model.ESIName;
 import com.tlabs.eve.esi.model.ESIServerStatus;
 import com.tlabs.eve.esi.model.ESIShip;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,8 @@ public interface ESIService {
 
     List<ESIMarketOrder> getMarketOrders(final Long regionID, final Long itemID);
 
+    List<ESIMarketHistory> getMarketHistory(final Long regionID, final Long itemID);
+
     List<ESIName> getRegions();
 
     ESILocation.Region getRegion(final Long id);
@@ -33,6 +37,8 @@ public interface ESIService {
     ESILocation.Constellation getConstellation(final Long id);
 
     ESILocation.SolarSystem getSolarSystem(final Long id);
+
+    ESILocation.Station getStation(final Long id);
 
     List<Long> listStructures();
 

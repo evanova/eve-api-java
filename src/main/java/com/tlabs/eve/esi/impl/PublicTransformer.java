@@ -1,15 +1,18 @@
 package com.tlabs.eve.esi.impl;
 
 import com.tlabs.eve.esi.model.ESILocation;
+import com.tlabs.eve.esi.model.ESIMarketHistory;
 import com.tlabs.eve.esi.model.ESIMarketItem;
 import com.tlabs.eve.esi.model.ESIMarketOrder;
 import com.tlabs.eve.esi.model.ESIName;
 import com.tlabs.eve.esi.model.ESIServerStatus;
 import org.devfleet.esi.model.GetMarketsPrices200Ok;
+import org.devfleet.esi.model.GetMarketsRegionIdHistory200Ok;
 import org.devfleet.esi.model.GetMarketsRegionIdOrders200Ok;
 import org.devfleet.esi.model.GetStatusOk;
 import org.devfleet.esi.model.GetUniverseConstellationsConstellationIdOk;
 import org.devfleet.esi.model.GetUniverseRegionsRegionIdOk;
+import org.devfleet.esi.model.GetUniverseStationsStationIdOk;
 import org.devfleet.esi.model.GetUniverseStructuresStructureIdOk;
 import org.devfleet.esi.model.GetUniverseSystemsSystemIdOk;
 import org.devfleet.esi.model.PostUniverseNames200Ok;
@@ -54,6 +57,17 @@ final class PublicTransformer {
         item.setPrice(object.getPrice());
         item.setTypeID(object.getTypeId());
         return item;
+    }
+
+    public static ESIMarketHistory transform(GetMarketsRegionIdHistory200Ok object) {
+        final ESIMarketHistory history = new ESIMarketHistory();
+        history.setDate(object.getDate().toDate().getTime());
+        history.setAverage(object.getAverage());
+        history.setHighest(object.getHighest());
+        history.setLowest(object.getLowest());
+        history.setOrderCount(object.getOrderCount());
+        history.setVolume(object.getVolume());
+        return history;
     }
 
     public static ESILocation.Region transform(GetUniverseRegionsRegionIdOk object) {
@@ -121,5 +135,21 @@ final class PublicTransformer {
             structure.setZ(object.getPosition().getZ());
         }
         return structure;
+    }
+
+    public static ESILocation.Station transform(final long id, final GetUniverseStationsStationIdOk object) {
+        final ESILocation.Station station = new ESILocation.Station();
+        station.setId(id);
+        station.setName(object.getName());
+        station.setTypeID(object.getTypeId());
+        station.setSolarSystemId(object.getSystemId());
+
+        if (null != object.getPosition()) {
+            station.setX(object.getPosition().getX());
+            station.setY(object.getPosition().getY());
+            station.setZ(object.getPosition().getZ());
+        }
+
+        return station;
     }
 }

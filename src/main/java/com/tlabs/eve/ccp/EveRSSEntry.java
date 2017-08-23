@@ -17,8 +17,7 @@ public class EveRSSEntry implements Serializable {
     private String link;
 
     private long dateUpdated;
-
-    private String htmlContent;
+    private long datePublished;
 
     public String getId() {
         return id;
@@ -54,6 +53,24 @@ public class EveRSSEntry implements Serializable {
         }
     }
 
+    public long getDatePublished() {
+        return datePublished;
+    }
+
+    public void setDatePublished(long datePublished) {
+        this.datePublished = datePublished;
+    }
+
+    public void setDatePublished(String datePublished) {
+        try {
+            final SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
+            this.datePublished = format.parse(datePublished).getTime();
+        }
+        catch (ParseException e) {
+            this.datePublished = System.currentTimeMillis();
+        }
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -68,14 +85,6 @@ public class EveRSSEntry implements Serializable {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public String getHtmlContent() {
-        return htmlContent;
-    }
-
-    public void setHtmlContent(String htmlContent) {
-        this.htmlContent = StringUtils.removeEnd(StringUtils.removeStart(htmlContent.trim(), "<![CDATA[").trim(), "]]>").trim();
     }
 
 }

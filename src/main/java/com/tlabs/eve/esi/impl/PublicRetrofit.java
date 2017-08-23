@@ -1,20 +1,21 @@
 package com.tlabs.eve.esi.impl;
 
 import com.tlabs.eve.esi.model.ESILocation;
+import com.tlabs.eve.esi.model.ESIMarketHistory;
 import com.tlabs.eve.esi.model.ESIMarketItem;
 import com.tlabs.eve.esi.model.ESIMarketOrder;
 import com.tlabs.eve.esi.model.ESIName;
 import com.tlabs.eve.esi.model.ESIServerStatus;
-import org.devfleet.esi.api.MarketApi;
 import org.devfleet.esi.api.RoutesApi;
 import org.devfleet.esi.api.StatusApi;
 import org.devfleet.esi.api.UniverseApi;
 import org.devfleet.esi.model.GetMarketsPrices200Ok;
+import org.devfleet.esi.model.GetMarketsRegionIdHistory200Ok;
 import org.devfleet.esi.model.GetMarketsRegionIdOrders200Ok;
 import org.devfleet.esi.model.GetStatusOk;
 import org.devfleet.esi.model.GetUniverseConstellationsConstellationIdOk;
 import org.devfleet.esi.model.GetUniverseRegionsRegionIdOk;
-import org.devfleet.esi.model.GetUniverseStructuresStructureIdOk;
+import org.devfleet.esi.model.GetUniverseStationsStationIdOk;
 import org.devfleet.esi.model.GetUniverseSystemJumps200Ok;
 import org.devfleet.esi.model.GetUniverseSystemKills200Ok;
 import org.devfleet.esi.model.GetUniverseSystemsSystemIdOk;
@@ -34,13 +35,13 @@ final class PublicRetrofit {
     private final StatusApi statusApi;
     private final UniverseApi universeApi;
     private final RoutesApi routeApi;
-    private final MarketApi marketApi;
+    private final MarketApi2 marketApi;
 
     public PublicRetrofit(final Retrofit rf, final String datasource) {
         this.statusApi = rf.create(StatusApi.class);
         this.universeApi = rf.create(UniverseApi.class);
         this.routeApi = rf.create(RoutesApi.class);
-        this.marketApi = rf.create(MarketApi.class);
+        this.marketApi = rf.create(MarketApi2.class);
         this.datasource = datasource;
     }
 
@@ -67,8 +68,8 @@ final class PublicRetrofit {
     public List<ESIMarketOrder> getMarketOrders(final Long regionID, final Long typeID) throws IOException {
         Response<List<GetMarketsRegionIdOrders200Ok>> r =
                 this.marketApi.getMarketsRegionIdOrders(
-                        null,
                         regionID.intValue(),
+                        null,
                         this.datasource,
                         null,
                         typeID.intValue(),
@@ -81,6 +82,28 @@ final class PublicRetrofit {
         final List<ESIMarketOrder> returned = new ArrayList<>();
         for (GetMarketsRegionIdOrders200Ok o: r.body()) {
             returned.add(PublicTransformer.transform(o));
+        }
+        return returned;
+    }
+
+    public List<ESIMarketHistory> getMarketHistory(final Long regionID, final Long typeID) throws IOException {
+        Response<List<GetMarketsRegionIdHistory200Ok>> r =
+                this.marketApi.getMarketsRegionIdHistory(
+                        regionID.intValue(),
+                        typeID.intValue(),
+                        this.datasource,
+                        null,
+                        null)
+                        .execute();
+        if (!r.isSuccessful()) {
+            return null;
+        }
+        final List<ESIMarketHistory> returned = new ArrayList<>();
+        for (GetMarketsRegionIdHistory200Ok o: r.body()) {
+            final ESIMarketHistory h = PublicTransformer.transform(o);
+            h.setTypeID(typeID);
+            h.setRegionID(regionID);
+            returned.add(h);
         }
         return returned;
     }
@@ -146,11 +169,11 @@ final class PublicRetrofit {
         return PublicTransformer.transform(r.body());
     }
 
-    public final ESILocation.SolarSystem getSolarSystem(final Long id, final String language) throws IOException {
+    public final ESILocation.SolarSystem getSolarSystem(final Long id) throws IOException {
         Response<GetUniverseSystemsSystemIdOk> r = this.universeApi.getUniverseSystemsSystemId(
                 id.intValue(),
                 this.datasource,
-                language,
+                null,
                 null,
                 null)
                 .execute();
@@ -160,13 +183,23 @@ final class PublicRetrofit {
         return PublicTransformer.transform(r.body());
     }
 
+    public final ESILocation.Station getStation(final Long id) throws IOException {
+        Response<GetUniverseStationsStationIdOk> r = this.universeApi.getUniverseStationsStationId(
+                id.intValue(),
+                this.datasource,
+                null,
+                null)
+                .execute();
+        if (!r.isSuccessful()) {
+            return null;
+        }
+        return PublicTransformer.transform(id, r.body());
+    }
+
     public List<ESILocation.SolarSystem> getRoute(
             final Long from,
             final Long to,
-            final String option,
-            // final List<Long> avoid,
-            // final List<Long> connect,
-            final String language) throws IOException {
+            final String option) throws IOException {
         Response<List<Integer>> r = this.routeApi.getRouteOriginDestination(
                 from.intValue(),
                 to.intValue(),
@@ -183,7 +216,7 @@ final class PublicRetrofit {
 
         final List<ESILocation.SolarSystem> systems = new ArrayList<>();
         for (Integer a: r.body()) {
-            ESILocation.SolarSystem system = getSolarSystem(a.longValue(), language);
+            ESILocation.SolarSystem system = getSolarSystem(a.longValue());
             if (null != system) {
                 systems.add(system);
                 //fill(system, r.body().g)
