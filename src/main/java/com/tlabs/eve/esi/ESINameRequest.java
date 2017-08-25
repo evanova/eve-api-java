@@ -8,7 +8,7 @@ public final class ESINameRequest extends ESIRequest<ESINameResponse> implements
 
 
     public ESINameRequest(final List<Integer> ids) {
-        super(ESINameResponse.class, "publicData");
+        super(ESINameResponse.class);
         this.ids = ids;
     }
 

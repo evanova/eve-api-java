@@ -17,7 +17,7 @@ public class ESILocationRequest extends ESIRequest<ESILocationResponse> implemen
     private final long locationID;
 
     protected ESILocationRequest(final long locationID) {
-        super(ESILocationResponse.class, "publicData");
+        super(ESILocationResponse.class);
         this.locationID = locationID;
     }
 

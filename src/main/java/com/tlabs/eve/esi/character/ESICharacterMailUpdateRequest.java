@@ -7,10 +7,7 @@ public final class ESICharacterMailUpdateRequest extends ESICharacterRequest<ESI
     private final ESIMail mail;
 
     public ESICharacterMailUpdateRequest(final long charID, final ESIMail mail) {
-        super(
-                ESICharacterMailUpdateResponse.class,
-                charID,
-                "esi-mail.organize_mail.v1");
+        super(ESICharacterMailUpdateResponse.class, charID);
         putParam("mailID", mail.getId());
         this.mail = mail;
     }

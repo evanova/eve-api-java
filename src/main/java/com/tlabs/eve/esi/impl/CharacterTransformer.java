@@ -32,6 +32,10 @@ final class CharacterTransformer {
 
     public static ESICharacter.History transform(GetCharactersCharacterIdCorporationhistory200Ok h) {
         final ESICharacter.History history = new ESICharacter.History();
+        history.setCorporationId(h.getCorporationId());
+        history.setDeleted((null == h.getIsDeleted()) ? false : h.getIsDeleted());
+        history.setRecordId((null == h.getRecordId()) ? 0 : h.getRecordId());
+        history.setStartDate((null == h.getStartDate())? 0 : h.getStartDate().getMillis());
         return history;
     }
 

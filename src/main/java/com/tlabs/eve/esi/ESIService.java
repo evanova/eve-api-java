@@ -5,6 +5,7 @@ import com.tlabs.eve.esi.model.ESICalendar;
 import com.tlabs.eve.esi.model.ESICharacter;
 import com.tlabs.eve.esi.model.ESICharacterStatus;
 import com.tlabs.eve.esi.model.ESIFitting;
+import com.tlabs.eve.esi.model.ESIFleet;
 import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
@@ -16,7 +17,6 @@ import com.tlabs.eve.esi.model.ESIName;
 import com.tlabs.eve.esi.model.ESIServerStatus;
 import com.tlabs.eve.esi.model.ESIShip;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -85,4 +85,31 @@ public interface ESIService {
     Long postFitting(final ESIFitting fitting);
 
     boolean deleteFitting(final Long fittingID);
+
+    boolean deleteFleetMember(long fleetId, long memberId);
+
+    boolean deleteFleetSquad(long fleetId, long squadId);
+
+    boolean deleteFleetWing(long fleetId, long wingId);
+
+    ESIFleet getFleet(long fleetId);
+
+    List<ESIFleet.Member> getFleetMembers(long fleetId);
+
+    List<ESIFleet.Wing> getFleetWings(long fleetId);
+
+    boolean postFleetInvitation(long fleetId, ESIFleet.Member member);
+
+    Long postFleetWing(long fleetId);
+
+    Long postFleetSquad(long fleetId, long wingId);
+
+    boolean updateFleet(ESIFleet fleet);
+
+    boolean updateFleetMember(long fleetId, ESIFleet.Member member);
+
+    boolean updateFleetSquad(long fleetId, long squadId, String name);
+
+    boolean updateFleetWing(long fleetId, long wingId, String name);
+
 }

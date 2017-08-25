@@ -8,11 +8,9 @@ import java.util.List;
 
 public abstract class ESIRequest<T extends ESIResponse> extends EveRequest<T> {
 
-    private final String scope;
 
-    public ESIRequest(Class<T> responseClass, String scope) {
+    public ESIRequest(Class<T> responseClass) {
         super(responseClass, responseClass.getSimpleName());
-        this.scope = scope;
     }
 
     public final String getRefreshToken() {
@@ -23,21 +21,5 @@ public abstract class ESIRequest<T extends ESIResponse> extends EveRequest<T> {
         putParam("refreshToken", refreshToken);
     }
 
-    public final String getScope() {
-        return scope;
-    }
 
-    public final boolean inScope(final String... scopes) {
-        return inScope(Arrays.asList(scopes));
-    }
-
-    public final boolean inScope(final List<String> scopes) {
-        if (CollectionUtils.isEmpty(scopes)) {
-            return (null == this.scope);
-        }
-        if (null == this.scope) {
-            return true;
-        }
-        return scopes.contains(this.scope);
-    }
 }

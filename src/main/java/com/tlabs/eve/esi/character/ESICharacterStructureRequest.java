@@ -5,7 +5,7 @@ public class ESICharacterStructureRequest extends ESICharacterRequest<ESICharact
     private final long structureId;
 
     public ESICharacterStructureRequest(final long ownerId, final long structureId) {
-        super(ESICharacterStructureResponse.class, ownerId, "esi-universe.read_structures.v1");
+        super(ESICharacterStructureResponse.class, ownerId);
         this.structureId = structureId;
     }
 

@@ -7,10 +7,7 @@ public final class ESICharacterMailPostRequest extends ESICharacterRequest<ESICh
     private final ESIMail mail;
 
     public ESICharacterMailPostRequest(final long charID, final ESIMail mail) {
-        super(
-                ESICharacterMailPostResponse.class,
-                charID,
-                "esi-mail.send_mail.v1");
+        super(ESICharacterMailPostResponse.class, charID);
         this.mail = mail;
     }
 

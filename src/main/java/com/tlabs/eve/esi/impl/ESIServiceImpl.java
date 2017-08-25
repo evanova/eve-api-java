@@ -8,6 +8,7 @@ import com.tlabs.eve.esi.model.ESICalendar;
 import com.tlabs.eve.esi.model.ESICharacter;
 import com.tlabs.eve.esi.model.ESICharacterStatus;
 import com.tlabs.eve.esi.model.ESIFitting;
+import com.tlabs.eve.esi.model.ESIFleet;
 import com.tlabs.eve.esi.model.ESIKillMail;
 import com.tlabs.eve.esi.model.ESILocation;
 import com.tlabs.eve.esi.model.ESIMail;
@@ -51,6 +52,8 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
 
 
     private final CharacterRetrofit rCharacter;
+    private final FleetRetrofit rFleet;
+
     private final MailRetrofit rMail;
     private final FittingRetrofit rFitting;
     private final PublicRetrofit rPublic;
@@ -72,6 +75,7 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
 
         this.rPublic = new PublicRetrofit(getRetrofit(), SOURCE);
         this.rCharacter = new CharacterRetrofit(getRetrofit(), SOURCE);
+        this.rFleet = new FleetRetrofit(getRetrofit(), SOURCE);
         this.rMail = new MailRetrofit(getRetrofit(), SOURCE);
         this.rFitting = new FittingRetrofit(getRetrofit(), SOURCE);
 
@@ -502,6 +506,175 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
         try {
             final ESICharacterStatus status = verifyCharacterStatus();
             return this.rFitting.deleteFitting(status.getCharacterID(), fittingID);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteFleetMember(long fleetId, long memberId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.deleteMember(fleetId, memberId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteFleetSquad(long fleetId, long squadId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.deleteSquad(fleetId, squadId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteFleetWing(long fleetId, long wingId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.deleteWing(fleetId, wingId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public ESIFleet getFleet(long fleetId) {
+        try{
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.getFleet(fleetId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<ESIFleet.Member> getFleetMembers(long fleetId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.getFleetMembers(fleetId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<ESIFleet.Wing> getFleetWings(long fleetId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.getFleetWings(fleetId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public boolean postFleetInvitation(long fleetId, ESIFleet.Member member) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.postInvitation(fleetId, member);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public Long postFleetWing(long fleetId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.postWing(fleetId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Long postFleetSquad(long fleetId, long wingId) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.postSquad(fleetId, wingId);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public boolean updateFleet(ESIFleet fleet) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.updateFleet(fleet);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateFleetMember(long fleetId, ESIFleet.Member member) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.updateMember(fleetId, member);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateFleetSquad(long fleetId, long squadId, String name) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.updateSquad(fleetId, squadId, name);
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateFleetWing(long fleetId, long wingId, String name) {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rFleet.updateWing(fleetId, wingId, name);
         }
         catch (IOException | IllegalStateException e) {
             LOG.debug(e.getLocalizedMessage(), e);

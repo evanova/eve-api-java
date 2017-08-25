@@ -6,7 +6,7 @@ public class ESIMarketStatisticsRequest extends ESIRequest<ESIMarketStatisticsRe
     private final long typeID;
 
     public ESIMarketStatisticsRequest(final long regionID, final long typeID) {
-        super(ESIMarketStatisticsResponse.class, "publicData");
+        super(ESIMarketStatisticsResponse.class);
         this.regionID = regionID;
         this.typeID = typeID;
     }

@@ -6,9 +6,8 @@ public abstract class ESICharacterRequest<T extends ESICharacterResponse> extend
 
     public ESICharacterRequest(
             final Class<T> tClass,
-            final long charID,
-            final String scope) {
-        super(tClass, scope);
+            final long charID) {
+        super(tClass);
         putParam("charID", charID);
     }
 
