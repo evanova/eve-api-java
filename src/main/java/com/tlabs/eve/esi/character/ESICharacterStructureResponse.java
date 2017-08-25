@@ -1,8 +1,6 @@
 package com.tlabs.eve.esi.character;
 
 import com.tlabs.eve.EveTime;
-import com.tlabs.eve.esi.ESIResponse;
-import com.tlabs.eve.esi.model.ESICharacterStatus;
 import com.tlabs.eve.esi.model.ESILocation;
 
 public final class ESICharacterStructureResponse extends ESICharacterResponse {

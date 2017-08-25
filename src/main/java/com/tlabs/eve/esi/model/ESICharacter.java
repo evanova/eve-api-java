@@ -1,8 +1,5 @@
 package com.tlabs.eve.esi.model;
 
-import com.google.gson.annotations.SerializedName;
-import org.joda.time.DateTime;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

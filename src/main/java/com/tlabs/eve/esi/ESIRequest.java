@@ -1,10 +1,6 @@
 package com.tlabs.eve.esi;
 
 import com.tlabs.eve.EveRequest;
-import org.apache.commons.collections4.CollectionUtils;
-
-import java.util.Arrays;
-import java.util.List;
 
 public abstract class ESIRequest<T extends ESIResponse> extends EveRequest<T> {
 

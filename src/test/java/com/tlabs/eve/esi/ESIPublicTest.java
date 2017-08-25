@@ -1,13 +1,11 @@
 package com.tlabs.eve.esi;
 
 import com.tlabs.eve.esi.model.ESIMarketItem;
-import com.tlabs.eve.esi.model.ESIMarketOrder;
 import com.tlabs.eve.esi.model.ESIName;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

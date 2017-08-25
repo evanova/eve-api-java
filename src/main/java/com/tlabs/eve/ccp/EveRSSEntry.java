@@ -5,7 +5,6 @@ package com.tlabs.eve.ccp;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import org.apache.commons.lang3.StringUtils;
 
 public class EveRSSEntry implements Serializable {
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'hh:mm:ss";

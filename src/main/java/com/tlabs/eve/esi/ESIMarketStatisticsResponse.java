@@ -3,7 +3,6 @@ package com.tlabs.eve.esi;
 import com.tlabs.eve.EveTime;
 import com.tlabs.eve.esi.model.ESIMarketHistory;
 import com.tlabs.eve.esi.model.ESIMarketOrder;
-import com.tlabs.eve.esi.model.ESIServerStatus;
 
 import java.util.List;
 
