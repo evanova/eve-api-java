@@ -91,6 +91,17 @@ final class CharacterRetrofit {
         return CharacterTransformer.transform(r.body());
     }
 
+    public Boolean getCharacterOnline(final Long charID) throws IOException {
+        final Response<Boolean> r =
+                this.locationApi
+                        .getCharactersCharacterIdOnline(charID.intValue(), this.datasource, null, null, null)
+                        .execute();
+        if (!r.isSuccessful()) {
+            return null;
+        }
+        return r.body();
+    }
+
     public ESIShip getCharacterShip(final Long charID) throws IOException {
         final Response<GetCharactersCharacterIdShipOk> r =
                 this.locationApi
@@ -151,18 +162,16 @@ final class CharacterRetrofit {
     }
 
     private void addEvent(final Long charID, final GetCharactersCharacterIdCalendar200Ok object, final ESICalendar to) throws IOException {
-        Response<GetCharactersCharacterIdCalendarEventIdOk> r =
+        GetCharactersCharacterIdCalendarEventIdOk events = execute(
                 this.calendarApi
                         .getCharactersCharacterIdCalendarEventId(
                                 charID.intValue(),
                                 object.getEventId(),
-                                this.datasource, null, null, null)
-                        .execute();
-        if (!r.isSuccessful()) {
+                                this.datasource, null, null, null));
+        if (null == events) {
             return;
         }
-
-        to.add(CharacterTransformer.transform(object, r.body()));
+        to.add(CharacterTransformer.transform(object, events));
     }
 
     /*public boolean postCalendarEvent(Long charID, Long eventID, ESICalendar.Event.Response response) throws IOException {

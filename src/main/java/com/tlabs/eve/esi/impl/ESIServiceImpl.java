@@ -36,6 +36,7 @@ import retrofit2.http.Header;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -150,14 +151,57 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
     }
 
     @Override
-    public List<ESIName> getNames(final List<Integer> ids) {
+    public List<ESIName> getNames(final List<Long> ids) {
+        final List<Integer> ints = new ArrayList<>();
+        final List<Long> longs = new ArrayList<>();
+        for (Long id: ids) {
+            if (id.longValue() > Integer.MAX_VALUE) {
+                longs.add(id);
+            }
+            else {
+                ints.add(id.intValue());
+            }
+        }
+
+        final List<ESIName> names = new ArrayList<>();
+        addNames(ints, names);
+        addStructures(longs, names);
+        return names;
+    }
+
+    private static final int LIMIT = 25;
+    private void addNames(final List<Integer> ids, final List<ESIName> to) {
+        final List<Integer> chopped = ids.subList(0, Math.min(LIMIT, ids.size()));
         try {
-            return this.rPublic.getNames(ids);
+            final List<ESIName> names = rPublic.getNames(chopped);
+            if (null != names) {
+                to.addAll(names);
+            }
         }
         catch (IOException | IllegalStateException e) {
             LOG.debug(e.getLocalizedMessage(), e);
             LOG.error(e.getLocalizedMessage());
-            return null;
+        }
+        if (ids.size() > LIMIT) {
+            addNames(ids.subList(LIMIT, ids.size()), to);
+        }
+    }
+
+    private void addStructures(final List<Long> ids, final List<ESIName> to) {
+        for (Long s: ids) {
+            try {
+                ESILocation location = rCharacter.getStructure(s);
+                if (null != location) {
+                    ESIName name = new ESIName();
+                    name.setId(s);
+                    name.setName(location.getName());
+                    to.add(name);
+                }
+            }
+            catch (IOException | IllegalStateException e) {
+                LOG.debug(e.getLocalizedMessage(), e);
+                LOG.error(e.getLocalizedMessage());
+            }
         }
     }
 
@@ -273,6 +317,19 @@ public class ESIServiceImpl extends EveRetrofit implements ESIService {
     public ESICharacterStatus getCharacterStatus() {
         try {
             return verifyCharacterStatus();
+        }
+        catch (IOException | IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.error(e.getLocalizedMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean getCharacterOnline() {
+        try {
+            final ESICharacterStatus status = verifyCharacterStatus();
+            return rCharacter.getCharacterOnline(status.getCharacterID());
         }
         catch (IOException | IllegalStateException e) {
             LOG.debug(e.getLocalizedMessage(), e);

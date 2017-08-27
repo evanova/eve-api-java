@@ -13,6 +13,8 @@ public class Asset implements Serializable {
 
     private Item item;
 
+    private long assetID;
+
     private long itemID;//typeID
 
     private long categoryID; //Not in XML
@@ -33,6 +35,14 @@ public class Asset implements Serializable {
     private long rawQuantity;
 
     private List<Asset> items = new ArrayList<>();
+
+    public long getAssetID() {
+        return assetID;
+    }
+
+    public void setAssetID(long assetID) {
+        this.assetID = assetID;
+    }
 
     public void setLocationID(long locationID) {
         this.locationID = locationID;

@@ -89,7 +89,7 @@ final class MailRetrofit {
                 .execute()
                 .body()) {
             mailboxes.add(ESITransformer.transform(object));*/
-            for (GetCharactersCharacterIdMailLabelsOkLabels object: r.body().getLabels()) {
+        for (GetCharactersCharacterIdMailLabelsOkLabels object: r.body().getLabels()) {
             mailboxes.add(MailTransformer.transform(object));
         }
         return mailboxes;

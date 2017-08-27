@@ -46,11 +46,13 @@ public interface ESIService {
 
     Map<Long, ESILocation.SolarSystem> getSolarSystemStatistics();
 
-    List<ESIName> getNames(final List<Integer> ids);
+    List<ESIName> getNames(final List<Long> ids);
 
     ESIKillMail getKillMail(final ESIKillMail killMail);
 
     ESICharacterStatus getCharacterStatus();
+
+    Boolean getCharacterOnline();
 
     ESICharacter getCharacter();
 

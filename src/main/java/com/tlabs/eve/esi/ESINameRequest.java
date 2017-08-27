@@ -4,15 +4,14 @@ import java.util.List;
 
 public final class ESINameRequest extends ESIRequest<ESINameResponse> implements ESIRequest.Public {
 
-    private final List<Integer> ids;
+    private final List<Long> ids;
 
-
-    public ESINameRequest(final List<Integer> ids) {
+    public ESINameRequest(final List<Long> ids) {
         super(ESINameResponse.class);
         this.ids = ids;
     }
 
-    public List<Integer> getIds() {
+    public List<Long> getIds() {
         return ids;
     }
 
