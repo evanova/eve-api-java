@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/evanova/eve-api-java.svg?branch=master)](https://travis-ci.org/evanova/eve-api-java)
+# THIS PROJECT IS OBSOLETE AND NO LONGER MANTAINED
 
 # Eve Online API implementation in Java
 
